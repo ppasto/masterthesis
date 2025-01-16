@@ -1,0 +1,157 @@
+\documentclass[11pt,a4paper,twoside]{book}
+\input{header.sty}% packages, layout and standard macros
+
+\begin{document}
+%\SweaveOpts{concordance=TRUE}
+\input{title}
+
+<<'main-setup',include=FALSE,purl=FALSE>>=
+library(knitr)
+opts_chunk$set(
+    concordance=TRUE,
+    child.command = 'include',
+    cache=T)
+@
+
+<<libraries, include=FALSE>>=
+# Load necessary libraries used across multiple chapters
+library(dplyr)
+library(ggplot2)
+library(xtable)
+library(ggpubr)
+library(GGally)
+library(corrplot)
+library(tableone)
+@
+
+\graphicspath{{./figure/}}
+\DeclareGraphicsExtensions{.pdf,.png}
+\setcounter{tocdepth}{1}
+
+\thispagestyle{empty}
+\begin{center}
+  \vspace*{6cm}{\bfseries\Huge
+  Diagnostics, Implications \\ and Handling of Collinearity \\ in Linear Models \\
+  }
+  \vfill
+  \rm
+
+  \LARGE
+  Lillemor Haibach\\[12mm]
+
+  \normalsize
+  Version of \today
+\end{center}
+\newpage
+\thispagestyle{empty}~
+\newpage
+\pagenumbering{roman}
+
+\chapter*{Acknowledgement}
+This thesis would not have been possible without the guidance and support of my supervisor, PD Dr. Malgorzata Roos. I would like to extend my deepest gratitude to her for her commitment, insightful advice, and continuous encouragement. I am truly thankful for the interest and time she invested in my work.
+I would also like to express my appreciation to the faculty members of the Biostatistics Master's Program. Their expertise and commitment to teaching have greatly enriched my knowledge, made my learning experience in this program deeply rewarding and inspired my academic growth.
+
+
+\bigskip
+
+\begin{flushright}
+  Lillemor Haibach\\
+  September 2024
+\end{flushright}
+
+
+\thispagestyle{plain}\markboth{Contents}{Contents}
+\tableofcontents
+\setkeys{Gin}{width=.8\textwidth}
+
+\chapter*{Abstract}
+\addtocontents{toc}{\protect \vspace*{13.mm}}
+\addcontentsline{toc}{chapter}{\bfseries{Abstract}}
+\thispagestyle{plain}\markboth{Abstract}{Abstract}
+
+This thesis addresses the issue of collinearity in explanatory linear regression models, where the magnitude and sign of model coefficient estimates are crucial for meaningful interpretation. If collinearity is left unaddressed, it can distort statistical inferences, making it essential to proactively identify and appropriately handle the issue.
+
+In this thesis the need for a systematic approach to diagnosing and handling collinearity is highlighted. We found that collinearity can originate from multiple sources, both at the true model level -- such as indirect and direct variable coupling --- and at the data generation level --- such as random occurrence, sampling technique employed and model specification. These sources can intersect, creating scenarios that are underrepresented in the existing literature. To illustrate the effectiveness of various handling approaches, we applied them to a dataset with direct variable coupling as a source of collinearity. Additionally, we investigated the relationship between sample size and randomly occurring collinearity using simulated data and by subsampling a clinical dataset.
+
+The primary contribution of this thesis is the development of a workflow that emphasizes proactive collinearity diagnostics, which guides the selection of appropriate handling strategies based on the source of collinearity. By implementing this workflow, researchers can make informed decisions about variable elimination, data collection and model respecification, which ensures the interpretability and reliability of regression models. Our practical applications demonstrated the effectiveness of variable elimination and model respecification to reduce collinearity. These applications showed also the value of alternative model fitting methods like ridge regression and Bayesian methods for stabilizing regression coefficient estimation in collinear settings. Moreover, simulations and subsampling showed that as sample size decreases, randomly occurring collinearity increases, which demonstrates the importance of appropriate sample size selection.
+
+In summary, this thesis provides a structured methodology for managing collinearity in explanatory models and identifies critical gaps in current practices. These efforts pave the way for future research to explore additional collinearity handling methods and a broader range of applications.
+
+% \bigskip
+%
+% \begin{flushright}
+%   Lillemor Haibach\\
+%   September 2024
+% \end{flushright}
+
+\addtocontents{toc}{\protect \vspace*{10mm}}
+
+\cleardoublepage
+\pagenumbering{arabic}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<'child-chapter01', child='chapter01.Rnw'>>=
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<'child-chapter02', child='chapter02.Rnw'>>=
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<'child-chapter02_1', child='chapter02_1.Rnw'>>=
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<'child-chapter03', child='chapter03.Rnw'>>=
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ <<'child-chapter04', child='chapter04.Rnw'>>=
+ @
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ <<'child-chapter04_1', child='chapter04_1.Rnw'>>=
+ @
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<'child-chapter05', child='chapter05.Rnw'>>=
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+
+ <<'child-chapterA1', child='chapterA1.Rnw'>>=
+ @
+
+ <<'child-chapterA2', child='chapterA2.Rnw'>>=
+ @
+
+ <<'child-chapterA3', child='chapterA3.Rnw'>>=
+@
+
+ <<'child-chapterA4', child='chapterA4.Rnw'>>=
+@
+
+
+\cleardoublepage
+\phantomsection
+\addtocontents{toc}{\protect \vspace*{10mm}}
+\addcontentsline{toc}{chapter}{\bfseries Bibliography}
+
+
+\bibliographystyle{mywiley}
+\bibliography{biblio}
+
+\cleardoublepage
+
+\end{document}
+
