@@ -1,0 +1,92 @@
+\documentclass[english]{beamer}
+
+%% The most common packages are already included in:
+\usetheme{biostat}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+%% Header data: (adjust to your needs:
+\def\uzhunit{Master Thesis Biostatistics}             %% if (not) needed comment/uncomment
+%\def\uzhunitext{STA480}
+\title[Recruitment rate stochasticity at the design
+stage of a clinical trial]{Recruitment rate stochasticity at the design
+stage of a clinical trial}
+%% Optional Argument in [Brackets]: Short Title for Footline
+
+%% The following are all optional, simply comment them
+\subtitle{Supervision by Malgorzata Roos}
+%\institute{Biostatistics Journal Club}  %% optional
+\author{Pilar Pastor}
+%\date{\today}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+<<include=FALSE,purl=FALSE>>=
+library(knitr)
+opts_chunk$set(
+fig.path='figures/fig', fig.show='hold', 
+	cache=TRUE, fig.height=4)
+@
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{document}
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%% Start with slides here: put them between `\begin{frame}` and `\end{frame}`
+
+
+\begin{frame}{First Slide}
+
+
+\end{frame}
+
+
+\begin{frame}{Second Slide}
+
+
+
+\end{frame}
+
+\begin{frame}[shrink = 5]{Shrunk Slide 1}
+
+
+\end{frame}
+
+
+
+\begin{frame}[shrink = 23]{Shrunk slide 2}
+
+
+\end{frame}
+
+
+
+\begin{frame}{Results}
+
+
+\end{frame}
+
+\begin{frame}{Conclusion}
+
+% \includegraphics[width=50mm,scale=0.5]{shiftscale6_roc.png}
+
+\end{frame}
+
+
+\begin{frame}{Next steps}
+
+
+\end{frame}
+
+\begin{frame}{References}
+  \small
+  \bibliographystyle{apalike}
+\bibliography{illustration}
+\end{frame}
+
+%\appendix
+%% Possible backup slides...
+
+%% chapter division is accomplished with:
+%% \part{Appendix}
+
+\end{document}
