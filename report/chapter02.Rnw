@@ -14,6 +14,20 @@ Note that you can wisely use \rr{preamble}-chunks. Minimal, is likely:
 
 \bigskip
 
+% $T=time$
+% $C=counts$
+% $\lambda=\frac{C}{T}$
+% \begin{tabular}{|c|c|c|c|c|}
+%     \hline
+%      & \textbf{Expectation} & \textbf{SD} & \textbf{Aleatory Uncertainty} & \textbf{Epistemic Uncertainty} \\ \hline
+%     Point Estimate & $\lambda\cdot T$ & 0 & NO & NO \\ \hline
+%     $C\sim Poi(\lambda)$ & $\lambda\cdot T$ & $\lambda\cdotT$ & YES & NO \\ \hline
+%     $C\sim Poi(\Lambda)$ with $\Lambda\sim Gamma (\alpha,\beta)$& [...] & [...] & YES & YES \\ \hline
+% 
+% \end{tabular}
+
+
+
 \hrule
 <<echo=FALSE>>=
 library(knitr) 
