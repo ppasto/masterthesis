@@ -14,6 +14,9 @@ Note that you can wisely use \rr{preamble}-chunks. Minimal, is likely:
 
 \bigskip
 
+\section{Definitions}
+
+
 % $T=time$
 % $C=counts$
 % $\lambda=\frac{C}{T}$
@@ -38,16 +41,16 @@ opts_chunk$set(
 ) 
 @
 \hrule
-
 \bigskip
 
-Defining figure options is very helpful:
+\textit{Target Population}
 
- 
 \bigskip
-
-
 \hrule
+\bigskip
+Patients
+
+
 <<echo=FALSE,cache=FALSE>>=
 library(knitr)
 opts_chunk$set(fig.path='figure/ch02_fig',
