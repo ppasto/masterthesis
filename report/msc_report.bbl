@@ -10,6 +10,16 @@ Collett, D. (2014).
 \newblock {\em Modelling Survival Data in Medical Research}.
 \newblock Chapman \& Hall/CRC Texts in Statistical Science. Taylor \& Francis, third edition.
 
+\bibitem[Food {\it et~al.}, 2018]{food2018evaluating}
+Food, Administration, D.,{\it et~al.} (2018).
+\newblock Evaluating inclusion and exclusion criteria in clinical trials.
+\newblock In {\em Workshop report. The National Press Club, Washington DC}.
+
+\bibitem[Frank, 2004]{frank2004current}
+Frank, G. (2004).
+\newblock Current challenges in clinical trial patient recruitment and enrollment.
+\newblock {\em SoCRA Source}, {\bf2},  30--38.
+
 \bibitem[Hurrell {\it et~al.}, 2013]{Hurr:etal:13}
 Hurrell, J.~W., Kushnir, Y., Ottersen, G., and Visbeck, M. (2013).
 \newblock {\em An Overview of the {North} {Atlantic} Oscillation},   1--35.
@@ -20,14 +30,35 @@ Kratzer, G. and Furrer, R. (2018).
 \newblock {\em varrank: an {R} package for variable ranking based on mutual information with applications to observed systemic datasets}.
 \newblock R package version 0.3.
 
+\bibitem[Lim and In, 2019]{lim2019randomization}
+Lim, C.-Y. and In, J. (2019).
+\newblock Randomization in clinical studies.
+\newblock {\em Korean journal of anesthesiology}, {\bf72},  221--232.
+
+\bibitem[{National Institute of Allergy and Infectious Diseases}, 2021]{NIH2021}
+{National Institute of Allergy and Infectious Diseases} (2021).
+\newblock Screening, enrollment, and unblinding of participants.
+\newblock \url{https://www.niaid.nih.gov/sites/default/files/screening-enrollment-unblinding-of-participants.pdf}.
+\newblock Accessed: 2025-02-10.
+
 \bibitem[Porcu {\it et~al.}, 2020]{Porc:Furr:Nych:21}
 Porcu, E., Furrer, R., and Nychka, D. (2020).
 \newblock 30 years of space-time covariance functions.
 \newblock {\em Wiley Interdisciplinary Reviews. Computational Statistics}, {\bf13:e1512},  1--24.
 
+\bibitem[Van~Spall {\it et~al.}, 2007]{van2007eligibility}
+Van~Spall, H.~G., Toren, A., Kiss, A., and Fowler, R.~A. (2007).
+\newblock Eligibility criteria of randomized controlled trials published in high-impact general medical journals: a systematic sampling review.
+\newblock {\em Jama}, {\bf297},  1233--1240.
+
 \bibitem[Wang and Furrer, 2020]{Wang:Furr:20}
 Wang, C. and Furrer, R. (2020).
 \newblock Monte {Carlo} permutation tests for assessing spatial dependence at different scales.
 \newblock In {La Rocca}, M., Liseo, B., and Salmaso, L., editors, {\em Nonparametric Statistics. ISNPS 2018. Springer Proceedings in Mathematics \& Statistics}, volume 339,   503--511. Springer.
+
+\bibitem[Willie, 2024]{willie2024population}
+Willie, M.~M. (2024).
+\newblock Population and target population in research methodology.
+\newblock {\em Golden Ratio of Social Science and Education}, {\bf4},  75--79.
 
 \end{thebibliography}
