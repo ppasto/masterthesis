@@ -12,6 +12,8 @@ opts_chunk$set(
 Maybe it is the methods section. Here however, we give a couple hints.
 Note that you can wisely use \rr{preamble}-chunks. Minimal, is likely: 
 
+check if changes remain
+
 \bigskip
 
 \section{Definitions}
