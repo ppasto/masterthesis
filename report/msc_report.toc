@@ -5,9 +5,10 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
 \contentsline {chapter}{\numberline {2}Methodology}{3}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Definitions}{3}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Citations}{3}{section.2.2}%
-\contentsline {chapter}{\numberline {3}Results}{5}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Discussion and Outlook}{7}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Conclusions}{9}{chapter.5}%
+\contentsline {section}{\numberline {2.2}Uncertainty}{4}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Citations}{4}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Results}{7}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Discussion and Outlook}{9}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusions}{11}{chapter.5}%
 \vspace *{10mm}
-\contentsline {chapter}{\bfseries Bibliography}{11}{section*.4}%
+\contentsline {chapter}{\bfseries Bibliography}{13}{section*.6}%

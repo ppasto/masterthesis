@@ -16,17 +16,44 @@ In clinical trials, \textit{Enrollment} refers to the formal process of register
 Once enrolled, participants are assigned to specific treatment groups or interventions as defined by the study design. The most common practice been \textit{Randomization}. In clinical research, randomization is the process of assigning participants to different treatment groups using chance methods, such as random number generators or coin flips \citep{lim2019randomization}. Randomized controlled trials (RCTs) are considered the most effective method for preventing bias in the evaluation of new interventions, drugs, or devices. \citep{van2007eligibility}.
 
 
-% $T=time$
-% $C=counts$
-% $\lambda=\frac{C}{T}$
-% \begin{tabular}{|c|c|c|c|c|}
-%     \hline
-%      & \textbf{Expectation} & \textbf{SD} & \textbf{Aleatory Uncertainty} & \textbf{Epistemic Uncertainty} \\ \hline
-%     Point Estimate & $\lambda\cdot T$ & 0 & NO & NO \\ \hline
-%     $C\sim Poi(\lambda)$ & $\lambda\cdot T$ & $\lambda\cdotT$ & YES & NO \\ \hline
-%     $C\sim Poi(\Lambda)$ with $\Lambda\sim Gamma (\alpha,\beta)$& [...] & [...] & YES & YES \\ \hline
-% 
-% \end{tabular}
+In clinical research, \textit{Statistical Analysis} involves applying statistical methods to collect, summarize, interpret, and present data derived from clinical studies. This process is essential for evaluating the safety, efficacy, and overall outcomes of medical interventions, ensuring that conclusions drawn are both reliable and valid \citep{panos2023statistical}. Not all participants who are randomized may be included in the final statistical analysis due to protocol deviations of patients not adhering to the protocol \citep{rehman2020exclusion}, missing data \citep{shih2002problems} or loss-to-follow-up, some participants may become unreachable or withdraw consent during the study, resulting in missing outcome data \citep{nuesch2009effects}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{fig_2_1.png}
+  \caption{Patient Attrition at Each Stage of a Clinical Study. References: \cite{piantadosi2022principles, whelan2018high, bogin2022lasagna}}
+  \label{fig:2_1}
+\end{figure}
+
+The number of patients decreases at each stage of a clinical study, from defining the target population to final statistical analysis, see Figure \ref{fig:2_1}. Eligibility criteria narrow down participants, and enrollment further reduces numbers as only those meeting strict criteria are registered. Randomization assigns individuals to treatment groups, but some may later be excluded due to protocol deviations, missing data, or loss to follow-up. 
+
+
+\section{Uncertainty}
+
+Let us denote
+
+\begin{itemize}
+\item $T=time$
+\item $C=counts$
+\item $\lambda=\frac{C}{T}$
+\end{itemize}
+
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{cccccc}
+ & Counts & Expectation & Standard Deviation & Aleatory & Epistemic \\
+\hline
+\hline
+Expectation & $C = \lambda \cdot T$ & $\lambda \cdot T$ & 0 & No & No \\
+Poisson & $C \sim \text{Poi} (\lambda \cdot T)$ & $\lambda \cdot T$ & $\lambda \cdot T$ & Yes & No \\
+Negative Binomial & $C \sim \text{Poi} (\Lambda \cdot T)$; $\Lambda \sim G(\alpha,\beta)$ & ? & ? & Yes & Yes \\
+\end{tabular}
+}
+\caption{Modeling Count Data with Specified Levels of Aleatory and Epistemic Uncertainty.}
+\label{tab:count_modeling}
+\end{table}
+
 
 
 
