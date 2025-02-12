@@ -1,6 +1,13 @@
 % LaTeX file for Chapter 02
 
 
+
+
+
+
+
+
+
 \chapter{Methodology} 
 
 \section{Definitions}
@@ -54,15 +61,37 @@ Negative Binomial & $C \sim \text{Poi} (\Lambda \cdot T)$; $\Lambda \sim G(\alph
 \label{tab:count_modeling}
 \end{table}
 
+\begin{figure}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
 
+{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-3-1} 
+
+}
+
+
+\end{knitrout}
+  \caption{Poisson-distributed counts over time with estimated expectation and uncertainty. The red line represents the point estimate expectation ($\lambda t$), while the blue dashed lines indicate Poisson aleatory uncertainty ($\lambda t \pm \sqrt{\lambda t}$). The histogram on the right illustrates the distribution of observed counts. }
+  \label{fig:2_2}
+\end{figure}
+
+
+\begin{figure}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
+
+{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-4-1} 
+
+}
+
+
+\end{knitrout}
+  \caption{Poisson process with uncertainty bands over time. The black line represents the median count, while the green shaded regions indicate uncertainty: the dark green band spans the interquantile range (25th - 75th percentiles), and the lighter green band cover the 5th - 95th percentile range, based on 1,000 simulations.}
+  \label{fig:2_3}
+\end{figure}
 
 
 \hrule
-
-
-
-
-
 \hrule
 
 \bigskip 
@@ -77,7 +106,7 @@ Notice how in Figure~\ref{f02:1} everything is properly scaled.
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
 
-{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-3-1} 
+{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-5-1} 
 
 }
 

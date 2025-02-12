@@ -8,6 +8,32 @@ opts_chunk$set(
 ) 
 @
 
+
+<<echo=FALSE>>=
+library(knitr) 
+opts_chunk$set( 
+    fig.path='figure/ch02_fig',    
+    self.contained=FALSE,
+    cache=TRUE
+) 
+@
+
+
+
+<<echo=FALSE,cache=FALSE>>=
+library(knitr)
+opts_chunk$set(fig.path='figure/ch02_fig',
+               echo=TRUE, message=FALSE,
+               fig.width=7, fig.height=3,  
+               out.width='\\textwidth-3cm',
+               message=FALSE, fig.align='center',
+               background="gray98", tidy=FALSE, #tidy.opts=list(width.cutoff=60),
+               cache=TRUE
+) 
+knitr::opts_chunk$set(highlight = FALSE)
+options(width=74)
+@ 
+
 \chapter{Methodology} 
 
 \section{Definitions}
@@ -61,34 +87,108 @@ Negative Binomial & $C \sim \text{Poi} (\Lambda \cdot T)$; $\Lambda \sim G(\alph
 \label{tab:count_modeling}
 \end{table}
 
+\begin{figure}
+<<echo=FALSE>>=
+library(ggplot2)
+library(ggExtra)
 
+set.seed(123)
+lambda <- 0.591
+n <- 550
+
+tval <- numeric(n)
+cval <- numeric(n)
+
+for (j in 1:n) {
+  t <- j + 1
+  c <- rpois(1, lambda * t)
+  
+  tval[j] <- t
+  cval[j] <- c
+}
+
+data <- data.frame(Time = tval, Counts = cval)
+
+# Main Scatter Plot with Poisson Estimate and Spread
+p <- ggplot(data, aes(x = Time, y = Counts)) +
+  geom_point(color = "gray", alpha = 0.6) +
+  geom_abline(aes(intercept = 0, slope = lambda, color = "Point Estimate Expectation", linetype = "Point Estimate Expectation"), linewidth = 1.2) +
+  geom_line(aes(y = lambda * Time + sqrt(lambda * Time), color = "Poisson Aleatory Uncertainty", linetype = "Poisson Aleatory Uncertainty")) +
+  geom_line(aes(y = lambda * Time - sqrt(lambda * Time), color = "Poisson Aleatory Uncertainty", linetype = "Poisson Aleatory Uncertainty")) +
+  scale_color_manual(name = "Legend", values = c("Point Estimate Expectation" = "red", "Poisson Aleatory Uncertainty" = "blue")) +
+  scale_linetype_manual(name = "Legend", values = c("Point Estimate Expectation" = "solid", "Poisson Aleatory Uncertainty" = "dashed")) +
+  labs(title = "Poisson Counts with Spread", x = "Time", y = "Counts") +
+  theme_minimal() +
+  theme(legend.position = c(0.05, 0.95),  # Top-left corner
+        legend.justification = c(0, 1),   # Align top-left
+        legend.background = element_rect(fill = "white", color = "black", linewidth = 0.5))
+
+# Add rotated histogram on the right
+p_final <- ggMarginal(p, type = "histogram", fill = "lightblue", bins = 30, margins = "y")
+
+print(p_final)
+@   
+  \caption{Poisson-distributed counts over time with estimated expectation and uncertainty. The red line represents the point estimate expectation ($\lambda t$), while the blue dashed lines indicate Poisson aleatory uncertainty ($\lambda t \pm \sqrt{\lambda t}$). The histogram on the right illustrates the distribution of observed counts. }
+  \label{fig:2_2}
+\end{figure}
+
+
+\begin{figure}
+<<echo=FALSE>>=
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+
+# Parameters
+lambda <- 0.591 
+n <- 550
+num_sim <- 1000 
+
+# Generate Data
+set.seed(123) 
+tval <- 1:n
+sim_data <- matrix(NA, nrow = n, ncol = num_sim)
+
+for (sim in 1:num_sim) {
+	sim_data[, sim] <- rpois(n, lambda * tval)
+}
+
+# Convert to DataFrame
+df <- as.data.frame(sim_data)
+df$t <- tval
+
+# Compute Quantiles
+df_long <- df %>% pivot_longer(-t, names_to = "simulation", values_to = "counts")
+
+df_summary <- df_long %>%
+	group_by(t) %>%
+	summarise(
+		median = median(counts),
+		q25 = quantile(counts, 0.25),
+		q75 = quantile(counts, 0.75),
+		q95 = quantile(counts, 0.95),
+		q5 = quantile(counts, 0.05)
+	)
+
+ggplot(df_summary, aes(x = t)) +
+	geom_ribbon(aes(ymin = q5, ymax = q95, fill = "5th-95th Percentile"), alpha = 0.2) +
+	geom_ribbon(aes(ymin = q25, ymax = q75, fill = "25th-75th Percentile"), alpha = 0.4) +
+	geom_line(aes(y = median, color = "Median"), size = 1) +
+	scale_fill_manual(name = "Uncertainty Bands", 
+										values = c("5th-95th Percentile" = "darkgreen", 
+															 "25th-75th Percentile" = "green")) +
+	scale_color_manual(name = "Median", values = c("Median" = "black")) +
+	labs(title = "Poisson Process with Uncertainty Bands",
+			 x = "Time", y = "Counts") +
+	theme_minimal() +
+	theme(legend.position = "top")
+@   
+  \caption{Poisson process with uncertainty bands over time. The black line represents the median count, while the green shaded regions indicate uncertainty: the dark green band spans the interquantile range (25th - 75th percentiles), and the lighter green band cover the 5th - 95th percentile range, based on 1,000 simulations.}
+  \label{fig:2_3}
+\end{figure}
 
 
 \hrule
-<<echo=FALSE>>=
-library(knitr) 
-opts_chunk$set( 
-    fig.path='figure/ch02_fig',    
-    self.contained=FALSE,
-    cache=TRUE
-) 
-@
-
-
-
-<<echo=FALSE,cache=FALSE>>=
-library(knitr)
-opts_chunk$set(fig.path='figure/ch02_fig',
-               echo=TRUE, message=FALSE,
-               fig.width=8, fig.height=2.5,  
-               out.width='\\textwidth-3cm',
-               message=FALSE, fig.align='center',
-               background="gray98", tidy=FALSE, #tidy.opts=list(width.cutoff=60),
-               cache=TRUE
-) 
-knitr::opts_chunk$set(highlight = FALSE)
-options(width=74)
-@ 
 \hrule
 
 \bigskip 
