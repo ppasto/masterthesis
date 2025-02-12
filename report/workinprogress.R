@@ -1,43 +1,5 @@
 ################################################# COUNTS
-########################### plot 1 v1
-set.seed(123)
-lambda <- 0.591 
-n <- 550
-
-tval <- numeric(n)
-cval <- numeric(n)
-
-for (j in 1:n) {
-	t <- j + 1
-	c <- rpois(1, lambda * t)
-	
-	tval[j] <- t
-	cval[j] <- c
-}
-
-# Define layout: 2 columns (Main plot + Histogram)
-layout(matrix(c(1,2), nrow=1), widths = c(3,1))  # Main plot wider than histogram
-
-# Main Scatter Plot
-par(mar=c(5,4,4,1))  # Adjust margins
-plot(tval, cval, main="Poisson Counts with Spread", xlab="Time", ylab="Counts", col="gray")
-
-# Reference line (Estimate)
-abline(a = 0, b = lambda, col= "red", lwd=2)
-
-# Spread lines (Estimate ± SD)
-lines(tval, lambda * tval + sqrt(lambda * tval), col="blue", lty=2)
-lines(tval, lambda * tval - sqrt(lambda * tval), col="blue", lty=2)
-
-legend("topleft", legend = c("Estimate", "Poisson - Aleatory"),
-			 col = c("red", "blue"), lty = c(1, 2), lwd = c(2, 1))
-
-# Histogram (Y-axis)
-par(mar=c(5,1,4,4))  # Adjust margins for the histogram
-hist(cval, breaks=30, col="lightblue", main="Counts Distribution", xlab="", ylab="", horiz=TRUE)
-
-########################### plot 1 v2
-
+########################### Poisson Estimate and Spread
 library(ggplot2)
 library(ggExtra)
 
@@ -49,30 +11,36 @@ tval <- numeric(n)
 cval <- numeric(n)
 
 for (j in 1:n) {
-	t <- j + 1
-	c <- rpois(1, lambda * t)
-	
-	tval[j] <- t
-	cval[j] <- c
+  t <- j + 1
+  c <- rpois(1, lambda * t)
+  
+  tval[j] <- t
+  cval[j] <- c
 }
 
 data <- data.frame(Time = tval, Counts = cval)
 
 # Main Scatter Plot with Poisson Estimate and Spread
 p <- ggplot(data, aes(x = Time, y = Counts)) +
-	geom_point(color = "gray", alpha = 0.6) +
-	geom_abline(intercept = 0, slope = lambda, color = "red", linewidth = 1.2) +
-	geom_line(aes(y = lambda * Time + sqrt(lambda * Time)), color = "blue", linetype = "dashed") +
-	geom_line(aes(y = lambda * Time - sqrt(lambda * Time)), color = "blue", linetype = "dashed") +
-	labs(title = "Poisson Counts with Spread", x = "Time", y = "Counts") +
-	theme_minimal()
+  geom_point(color = "gray", alpha = 0.6) +
+  geom_abline(aes(intercept = 0, slope = lambda, color = "Point Estimate Expectation", linetype = "Point Estimate Expectation"), linewidth = 1.2) +
+  geom_line(aes(y = lambda * Time + sqrt(lambda * Time), color = "Poisson Aleatory Uncertainty", linetype = "Poisson Aleatory Uncertainty")) +
+  geom_line(aes(y = lambda * Time - sqrt(lambda * Time), color = "Poisson Aleatory Uncertainty", linetype = "Poisson Aleatory Uncertainty")) +
+  scale_color_manual(name = "Legend", values = c("Point Estimate Expectation" = "red", "Poisson Aleatory Uncertainty" = "blue")) +
+  scale_linetype_manual(name = "Legend", values = c("Point Estimate Expectation" = "solid", "Poisson Aleatory Uncertainty" = "dashed")) +
+  labs(title = "Poisson Counts with Spread", x = "Time", y = "Counts") +
+  theme_minimal() +
+  theme(legend.position = c(0.05, 0.95),  # Top-left corner
+        legend.justification = c(0, 1),   # Align top-left
+        legend.background = element_rect(fill = "white", color = "black", linewidth = 0.5))
 
 # Add rotated histogram on the right
 p_final <- ggMarginal(p, type = "histogram", fill = "lightblue", bins = 30, margins = "y")
 
 print(p_final)
 
-########################### plot 2
+
+########################### Poisson Process with Uncertainty Bands
 library(ggplot2)
 library(dplyr)
 library(tidyr)
@@ -80,10 +48,10 @@ library(tidyr)
 # Parameters
 lambda <- 0.591 
 n <- 550
-num_sim <- 1000  # Number of simulations for uncertainty bands
+num_sim <- 1000  
 
 # Generate Data
-set.seed(123)  # For reproducibility
+set.seed(123)  
 tval <- 1:n
 sim_data <- matrix(NA, nrow = n, ncol = num_sim)
 
@@ -108,17 +76,23 @@ df_summary <- df_long %>%
 		q5 = quantile(counts, 0.05)
 	)
 
-# Plot
 ggplot(df_summary, aes(x = t)) +
-	geom_ribbon(aes(ymin = q5, ymax = q95), fill = "darkgreen", alpha = 0.2) +
-	geom_ribbon(aes(ymin = q25, ymax = q75), fill = "green", alpha = 0.4) +
-	geom_line(aes(y = median), color = "black", size = 1) +
+	geom_ribbon(aes(ymin = q5, ymax = q95, fill = "5th-95th Percentile"), alpha = 0.2) +
+	geom_ribbon(aes(ymin = q25, ymax = q75, fill = "25th-75th Percentile"), alpha = 0.4) +
+	geom_line(aes(y = median, color = "Median"), size = 1) +
+	scale_fill_manual(name = "Uncertainty Bands", 
+										values = c("5th-95th Percentile" = "darkgreen", 
+															 "25th-75th Percentile" = "green")) +
+	scale_color_manual(name = "Median", values = c("Median" = "black")) +
 	labs(title = "Poisson Process with Uncertainty Bands",
 			 x = "Time", y = "Counts") +
-	theme_minimal()
+	theme_minimal() +
+	theme(legend.position = "top")
+
 
 
 ################################################# TIME
+
 num_iterations <- 1000  # Number of simulations
 sample_size <- 324  # Desired sample size per simulation
 lambda <- 0.591  # Poisson mean 
