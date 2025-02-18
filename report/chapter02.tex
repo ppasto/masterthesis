@@ -37,6 +37,8 @@ The number of patients decreases at each stage of a clinical study, from definin
 
 \section{Uncertainty and models for counts}
 
+Let us define \textbf{Aleatory Uncertainty} as that which can be characterised by randomness. It is inherent, irreducible and unpredictable in nature. Whereas \textbf{Epistemic Uncertainty} arises primarily from limited or imperfect knowledge and can be reducible by obtaininng more or better information. 
+
 Let us denote
 
 \begin{itemize}
@@ -49,15 +51,15 @@ Let us denote
 \centering
 \resizebox{\textwidth}{!}{
 \begin{tabular}{cccccc}
- & Counts & Expectation & Standard Deviation & Aleatory & Epistemic \\
+ \textbf{Methods} & \textbf{Counts} & \textbf{Expectation} & \textbf{Variance} & \textbf{Aleatory} & \textbf{Epistemic} \\
 \hline
 \hline
-Expectation & $C = \lambda \cdot T$ & $\lambda \cdot T$ & 0 & No & No \\
-Poisson & $C \sim \text{Poi} (\lambda \cdot T)$ & $\lambda \cdot T$ & $\lambda \cdot T$ & Yes & No \\
-Negative Binomial & $C \sim \text{Poi} (\Lambda \cdot T)$; $\Lambda \sim G(\alpha,\beta)$ & ? & ? & Yes & Yes \\
+Expectation & $C = \lambda  T$ & $\lambda  T$ & 0 & No & No \\
+Poisson & $C \sim \text{Po} (\lambda  T)$ & $\lambda  T$ & $\lambda  T$ & Yes & No \\
+Negative Binomial & $C \sim \text{Po} (\Lambda  T)$; $\Lambda \sim G(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+1)}{\beta^2}$ & Yes & Yes \\
 \end{tabular}
 }
-\caption{Modeling Count Data with Specified Levels of Aleatory and Epistemic Uncertainty.}
+\caption{Aleatory and epistemic uncertainty shown by different models for counts.}
 \label{tab:count_modeling}
 \end{table}
 
@@ -71,7 +73,7 @@ Negative Binomial & $C \sim \text{Poi} (\Lambda \cdot T)$; $\Lambda \sim G(\alph
 
 
 \end{knitrout}
-  \caption{Poisson-distributed counts over time with estimated expectation and uncertainty. The red line represents the point estimate expectation ($\lambda t$), while the blue dashed lines indicate Poisson aleatory uncertainty ($\lambda t \pm \sqrt{\lambda t}$). The histogram on the right illustrates the distribution of observed counts. Ref.: \cite{spiegelhalter2011visualizing}}
+  \caption{Poisson-distributed counts over time and uncertainty range. The black line represents the point estimate expectation ($\lambda = 15$), while the grey dashed lines indicate Poisson's 95\% aleatory uncertainty. The histogram illustrates the distribution of observed counts at time $T = 40$. Ref.: \cite{spiegelhalter2011visualizing}.}
   \label{fig:2_2}
 \end{figure}
 
@@ -86,37 +88,12 @@ Negative Binomial & $C \sim \text{Poi} (\Lambda \cdot T)$; $\Lambda \sim G(\alph
 
 
 \end{knitrout}
-  \caption{Poisson process with uncertainty bands over time. The black line represents the median count, while the green shaded regions indicate uncertainty: the dark green band spans the interquantile range (25th - 75th percentiles), and the lighter green band cover the 5th - 95th percentile range, based on 1,000 simulations. Ref.: \cite{spiegelhalter2011visualizing}}
+  \caption{Predicted uncertainty bands for poisson process over time. The black line represents the mean trend $\lambda = 15$, while the green shaded regions indicate aleatory uncertainty: the dark green band spans the interquantile range (25th - 75th percentiles), the lighter green band cover the 10th - 90th percentile range and the light green the 2.5th - 97.5th percentile range. Ref.: \cite{spiegelhalter2011visualizing}.}
   \label{fig:2_3}
 \end{figure}
 
 
-\hrule
-\hrule
 
-\bigskip 
-
-This options are best placed in the main document at the beginning. Otherwise a \verb+cache=FALSE+ as knitr option is necessary to overrule a possible  \verb+cache=TRUE+ flag. 
-
-\bigskip 
-
-Notice how in Figure~\ref{f02:1} everything is properly scaled.   
-
-\begin{figure}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
-
-{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-5-1} 
-
-}
-
-
-\end{knitrout}
-  \caption{Test figure to illustrate figure options used by knitr.}
-  \label{f02:1}
-\end{figure}
-
-\newpage
 \section{Derivation of Negative Binomial from Poisson-Gamma model}
 
 Let $Y|\lambda \sim Po(\lambda)$ and $\lambda \sim G(\alpha,\beta)$
@@ -128,10 +105,22 @@ p(y)&=\int^\infty_0 p(y|\lambda) p(\lambda) d\lambda\\
 &=\frac{\Gamma(\alpha+y)}{y!\Gamma(\alpha)}\Bigg(1-\frac{\beta}{\beta+1}\Bigg)^{\alpha}\Bigg(\frac{\beta}{\beta+1}\Bigg)^y \sim NBin \Bigg(\alpha, \frac{\beta}{\beta+1}\Bigg)
 \end{align*}
 
+To calculate the mean and variance:
+
+\begin{align*}
+Mean &= \frac{\alpha\bigg(1-\frac{\beta}{\beta+1}\bigg)}{\frac{\beta}{\beta+1}}\\
+&= \frac{\alpha\bigg (\frac{1}{\beta+1}\bigg)}{\frac{\beta}{\beta+1}}\\
+&= \frac{\alpha(\beta+1)}{\beta(\beta+1)}\\
+&= \frac{\alpha}{\beta}
+\end{align*}
+
+\begin{align*}
+Variance &= \frac{\alpha\bigg(1-\frac{\beta}{\beta+1}\bigg)}{\bigg(\frac{\beta}{\beta+1}\bigg)^2}\\
+&= \frac{\alpha\bigg (\frac{1}{\beta+1}\bigg)}{\bigg(\frac{\beta}{\beta+1}\bigg)^2}\\
+&= \frac{\alpha(\beta+1)^2}{\beta^2(\beta+1)}\\
+&= \frac{\alpha(\beta+1)}{\beta^2}
+\end{align*}
 
 
-\section{Citations}
 
-Recall the difference between \verb+\citet{}+ (e.g., \citet{Chu:Geor:99}), \verb+\citep{}+ (e.g., \citep{Chu:Geor:99}) and \verb+\citealp{}+ (e.g., \citealp{Chu:Geor:99}).
-For simplicity, we include here all references in the file \verb+biblio.bib+ with the command \verb+\nocite{*}+.\nocite{*}
 

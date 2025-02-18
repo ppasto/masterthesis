@@ -5,16 +5,6 @@ Bogin, V. (2022).
 \newblock Lasagna's law: a dish best served early.
 \newblock {\em Contemporary Clinical Trials Communications}, {\bf26},  100900.
 
-\bibitem[Chu and George, 1999]{Chu:Geor:99}
-Chu, E. and George, A. (1999).
-\newblock {\em Inside the FFT Black Box: Serial and Parallel Fast Fourier Transform Algorithms}.
-\newblock CRC Press.
-
-\bibitem[Collett, 2014]{Coll:14}
-Collett, D. (2014).
-\newblock {\em Modelling Survival Data in Medical Research}.
-\newblock Chapman \& Hall/CRC Texts in Statistical Science. Taylor \& Francis, third edition.
-
 \bibitem[Food {\it et~al.}, 2018]{food2018evaluating}
 Food, Administration, D.,{\it et~al.} (2018).
 \newblock Evaluating inclusion and exclusion criteria in clinical trials.
@@ -24,16 +14,6 @@ Food, Administration, D.,{\it et~al.} (2018).
 Frank, G. (2004).
 \newblock Current challenges in clinical trial patient recruitment and enrollment.
 \newblock {\em SoCRA Source}, {\bf2},  30--38.
-
-\bibitem[Hurrell {\it et~al.}, 2013]{Hurr:etal:13}
-Hurrell, J.~W., Kushnir, Y., Ottersen, G., and Visbeck, M. (2013).
-\newblock {\em An Overview of the {North} {Atlantic} Oscillation},   1--35.
-\newblock American Geophysical Union.
-
-\bibitem[Kratzer and Furrer, 2018]{varrank}
-Kratzer, G. and Furrer, R. (2018).
-\newblock {\em varrank: an {R} package for variable ranking based on mutual information with applications to observed systemic datasets}.
-\newblock R package version 0.3.
 
 \bibitem[Lim and In, 2019]{lim2019randomization}
 Lim, C.-Y. and In, J. (2019).
@@ -60,11 +40,6 @@ Piantadosi, S. and Meinert, C.~L. (2022).
 \newblock {\em Principles and practice of clinical trials}.
 \newblock Springer Nature.
 
-\bibitem[Porcu {\it et~al.}, 2020]{Porc:Furr:Nych:21}
-Porcu, E., Furrer, R., and Nychka, D. (2020).
-\newblock 30 years of space-time covariance functions.
-\newblock {\em Wiley Interdisciplinary Reviews. Computational Statistics}, {\bf13:e1512},  1--24.
-
 \bibitem[Rehman {\it et~al.}, 2020]{rehman2020exclusion}
 Rehman, A.~M., Ferrand, R., Allen, E., Simms, V., McHugh, G., and Weiss, H.~A. (2020).
 \newblock Exclusion of enrolled participants in randomised controlled trials: what to do with ineligible participants?
@@ -84,11 +59,6 @@ Spiegelhalter, D., Pearson, M., and Short, I. (2011).
 Van~Spall, H.~G., Toren, A., Kiss, A., and Fowler, R.~A. (2007).
 \newblock Eligibility criteria of randomized controlled trials published in high-impact general medical journals: a systematic sampling review.
 \newblock {\em Jama}, {\bf297},  1233--1240.
-
-\bibitem[Wang and Furrer, 2020]{Wang:Furr:20}
-Wang, C. and Furrer, R. (2020).
-\newblock Monte {Carlo} permutation tests for assessing spatial dependence at different scales.
-\newblock In {La Rocca}, M., Liseo, B., and Salmaso, L., editors, {\em Nonparametric Statistics. ISNPS 2018. Springer Proceedings in Mathematics \& Statistics}, volume 339,   503--511. Springer.
 
 \bibitem[Whelan {\it et~al.}, 2018]{whelan2018high}
 Whelan, J., Le~Deley, M.-C., Dirksen, U., Le~Teuff, G., Brennan, B., Gaspar, N., Hawkins, D.~S., Amler, S., Bauer, S., Bielack, S.,{\it et~al.} (2018).
