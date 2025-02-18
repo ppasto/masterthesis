@@ -1,9 +1,6 @@
 ################################################# COUNTS
 ###################################### THEORETICAL
 ########################### Poisson Estimate and Spread V2
-library(ggplot2)
-library(ggExtra)
-
 # 1 PATH
 t <- seq(0, 40, 1)
 lambda <- 15
@@ -16,10 +13,14 @@ data <- data.frame(Time = t, Counts = cval_cum)
 plot(data$Time, data$Counts, type = "l")
 
 # 1000 PATHS
-n <- 1000
+# Set parameters
+set.seed(2025)
+
+n <- 100
 t <- seq(0, 40, 1)
 lambda <- 15
 
+# Generate cumulative Poisson paths
 cval_cum_matrix <- matrix(0, nrow = length(t), ncol = n)
 
 for (i in 1:n) {
@@ -27,12 +28,38 @@ for (i in 1:n) {
 	cval_cum_matrix[, i] <- cumsum(cval)  
 }
 
+# Plot the cumulative Poisson paths
 matplot(t, cval_cum_matrix, type = "l", lty = 1, col = rainbow(n),
-				main = "1000 Cumulative Poisson Paths", xlab = "Time", ylab = "Count")
+				main = "100 Cumulative Poisson Paths", xlab = "Time", ylab = "Count")
+
+# Add reference lines
 abline(0, lambda)
 abline(0, qpois(p = 0.975, lambda), lty = 2, col = "gray")
 abline(0, qpois(p = 0.025, lambda), lty = 2, col = "gray")
 
+# Overlay the histogram at Time = max(t)
+par(new = TRUE)  # Allows adding another plot on top
+
+hist(cval_cum_matrix[length(t), ], 
+		 col = rgb(0.2, 0.2, 0.8, 0.5),  # Semi-transparent blue
+		 border = "white",
+		 xlab = "", ylab = "", main = "", axes = FALSE, 
+		 freq = TRUE)
+
+# Adjust position to align with Time = max(t)
+axis(4)  # Adds a secondary axis on the right for the histogram counts
+mtext("Final Count Distribution", side = 4, line = 2)  # Label for the histogram axis
+
+legend("topleft",
+			 legend = c("2.5th - 97.5th Percentile [95%]",
+			 					 "Mean Trend",
+			 					 "Histogram at T=40"),
+			 col = c("grey", "black", rgb(0.2, 0.2, 0.8, 0.5)),
+			 lty = c(2, 1, NA),
+			 lwd = c(1,2, NA),
+			 pch = c(NA,NA, 15),
+			 bg = "white",
+			 cex = 0.8) 
 # TODO: ADD histogram
 # first: plot the histogram you want (T=length(t))
 # then: locate, rotate, etc.
@@ -44,36 +71,54 @@ t <- seq(0, 40, 1)
 lambda <- 15
 
 # Compute Poisson quantiles over time
-q_975 <- qpois(0.975, lambda * t)
-q_900 <- qpois(0.9, lambda * t)
-q_750 <- qpois(0.75, lambda * t)
-q_250 <- qpois(0.25, lambda * t)
-q_100 <- qpois(0.1, lambda * t)
-q_025 <- qpois(0.025, lambda * t)
+q_975 <- qpois(0.975, lambda)
+q_900 <- qpois(0.9, lambda)
+q_750 <- qpois(0.75, lambda)
+q_250 <- qpois(0.25, lambda)
+q_100 <- qpois(0.1, lambda)
+q_025 <- qpois(0.025, lambda)
 
 # Define x and y axis limits
 x_limits <- range(t)
-y_limits <- range(q_025, q_975, na.rm = TRUE)  # Ensures all quantiles fit
+y_limits <- range(cval_cum_matrix)  # Ensures all quantiles fit
 
 # Create the plot
 plot(NA, NA, xlim = x_limits, ylim = y_limits, xlab = "Time", ylab = "Count",
 		 main = "Reference Quantiles with Green Gradient")
 
-# Fill areas between quantile lines with shades of green
-polygon(c(t, rev(t)), c(q_975, rev(q_900)), col = "lightgreen", border = NA)  # Lightest Green
-polygon(c(t, rev(t)), c(q_900, rev(q_750)), col = "limegreen", border = NA)  # Light Green
-polygon(c(t, rev(t)), c(q_750, rev(q_250)), col = "darkgreen", border = NA)  # Medium Green
-polygon(c(t, rev(t)), c(q_250, rev(q_100)), col = "limegreen", border = NA)  # Dark Green
-polygon(c(t, rev(t)), c(q_100, rev(q_025)), col = "lightgreen", border = NA)  # Darkest Green
+# Compute y-values for diagonal quantile lines
+q_975_line <- qpois(0.975, lambda) * t
+q_900_line <- qpois(0.900, lambda) * t
+q_750_line <- qpois(0.75, lambda)* t
+q_250_line <- qpois(0.25, lambda)* t
+q_100_line <- qpois(0.1, lambda)* t
+q_025_line <- qpois(0.025, lambda)* t
 
-# Add reference lines
+# Fill the area between the two diagonal quantile lines
+polygon(c(t, rev(t)), c(q_975_line, rev(q_900_line)), col = "lightgreen", border = NA)
+polygon(c(t, rev(t)), c(q_750_line, rev(q_900_line)), col = "limegreen", border = NA)
+polygon(c(t, rev(t)), c(q_750_line, rev(q_250_line)), col = "darkgreen", border = NA)
+polygon(c(t, rev(t)), c(q_250_line, rev(q_100_line)), col = "limegreen", border = NA)  # Dark Green
+polygon(c(t, rev(t)), c(q_100_line, rev(q_025_line)), col = "lightgreen", border = NA)  # Darkest Green
+
 abline(a = 0, b = lambda, col = "black", lwd = 2)  # Mean trend line
-lines(t, q_975, lty = 2, lwd = 1.5)   # Upper bound
-lines(t, q_900, lty = 2, lwd = 1.5)   # 90% quantile
-lines(t, q_750, lty = 2, lwd = 1.5)   # 75% quantile
-lines(t, q_250, lty = 2, lwd = 1.5)   # 25% quantile
-lines(t, q_100, lty = 2, lwd = 1.5)   # 10% quantile
-lines(t, q_025, lty = 2, lwd = 1.5)   # Lower bound
+# abline(0, q_975)   
+# abline(0, q_900)   
+# abline(0, q_750)   
+# abline(0, q_250)   
+# abline(0, q_100)   
+# abline(0, q_025)  
+
+legend("topleft",
+			 legend = c("2.5th - 97.5th Percentile [95%]", 
+			 					 "10th - 90th Percentile     [80%]", 
+			 					 "25th - 75th Percentile     [50%]", 
+			 					 "Mean Trend"),
+			 col = c("lightgreen", "limegreen", "darkgreen", "black"),
+			 pch = c(15, 15, 15, 15),
+			 bg = "white",
+			 cex = 0.8) 
+
 
 
 ###################################### SIMULATIONS
