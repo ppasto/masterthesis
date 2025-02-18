@@ -1,5 +1,83 @@
 ################################################# COUNTS
-########################### Poisson Estimate and Spread
+###################################### THEORETICAL
+########################### Poisson Estimate and Spread V2
+library(ggplot2)
+library(ggExtra)
+
+# 1 PATH
+t <- seq(0, 40, 1)
+lambda <- 15
+
+cval <- rpois(n = t, lambda)
+cval_cum <- cumsum(cval)
+
+data <- data.frame(Time = t, Counts = cval_cum)
+
+plot(data$Time, data$Counts, type = "l")
+
+# 1000 PATHS
+n <- 1000
+t <- seq(0, 40, 1)
+lambda <- 15
+
+cval_cum_matrix <- matrix(0, nrow = length(t), ncol = n)
+
+for (i in 1:n) {
+	cval <- rpois(length(t), lambda)  
+	cval_cum_matrix[, i] <- cumsum(cval)  
+}
+
+matplot(t, cval_cum_matrix, type = "l", lty = 1, col = rainbow(n),
+				main = "1000 Cumulative Poisson Paths", xlab = "Time", ylab = "Count")
+abline(0, lambda)
+abline(0, qpois(p = 0.975, lambda), lty = 2, col = "gray")
+abline(0, qpois(p = 0.025, lambda), lty = 2, col = "gray")
+
+# TODO: ADD histogram
+# first: plot the histogram you want (T=length(t))
+# then: locate, rotate, etc.
+
+########################### Poisson Process with Uncertainty Bands V2
+# Set parameters
+n <- 100
+t <- seq(0, 40, 1)
+lambda <- 15
+
+# Compute Poisson quantiles over time
+q_975 <- qpois(0.975, lambda * t)
+q_900 <- qpois(0.9, lambda * t)
+q_750 <- qpois(0.75, lambda * t)
+q_250 <- qpois(0.25, lambda * t)
+q_100 <- qpois(0.1, lambda * t)
+q_025 <- qpois(0.025, lambda * t)
+
+# Define x and y axis limits
+x_limits <- range(t)
+y_limits <- range(q_025, q_975, na.rm = TRUE)  # Ensures all quantiles fit
+
+# Create the plot
+plot(NA, NA, xlim = x_limits, ylim = y_limits, xlab = "Time", ylab = "Count",
+		 main = "Reference Quantiles with Green Gradient")
+
+# Fill areas between quantile lines with shades of green
+polygon(c(t, rev(t)), c(q_975, rev(q_900)), col = "lightgreen", border = NA)  # Lightest Green
+polygon(c(t, rev(t)), c(q_900, rev(q_750)), col = "limegreen", border = NA)  # Light Green
+polygon(c(t, rev(t)), c(q_750, rev(q_250)), col = "darkgreen", border = NA)  # Medium Green
+polygon(c(t, rev(t)), c(q_250, rev(q_100)), col = "limegreen", border = NA)  # Dark Green
+polygon(c(t, rev(t)), c(q_100, rev(q_025)), col = "lightgreen", border = NA)  # Darkest Green
+
+# Add reference lines
+abline(a = 0, b = lambda, col = "black", lwd = 2)  # Mean trend line
+lines(t, q_975, lty = 2, lwd = 1.5)   # Upper bound
+lines(t, q_900, lty = 2, lwd = 1.5)   # 90% quantile
+lines(t, q_750, lty = 2, lwd = 1.5)   # 75% quantile
+lines(t, q_250, lty = 2, lwd = 1.5)   # 25% quantile
+lines(t, q_100, lty = 2, lwd = 1.5)   # 10% quantile
+lines(t, q_025, lty = 2, lwd = 1.5)   # Lower bound
+
+
+###################################### SIMULATIONS
+########################### Poisson Estimate and Spread V1
 library(ggplot2)
 library(ggExtra)
 
@@ -135,3 +213,6 @@ ggplot(data.frame(C_values), aes(x = C_values)) +
 	labs(title = "Density Plot of Counts", x = "Counts", y = "Density")
 
 plot(T_values, C_values)
+
+
+
