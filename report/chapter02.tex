@@ -92,6 +92,148 @@ Negative Binomial & $C \sim \text{Po} (\Lambda  T)$; $\Lambda \sim G(\alpha,\bet
   \label{fig:2_3}
 \end{figure}
 
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+################################################# COUNTS
+###################################### THEORETICAL
+########################### Poisson Estimate and Spread V2
+##### PLOT 2X2 
+par(mfrow = c(2,2))
+# 1000 PATHS
+# Set parameters
+set.seed(2025)
+
+n <- 100
+t <- seq(0, 40, 1)
+lambda <- 15
+
+# Generate cumulative Poisson paths
+cval_cum_matrix <- matrix(0, nrow = length(t), ncol = n)
+
+for (i in 1:n) {
+	cval <- rpois(length(t), lambda)  
+	cval_cum_matrix[, i] <- cumsum(cval)  
+}
+
+# Plot the cumulative Poisson paths
+matplot(t, cval_cum_matrix, type = "l", lty = 1, col = rainbow(n),
+				main = "Cumulative Poisson Paths", xlab = "Time", ylab = "Count")
+
+# Add reference lines
+abline(0, lambda)
+abline(0, qpois(p = 0.975, lambda), lty = 2, col = "gray")
+abline(0, qpois(p = 0.025, lambda), lty = 2, col = "gray")
+
+# Overlay the histogram at Time = length(t)
+par(new = TRUE)  # Allows adding another plot on top
+
+hist(cval_cum_matrix[length(t), ], 
+		 col = rgb(0.2, 0.2, 0.8, 0.5),  # Semi-transparent blue
+		 border = "white",
+		 xlab = "", ylab = "", main = "", axes = FALSE, 
+		 freq = TRUE)
+
+# Adjust position to align with Time = max(t)
+axis(4)  # Adds a secondary axis on the right for the histogram counts
+# mtext("Final Count Distribution", side = 4, line = 2)  # Label for the histogram axis
+
+legend("topleft",
+			 legend = c("2.5th - 97.5th Percentile [95%]",
+			 					 "Mean Trend",
+			 					 "Histogram at T=40"),
+			 col = c("grey", "black", rgb(0.2, 0.2, 0.8, 0.5)),
+			 lty = c(2, 1, NA),
+			 lwd = c(1,2, NA),
+			 pch = c(NA,NA, 15),
+			 bg = "white",
+			 cex = 0.5) 
+# TODO: ADD histogram
+# first: plot the histogram you want (T=length(t))
+# then: locate, rotate, etc.
+
+#### Empirical Density COUNTS at T=length(t)
+
+density_counts <- density(cval_cum_matrix[length(t), ])
+plot(density_counts,
+		 main = "Empirical Density for Counts",
+		 col = rgb(0.2, 0.2, 0.8, 0.5),
+		 xlab = "Counts")
+
+
+#### Empirical CDF
+
+ecf_counts <- stats::ecdf(cval_cum_matrix[length(t), ])
+plot(ecf_counts,
+		 main = "ECDF for Counts",
+		 col = rgb(0.2, 0.2, 0.8, 0.5),
+		 xlab = "Counts",
+		 ylab = "Cumulative Probability")
+
+########################### Poisson Process with Uncertainty Bands V2
+# Set parameters
+n <- 100
+t <- seq(0, 40, 1)
+lambda <- 15
+
+# Compute Poisson quantiles over time
+q_975 <- qpois(0.975, lambda)
+q_900 <- qpois(0.9, lambda)
+q_750 <- qpois(0.75, lambda)
+q_250 <- qpois(0.25, lambda)
+q_100 <- qpois(0.1, lambda)
+q_025 <- qpois(0.025, lambda)
+
+# Define x and y axis limits
+x_limits <- range(t)
+y_limits <- range(cval_cum_matrix)  # Ensures all quantiles fit
+
+# Create the plot
+plot(NA, NA, xlim = x_limits, ylim = y_limits, xlab = "Time", ylab = "Count",
+		 main = "Reference Quantiles")
+
+# Compute y-values for diagonal quantile lines
+q_975_line <- qpois(0.975, lambda) * t
+q_900_line <- qpois(0.900, lambda) * t
+q_750_line <- qpois(0.75, lambda)* t
+q_250_line <- qpois(0.25, lambda)* t
+q_100_line <- qpois(0.1, lambda)* t
+q_025_line <- qpois(0.025, lambda)* t
+
+# Fill the area between the two diagonal quantile lines
+polygon(c(t, rev(t)), c(q_975_line, rev(q_900_line)), col = "lightgreen", border = NA)
+polygon(c(t, rev(t)), c(q_750_line, rev(q_900_line)), col = "limegreen", border = NA)
+polygon(c(t, rev(t)), c(q_750_line, rev(q_250_line)), col = "darkgreen", border = NA)
+polygon(c(t, rev(t)), c(q_250_line, rev(q_100_line)), col = "limegreen", border = NA)  # Dark Green
+polygon(c(t, rev(t)), c(q_100_line, rev(q_025_line)), col = "lightgreen", border = NA)  # Darkest Green
+
+abline(a = 0, b = lambda, col = "black", lwd = 2)  # Mean trend line
+# abline(0, q_975)   
+# abline(0, q_900)   
+# abline(0, q_750)   
+# abline(0, q_250)   
+# abline(0, q_100)   
+# abline(0, q_025)  
+
+legend("topleft",
+			 legend = c("2.5th - 97.5th Percentile [95%]", 
+			 					 "10th - 90th Percentile     [80%]", 
+			 					 "25th - 75th Percentile     [50%]", 
+			 					 "Mean Trend"),
+			 col = c("lightgreen", "limegreen", "darkgreen", "black"),
+			 pch = c(15, 15, 15, 15),
+			 bg = "white",
+			 cex = 0.5) 
+\end{verbatim}
+\end{kframe}
+
+{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-5-1} 
+
+}
+
+
+\end{knitrout}
+
 
 
 \section{Derivation of Negative Binomial from Poisson-Gamma model}

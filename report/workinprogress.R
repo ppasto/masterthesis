@@ -1,6 +1,10 @@
 ################################################# COUNTS
 ###################################### THEORETICAL
 ########################### Poisson Estimate and Spread V2
+##### PLOT 2X2 
+par(mfrow = c(2,2))
+# par(mfrow = c(1,1))
+
 # 1 PATH
 t <- seq(0, 40, 1)
 lambda <- 15
@@ -10,7 +14,7 @@ cval_cum <- cumsum(cval)
 
 data <- data.frame(Time = t, Counts = cval_cum)
 
-plot(data$Time, data$Counts, type = "l")
+# plot(data$Time, data$Counts, type = "l")
 
 # 1000 PATHS
 # Set parameters
@@ -37,7 +41,7 @@ abline(0, lambda)
 abline(0, qpois(p = 0.975, lambda), lty = 2, col = "gray")
 abline(0, qpois(p = 0.025, lambda), lty = 2, col = "gray")
 
-# Overlay the histogram at Time = max(t)
+# Overlay the histogram at Time = length(t)
 par(new = TRUE)  # Allows adding another plot on top
 
 hist(cval_cum_matrix[length(t), ], 
@@ -59,10 +63,28 @@ legend("topleft",
 			 lwd = c(1,2, NA),
 			 pch = c(NA,NA, 15),
 			 bg = "white",
-			 cex = 0.8) 
+			 cex = 0.5) 
 # TODO: ADD histogram
 # first: plot the histogram you want (T=length(t))
 # then: locate, rotate, etc.
+
+#### Empirical Density COUNTS at T=length(t)
+
+density_counts <- density(cval_cum_matrix[length(t), ])
+plot(density_counts,
+		 main = "Empirical Density for Counts at time T = 40",
+		 col = rgb(0.2, 0.2, 0.8, 0.5),
+		 xlab = "Counts")
+
+
+#### Empirical CDF
+
+ecf_counts <- stats::ecdf(cval_cum_matrix[length(t), ])
+plot(ecf_counts,
+		 main = "Empirical Cumulative Distribution Function for Counts at time T = 40",
+		 col = rgb(0.2, 0.2, 0.8, 0.5),
+		 xlab = "Counts",
+		 ylab = "Cumulative Probability")
 
 ########################### Poisson Process with Uncertainty Bands V2
 # Set parameters
@@ -117,7 +139,7 @@ legend("topleft",
 			 col = c("lightgreen", "limegreen", "darkgreen", "black"),
 			 pch = c(15, 15, 15, 15),
 			 bg = "white",
-			 cex = 0.8) 
+			 cex = 0.5) 
 
 
 
