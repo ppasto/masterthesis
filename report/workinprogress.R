@@ -2,11 +2,11 @@
 ###################################### THEORETICAL
 ########################### Poisson Estimate and Spread V2
 ##### PLOT 2X2 
-par(mfrow = c(2,2))
-# par(mfrow = c(1,1))
+# par(mfrow = c(2,2))
+par(mfrow = c(1,1))
 
 # 1 PATH
-t <- seq(0, 40, 1)
+t <- seq(1, 40, 1)
 lambda <- 15
 
 cval <- rpois(n = t, lambda)
@@ -21,127 +21,162 @@ data <- data.frame(Time = t, Counts = cval_cum)
 set.seed(2025)
 
 n <- 100
-t <- seq(0, 40, 1)
-lambda <- 15
+t <- seq(1, 550, 1)
+lambda <- 0.591
 
 # Generate cumulative Poisson paths
-cval_cum_matrix <- matrix(0, nrow = length(t), ncol = n)
+cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
 
 for (i in 1:n) {
 	cval <- rpois(length(t), lambda)  
-	cval_cum_matrix[, i] <- cumsum(cval)  
+	cval_cum_matrix[i, ] <- cumsum(cval)  
 }
 
-# Plot the cumulative Poisson paths
-matplot(t, cval_cum_matrix, type = "l", lty = 1, col = rainbow(n),
-				main = "100 Cumulative Poisson Paths", xlab = "Time", ylab = "Count")
+# Extract final counts for histogram
+final_counts <- cval_cum_matrix[, length(t)]
+
+# Reset graphics device to avoid layout issues
+# if (dev.cur() > 1) dev.off()
+
+# Set up layout: Histogram (small, upper right) + Main plot
+layout(matrix(c(1, 2), ncol = 2), widths = c(3, 1), heights = c(4, 1))  
+
+# Plot the main accrual time series
+par(mar = c(4.1, 4.1, 2.1, 2.1))  # Restore normal margins
+plot(t,  cval_cum_matrix[1,], 
+		 type="n", 
+		 main = "Accrual of 100 studies", 
+		 xlab = "Time", 
+		 ylab = "Count")
+
+for(i in 1:n){
+	lines(t,  cval_cum_matrix[i,], col = "lightgray")
+}
 
 # Add reference lines
-abline(0, lambda)
-abline(0, qpois(p = 0.975, lambda), lty = 2, col = "gray")
-abline(0, qpois(p = 0.025, lambda), lty = 2, col = "gray")
-
-# Overlay the histogram at Time = length(t)
-par(new = TRUE)  # Allows adding another plot on top
-
-hist(cval_cum_matrix[length(t), ], 
-		 col = rgb(0.2, 0.2, 0.8, 0.5),  # Semi-transparent blue
-		 border = "white",
-		 xlab = "", ylab = "", main = "", axes = FALSE, 
-		 freq = TRUE)
-
-# Adjust position to align with Time = max(t)
-axis(4)  # Adds a secondary axis on the right for the histogram counts
-mtext("Final Count Distribution", side = 4, line = 2)  # Label for the histogram axis
+lines(t, lambda*t)
+lines(t, qpois(p = 0.975, lambda*t), lty = 2, col = "red")
+lines(t, qpois(p = 0.025, lambda*t), lty = 2, col = "red")
 
 legend("topleft",
 			 legend = c("2.5th - 97.5th Percentile [95%]",
-			 					 "Mean Trend",
-			 					 "Histogram at T=40"),
-			 col = c("grey", "black", rgb(0.2, 0.2, 0.8, 0.5)),
-			 lty = c(2, 1, NA),
-			 lwd = c(1,2, NA),
-			 pch = c(NA,NA, 15),
+			 					 "Expected Accrual"),
+			 col = c("red", "black"),
+			 lty = c(2, 1),
+			 lwd = c(1,2),
 			 bg = "white",
-			 cex = 0.5) 
+			 cex = 0.5)  
+
+# Plot histogram in the smaller upper right section
+par(mar = c(20, 0.01, 2.1, 2.1))  # Minimize margins
+hist_bins <- seq(min(final_counts), max(final_counts), length.out = 15)
+hist_data <- hist(final_counts, breaks = hist_bins, plot = FALSE)
+
+barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray", 
+				axes = FALSE, xlab = "", ylab = "")
+
+
+
+par(mfrow = c(1,1))
+# THEORETICAL: EXACT DISTRIBUTION
+bar_positions <- barplot(dpois(200:500, lambda*550), 
+												 main = "Distribution", 
+												 xlab = "Counts", 
+												 xaxt = "n")  
+
+axis(1, at = seq(1, length(200:500), by = 50), labels = seq(200, 500, by = 50))  
+
+par(mar = c(4.1, 4.1, 2.1, 2.1))
+# THEORETICAL: EXACT CUMULATIVE DISTRIBUTION
+probdist <- dpois(200:500, lambda*550)
+cdf <- cumsum(probdist)
+cdf_positions <- barplot(cdf, 
+												 main = "Cummulative distribution", 
+												 xlab = "Counts", 
+												 xaxt = "n")
+axis(1, at = seq(1, length(200:500), by = 50), labels = seq(200, 500, by = 50))  
+
+# 
+# # Overlay the histogram at Time = length(t)
+# par(new = TRUE)  # Allows adding another plot on top
+# 
+# hist(cval_cum_matrix[length(t), ], 
+# 		 col = rgb(0.2, 0.2, 0.8, 0.5),  # Semi-transparent blue
+# 		 border = "white",
+# 		 xlab = "", ylab = "", main = "", axes = FALSE, 
+# 		 freq = TRUE)
+# 
+# # Adjust position to align with Time = max(t)
+# axis(4)  # Adds a secondary axis on the right for the histogram counts
+# mtext("Final Count Distribution", side = 4, line = 2)  # Label for the histogram axis
+
+
 # TODO: ADD histogram
 # first: plot the histogram you want (T=length(t))
 # then: locate, rotate, etc.
 
 #### Empirical Density COUNTS at T=length(t)
 
-density_counts <- density(cval_cum_matrix[length(t), ])
-plot(density_counts,
-		 main = "Empirical Density for Counts at time T = 40",
-		 col = rgb(0.2, 0.2, 0.8, 0.5),
-		 xlab = "Counts")
+# density_counts <- density(cval_cum_matrix[length(t), ])
+# plot(density_counts,
+# 		 main = "Empirical Density for Counts at time T = 40",
+# 		 col = rgb(0.2, 0.2, 0.8, 0.5),
+# 		 xlab = "Counts")
 
 
 #### Empirical CDF
-
-ecf_counts <- stats::ecdf(cval_cum_matrix[length(t), ])
-plot(ecf_counts,
-		 main = "Empirical Cumulative Distribution Function for Counts at time T = 40",
-		 col = rgb(0.2, 0.2, 0.8, 0.5),
-		 xlab = "Counts",
-		 ylab = "Cumulative Probability")
+# 
+# ecf_counts <- stats::ecdf(cval_cum_matrix[length(t), ])
+# plot(ecf_counts,
+# 		 main = "Empirical Cumulative Distribution Function for Counts at time T = 40",
+# 		 col = rgb(0.2, 0.2, 0.8, 0.5),
+# 		 xlab = "Counts",
+# 		 ylab = "Cumulative Probability")
 
 ########################### Poisson Process with Uncertainty Bands V2
 # Set parameters
+# Set parameters
 n <- 100
-t <- seq(0, 40, 1)
-lambda <- 15
+t <- seq(1, 550, 1)
+lambda <- 0.591
 
 # Compute Poisson quantiles over time
-q_975 <- qpois(0.975, lambda)
-q_900 <- qpois(0.9, lambda)
-q_750 <- qpois(0.75, lambda)
-q_250 <- qpois(0.25, lambda)
-q_100 <- qpois(0.1, lambda)
-q_025 <- qpois(0.025, lambda)
+q_975_line <- qpois(0.975, lambda * t)
+q_900_line <- qpois(0.900, lambda * t)
+q_750_line <- qpois(0.75, lambda * t)
+q_250_line <- qpois(0.25, lambda * t)
+q_100_line <- qpois(0.1, lambda * t)
+q_025_line <- qpois(0.025, lambda * t)
 
 # Define x and y axis limits
 x_limits <- range(t)
 y_limits <- range(cval_cum_matrix)  # Ensures all quantiles fit
 
 # Create the plot
+par(mar = c(4.1, 4.1, 2.1, 2.1))
 plot(NA, NA, xlim = x_limits, ylim = y_limits, xlab = "Time", ylab = "Count",
-		 main = "Reference Quantiles with Green Gradient")
+		 main = "Quantiles")
 
-# Compute y-values for diagonal quantile lines
-q_975_line <- qpois(0.975, lambda) * t
-q_900_line <- qpois(0.900, lambda) * t
-q_750_line <- qpois(0.75, lambda)* t
-q_250_line <- qpois(0.25, lambda)* t
-q_100_line <- qpois(0.1, lambda)* t
-q_025_line <- qpois(0.025, lambda)* t
+# Fill the area with a green gradient
+polygon(c(t, rev(t)), c(q_975_line, rev(q_900_line)), col = rgb(144/255, 238/255, 144/255, 0.4), border = NA) # Light Green
+polygon(c(t, rev(t)), c(q_900_line, rev(q_750_line)), col = rgb(50/255, 205/255, 50/255, 0.4), border = NA)  # Lime Green
+polygon(c(t, rev(t)), c(q_750_line, rev(q_250_line)), col = rgb(0/255, 100/255, 0/255, 0.4), border = NA)    # Dark Green
+polygon(c(t, rev(t)), c(q_250_line, rev(q_100_line)), col = rgb(50/255, 205/255, 50/255, 0.4), border = NA)  # Lime Green
+polygon(c(t, rev(t)), c(q_100_line, rev(q_025_line)), col = rgb(144/255, 238/255, 144/255, 0.4), border = NA) # Light Green
 
-# Fill the area between the two diagonal quantile lines
-polygon(c(t, rev(t)), c(q_975_line, rev(q_900_line)), col = "lightgreen", border = NA)
-polygon(c(t, rev(t)), c(q_750_line, rev(q_900_line)), col = "limegreen", border = NA)
-polygon(c(t, rev(t)), c(q_750_line, rev(q_250_line)), col = "darkgreen", border = NA)
-polygon(c(t, rev(t)), c(q_250_line, rev(q_100_line)), col = "limegreen", border = NA)  # Dark Green
-polygon(c(t, rev(t)), c(q_100_line, rev(q_025_line)), col = "lightgreen", border = NA)  # Darkest Green
+# Add the mean trend line
+lines(t, lambda * t, col = "black", lwd = 2)  
 
-abline(a = 0, b = lambda, col = "black", lwd = 2)  # Mean trend line
-# abline(0, q_975)   
-# abline(0, q_900)   
-# abline(0, q_750)   
-# abline(0, q_250)   
-# abline(0, q_100)   
-# abline(0, q_025)  
-
+# Legend
 legend("topleft",
 			 legend = c("2.5th - 97.5th Percentile [95%]", 
 			 					 "10th - 90th Percentile     [80%]", 
 			 					 "25th - 75th Percentile     [50%]", 
-			 					 "Mean Trend"),
-			 col = c("lightgreen", "limegreen", "darkgreen", "black"),
-			 pch = c(15, 15, 15, 15),
+			 					 "Expected Accrual"),
+			 col = c(rgb(144/255, 238/255, 144/255, 0.4), rgb(50/255, 205/255, 50/255, 0.4), rgb(0/255, 100/255, 0/255, 0.4), "black"),
+			 pch = c(15, 15, 15, NA), lty = c(NA, NA, NA, 1), lwd = c(NA, NA, NA, 2),
 			 bg = "white",
-			 cex = 0.5) 
-
-
+			 cex = 0.5)
 
 ###################################### SIMULATIONS
 ########################### Poisson Estimate and Spread V1
@@ -156,28 +191,28 @@ tval <- numeric(n)
 cval <- numeric(n)
 
 for (j in 1:n) {
-  t <- j + 1
-  c <- rpois(1, lambda * t)
-  
-  tval[j] <- t
-  cval[j] <- c
+	t <- j + 1
+	c <- rpois(1, lambda * t)
+	
+	tval[j] <- t
+	cval[j] <- c
 }
 
 data <- data.frame(Time = tval, Counts = cval)
 
 # Main Scatter Plot with Poisson Estimate and Spread
 p <- ggplot(data, aes(x = Time, y = Counts)) +
-  geom_point(color = "gray", alpha = 0.6) +
-  geom_abline(aes(intercept = 0, slope = lambda, color = "Point Estimate Expectation", linetype = "Point Estimate Expectation"), linewidth = 1.2) +
-  geom_line(aes(y = lambda * Time + sqrt(lambda * Time), color = "Poisson Aleatory Uncertainty", linetype = "Poisson Aleatory Uncertainty")) +
-  geom_line(aes(y = lambda * Time - sqrt(lambda * Time), color = "Poisson Aleatory Uncertainty", linetype = "Poisson Aleatory Uncertainty")) +
-  scale_color_manual(name = "Legend", values = c("Point Estimate Expectation" = "red", "Poisson Aleatory Uncertainty" = "blue")) +
-  scale_linetype_manual(name = "Legend", values = c("Point Estimate Expectation" = "solid", "Poisson Aleatory Uncertainty" = "dashed")) +
-  labs(title = "Poisson Counts with Spread", x = "Time", y = "Counts") +
-  theme_minimal() +
-  theme(legend.position = c(0.05, 0.95),  # Top-left corner
-        legend.justification = c(0, 1),   # Align top-left
-        legend.background = element_rect(fill = "white", color = "black", linewidth = 0.5))
+	geom_point(color = "gray", alpha = 0.6) +
+	geom_abline(aes(intercept = 0, slope = lambda, color = "Point Estimate Expectation", linetype = "Point Estimate Expectation"), linewidth = 1.2) +
+	geom_line(aes(y = lambda * Time + sqrt(lambda * Time), color = "Poisson Aleatory Uncertainty", linetype = "Poisson Aleatory Uncertainty")) +
+	geom_line(aes(y = lambda * Time - sqrt(lambda * Time), color = "Poisson Aleatory Uncertainty", linetype = "Poisson Aleatory Uncertainty")) +
+	scale_color_manual(name = "Legend", values = c("Point Estimate Expectation" = "red", "Poisson Aleatory Uncertainty" = "blue")) +
+	scale_linetype_manual(name = "Legend", values = c("Point Estimate Expectation" = "solid", "Poisson Aleatory Uncertainty" = "dashed")) +
+	labs(title = "Poisson Counts with Spread", x = "Time", y = "Counts") +
+	theme_minimal() +
+	theme(legend.position = c(0.05, 0.95),  # Top-left corner
+				legend.justification = c(0, 1),   # Align top-left
+				legend.background = element_rect(fill = "white", color = "black", linewidth = 0.5))
 
 # Add rotated histogram on the right
 p_final <- ggMarginal(p, type = "histogram", fill = "lightblue", bins = 30, margins = "y")
