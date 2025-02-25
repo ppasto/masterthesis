@@ -258,22 +258,31 @@ p(y)&=\int^\infty_0 p(y|\Lambda) p(\Lambda) d\Lambda\\
 &=\frac{\Gamma(\alpha+y)}{y!\Gamma(\alpha)}\int^\infty_0 \beta^\alpha \exp(-\Lambda\beta)d\Lambda\\
 &=\frac{\Gamma(\alpha+y)}{y!\Gamma(\alpha)}\Bigg(1-\frac{\beta}{\beta+1}\Bigg)^{\alpha}\Bigg(\frac{\beta}{\beta+1}\Bigg)^y \sim \rm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+1}\Bigg)
 \end{align*}
+\newpage
 
-To calculate the expectation and variance:
-
-\begin{align*}
-Mean &= \frac{\alpha\bigg(1-\frac{\beta}{\beta+1}\bigg)}{\frac{\beta}{\beta+1}}\\
-&= \frac{\alpha\bigg (\frac{1}{\beta+1}\bigg)}{\frac{\beta}{\beta+1}}\\
-&= \frac{\alpha(\beta+1)}{\beta(\beta+1)}\\
-&= \frac{\alpha}{\beta}
-\end{align*}
+Using the expressions of iterated expectation and variance \citep{held2014applied} and the expectation and variance from the respective random variables $Y|\Lambda \sim \rm{Po}(\Lambda)$ and $\Lambda \sim \rm{G}(\alpha,\beta)$, we have that:
 
 \begin{align*}
-Variance &= \frac{\alpha\bigg(1-\frac{\beta}{\beta+1}\bigg)}{\bigg(\frac{\beta}{\beta+1}\bigg)^2}\\
-&= \frac{\alpha\bigg (\frac{1}{\beta+1}\bigg)}{\bigg(\frac{\beta}{\beta+1}\bigg)^2}\\
-&= \frac{\alpha(\beta+1)^2}{\beta^2(\beta+1)}\\
-&= \frac{\alpha(\beta+1)}{\beta^2}
+EY &= E_{\Lambda}[E_{Y} (Y|\Lambda)] = E_{\Lambda}[\Lambda] = \Lambda \\
+Var(Y) &= Var_{\Lambda}[E_{Y} (Y|\Lambda)] + E_{\Lambda}[Var_Y(Y|\Lambda)]\\
+&=Var_{\Lambda}[\Lambda] + E_{\Lambda}[\Lambda] \\
+&=\alpha/\beta^2 + \alpha/\beta = \frac{\alpha(\beta+1)}{\beta^2}
 \end{align*}
+
+% 
+% \begin{align*}
+% Mean &= \frac{\alpha\bigg(1-\frac{\beta}{\beta+1}\bigg)}{\frac{\beta}{\beta+1}}\\
+% &= \frac{\alpha\bigg (\frac{1}{\beta+1}\bigg)}{\frac{\beta}{\beta+1}}\\
+% &= \frac{\alpha(\beta+1)}{\beta(\beta+1)}\\
+% &= \frac{\alpha}{\beta}
+% \end{align*}
+% 
+% \begin{align*}
+% Variance &= \frac{\alpha\bigg(1-\frac{\beta}{\beta+1}\bigg)}{\bigg(\frac{\beta}{\beta+1}\bigg)^2}\\
+% &= \frac{\alpha\bigg (\frac{1}{\beta+1}\bigg)}{\bigg(\frac{\beta}{\beta+1}\bigg)^2}\\
+% &= \frac{\alpha(\beta+1)^2}{\beta^2(\beta+1)}\\
+% &= \frac{\alpha(\beta+1)}{\beta^2}
+% \end{align*}
 
 
 \subsection{Accrual at time point t}
