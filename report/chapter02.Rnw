@@ -53,14 +53,21 @@ In clinical research, \textbf{Statistical Analysis} involves applying statistica
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.7\textwidth]{fig_2_1.png}
+  \includegraphics[width=0.7\textwidth]{fig_2_1_a.png}
   \caption{Patient Attrition at Each Stage of a Clinical Study.  \citep{piantadosi2022principles, whelan2018high, bogin2022lasagna}}
-  \label{fig:2_1}
+  \label{fig:2_1_a}
 \end{figure}
 
-The number of patients decreases at each stage of a clinical study, from defining the target population to final statistical analysis, see Figure \ref{fig:2_1}. Eligibility criteria narrow down participants, and enrollment further reduces numbers as only those meeting strict criteria are registered. Randomization assigns individuals to treatment groups, but some may later be excluded due to protocol deviations, missing data, or loss to follow-up. 
+The number of patients decreases at each stage of a clinical study, from defining the target population to final statistical analysis, see Figure \ref{fig:2_1_b}. Eligibility criteria narrow down participants, and enrollment further reduces numbers as only those meeting strict criteria are registered. Randomization assigns individuals to treatment groups, but some may later be excluded due to protocol deviations, missing data, or loss to follow-up. 
 
-The general notion of \textbf{Recruitment} in this Master Thesis refers to the number of patients (Counts) at the Eligibility, or Enrollment, or Randomization, or Statistical Analysis stage in Figure \ref{fig:2_1}. We define \textbf{Accrual} as cumulative recruitment.
+The general notion of \textbf{Recruitment} in this Master Thesis refers to the number of patients (Counts) at the Eligibility, or Enrollment, or Randomization, or Statistical Analysis stage in Figure \ref{fig:2_1_a}. We define \textbf{Accrual} as cumulative recruitment.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{fig_2_1_b.png}
+  \caption{Visual Representation of Patient Leakage at Each Stage of a Clinical Study.  \citep{piantadosi2022principles, whelan2018high, bogin2022lasagna}}
+  \label{fig:2_1_b}
+\end{figure}
 
 \section{Uncertainty and models for counts}
 
