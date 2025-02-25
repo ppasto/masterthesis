@@ -66,6 +66,18 @@ Negative Binomial & $C \sim \rm{Po} (\Lambda  t)$; $\Lambda \sim \rm{G}(\alpha,\
 
 \section{Counts: Model based on Expectations}
 
+If we fix a time $T$ for the study to take place and we must enroll $N$ patients into our study we could deterministically predict our recruitment rate (without taking into consideration any uncertainty) to be $\hat{\lambda}=\frac{N}{T}$ . 
+
+However, by normal approximation to the Poisson distribution $T\sim \rm{N}(\mu=N, \sigma^2=N)$, we know that the probability of recruiting the desired $N$ participants is 0.5. Which means that the study has 50\% chance of obtaining the desired sample size in the suggested $T$ \citep{carter2004application}. 
+
+This raises two questions which will be answered throughout this Master Thesis:
+\begin{enumerate}
+\item \textbf{Counts?:} If $T$ is fixed, what does the expected rate need to be to give a certain percentage of certainty of enrolling the total sample size $N$ within said time frame?
+\item \textbf{Time:} Given a certain rate $\lambda$, how long should the recruitment period be planned to give a certain level of confidence of recruiting the total sample size?
+\end{enumerate}
+
+
+
 \subsection{Expected recruitment in one unit of time}
 \subsection{Expected accrual at time point t}
 
