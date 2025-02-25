@@ -92,9 +92,9 @@ Negative Binomial & $C \sim \rm{Po} (\Lambda  t)$; $\Lambda \sim \rm{G}(\alpha,\
 
 \section{Counts: Model based on Expectations}
 
-If we fix a time $T$ for the study to take place and we must enroll $N$ patients into our study we could deterministically predict our recruitment rate (without taking into consideration any uncertainty) to be $\hat{\lambda}=\frac{N}{T}$ . 
+If we fix a time $T$ for the study to take place and we must enroll $N$ patients, we could deterministically predict our recruitment rate (without taking into consideration any uncertainty) to be $\hat{\lambda}=\frac{N}{T}$ . 
 
-However, by normal approximation to the Poisson distribution $T\sim \rm{N}(\mu=N, \sigma^2=N)$, we know that the probability of recruiting the desired $N$ participants is 0.5. Which means that the study has 50\% chance of obtaining the desired sample size in the suggested $T$ \citep{carter2004application}. 
+However, by normal approximation to the Poisson distribution $T\sim \rm{N}(\mu=N, \sigma^2=N)$, we know that the probability of recruiting the desired $N$ participants is 0.5. Which means that the study has 50\% chance of obtaining the desired sample size in the suggested $T$ \citep{carter2004application}. We would also be assuming that the recruitment rate is constant over time.
 
 This raises two questions which will be answered throughout this Master Thesis:
 \begin{enumerate}
@@ -102,11 +102,34 @@ This raises two questions which will be answered throughout this Master Thesis:
 \item \textbf{Time:} Given a certain rate $\lambda$, how long should the recruitment period be planned to give a certain level of confidence of recruiting the total sample size?
 \end{enumerate}
 
+\subsection{Expected in one unit of time}
+$C = EC = E\lambda = \lambda$
+
+\subsection{Expected accrual at time point t}
+$C = EC = E(\lambda t) = \lambda t$
 
 \section{Counts: Model based on Poisson Process}
 
+The Poisson distribution $C\sim \rm{Po} (\lambda)$ allows us to explain the recruitment of patients. It is a discrete variable that expresses the probability of a given number of events (in our case, patient recruitment) occurring in a fixed interval of time. We assume that these events occur with a known constant rate and are independent of each other.
+
+\begin{align*}
+EC & = \lambda\\
+Var(C) & = \lambda
+\end{align*}
+
+One important property from the Poisson distribution is that it is additive \citep{held2014applied}. If $X_i\sim \rm{Po} (\lambda_i)$ for $i=1\cdots n$ are independent, then, $\sum_{i=1}^n X_i \sim \rm{Po} \Big( \sum_{i=1}^n \lambda_i \Big)$.
+
 \subsection{Recruitment in one unit of time}
+$C\sim \rm{Po} (\lambda)$
+
 \subsection{Accrual at time point t}
+Using the additive property from the Poisson applicable to independent random variables, $\underbrace{\rm{Po} (\lambda) +\cdots +\rm{Po} (\lambda)}_{t \ \text{times}} = \rm{Po} (\lambda t)$, we have that:\\
+
+$C\sim \rm{Po} (\lambda t)$
+
+We assume that the recruitment of patients at a given time point is independent from another.
+
+Here I could reference the figures, since they are all from this section.
 
 \begin{figure}
 <<echo=FALSE>>=
