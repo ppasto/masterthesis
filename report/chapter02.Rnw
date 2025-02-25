@@ -248,6 +248,11 @@ With respect to the parameters, $r>0$ represents the number of successes until
 the experiment is stopped. The success probability in each experiment is 
 represented by $\pi\in[0,1]$.  In R the functions \texttt{nbinom(..., size = r, prob = $\pi$)} relate to the random variable $X-r$, the number of successes (as opposed to the number of trials) until $r$ successes have been achieved \citep{held2014applied}. 
 
+\begin{align*}
+EX & = \frac{r(1-\pi)}{\pi}\\
+Var(X) & = \frac{r(1-\pi)}{\pi^2}
+\end{align*}
+
 
 \subsection{Recruitment in one unit of time}
 Let $Y|\Lambda \sim \rm{Po}(\Lambda)$ and $\Lambda \sim \rm{G}(\alpha,\beta)$
@@ -263,7 +268,7 @@ p(y)&=\int^\infty_0 p(y|\Lambda) p(\Lambda) d\Lambda\\
 Using the expressions of iterated expectation and variance \citep{held2014applied} and the expectation and variance from the respective random variables $Y|\Lambda \sim \rm{Po}(\Lambda)$ and $\Lambda \sim \rm{G}(\alpha,\beta)$, we have that:
 
 \begin{align*}
-EY &= E_{\Lambda}[E_{Y} (Y|\Lambda)] = E_{\Lambda}[\Lambda] = \Lambda \\
+EY &= E_{\Lambda}[E_{Y} (Y|\Lambda)] = E_{\Lambda}[\Lambda] = \alpha/\beta \\
 Var(Y) &= Var_{\Lambda}[E_{Y} (Y|\Lambda)] + E_{\Lambda}[Var_Y(Y|\Lambda)]\\
 &=Var_{\Lambda}[\Lambda] + E_{\Lambda}[\Lambda] \\
 &=\alpha/\beta^2 + \alpha/\beta = \frac{\alpha(\beta+1)}{\beta^2}
