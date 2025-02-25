@@ -238,9 +238,16 @@ legend("topleft",
   \caption{Predicted uncertainty bands for Poisson process with $\lambda = 0.591$ over time. The black line represents the expected accrual, while the green shaded regions indicate aleatory uncertainty: the dark green band spans the interquantile range (25th - 75th percentiles), the lighter green band cover the 10th - 90th percentile range and the light green the 2.5th - 97.5th percentile range \citep{spiegelhalter2011visualizing}.}
   \label{fig:2_5}
 \end{figure}
-
 \newpage
 \section{Counts: Negative Binomial model derived from Poisson-Gamma model}
+
+The Negative Binomial $X\sim\rm{NBin}(r,\pi)$ models the number of 
+\textit{trials} in a sequence of independent and identically distributed Bernouillis before $r$ \textit{successes} occur. Instead of representing the number of successes in $n$ trials like a $Y\sim \rm{Bin} (n, \pi)$, with the Negative Binomial we are looking at how many trials will it take to obtain $r$ successes.
+
+With respect to the parameters, $r>0$ represents the number of successes until 
+the experiment is stopped. The success probability in each experiment is 
+represented by $\pi\in[0,1]$.  In R the functions \texttt{nbinom(..., size = r, prob = $\pi$)} relate to the random variable $X-r$, the number of successes (as opposed to the number of trials) until $r$ successes have been achieved . 
+
 
 \subsection{Recruitment in one unit of time}
 Let $Y|\Lambda \sim \rm{Po}(\Lambda)$ and $\Lambda \sim \rm{G}(\alpha,\beta)$
@@ -271,6 +278,10 @@ Variance &= \frac{\alpha\bigg(1-\frac{\beta}{\beta+1}\bigg)}{\bigg(\frac{\beta}{
 
 \subsection{Accrual at time point t}
 Let $Y|\Lambda \sim \rm{Po}(\Lambda t)$ and $\Lambda \sim \rm{G}(\alpha,\beta)$
+
+
+
+
 
 
 
