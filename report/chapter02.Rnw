@@ -199,7 +199,7 @@ hist_data <- hist(final_counts, breaks = hist_bins, plot = FALSE)
 barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray", 
 				axes = FALSE, xlab = "", ylab = "")
 @   
-  \caption{Poisson-distributed counts with $\lambda = 0.591$ over time and uncertainty range. The black line represents the point estimate of the expected accrual, while the red dashed lines indicate Poisson's 95\% aleatory uncertainty. The histogram illustrates the distribution of observed counts at time $T = 550$ \citep{spiegelhalter2011visualizing}.}
+  \caption{Poisson-distributed counts with $\lambda = 0.591$ over time and uncertainty range. The black line represents the point estimate of the expected accrual, while the red dashed lines indicate Poisson's 95\% aleatory uncertainty. The histogram illustrates the distribution of observed counts at time $T = 550$ \citep{spiegelhalter2011visualizing, pkgacc}.}
   \label{fig:2_2}
 \end{figure}
 

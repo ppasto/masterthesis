@@ -2,7 +2,7 @@
 
 \bibitem[Bogin, 2022]{bogin2022lasagna}
 Bogin, V. (2022).
-\newblock Lasagna's law: a dish best served early.
+\newblock Lasagna's law: A dish best served early.
 \newblock {\em Contemporary Clinical Trials Communications}, {\bf26},  100900.
 
 \bibitem[Carter, 2004]{carter2004application}
@@ -13,7 +13,7 @@ Carter, R.~E. (2004).
 \bibitem[Food {\it et~al.}, 2018]{food2018evaluating}
 Food, Administration, D.,{\it et~al.} (2018).
 \newblock Evaluating inclusion and exclusion criteria in clinical trials.
-\newblock In {\em Workshop report. The National Press Club, Washington DC}.
+\newblock In {\em Workshop Report. The National Press Club, Washington DC}.
 
 \bibitem[Frank, 2004]{frank2004current}
 Frank, G. (2004).
@@ -28,7 +28,12 @@ Held, L. and Bov{\'e}, D.~S. (2014).
 \bibitem[Lim and In, 2019]{lim2019randomization}
 Lim, C.-Y. and In, J. (2019).
 \newblock Randomization in clinical studies.
-\newblock {\em Korean journal of anesthesiology}, {\bf72},  221--232.
+\newblock {\em Korean Journal of Anesthesiology}, {\bf72},  221--232.
+
+\bibitem[Liu {\it et~al.}, 2023]{pkgacc}
+Liu, J., Jiang, Y., Wu, C., Simon, S., Mayo, M.~S., Raghavan, R., and Gajewski, B.~J. (2023).
+\newblock {\em accrual: Bayesian Accrual Prediction}.
+\newblock R package version 1.4.
 
 \bibitem[{National Institute of Allergy and Infectious Diseases}, 2021]{NIH2021}
 {National Institute of Allergy and Infectious Diseases} (2021).
@@ -39,40 +44,40 @@ Lim, C.-Y. and In, J. (2019).
 \bibitem[N{\"u}esch {\it et~al.}, 2009]{nuesch2009effects}
 N{\"u}esch, E., Trelle, S., Reichenbach, S., Rutjes, A.~W., B{\"u}rgi, E., Scherer, M., Altman, D.~G., and J{\"u}ni, P. (2009).
 \newblock The effects of excluding patients from the analysis in randomised controlled trials: meta-epidemiological study.
-\newblock {\em Bmj}, {\bf339}, .
+\newblock {\em BMJ}, {\bf339}, .
 
 \bibitem[Panos and Boeckler, 2023]{panos2023statistical}
 Panos, G.~D. and Boeckler, F.~M. (2023).
-\newblock Statistical analysis in clinical and experimental medical research: simplified guidance for authors and reviewers.
+\newblock Statistical analysis in clinical and experimental medical research: Simplified guidance for authors and reviewers.
 
 \bibitem[Piantadosi and Meinert, 2022]{piantadosi2022principles}
 Piantadosi, S. and Meinert, C.~L. (2022).
-\newblock {\em Principles and practice of clinical trials}.
+\newblock {\em Principles and Practice of Clinical Trials}.
 \newblock Springer Nature.
 
 \bibitem[Rehman {\it et~al.}, 2020]{rehman2020exclusion}
 Rehman, A.~M., Ferrand, R., Allen, E., Simms, V., McHugh, G., and Weiss, H.~A. (2020).
 \newblock Exclusion of enrolled participants in randomised controlled trials: what to do with ineligible participants?
-\newblock {\em BMJ open}, {\bf10},  e039546.
+\newblock {\em BMJ Open}, {\bf10},  e039546.
 
 \bibitem[Shih, 2002]{shih2002problems}
 Shih, W.~J. (2002).
 \newblock Problems in dealing with missing data and informative censoring in clinical trials.
-\newblock {\em Current controlled trials in cardiovascular medicine}, {\bf3},  1--7.
+\newblock {\em Current Controlled Trials in Cardiovascular Medicine}, {\bf3},  1--7.
 
 \bibitem[Spiegelhalter {\it et~al.}, 2011]{spiegelhalter2011visualizing}
 Spiegelhalter, D., Pearson, M., and Short, I. (2011).
 \newblock Visualizing uncertainty about the future.
-\newblock {\em science}, {\bf333},  1393--1400.
+\newblock {\em Science}, {\bf333},  1393--1400.
 
 \bibitem[Van~Spall {\it et~al.}, 2007]{van2007eligibility}
 Van~Spall, H.~G., Toren, A., Kiss, A., and Fowler, R.~A. (2007).
-\newblock Eligibility criteria of randomized controlled trials published in high-impact general medical journals: a systematic sampling review.
-\newblock {\em Jama}, {\bf297},  1233--1240.
+\newblock Eligibility criteria of randomized controlled trials published in high-impact general medical journals: A systematic sampling review.
+\newblock {\em JAMA}, {\bf297},  1233--1240.
 
 \bibitem[Whelan {\it et~al.}, 2018]{whelan2018high}
 Whelan, J., Le~Deley, M.-C., Dirksen, U., Le~Teuff, G., Brennan, B., Gaspar, N., Hawkins, D.~S., Amler, S., Bauer, S., Bielack, S.,{\it et~al.} (2018).
-\newblock High-dose chemotherapy and blood autologous stem-cell rescue compared with standard chemotherapy in localized high-risk ewing sarcoma: results of euro-ewing 99 and ewing-2008.
+\newblock High-dose chemotherapy and blood autologous stem-cell rescue compared with standard chemotherapy in localized high-risk ewing sarcoma: Results of euro-ewing 99 and ewing-2008.
 \newblock {\em Journal of Clinical Oncology}, {\bf36},  3110--3119.
 
 \bibitem[Willie, 2024]{willie2024population}
