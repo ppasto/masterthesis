@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.18)  24 FEB 2025 12:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.18)  25 FEB 2025 11:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -480,7 +480,7 @@ Chapter 1.
 
 ]
 Chapter 2.
-<fig_2_1.png, id=128, 669.50125pt x 424.58624pt>
+<fig_2_1.png, id=138, 669.50125pt x 424.58624pt>
 File: fig_2_1.png Graphic file (type png)
 <use fig_2_1.png>
 Package pdftex.def Info: fig_2_1.png  used on input line 30.
@@ -491,67 +491,90 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 [3]
-<figure/ch02_figunnamed-chunk-3-1.pdf, id=161, 505.89pt x 505.89pt>
+<figure/ch02_figunnamed-chunk-3-1.pdf, id=171, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-3-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-3-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-3-1.pdf  used on input line 70.
-(pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
-<figure/ch02_figunnamed-chunk-4-1.pdf, id=166, 505.89pt x 505.89pt>
-File: figure/ch02_figunnamed-chunk-4-1.pdf Graphic file (type pdf)
-<use figure/ch02_figunnamed-chunk-4-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-4-1.pdf  used on input line 85.
-(pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
-<figure/ch02_figunnamed-chunk-5-1.pdf, id=167, 505.89pt x 505.89pt>
-File: figure/ch02_figunnamed-chunk-5-1.pdf Graphic file (type pdf)
-<use figure/ch02_figunnamed-chunk-5-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-5-1.pdf  used on input line 99.
-(pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
-<figure/ch02_figunnamed-chunk-6-1.pdf, id=168, 505.89pt x 505.89pt>
-File: figure/ch02_figunnamed-chunk-6-1.pdf Graphic file (type pdf)
-<use figure/ch02_figunnamed-chunk-6-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-6-1.pdf  used on input line 114.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-3-1.pdf  used on input line 81.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
 
-Underfull \vbox (badness 5331) has occurred while \output is active []
+Underfull \vbox (badness 2343) has occurred while \output is active []
 
 
 
 [4 <./fig_2_1.png>]
+<figure/ch02_figunnamed-chunk-4-1.pdf, id=194, 505.89pt x 505.89pt>
+File: figure/ch02_figunnamed-chunk-4-1.pdf Graphic file (type pdf)
+<use figure/ch02_figunnamed-chunk-4-1.pdf>
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-4-1.pdf  used on input line 96.
+(pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
+<figure/ch02_figunnamed-chunk-5-1.pdf, id=195, 505.89pt x 505.89pt>
+File: figure/ch02_figunnamed-chunk-5-1.pdf Graphic file (type pdf)
+<use figure/ch02_figunnamed-chunk-5-1.pdf>
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-5-1.pdf  used on input line 110.
+(pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
+<figure/ch02_figunnamed-chunk-6-1.pdf, id=196, 505.89pt x 505.89pt>
+File: figure/ch02_figunnamed-chunk-6-1.pdf Graphic file (type pdf)
+<use figure/ch02_figunnamed-chunk-6-1.pdf>
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-6-1.pdf  used on input line 125.
+(pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
+
 
 [5 <./figure/ch02_figunnamed-chunk-3-1.pdf>]
+Overfull \hbox (18.1494pt too wide) in paragraph at lines 136--136
+[]\T1/cmr/bx/n/14.4 Counts: Neg-a-tive Bi-no-mial model de-rived from Poisson-Gamma
+ []
+
+
+
+[6 <./figure/ch02_figunnamed-chunk-4-1.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[6 <./figure/ch02_figunnamed-chunk-4-1.pdf>]) (./chapter03.tex
 
-[7 <./figure/ch02_figunnamed-chunk-5-1.pdf>]
+Overfull \hbox (20.02324pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10.95 2.5.  COUNTS: NEGATIVE BINOMIAL MODEL DERIVED FROM POISSON-GAMMA MODEL \T1/cmr/m/n/10.95 7
+ []
+
+[7 <./figure/ch02_figunnamed-chunk-5-1.pdf>]) (./chapter03.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 [8 <./figure/ch02_figunnamed-chunk-6-1.pdf>]
-Chapter 3.
-) (./chapter04.tex
 
-[9
 
-]
+Overfull \hbox (20.02324pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10.95 2.5.  COUNTS: NEGATIVE BINOMIAL MODEL DERIVED FROM POISSON-GAMMA MODEL \T1/cmr/m/n/10.95 9
+ []
+
+[9]
 
 [10
 
 ]
-Chapter 4.
-) (./chapter05.tex
+Chapter 3.
+) (./chapter04.tex
 
 [11]
 
 [12
 
 ]
-Chapter 5.
-)
+Chapter 4.
+) (./chapter05.tex
 
 [13]
 
 [14
+
+]
+Chapter 5.
+)
+
+[15]
+
+[16
 
 ] (./msc_report.bbl (./msc_report.brf)
 \tf@brf=\write6
@@ -569,11 +592,11 @@ Underfull \hbox (badness 2547) in paragraph at lines 28--28
 
 )
 
-[15
+[17
 
 ]
 
-[16
+[18
 
 ] (./msc_report.aux)
  ***********
@@ -581,23 +604,23 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `msc_report.out' has not changed.
-(rerunfilecheck)             Checksum: B15EE3074C195A898F5E99F5717331CF;568.
+(rerunfilecheck)             Checksum: CDBF2B26CA374A2BDCB052FF4F509357;743.
 Package rerunfilecheck Info: File `msc_report.brf' has not changed.
-(rerunfilecheck)             Checksum: 8A55ACC3DC15AD9735166E6F91339695;900.
+(rerunfilecheck)             Checksum: A9FF2536A4EE255CF697B99AC5219480;900.
  ) 
 Here is how much of TeX's memory you used:
- 14837 strings out of 475129
- 238520 string characters out of 5762560
- 650691 words of memory out of 5000000
+ 14845 strings out of 475129
+ 238638 string characters out of 5762560
+ 646688 words of memory out of 5000000
  37540 multiletter control sequences out of 15000+600000
- 580304 words of font info for 77 fonts, out of 8000000 for 9000
+ 578774 words of font info for 75 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  95i,13n,96p,891b,448s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsl1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1000.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1200.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1440.600pk></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on msc_report.pdf (24 pages, 544247 bytes).
+Output written on msc_report.pdf (26 pages, 554371 bytes).
 PDF statistics:
- 788 PDF objects out of 1000 (max. 8388607)
- 324 compressed objects within 4 object streams
- 58 named destinations out of 1000 (max. 500000)
- 106 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 839 PDF objects out of 1000 (max. 8388607)
+ 349 compressed objects within 4 object streams
+ 68 named destinations out of 1000 (max. 500000)
+ 122 words of extra memory for PDF output out of 10000 (max. 10000000)
 
