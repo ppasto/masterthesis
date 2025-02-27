@@ -71,7 +71,7 @@ The general notion of \textbf{Recruitment} in this Master Thesis refers to the n
 
 \section{Uncertainty and models for counts}
 
-There are two types of uncertainty, aleatory and epistemic (ref). The \textbf{Aleatory Uncertainty} reflects randomness that is inherent, irreducible and unpredictable in nature. \textbf{Epistemic Uncertainty} arises primarily from limited or imperfect knowledge about the parameters of a statistical model. Obtaining more or better information about the parameter reduces the epistemic uncertainty. 
+There are two types of uncertainty, aleatory and epistemic \citep{ohagan2006}. The \textbf{Aleatory Uncertainty} reflects randomness that is inherent, irreducible and unpredictable in nature. \textbf{Epistemic Uncertainty} arises primarily from limited or imperfect knowledge about the parameters of a statistical model. Obtaining more or better information about the parameter reduces the epistemic uncertainty. 
 
 Let us denote
 
