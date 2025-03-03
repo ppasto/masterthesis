@@ -36,6 +36,7 @@ fig.path='figures/fig', fig.show='hold',
 
 \begin{frame}{First Slide}
 
+ver si funciona el push
 
 \end{frame}
 
