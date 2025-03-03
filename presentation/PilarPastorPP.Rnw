@@ -48,9 +48,41 @@ fig.path='figures/fig', fig.show='hold',
 \end{frame}
 
 
-\begin{frame}{Second Slide}
+\begin{frame}{Target Population}
+
+\includegraphics[width=100mm,scale=1]{targetpop.png}
+
+\end{frame}
+
+\begin{frame}{Eligibility}
+
+\includegraphics[width=100mm,scale=1]{eligibility.png}
+
+\end{frame}
+
+\begin{frame}{Enrollment}
+
+\includegraphics[width=100mm,scale=1]{enrollment.png}
 
 
+\end{frame}
+
+\begin{frame}{Randomization}
+
+\includegraphics[width=100mm,scale=1]{randomization.png}
+
+\end{frame}
+
+\begin{frame}{Statistical Analysis}
+
+\includegraphics[width=100mm,scale=1]{statanal.png}
+
+\end{frame}
+
+
+\begin{frame}{Patient Attrition}
+
+\includegraphics[width=100mm,scale=1]{attrition.png}
 
 \end{frame}
 
