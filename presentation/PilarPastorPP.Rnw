@@ -128,6 +128,92 @@ Negative Binomial & $C(t) \sim \rm{Po} (\Lambda  t)$; $\Lambda \sim \rm{G}(\alph
 \end{frame}
 
 
+
+\begin{frame}{Accrual of 1 study}
+
+\begin{figure}
+
+<<echo=FALSE>>=
+# 1 PATHS
+# Set parameters
+set.seed(2025)
+
+n <- 100
+t <- seq(1, 550, 1)
+lambda <- 0.591
+
+# Generate cumulative Poisson paths
+cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
+
+for (i in 1:n) {
+	cval <- rpois(length(t), lambda)  
+	cval_cum_matrix[i, ] <- cumsum(cval)  
+}
+
+# Extract final counts for histogram
+final_counts <- cval_cum_matrix[, length(t)]
+
+
+# Plot the main accrual time series
+plot(t,  cval_cum_matrix[1,], 
+		 type="n", 
+		 main = "Accrual of 1 study", 
+		 xlab = "Time", 
+		 ylab = "Count")
+
+lines(t, lambda*t)
+lines(t,  cval_cum_matrix[1,], col = "lightgray")
+@   
+  \caption{Poisson-distributed counts with $\lambda = 0.591$ over time and uncertainty range \citep{spiegelhalter2011visualizing, pkgacc}.}
+\end{figure}
+
+
+\end{frame}
+
+\begin{frame}{Accrual of 2 studies}
+
+\begin{figure}
+
+<<echo=FALSE>>=
+# 1 PATHS
+# Set parameters
+set.seed(2025)
+
+n <- 100
+t <- seq(1, 550, 1)
+lambda <- 0.591
+
+# Generate cumulative Poisson paths
+cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
+
+for (i in 1:n) {
+	cval <- rpois(length(t), lambda)  
+	cval_cum_matrix[i, ] <- cumsum(cval)  
+}
+
+# Extract final counts for histogram
+final_counts <- cval_cum_matrix[, length(t)]
+
+
+# Plot the main accrual time series
+plot(t,  cval_cum_matrix[1,], 
+		 type="n", 
+		 main = "Accrual of 2 studies", 
+		 xlab = "Time", 
+		 ylab = "Count")
+
+lines(t, lambda*t)
+lines(t,  cval_cum_matrix[1,], col = "lightgray")
+lines(t,  cval_cum_matrix[2,], col = "lightgray")
+@   
+  \caption{Poisson-distributed counts with $\lambda = 0.591$ over time and uncertainty range \citep{spiegelhalter2011visualizing, pkgacc}.}
+\end{figure}
+
+
+\end{frame}
+
+
+
 \begin{frame}[shrink = 5]{Shrunk Slide 1}
 
 
