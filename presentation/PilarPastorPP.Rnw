@@ -34,9 +34,16 @@ fig.path='figures/fig', fig.show='hold',
 %% Start with slides here: put them between `\begin{frame}` and `\end{frame}`
 
 
-\begin{frame}{First Slide}
+\begin{frame}{Why recruitment rates?}
 
-ver si funciona el push
+\begin{itemize}
+\item Timely recruitment vital to the success of a clinical trial
+\item Inadequate number of subjects $\rightarrow$ lack of power
+\item Recruitment period too long $\rightarrow$ competing treatments
+\item Recruitment of patients varies at each stage 
+\item \cite{carter2004application}
+\end{itemize}
+
 
 \end{frame}
 
