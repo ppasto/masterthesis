@@ -127,6 +127,50 @@ Negative Binomial & $C(t) \sim \rm{Po} (\Lambda  t)$; $\Lambda \sim \rm{G}(\alph
 
 \end{frame}
 
+\begin{frame}{Study}
+
+\begin{itemize}
+\item Time $t = 550$ days
+\item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Study}
+
+\begin{itemize}
+\item Time $t = 550$ days
+\item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$
+\item Models for Counts:
+	\begin{itemize}
+	\item Expectation: $\rm{E}C(t) = \lambda t = 0.591 \cdot 550 = 325$
+	\item Poisson: $C(t) \sim \rm{Po}(\lambda t)$
+	\item Negative Binomial: $C(t) \sim \rm{Po} (\Lambda t)$; $\Lambda \sim \rm{G}(\alpha,\beta)$
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Study}
+\begin{itemize}
+\item Time $t = 550$ days
+\item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$
+\item Models for Counts:
+	\begin{itemize}
+	\item \textbf{Expectation}: $\textrm{E}C(t) = \lambda t = 0.591 \cdot 550 = 325$
+	\item \textbf{Poisson}: $C(t) \sim \textrm{Po}(\lambda t)$
+	\item Negative Binomial: $C(t) \sim \textrm{Po} (\Lambda t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Accrual at time point $t$}
+\begin{itemize}
+\item \textbf{Expectation}: $\textrm{E}C(t) = \underbrace{\textrm{E} C +\ldots + C}_{t \ \text{times}} = t \textrm{E} C = \lambda t$
+\item \textbf{Poisson}: $\underbrace{\textrm{Po} (\lambda) +\ldots +\textrm{Po} (\lambda)}_{t \ \text{times}} = \textrm{Po} (\lambda t)$
+\end{itemize}
+\end{frame}
 
 
 \begin{frame}{Accrual of 1 study}
@@ -332,23 +376,100 @@ axis(1, at = seq(1, length(200:500), by = 50), labels = seq(200, 500, by = 50))
 \end{figure}
 \end{frame}
 
+\begin{frame}{Uncertainty bands}
+
+
+\begin{figure}
+<<echo=FALSE>>=
+
+# Compute Poisson quantiles over time
+q_975_line <- qpois(0.975, lambda * t)
+q_900_line <- qpois(0.900, lambda * t)
+q_750_line <- qpois(0.75, lambda * t)
+q_250_line <- qpois(0.25, lambda * t)
+q_100_line <- qpois(0.1, lambda * t)
+q_025_line <- qpois(0.025, lambda * t)
+
+# Define x and y axis limits
+x_limits <- range(t)
+y_limits <- range(cval_cum_matrix)  # Ensures all quantiles fit
+
+# Create the plot
+par(mar = c(4.1, 4.1, 2.1, 2.1))
+plot(NA, NA, xlim = x_limits, ylim = y_limits, xlab = "Time", ylab = "Count",
+		 main = "Quantiles")
+
+# Fill the area with a green gradient
+polygon(c(t, rev(t)), c(q_975_line, rev(q_900_line)), col = rgb(144/255, 238/255, 144/255, 0.4), border = NA) # Light Green
+polygon(c(t, rev(t)), c(q_900_line, rev(q_750_line)), col = rgb(50/255, 205/255, 50/255, 0.4), border = NA)  # Lime Green
+polygon(c(t, rev(t)), c(q_750_line, rev(q_250_line)), col = rgb(0/255, 100/255, 0/255, 0.4), border = NA)    # Dark Green
+polygon(c(t, rev(t)), c(q_250_line, rev(q_100_line)), col = rgb(50/255, 205/255, 50/255, 0.4), border = NA)  # Lime Green
+polygon(c(t, rev(t)), c(q_100_line, rev(q_025_line)), col = rgb(144/255, 238/255, 144/255, 0.4), border = NA) # Light Green
+
+# Add the mean trend line
+lines(t, lambda * t, col = "black", lwd = 2)  
+
+# Legend
+legend("topleft",
+			 legend = c("2.5th - 97.5th Percentile [95%]", 
+			 					 "10th - 90th Percentile     [80%]", 
+			 					 "25th - 75th Percentile     [50%]", 
+			 					 "Expected Accrual"),
+			 col = c(rgb(144/255, 238/255, 144/255, 0.4), rgb(50/255, 205/255, 50/255, 0.4), rgb(0/255, 100/255, 0/255, 0.4), "black"),
+			 pch = c(15, 15, 15, NA), lty = c(NA, NA, NA, 1), lwd = c(NA, NA, NA, 2),
+			 bg = "white",
+			 cex = 0.7)
+@   
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}{Negative binomial derived from Poisson-Gamma model}
+
+Recruitment in one unit of time ($t=1$)
+
+....
+
+\end{frame}
+
+
+\begin{frame}{Study}
+\begin{itemize}
+\item Time $t = 550$ days
+\item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$
+\item Models for Counts:
+	\begin{itemize}
+	\item Expectation: $\textrm{E}C(t) = \lambda t = 0.591 \cdot 550 = 325$
+	\item \textbf{Poisson}: $C(t) \sim \textrm{Po}(\lambda t)$
+	\item \textbf{Negative Binomial}: $C(t) \sim \textrm{Po} (\Lambda t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Comparison between Poisson and Negative Binomial}
+
+% one slide, two slides?
+\end{frame}
+
+\begin{frame}{Comparison between Poisson and Negative Binomial}
+
+
+\end{frame}
+
 
 \begin{frame}[shrink = 5]{Shrunk Slide 1}
 
 
 \end{frame}
 
-\begin{frame}[shrink = 23]{Shrunk slide 2}
-
-
-\end{frame}
-
-
 
 \begin{frame}{Results}
 
 
 \end{frame}
+
+
 
 \begin{frame}{Conclusion}
 
