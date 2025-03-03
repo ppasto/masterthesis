@@ -443,6 +443,11 @@ Recruitment in one unit of time ($t=1$)
 	\item Expectation: $\textrm{E}C(t) = \lambda t = 0.591 \cdot 550 = 325$
 	\item \textbf{Poisson}: $C(t) \sim \textrm{Po}(\lambda t)$
 	\item \textbf{Negative Binomial}: $C(t) \sim \textrm{Po} (\Lambda t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$
+		\begin{itemize}
+		\item $\alpha = 325$
+		\item $\beta = 1.5\cdot 365$
+		\item $\textrm{E} \Lambda = \frac{\alpha}{\beta} = 0.591 = \lambda$
+		\end{itemize}
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -458,28 +463,39 @@ Recruitment in one unit of time ($t=1$)
 \end{frame}
 
 
-\begin{frame}[shrink = 5]{Shrunk Slide 1}
+% \begin{frame}[shrink = 5]{Shrunk Slide 1}
+% 
+% 
+% \end{frame}
+% 
+% 
+% \begin{frame}{Results}
+% 
+% 
+% \end{frame}
 
 
-\end{frame}
 
-
-\begin{frame}{Results}
-
-
-\end{frame}
-
-
-
-\begin{frame}{Conclusion}
-
-% \includegraphics[width=50mm,scale=0.5]{shiftscale6_roc.png}
+\begin{frame}{Summary}
+\begin{itemize}
+\item Models for \textbf{counts}
+\item Extended Carter's simulation to exact distributions
+\end{itemize}
 
 \end{frame}
 
 
 \begin{frame}{Next steps}
-
+\begin{itemize}
+\item Application to simulation on \cite{carter2004application}
+\item Models for \textbf{time} 
+	\begin{itemize}
+	\item Theoretical
+	\item Application on \cite{carter2004application}
+	\end{itemize}
+\item Shiny App
+\item Predictions using theoretical models developed on Daniore Nittas dataset of rates (cite?)
+\end{itemize}
 
 \end{frame}
 
