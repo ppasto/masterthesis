@@ -41,6 +41,7 @@ fig.path='figures/fig', fig.show='hold',
 \item Inadequate number of subjects $\rightarrow$ lack of power
 \item Recruitment period too long $\rightarrow$ competing treatments
 \item Recruitment of patients varies at each stage 
+\item Accrual = Cumulative Recruitment
 \item \cite{carter2004application}
 \end{itemize}
 
@@ -86,12 +87,51 @@ fig.path='figures/fig', fig.show='hold',
 
 \end{frame}
 
-\begin{frame}[shrink = 5]{Shrunk Slide 1}
+
+\begin{frame}{Uncertainty}
+
+\begin{itemize}
+\item \textbf{Aleatory}: randomness inherent and unpredictable
+\item \textbf{Epistemic}: arises from limited knowledge about parameters
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=60mm,scale=0.7]{illustration_uncertainty.png}
+    \caption{Visualization of two types of uncertainty \citep{yang2023explainable}}
+    \label{fig:uncertainty}
+\end{figure}
+
+
+\end{itemize}
 
 
 \end{frame}
 
+\begin{frame}{Models for Counts}
 
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{cccccc}
+ \textbf{Methods} & \textbf{Counts} & \textbf{Expectation} & \textbf{Variance} & \textbf{Aleatory} & \textbf{Epistemic} \\
+\hline
+\hline
+Expectation & $C(t) = \lambda  t$ & $\lambda  t$ & 0 & No & No \\
+Poisson & $C(t) \sim \rm{Po} (\lambda  t)$ & $\lambda  t$ & $\lambda  t$ & Yes & No \\
+Negative Binomial & $C(t) \sim \rm{Po} (\Lambda  t)$; $\Lambda \sim \rm{G}(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+1)}{\beta^2}$ & Yes & Yes \\
+\end{tabular}
+}
+\caption{Aleatory and epistemic uncertainty in accrual shown by different models for counts.}
+\label{tab:count_modeling}
+\end{table}
+
+\end{frame}
+
+
+\begin{frame}[shrink = 5]{Shrunk Slide 1}
+
+
+\end{frame}
 
 \begin{frame}[shrink = 23]{Shrunk slide 2}
 
