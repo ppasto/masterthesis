@@ -54,24 +54,31 @@ In clinical research, \textbf{Statistical Analysis} involves applying statistica
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.7\textwidth]{fig_2_1_a.png}
-  \caption{Patient Attrition at Each Stage of a Clinical Study.  \citep{piantadosi2022principles, whelan2018high, bogin2022lasagna}}
+  \caption{Patient leakage at each stage of a clinical study \citep{piantadosi2022principles, whelan2018high, bogin2022lasagna}.}
   \label{fig:2_1_a}
 \end{figure}
 
-The number of patients decreases at each stage of a clinical study, from defining the target population to final statistical analysis, see Figure \ref{fig:2_1_b}. Eligibility criteria narrow down participants, and enrollment further reduces numbers as only those meeting strict criteria are registered. Randomization assigns individuals to treatment groups, but some may later be excluded due to protocol deviations, missing data, or loss to follow-up. 
+The number of patients decreases at each stage of a clinical study, from defining the target population to final statistical analysis, see Figure \ref{fig:2_1_b}. This process is known as patient leakage \citep{desai2014preventing}, alternative terms are attrition or retention. Eligibility criteria narrow down participants, and enrollment further reduces numbers as only those meeting strict criteria are registered. Randomization assigns individuals to treatment groups, but some may later be excluded due to protocol deviations, missing data, or loss to follow-up. 
 
 The general notion of \textbf{Recruitment} in this Master Thesis refers to the number of patients (Counts) at the Eligibility, or Enrollment, or Randomization, or Statistical Analysis stage in Figure \ref{fig:2_1_a}. We define \textbf{Accrual} as cumulative recruitment.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.7\textwidth]{fig_2_1_b.png}
-  \caption{Visual Representation of Patient Leakage at Each Stage of a Clinical Study.  \citep{piantadosi2022principles, whelan2018high, bogin2022lasagna}}
+  \caption{Visual representation of patient leakage at each stage of a clinical study \citep{piantadosi2022principles, whelan2018high, bogin2022lasagna}.}
   \label{fig:2_1_b}
 \end{figure}
 
 \section{Uncertainty and models for counts}
 
-There are two types of uncertainty, aleatory and epistemic \citep{ohagan2006}. The \textbf{Aleatory Uncertainty} reflects randomness that is inherent, irreducible and unpredictable in nature. \textbf{Epistemic Uncertainty} arises primarily from limited or imperfect knowledge about the parameters of a statistical model. Obtaining more or better information about the parameter reduces the epistemic uncertainty. 
+There are two types of uncertainty, aleatory and epistemic \citep{ohagan2006}. The \textbf{Aleatory Uncertainty} reflects randomness that is inherent, irreducible and unpredictable in nature. \textbf{Epistemic Uncertainty} arises primarily from limited or imperfect knowledge about the parameters of a statistical model and can reflect fluctuations of the parameter, see \ref{fig:2_1_c}. Obtaining more or better information about the parameter typically reduces the epistemic uncertainty. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{illustration_uncertainty.png}
+  \caption{Visualization of two types of uncertainty \citep{yang2023explainable}.}
+  \label{fig:2_1_c}
+\end{figure}
 
 Let us denote
 
@@ -81,6 +88,8 @@ Let us denote
 \item $\lambda=\frac{C}{T}$
 \end{itemize}
 
+We define the rate ($\lambda=\frac{C}{T}$) at which eligible patients are entered onto a clinical trial, measured as persons per unit of time as \textbf{Accrual Rate}. Where \textbf{rate} is understood as a ratio in which the numerator and denominator are incremental differences \citep{piantadosi2024clinical}. 
+
 \begin{table}[h!]
 \centering
 \resizebox{\textwidth}{!}{
@@ -88,12 +97,12 @@ Let us denote
  \textbf{Methods} & \textbf{Counts} & \textbf{Expectation} & \textbf{Variance} & \textbf{Aleatory} & \textbf{Epistemic} \\
 \hline
 \hline
-Expectation & $C = \lambda  t$ & $\lambda  t$ & 0 & No & No \\
-Poisson & $C \sim \rm{Po} (\lambda  t)$ & $\lambda  t$ & $\lambda  t$ & Yes & No \\
-Negative Binomial & $C \sim \rm{Po} (\Lambda  t)$; $\Lambda \sim \rm{G}(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+1)}{\beta^2}$ & Yes & Yes \\
+Expectation & $C(t) = \lambda  t$ & $\lambda  t$ & 0 & No & No \\
+Poisson & $C(t) \sim \textrm{Po} (\lambda  t)$ & $\lambda  t$ & $\lambda  t$ & Yes & No \\
+Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+1)}{\beta^2}$ & Yes & Yes \\
 \end{tabular}
 }
-\caption{Aleatory and epistemic uncertainty in accrual shown by different models for counts.}
+\caption{Moments and aleatory and epistemic uncertainty in accrual covered by different models for counts.}
 \label{tab:count_modeling}
 \end{table}
 
