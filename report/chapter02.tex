@@ -45,7 +45,7 @@ The general notion of \textbf{Recruitment} in this Master Thesis refers to the n
 
 \section{Uncertainty and models for counts}
 
-There are two types of uncertainty, aleatory and epistemic \citep{ohagan2006}. The \textbf{Aleatory Uncertainty} reflects randomness that is inherent, irreducible and unpredictable in nature. \textbf{Epistemic Uncertainty} arises primarily from limited or imperfect knowledge about the parameters of a statistical model and can reflect fluctuations of the parameter, see \ref{fig:2_1_c}. Obtaining more or better information about the parameter typically reduces the epistemic uncertainty. 
+There are two types of uncertainty, aleatory and epistemic \citep{ohagan2006}. The \textbf{Aleatory Uncertainty} reflects randomness that is inherent, irreducible and unpredictable in nature. \textbf{Epistemic Uncertainty} arises primarily from limited or imperfect knowledge about the parameters of a statistical model and can reflect fluctuations of the parameter, see Figure \ref{fig:2_1_c}. Obtaining more or better information about the parameter typically reduces the epistemic uncertainty. 
 
 \begin{figure}[h]
   \centering
@@ -81,6 +81,7 @@ Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{
 \end{table}
 
 \section{Counts: Model based on Expectations}
+\label{sec:expect}
 
 If we fix the duration of a study at time $T$ and we expect that we collect $C$ patients until $T$, we deterministically predict the recruitment rate (without taking into consideration any uncertainty) to be $\hat{\lambda}=\frac{C}{T}$ . 
 
@@ -93,33 +94,41 @@ $\textrm{Var}(C) = \textrm{Var}(\lambda) = 0$
 $C(t) = \textrm{E}(\underbrace{C+\ldots+C}_{t times}) = \textrm{E}(\lambda t) = \lambda t$
 $\textrm{Var}(C(t)) = \textrm{Var}(\underbrace{C+\ldots+C}_{t times}) = t \textrm{Var}(\lambda) = 0$
 
-Both the expected accrual and its zero-variance are specified in \ref{tab:count_modeling}
-and visualized in \ref{fig:2_2} and \ref{fig:2_5}.
+Both the expected accrual and its zero-variance are recorded in Table \ref{tab:count_modeling}
+and visualized in Figure \ref{fig:2_2} and Figure \ref{fig:2_5}.
 
 
 
 \section{Counts: Model based on Poisson Process}
 
-The Poisson distribution $C\sim \rm{Po} (\lambda)$ allows us to explain the recruitment of patients. It is a discrete variable that expresses the probability of a given number of events (in our case, patient recruitment) occurring in a fixed interval of time. We assume that these events occur with a known constant rate and are independent of each other.
+The Poisson distribution $C\sim \rm{Po} (\lambda)$ allows us to explain the recruitment of patients. It is a discrete variable that expresses the probability of a given number of events (in our case, patient recruitment) occurring in a fixed unit interval of time. We assume that these events occur with a known constant rate $\lambda$ and are independent of each other.
 
 \begin{align*}
-EC & = \lambda\\
-Var(C) & = \lambda
+\textrm{P}[C=&c] = \frac{\lambda^c}{c!}e^{-\lambda} \\
+&c = 0,1,2,\ldots
 \end{align*}
 
-One important property from the Poisson distribution is that it is additive \citep{held2014applied}. If $X_i\sim \rm{Po} (\lambda_i)$ for $i=1\cdots n$ are independent, then, $\sum_{i=1}^n X_i \sim \rm{Po} \Big( \sum_{i=1}^n \lambda_i \Big)$.
+
+One important property from the Poisson distribution is that it is infinitely divisible \citep{held2014applied}. If $X_i\sim \textrm{Po} (\lambda_i)$ for $i=1,\ldots, n$ are independent, then, $\sum_{i=1}^n X_i \sim \textrm{Po} \Big( \sum_{i=1}^n \lambda_i \Big)$.
 
 \subsection{Recruitment in one unit of time}
-$C\sim \rm{Po} (\lambda)$
 
-\subsection{Accrual at time point t}
-Using the additive property from the Poisson applicable to independent random variables, $\underbrace{\rm{Po} (\lambda) +\cdots +\rm{Po} (\lambda)}_{t \ \text{times}} = \rm{Po} (\lambda t)$, we have that:\\
+The recruitment of patients in one unit of time follows $C\sim \textrm{Po} (\lambda)$ and the expectation and variance are:
 
-$C\sim \rm{Po} (\lambda t)$
+\begin{align*}
+\textrm{E}C & = \lambda \\
+\textrm{Var}(C) & = \lambda
+\end{align*}
 
-We assume that the recruitment of patients at a given time point is independent from another.
+\subsection{Accrual at time point $t$}
+At time point $t$, the accrual follows $C\sim \textrm{Po} (\lambda t)$. Using the infinitely divisible property from the Poisson applicable to independent random variables, $\underbrace{\textrm{Po} (\lambda) +\cdots +\textrm{Po} (\lambda)}_{t \ \text{times}} = \textrm{Po} (\lambda t)$. We assume that the recruitment of patients at a given time point is independent from another. As we can see in Table \ref{tab:count_modeling}, the expectation and variance are the following:
 
-Here I could reference the figures, since they are all from this section.
+\begin{align*}
+\textrm{E}C(t) & = \lambda t \\
+\textrm{Var}(C(t)) & = \lambda t
+\end{align*}
+
+For example, if we assume $\lambda = 0.591$ per day and $T=550$, we can show the accrual of 100 different studies in Figure \ref{fig:2_2} and the histogram at $t=550$ days. The exact distribution at $T=550$ is provided in Figure \ref{fig:2_3} and the Cummulative Distribution Function (CDF) in Figure \ref{fig:2_4}. The uncertainty bands based on the theoretical quantiles are displayed in Figure \ref{fig:2_5}.
 
 \begin{figure}
 \begin{knitrout}
@@ -131,7 +140,7 @@ Here I could reference the figures, since they are all from this section.
 
 
 \end{knitrout}
-  \caption{Poisson-distributed counts with $\lambda = 0.591$ over time and uncertainty range. The black line represents the point estimate of the expected accrual, while the red dashed lines indicate Poisson's 95\% aleatory uncertainty. The histogram illustrates the distribution of observed counts at time $T = 550$ \citep{spiegelhalter2011visualizing, pkgacc}.}
+  \caption{Poisson-distributed counts with $\lambda = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from section \ref{sec:expect}, while the red dashed lines indicate Poisson's 95\% aleatory uncertainty. The histogram illustrates the distribution of observed counts in 100 studies at time $t = 550$ days \citep{spiegelhalter2011visualizing, pkgacc}.}
   \label{fig:2_2}
 \end{figure}
 
@@ -181,8 +190,8 @@ Here I could reference the figures, since they are all from this section.
 \newpage
 \section{Counts: Negative Binomial model derived from Poisson-Gamma model}
 
-The Negative Binomial $X\sim\rm{NBin}(r,\pi)$ models the number of 
-\textit{trials} in a sequence of independent and identically distributed Bernouillis before $r$ \textit{successes} occur. Instead of representing the number of successes in $n$ trials like a $Y\sim \rm{Bin} (n, \pi)$, with the Negative Binomial we are looking at how many trials will it take to obtain $r$ successes.
+The Negative Binomial $X\sim\textrm{NBin}(r,\pi)$ models the number of 
+\textit{trials} in a sequence of independent and identically distributed Bernouillis before $r$ \textit{successes} occur. Instead of representing the number of successes in $n$ trials like a $Y\sim \textrm{Bin} (n, \pi)$, with the Negative Binomial we are looking at how many trials will it take to obtain $r$ successes.
 
 With respect to the parameters, $r>0$ represents the number of successes until 
 the experiment is stopped. The success probability in each experiment is 
@@ -209,7 +218,7 @@ Thus, $C|\Lambda\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+1}\Bigg)$
 
 \newpage
 
-Using the expressions of iterated expectation and variance \citep{held2014applied} and the expectation and variance from the respective random variables $C|\Lambda \sim \rm{Po}(\Lambda)$ and $\Lambda \sim \rm{G}(\alpha,\beta)$, we have that:
+Using the expressions of iterated expectation and variance \citep{held2014applied} and the expectation and variance from the respective random variables $C|\Lambda \sim \textrm{Po}(\Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$, we have that:
 
 
 \begin{align*}
@@ -239,7 +248,7 @@ Using the expressions of iterated expectation and variance \citep{held2014applie
 
 
 \subsection{Accrual at time point t}
-Let $C|\Lambda \sim \rm{Po}(\Lambda t)$ and $\Lambda \sim \rm{G}(\alpha,\beta)$
+Let $C|\Lambda \sim \textrm{Po}(\Lambda t)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$
 
 
 \begin{figure}
