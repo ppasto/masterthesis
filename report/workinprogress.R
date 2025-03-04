@@ -5,14 +5,14 @@
 # par(mfrow = c(2,2))
 par(mfrow = c(1,1))
 
-# 1 PATH
-t <- seq(1, 40, 1)
-lambda <- 15
-
-cval <- rpois(n = t, lambda)
-cval_cum <- cumsum(cval)
-
-data <- data.frame(Time = t, Counts = cval_cum)
+# # 1 PATH
+# t <- seq(1, 40, 1)
+# lambda <- 15
+# 
+# cval <- rpois(n = t, lambda)
+# cval_cum <- cumsum(cval)
+# 
+# data <- data.frame(Time = t, Counts = cval_cum)
 
 # plot(data$Time, data$Counts, type = "l")
 
@@ -177,6 +177,52 @@ legend("topleft",
 			 pch = c(15, 15, 15, NA), lty = c(NA, NA, NA, 1), lwd = c(NA, NA, NA, 2),
 			 bg = "white",
 			 cex = 0.5)
+
+
+########################### Poisson vs Negbin
+### PMF
+plot(200:500, dpois(200:500, lambda*550), 
+		 type = "l",
+		 main = "Probability Mass Function", 
+		 xlab = "Counts", 
+		 ylab = "",
+		 xaxt = "n")
+
+alpha = 324
+beta = 1.5 * 365
+
+lines(200:500, dnbinom(200:500, size = 324, mu = lambda*550), col = 2)
+
+legend("topleft",
+			 legend = c("Poisson",
+			 					 "Negative Binomial"),
+			 col = c("black", "red"),
+			 lty = c(1, 1),
+			 bg = "white",
+			 cex = 0.7)  
+
+### CDF
+plot(200:500, ppois(200:500, lambda*550), 
+		 type = "l",
+		 main = "Cummulative Distribution Function", 
+		 xlab = "Counts", 
+		 ylab = "",
+		 xaxt = "n")
+
+alpha = 324
+beta = 1.5 * 365
+
+lines(200:500, pnbinom(200:500, size = 324, mu = lambda*550), col = 2)
+
+legend("topleft",
+			 legend = c("Poisson",
+			 					 "Negative Binomial"),
+			 col = c("black", "red"),
+			 lty = c(1, 1),
+			 bg = "white",
+			 cex = 0.7)
+
+
 
 ###################################### SIMULATIONS
 ########################### Poisson Estimate and Spread V1
