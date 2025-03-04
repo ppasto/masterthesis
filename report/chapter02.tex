@@ -62,7 +62,7 @@ Let us denote
 \item $\lambda=\frac{C}{T}$
 \end{itemize}
 
-We define the rate at which eligible patients are entered onto a clinical trial, measured as persons per unit of time as \textbf{Accrual Rate}. Where \textbf{rate} is a ratio in which the numerator and denominator are incremental differences \citep{piantadosi2024clinical}. 
+We define the rate ($\lambda=\frac{C}{T}$) at which eligible patients are entered onto a clinical trial, measured as persons per unit of time as \textbf{Accrual Rate}. Where \textbf{rate} is understood as a ratio in which the numerator and denominator are incremental differences \citep{piantadosi2024clinical}. 
 
 \begin{table}[h!]
 \centering
@@ -82,21 +82,21 @@ Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{
 
 \section{Counts: Model based on Expectations}
 
-If we fix a time $T$ for the study to take place and we must enroll $N$ patients, we could deterministically predict our recruitment rate (without taking into consideration any uncertainty) to be $\hat{\lambda}=\frac{N}{T}$ . 
+If we fix the duration of a study at time $T$ and we expect that we collect $C$ patients until $T$, we deterministically predict the recruitment rate (without taking into consideration any uncertainty) to be $\hat{\lambda}=\frac{C}{T}$ . 
 
-However, by normal approximation to the Poisson distribution $T\sim \rm{N}(\mu=N, \sigma^2=N)$, we know that the probability of recruiting the desired $N$ participants is 0.5. Which means that the study has 50\% chance of obtaining the desired sample size in the suggested $T$ \citep{carter2004application}. We would also be assuming that the recruitment rate is constant over time.
 
-This raises two questions which will be answered throughout this Master Thesis:
-\begin{enumerate}
-\item \textbf{Counts?:} If $T$ is fixed, what does the expected rate need to be to give a certain percentage of certainty of enrolling the total sample size $N$ within said time frame?
-\item \textbf{Time:} Given a certain rate $\lambda$, how long should the recruitment period be planned to give a certain level of confidence of recruiting the total sample size?
-\end{enumerate}
+\subsection{Expected recruitment in one unit of time}
+$C = \textrm{E}C = \textrm{E}\lambda = \lambda$
+$\textrm{Var}(C) = \textrm{Var}(\lambda) = 0$
 
-\subsection{Expected in one unit of time}
-$C = EC = E\lambda = \lambda$
+\subsection{Expected accrual at time point $t$}
+$C(t) = \textrm{E}(\underbrace{C+\ldots+C}_{t times}) = \textrm{E}(\lambda t) = \lambda t$
+$\textrm{Var}(C(t)) = \textrm{Var}(\underbrace{C+\ldots+C}_{t times}) = t \textrm{Var}(\lambda) = 0$
 
-\subsection{Expected accrual at time point t}
-$C = EC = E(\lambda t) = \lambda t$
+Both the expected accrual and its zero-variance are specified in \ref{tab:count_modeling}
+and visualized in \ref{fig:2_2} and \ref{fig:2_5}.
+
+
 
 \section{Counts: Model based on Poisson Process}
 
@@ -288,3 +288,16 @@ Let $C|\Lambda \sim \rm{Po}(\Lambda t)$ and $\Lambda \sim \rm{G}(\alpha,\beta)$
   \label{fig:2_8}
 \end{figure}
 
+
+
+\section{Important questions when forecasting recruitment at the design-stage of a study}
+
+By normal approximation to the Poisson distribution $C\sim \textrm{N}(\mu=\lambda T, \sigma^2=(\lambda T)^2)$, we know that the probability of recruiting the desired $N$ participants is 0.5. Which means that the study has 50\% chance of obtaining the desired sample size in the suggested $T$ \citep{carter2004application}. We would also be assuming that the recruitment rate is constant over time.
+
+In fact, we do not need normal approximation to see this...
+
+This raises two questions which will be answered throughout this Master Thesis:
+\begin{enumerate}
+\item \textbf{Rate:} If $T$ is fixed, what does the expected rate $\lambda$ need to be to achieve a certain certainty of enrolling the total sample size $N$ within the time frame $T$?
+\item \textbf{Time:} Given a certain rate $\lambda$, how long should the recruitment period $T$ be planned to give a confidence above 50\% of recruiting the total sample size $N$? In Machine Learning, this confidence is aimed at 80\%. In \cite{carter2004application}, at 90\%.
+\end{enumerate}
