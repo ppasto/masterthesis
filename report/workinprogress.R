@@ -212,7 +212,7 @@ plot(200:500, ppois(200:500, lambda*550),
 alpha = 324
 beta = 1.5 * 365
 
-lines(200:500, pnbinom(200:500, size = 324, mu = lambda*550), col = 2)
+lines(200:500, pnbinom(200:500, size = alpha, mu = lambda*550), col = 2)
 
 legend("topleft",
 			 legend = c("Poisson",
@@ -222,7 +222,14 @@ legend("topleft",
 			 bg = "white",
 			 cex = 0.7)
 
+### Density Gamma Distribution
 
+plot(200:500, dgamma(200:500, shape = alpha, rate = beta), 
+		 type = "l",
+		 main = "Probability Density Function", 
+		 xlab = "Counts", 
+		 ylab = "",
+		 xaxt = "n")
 
 ###################################### SIMULATIONS
 ########################### Poisson Estimate and Spread V1

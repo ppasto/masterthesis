@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.18)  4 MAR 2025 10:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.18)  4 MAR 2025 10:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -556,6 +556,11 @@ File: figure/ch02_figunnamed-chunk-8-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-8-1.pdf>
 Package pdftex.def Info: figure/ch02_figunnamed-chunk-8-1.pdf  used on input line 248.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
+<figure/ch02_figunnamed-chunk-9-1.pdf, id=289, 505.89pt x 505.89pt>
+File: figure/ch02_figunnamed-chunk-9-1.pdf Graphic file (type pdf)
+<use figure/ch02_figunnamed-chunk-9-1.pdf>
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-9-1.pdf  used on input line 264.
+(pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
 ) (./chapter03.tex
 
 
@@ -574,13 +579,13 @@ Overfull \hbox (25.46718pt too wide) has occurred while \output is active
 
 [11 <./figure/ch02_figunnamed-chunk-8-1.pdf>]
 
-[12
-
-]
+[12 <./figure/ch02_figunnamed-chunk-9-1.pdf>]
 Chapter 3.
 ) (./chapter04.tex
 
-[13]
+[13
+
+]
 
 [14
 
@@ -626,23 +631,23 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `msc_report.out' has not changed.
-(rerunfilecheck)             Checksum: E55EE120327D81F31A35FC0EC8BA62AC;744.
+(rerunfilecheck)             Checksum: F342C9BFFDCDB272F6A3C72D28389E99;744.
 Package rerunfilecheck Info: File `msc_report.brf' has not changed.
 (rerunfilecheck)             Checksum: 5F87F31690B01B6CB7D421AC7C133EEF;1387.
  ) 
 Here is how much of TeX's memory you used:
- 14914 strings out of 475129
- 240330 string characters out of 5762560
- 651057 words of memory out of 5000000
- 37596 multiletter control sequences out of 15000+600000
+ 14925 strings out of 475129
+ 240756 string characters out of 5762560
+ 651433 words of memory out of 5000000
+ 37606 multiletter control sequences out of 15000+600000
  580304 words of font info for 77 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  95i,12n,96p,891b,487s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsl1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1000.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1200.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1440.600pk></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on msc_report.pdf (28 pages, 658195 bytes).
+Output written on msc_report.pdf (28 pages, 664182 bytes).
 PDF statistics:
- 934 PDF objects out of 1000 (max. 8388607)
- 407 compressed objects within 5 object streams
- 79 named destinations out of 1000 (max. 500000)
- 137 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 942 PDF objects out of 1000 (max. 8388607)
+ 413 compressed objects within 5 object streams
+ 80 named destinations out of 1000 (max. 500000)
+ 142 words of extra memory for PDF output out of 10000 (max. 10000000)
 

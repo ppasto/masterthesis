@@ -186,7 +186,7 @@ Var(X) & = \frac{r(1-\pi)}{\pi^2}
 
 
 \subsection{Recruitment in one unit of time}
-Let $Y|\Lambda \sim \rm{Po}(\Lambda)$ and $\Lambda \sim \rm{G}(\alpha,\beta)$
+Let $C|\Lambda \sim \textrm{Po}(\Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$
 \begin{align*}
 p(y)&=\int^\infty_0 p(y|\Lambda) p(\Lambda) d\Lambda\\
 &=\int^\infty_0 \frac{\Lambda^y\exp(-\Lambda)}{y!}\Bigg[\Lambda^{\alpha-1}\exp(-\beta\Lambda)\frac{\beta^\alpha}{\Gamma(\alpha)}\Bigg]d\Lambda\\
@@ -235,7 +235,7 @@ Let $Y|\Lambda \sim \rm{Po}(\Lambda t)$ and $\Lambda \sim \rm{G}(\alpha,\beta)$
 
 
 \end{knitrout}
-  \caption{-.}
+  \caption{Comparison of Probability Mass Function (PMF) between Poisson distribution with $\lambda = 0.591$ and Negative Binomial with $\alpha = 324$ and $\mu = 0.591$.}
   \label{fig:2_6}
 \end{figure}
 
@@ -251,9 +251,23 @@ Let $Y|\Lambda \sim \rm{Po}(\Lambda t)$ and $\Lambda \sim \rm{G}(\alpha,\beta)$
 
 
 \end{knitrout}
-  \caption{-.}
+  \caption{Comparison of Cummulative Distribution Function (CDF) between Poisson distribution with $\lambda = 0.591$ and Negative Binomial with $\alpha = 324$ and $\mu = 0.591$.}
   \label{fig:2_7}
 \end{figure}
 
 
+
+\begin{figure}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
+
+{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-9-1} 
+
+}
+
+
+\end{knitrout}
+  \caption{Gamma density function with $\alpha = 324$ and $\beta = 1.5 \cdot 365$.}
+  \label{fig:2_8}
+\end{figure}
 
