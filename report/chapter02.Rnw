@@ -117,8 +117,8 @@ $C = \textrm{E}C = \textrm{E}\lambda = \lambda$
 $\textrm{Var}(C) = \textrm{Var}(\lambda) = 0$
 
 \subsection{Expected accrual at time point $t$}
-$C(t) = \textrm{E}(\underbrace{C+\ldots+C}_{t times}) = \textrm{E}(\lambda t) = \lambda t$
-$\textrm{Var}(C(t)) = \textrm{Var}(\underbrace{C+\ldots+C}_{t times}) = t \textrm{Var}(\lambda) = 0$
+$C(t) = \textrm{E}(\underbrace{C+\ldots+C}_{t \ \text{times}}) = \textrm{E}(\lambda t) = \lambda t$
+$\textrm{Var}(C(t)) = \textrm{Var}(\underbrace{C+\ldots+C}_{t \ \text{times}}) = t \textrm{Var}(\lambda) = 0$
 
 Both the expected accrual and its zero-variance are recorded in Table \ref{tab:count_modeling}
 and visualized in Figure \ref{fig:2_2} and Figure \ref{fig:2_5}.
@@ -294,21 +294,55 @@ legend("topleft",
   \caption{Predicted uncertainty bands for Poisson process with $\lambda = 0.591$ per day. The black line represents the expected accrual, while the green shaded regions indicate aleatory uncertainty: the dark green band spans the interquantile range (25th - 75th percentiles), the lighter green band cover the 10th - 90th percentile range and the light green the 2.5th - 97.5th percentile range \citep{spiegelhalter2011visualizing}.}
   \label{fig:2_5}
 \end{figure}
-\newpage
+
 \section{Counts: Negative Binomial model derived from Poisson-Gamma model}
 
-The Negative Binomial $X\sim\textrm{NBin}(r,\pi)$ models the number of 
-\textit{trials} in a sequence of independent and identically distributed Bernouillis before $r$ \textit{successes} occur. Instead of representing the number of successes in $n$ trials like a $Y\sim \textrm{Bin} (n, \pi)$, with the Negative Binomial we are looking at how many trials will it take to obtain $r$ successes.
+% The Negative Binomial $X\sim\textrm{NBin}(r,\pi)$ models the number of 
+% \textit{trials} in a sequence of independent and identically distributed Bernouillis before $r$ \textit{successes} occur. Instead of representing the number of successes in $n$ trials like a $Y\sim \textrm{Bin} (n, \pi)$, with the Negative Binomial we are looking at how many trials will it take to obtain $r$ successes.
 
-With respect to the parameters, $r>0$ represents the number of successes until 
-the experiment is stopped. The success probability in each experiment is 
-represented by $\pi\in[0,1]$.  In R the functions \texttt{nbinom(..., size = r, prob = $\pi$)} relate to the random variable $X-r$, the number of successes (as opposed to the number of trials) until $r$ successes have been achieved \citep{held2014applied}. 
+There are two different interpretations of the Negative Binomial, Failure-Based and Count-based.
+\subsection{Failure-Based}
+\begin{enumerate}
+\item The Negative Binomial $X\sim\textrm{NBin}(r,\pi)$ models the number of \textbf{failures} before achieving a fixed number of \textbf{successes} in a sequence of Bernoulli trials. 
+\item Parametrization:
+	\begin{itemize}
+	\item $r$: Number of successes to be achieved (fixed).
+	\item $\pi$: Probability of success in each trial
+	\item The random variable $X$ represents the number of failures before achieving $r$ successes.
+	\end{itemize}
+\item Probability Mass Function (PMF):
+\begin{align*}
+\textrm{P}(X=&k) = \binom{k+r-1}{k} \pi^r(1-\pi)^k, \\
+&k\geq 0 
+\end{align*}
+where $k$ is the number of failures.
+\end{enumerate}
+
+\subsection{Count-Based}
+\begin{enumerate}
+\item The Negative Binomial $X\sim\textrm{NBin}\Bigg(\alpha,\frac{\beta}{\beta+1}\Bigg)$ can also be seen as a Poisson-Gamma mixture, where the observed count data follows a Poisson distribution with a mean that itself follows a Gamma distribution, $C|\Lambda \sim \textrm{Po}(\Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$. 
+\item Parametrization:
+	\begin{itemize}
+	\item $\mu = \frac{\alpha}{\beta}$: Mean of the distribution (expected number of occurrences).
+	\item $\alpha$: Dispersion parameter, controlling the variance.
+	\end{itemize}
+\item Alternative formulation of the PMF:
+\begin{align*}
+\textrm{P}(X=&c) = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\mu}{\beta+\mu}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha+\mu}\Bigg)^{\alpha}, \\
+&c\geq 0 
+\end{align*}
+where $c$ is the counts.
+\end{enumerate}
+
+How do we get to our formulation of the PMF:
 
 \begin{align*}
-EX & = \frac{r(1-\pi)}{\pi}\\
-Var(X) & = \frac{r(1-\pi)}{\pi^2}
+\textrm{P}(X=c) & = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\mu}{\beta+\mu}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha+\mu}\Bigg)^{\alpha} \\
+& = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\alpha/\beta}{\alpha+\alpha/\beta}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha+\alpha/\beta}\Bigg)^{\alpha} \\
+& = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\alpha/\beta}{\alpha\beta/\beta+\alpha/\beta}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha\beta/\beta+\alpha/\beta}\Bigg)^{\alpha} \\
+& = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\alpha}{\alpha\beta+\alpha}\Bigg)^{c} \Bigg(\frac{\beta\alpha}{\alpha\beta+\alpha}\Bigg)^{\alpha} \\
+&= \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+1}\Bigg)^{\alpha}
 \end{align*}
-
 
 \subsection{Recruitment in one unit of time}
 Let $C|\Lambda \sim \textrm{Po}(\Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$
@@ -323,7 +357,6 @@ p(c)&=\int^\infty_0 p(c|\lambda) p(\lambda) d\lambda\\
 Thus, $C|\Lambda\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+1}\Bigg)$
 
 
-\newpage
 
 Using the expressions of iterated expectation and variance \citep{held2014applied} and the expectation and variance from the respective random variables $C|\Lambda \sim \textrm{Po}(\Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$, we have that:
 
@@ -338,6 +371,16 @@ Using the expressions of iterated expectation and variance \citep{held2014applie
 &=\alpha/\beta^2 + \alpha/\beta = \frac{\alpha(\beta+1)}{\beta^2}
 \end{align*}
 
+With respect to the parameters, $r>0$ represents the number of successes until 
+the experiment is stopped. The success probability in each experiment is 
+represented by $\pi\in[0,1]$.  In R the functions \texttt{nbinom(..., size = r, prob = $\pi$)} relate to the random variable $X-r$, the number of successes (as opposed to the number of trials) until $r$ successes have been achieved \citep{held2014applied}. 
+
+\begin{align*}
+EX & = \frac{r(1-\pi)}{\pi}\\
+Var(X) & = \frac{r(1-\pi)}{\pi^2}
+\end{align*}
+
+Since we will be using the Count-Based interpretation of the Negative Binomial, our parametrization relates to R with $r = \alpha$ and $\pi = \frac{\beta}{\beta+1}$.
 % 
 % \begin{align*}
 % Mean &= \frac{\alpha\bigg(1-\frac{\beta}{\beta+1}\bigg)}{\frac{\beta}{\beta+1}}\\
@@ -354,7 +397,7 @@ Using the expressions of iterated expectation and variance \citep{held2014applie
 % \end{align*}
 
 
-\subsection{Accrual at time point t}
+\subsection{Accrual at time point $t$}
 Let $C|\Lambda \sim \textrm{Po}(\Lambda t)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$
 
 

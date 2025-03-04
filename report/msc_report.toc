@@ -12,10 +12,12 @@
 \contentsline {section}{\numberline {2.4}Counts: Model based on Poisson Process}{6}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Recruitment in one unit of time}{6}{subsection.2.4.1}%
 \contentsline {subsection}{\numberline {2.4.2}Accrual at time point $t$}{6}{subsection.2.4.2}%
-\contentsline {section}{\numberline {2.5}Counts: Negative Binomial model derived from Poisson-Gamma model}{7}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Recruitment in one unit of time}{8}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}Accrual at time point t}{10}{subsection.2.5.2}%
-\contentsline {section}{\numberline {2.6}Important questions when forecasting recruitment at the design-stage of a study}{11}{section.2.6}%
+\contentsline {section}{\numberline {2.5}Counts: Negative Binomial model derived from Poisson-Gamma model}{6}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Failure-Based}{6}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Count-Based}{7}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}Recruitment in one unit of time}{11}{subsection.2.5.3}%
+\contentsline {subsection}{\numberline {2.5.4}Accrual at time point $t$}{11}{subsection.2.5.4}%
+\contentsline {section}{\numberline {2.6}Important questions when forecasting recruitment at the design-stage of a study}{12}{section.2.6}%
 \contentsline {chapter}{\numberline {3}Results}{15}{chapter.3}%
 \contentsline {chapter}{\numberline {4}Discussion and Outlook}{17}{chapter.4}%
 \contentsline {chapter}{\numberline {5}Conclusions}{19}{chapter.5}%
