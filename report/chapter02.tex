@@ -200,12 +200,15 @@ Thus, $C|\Lambda\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+1}\Bigg)$
 
 \newpage
 
-Using the expressions of iterated expectation and variance \citep{held2014applied} and the expectation and variance from the respective random variables $Y|\Lambda \sim \rm{Po}(\Lambda)$ and $\Lambda \sim \rm{G}(\alpha,\beta)$, we have that:
+Using the expressions of iterated expectation and variance \citep{held2014applied} and the expectation and variance from the respective random variables $C|\Lambda \sim \rm{Po}(\Lambda)$ and $\Lambda \sim \rm{G}(\alpha,\beta)$, we have that:
+
 
 \begin{align*}
-EY &= E_{\Lambda}[E_{Y} (Y|\Lambda)] = E_{\Lambda}[\Lambda] = \alpha/\beta \\
-Var(Y) &= Var_{\Lambda}[E_{Y} (Y|\Lambda)] + E_{\Lambda}[Var_Y(Y|\Lambda)]\\
-&=Var_{\Lambda}[\Lambda] + E_{\Lambda}[\Lambda] \\
+\textrm{E}C &= \textrm{E}_{\Lambda}[\textrm{E}_{C} (C|\Lambda)] = \textrm{E}_{\Lambda}[\Lambda] = \alpha/\beta
+\end{align*}
+\begin{align*}
+\textrm{Var}(C) &= \textrm{Var}_{\Lambda}[\textrm{E}_{C} (C|\Lambda)] + \textrm{E}_{\Lambda}[\textrm{Var}_C(C|\Lambda)]\\
+&=\textrm{Var}_{\Lambda}[\Lambda] + \textrm{E}_{\Lambda}[\Lambda] \\
 &=\alpha/\beta^2 + \alpha/\beta = \frac{\alpha(\beta+1)}{\beta^2}
 \end{align*}
 
@@ -226,7 +229,7 @@ Var(Y) &= Var_{\Lambda}[E_{Y} (Y|\Lambda)] + E_{\Lambda}[Var_Y(Y|\Lambda)]\\
 
 
 \subsection{Accrual at time point t}
-Let $Y|\Lambda \sim \rm{Po}(\Lambda t)$ and $\Lambda \sim \rm{G}(\alpha,\beta)$
+Let $C|\Lambda \sim \rm{Po}(\Lambda t)$ and $\Lambda \sim \rm{G}(\alpha,\beta)$
 
 
 \begin{figure}
