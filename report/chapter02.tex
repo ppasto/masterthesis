@@ -188,12 +188,16 @@ Var(X) & = \frac{r(1-\pi)}{\pi^2}
 \subsection{Recruitment in one unit of time}
 Let $C|\Lambda \sim \textrm{Po}(\Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$
 \begin{align*}
-p(y)&=\int^\infty_0 p(y|\Lambda) p(\Lambda) d\Lambda\\
-&=\int^\infty_0 \frac{\Lambda^y\exp(-\Lambda)}{y!}\Bigg[\Lambda^{\alpha-1}\exp(-\beta\Lambda)\frac{\beta^\alpha}{\Gamma(\alpha)}\Bigg]d\Lambda\\
-&=\frac{\beta^\alpha}{y!\Gamma(\alpha)}\int^\infty_0 \Lambda^{\alpha+y-1}\exp(-\Lambda)\exp(-\Lambda\beta)d\Lambda\\
-&=\frac{\Gamma(\alpha+y)}{y!\Gamma(\alpha)}\int^\infty_0 \beta^\alpha \exp(-\Lambda\beta)d\Lambda\\
-&=\frac{\Gamma(\alpha+y)}{y!\Gamma(\alpha)}\Bigg(1-\frac{\beta}{\beta+1}\Bigg)^{\alpha}\Bigg(\frac{\beta}{\beta+1}\Bigg)^y \sim \rm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+1}\Bigg)
+p(c)&=\int^\infty_0 p(c|\lambda) p(\lambda) d\lambda\\
+&=\int^\infty_0 \frac{\lambda^c\exp(-\lambda)}{c!}\Bigg[\lambda^{\alpha-1}\exp(-\beta\lambda)\frac{\beta^\alpha}{\Gamma(\alpha)}\Bigg]d\lambda\\
+&=\frac{\beta^\alpha}{c!\Gamma(\alpha)}\int^\infty_0 \lambda^{\alpha+c-1}\exp(-\lambda)\exp(-\lambda\beta)d\lambda\\
+&=\frac{\beta^\alpha\Gamma(\alpha+c)}{c!\Gamma(\alpha) (\beta+1)^{\alpha+c}}\underbrace{\int^\infty_0 \frac{(\beta+1)^{\alpha+c}}{\Gamma(\alpha+c)} \lambda^{\alpha+c-1}\exp(-(\beta+1)\lambda)d\lambda}_{=1}\\
+&=\beta^\alpha\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{\alpha+c}\\
+&=\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+1}\Bigg)^{\alpha}
 \end{align*}
+Thus, $C|\Lambda\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+1}\Bigg)$
+
+
 \newpage
 
 Using the expressions of iterated expectation and variance \citep{held2014applied} and the expectation and variance from the respective random variables $Y|\Lambda \sim \rm{Po}(\Lambda)$ and $\Lambda \sim \rm{G}(\alpha,\beta)$, we have that:
