@@ -185,11 +185,10 @@ plot(200:500, dpois(200:500, lambda*550),
 		 type = "l",
 		 main = "Probability Mass Function", 
 		 xlab = "Counts", 
-		 ylab = "",
-		 xaxt = "n")
+		 ylab = "")
 
 alpha = 324
-beta = 1.5 * 365
+beta = 548
 
 lines(200:500, dnbinom(200:500, size = 324, mu = lambda*550), col = 2)
 
@@ -206,8 +205,7 @@ plot(200:500, ppois(200:500, lambda*550),
 		 type = "l",
 		 main = "Cummulative Distribution Function", 
 		 xlab = "Counts", 
-		 ylab = "",
-		 xaxt = "n")
+		 ylab = "")
 
 alpha = 324
 beta = 1.5 * 365
@@ -224,12 +222,25 @@ legend("topleft",
 
 ### Density Gamma Distribution
 
-plot(200:500, dgamma(200:500, shape = alpha, rate = beta), 
-		 type = "l",
-		 main = "Probability Density Function", 
-		 xlab = "Counts", 
-		 ylab = "",
-		 xaxt = "n")
+curve(dgamma(x, shape = alpha, rate = beta), 
+			from = 0, to = 1,
+			main = "Probability Density Function", 
+			xlab = "Recruitment rate", 
+			ylab = "")
+
+curve(dgamma(x, shape = 32.4, rate = 54.8), add = TRUE,
+			col = "blue")
+
+curve(dgamma(x, shape = 3.24, rate = 5.48), add = TRUE,
+			col = "green")
+
+# assumptions of epistemic uncertainty
+# small if we have large alpha and beta
+# more epistemic uncertainty the smaller alpha and beta
+# add this to PMF and CDF, to show how increasing uncertainty 
+# even though the rate is the same
+# you can also explain with the variance (see report)
+# make three plots 
 
 ###################################### SIMULATIONS
 ########################### Poisson Estimate and Spread V1
