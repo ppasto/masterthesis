@@ -425,21 +425,6 @@ legend("topleft",
 \end{frame}
 
 
-\begin{frame}[shrink = 5]{Negative binomial derived from Poisson-Gamma model (t=1)}
-
-Let $C|\Lambda \sim \textrm{Po}(\Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$
-\begin{align*}
-p(c)&=\int^\infty_0 p(c|\lambda) p(\lambda) d\lambda\\
-&=\int^\infty_0 \frac{\lambda^c\exp(-\lambda)}{c!}\Bigg[\lambda^{\alpha-1}\exp(-\beta\lambda)\frac{\beta^\alpha}{\Gamma(\alpha)}\Bigg]d\lambda\\
-&=\frac{\beta^\alpha}{c!\Gamma(\alpha)}\int^\infty_0 \lambda^{\alpha+c-1}\exp(-\lambda)\exp(-\lambda\beta)d\lambda\\
-&=\frac{\beta^\alpha\Gamma(\alpha+c)}{c!\Gamma(\alpha) (\beta+1)^{\alpha+c}}\underbrace{\int^\infty_0 \frac{(\beta+1)^{\alpha+c}}{\Gamma(\alpha+c)} \lambda^{\alpha+c-1}\exp(-(\beta+1)\lambda)d\lambda}_{=1}\\
-&=\beta^\alpha\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{\alpha+c}\\
-&=\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+1}\Bigg)^{\alpha}, \ C|\Lambda\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+1}\Bigg)
-\end{align*}
-
-
-
-\end{frame}
 
 
 \begin{frame}{Study}
@@ -460,15 +445,82 @@ p(c)&=\int^\infty_0 p(c|\lambda) p(\lambda) d\lambda\\
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Comparison between Poisson and Negative Binomial}
+\begin{frame}[shrink = 5]{Negative binomial derived from Poisson-Gamma model (t=1)}
 
-% one slide, two slides?
+Let $C|\Lambda \sim \textrm{Po}(\Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$
+\begin{align*}
+p(c)&=\int^\infty_0 p(c|\lambda) p(\lambda) d\lambda\\
+&=\int^\infty_0 \frac{\lambda^c\exp(-\lambda)}{c!}\Bigg[\lambda^{\alpha-1}\exp(-\beta\lambda)\frac{\beta^\alpha}{\Gamma(\alpha)}\Bigg]d\lambda\\
+&=\frac{\beta^\alpha}{c!\Gamma(\alpha)}\int^\infty_0 \lambda^{\alpha+c-1}\exp(-\lambda)\exp(-\lambda\beta)d\lambda\\
+&=\frac{\beta^\alpha\Gamma(\alpha+c)}{c!\Gamma(\alpha) (\beta+1)^{\alpha+c}}\underbrace{\int^\infty_0 \frac{(\beta+1)^{\alpha+c}}{\Gamma(\alpha+c)} \lambda^{\alpha+c-1}\exp(-(\beta+1)\lambda)d\lambda}_{=1}\\
+&=\beta^\alpha\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{\alpha+c}\\
+&=\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+1}\Bigg)^{\alpha}, \ C|\Lambda\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+1}\Bigg)
+\end{align*}
+
+
+
 \end{frame}
 
 \begin{frame}{Comparison between Poisson and Negative Binomial}
+\begin{figure}
+<<echo=FALSE>>=
+plot(200:500, dpois(200:500, lambda*550), 
+		 type = "l",
+		 main = "Probability Mass Function", 
+		 xlab = "Counts", 
+		 ylab = "",
+		 xaxt = "n")
 
+alpha = 324
+beta = 1.5 * 365
+
+lines(200:500, dnbinom(200:500, size = 324, mu = lambda*550), col = 2)
+
+legend("topleft",
+			 legend = c("Poisson",
+			 					 "Negative Binomial"),
+			 col = c("black", "red"),
+			 lty = c(1, 1),
+			 bg = "white",
+			 cex = 0.7)  
+@   
+  \caption{Comparison of Probability Mass Function (PMF) between Poisson distribution with $\lambda = 0.591$ and Negative Binomial with $\alpha = 324$ and $\mu = 0.591$.}
+  \label{fig:2_6}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{Comparison between Poisson and Negative Binomial}
+
+\begin{figure}
+<<echo=FALSE>>=
+plot(200:500, ppois(200:500, lambda*550), 
+		 type = "l",
+		 main = "Cummulative Distribution Function", 
+		 xlab = "Counts", 
+		 ylab = "",
+		 xaxt = "n")
+
+alpha = 324
+beta = 1.5 * 365
+
+lines(200:500, pnbinom(200:500, size = 324, mu = lambda*550), col = 2)
+
+legend("topleft",
+			 legend = c("Poisson",
+			 					 "Negative Binomial"),
+			 col = c("black", "red"),
+			 lty = c(1, 1),
+			 bg = "white",
+			 cex = 0.7)
+@   
+  \caption{Comparison of Cummulative Distribution Function (CDF) between Poisson distribution with $\lambda = 0.591$ and Negative Binomial with $\alpha = 324$ and $\mu = 0.591$.}
+  \label{fig:2_7}
+\end{figure}
 
 \end{frame}
+
+
 
 
 % \begin{frame}[shrink = 5]{Shrunk Slide 1}
