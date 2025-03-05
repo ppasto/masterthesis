@@ -163,8 +163,8 @@ stage of a clinical trial}
 \hline
 \hline
 Expectation & $C(t) = \lambda  t$ & $\lambda  t$ & 0 & No & No \\
-Poisson & $C(t) \sim \rm{Po} (\lambda  t)$ & $\lambda  t$ & $\lambda  t$ & Yes & No \\
-Negative Binomial & $C(t) \sim \rm{Po} (\Lambda  t)$; $\Lambda \sim \rm{G}(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+1)}{\beta^2}$ & Yes & Yes \\
+Poisson & $C(t) \sim \textrm{Po} (\lambda  t)$ & $\lambda  t$ & $\lambda  t$ & Yes & No \\
+Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+1)}{\beta^2}$ & Yes & Yes \\
 \end{tabular}
 }
 \caption{Aleatory and epistemic uncertainty in accrual shown by different models for counts.}
@@ -190,9 +190,9 @@ Negative Binomial & $C(t) \sim \rm{Po} (\Lambda  t)$; $\Lambda \sim \rm{G}(\alph
 \item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$
 \item Models for Counts:
 	\begin{itemize}
-	\item Expectation: $\rm{E}C(t) = \lambda t = 0.591 \cdot 550 = 325$
-	\item Poisson: $C(t) \sim \rm{Po}(\lambda t)$
-	\item Negative Binomial: $C(t) \sim \rm{Po} (\Lambda t)$; $\Lambda \sim \rm{G}(\alpha,\beta)$
+	\item Expectation: $\textrm{E}C(t) = \lambda t = 0.591 \cdot 550 = 325$
+	\item Poisson: $C(t) \sim \textrm{Po}(\lambda t)$
+	\item Negative Binomial: $C(t) \sim \textrm{Po} (\Lambda t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$
 	\end{itemize}
 \end{itemize}
 
@@ -296,11 +296,19 @@ Negative Binomial & $C(t) \sim \rm{Po} (\Lambda  t)$; $\Lambda \sim \rm{G}(\alph
 \end{frame}
 
 
-\begin{frame}{Negative binomial derived from Poisson-Gamma model}
+\begin{frame}[shrink = 5]{Negative binomial derived from Poisson-Gamma model (t=1)}
 
-Recruitment in one unit of time ($t=1$)
+Let $C|\Lambda \sim \textrm{Po}(\Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$
+\begin{align*}
+p(c)&=\int^\infty_0 p(c|\lambda) p(\lambda) d\lambda\\
+&=\int^\infty_0 \frac{\lambda^c\exp(-\lambda)}{c!}\Bigg[\lambda^{\alpha-1}\exp(-\beta\lambda)\frac{\beta^\alpha}{\Gamma(\alpha)}\Bigg]d\lambda\\
+&=\frac{\beta^\alpha}{c!\Gamma(\alpha)}\int^\infty_0 \lambda^{\alpha+c-1}\exp(-\lambda)\exp(-\lambda\beta)d\lambda\\
+&=\frac{\beta^\alpha\Gamma(\alpha+c)}{c!\Gamma(\alpha) (\beta+1)^{\alpha+c}}\underbrace{\int^\infty_0 \frac{(\beta+1)^{\alpha+c}}{\Gamma(\alpha+c)} \lambda^{\alpha+c-1}\exp(-(\beta+1)\lambda)d\lambda}_{=1}\\
+&=\beta^\alpha\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{\alpha+c}\\
+&=\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+1}\Bigg)^{\alpha}, \ C|\Lambda\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+1}\Bigg)
+\end{align*}
 
-....
+
 
 \end{frame}
 
@@ -349,7 +357,7 @@ Recruitment in one unit of time ($t=1$)
 
 \begin{frame}{Summary}
 \begin{itemize}
-\item Models for \textbf{counts}
+\item Theoretical models for \textbf{counts}
 \item Extended Carter's simulation to exact distributions
 \end{itemize}
 
@@ -359,7 +367,7 @@ Recruitment in one unit of time ($t=1$)
 \begin{frame}{Next steps}
 \begin{itemize}
 \item Application to simulation on \cite{carter2004application}
-\item Models for \textbf{time} 
+\item Theoretical models for \textbf{time} 
 	\begin{itemize}
 	\item Theoretical
 	\item Application on \cite{carter2004application}

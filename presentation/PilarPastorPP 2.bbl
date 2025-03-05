@@ -1,0 +1,23 @@
+\begin{thebibliography}{}
+
+\bibitem[Carter, 2004]{carter2004application}
+Carter, R.~E. (2004).
+\newblock Application of stochastic processes to participant recruitment in clinical trials.
+\newblock {\em Controlled clinical trials}, 25(5):429--436.
+
+\bibitem[Liu et~al., 2023]{pkgacc}
+Liu, J., Jiang, Y., Wu, C., Simon, S., Mayo, M.~S., Raghavan, R., and Gajewski, B.~J. (2023).
+\newblock {\em accrual: Bayesian Accrual Prediction}.
+\newblock R package version 1.4.
+
+\bibitem[Spiegelhalter et~al., 2011]{spiegelhalter2011visualizing}
+Spiegelhalter, D., Pearson, M., and Short, I. (2011).
+\newblock Visualizing uncertainty about the future.
+\newblock {\em Science}, 333(6048):1393--1400.
+
+\bibitem[Yang and Li, 2023]{yang2023explainable}
+Yang, C.-I. and Li, Y.-P. (2023).
+\newblock Explainable uncertainty quantifications for deep learning-based molecular property prediction.
+\newblock {\em Journal of Cheminformatics}, 15(1):13.
+
+\end{thebibliography}
