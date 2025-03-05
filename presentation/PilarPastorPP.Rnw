@@ -456,9 +456,21 @@ p(c)&=\int^\infty_0 p(c|\lambda) p(\lambda) d\lambda\\
 &=\beta^\alpha\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{\alpha+c}\\
 &=\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+1}\Bigg)^{\alpha}, \ C|\Lambda\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+1}\Bigg)
 \end{align*}
+\end{frame}
 
 
+\begin{frame}{Expectation and Variance}
+Using the expressions of iterated expectation and variance \citep{held2014applied}
 
+\begin{align*}
+\textrm{E}C &= \textrm{E}_{\Lambda}[\textrm{E}_{C} (C|\Lambda)] = \textrm{E}_{\Lambda}[\Lambda] = \alpha/\beta
+\end{align*}
+
+\begin{align*}
+\textrm{Var}(C) &= \textrm{Var}_{\Lambda}[\textrm{E}_{C} (C|\Lambda)] + \textrm{E}_{\Lambda}[\textrm{Var}_C(C|\Lambda)]\\
+&=\textrm{Var}_{\Lambda}[\Lambda] + \textrm{E}_{\Lambda}[\Lambda] \\
+&=\alpha/\beta^2 + \alpha/\beta = \frac{\alpha(\beta+1)}{\beta^2}
+\end{align*}
 \end{frame}
 
 \begin{frame}{Comparison between Poisson and Negative Binomial}
