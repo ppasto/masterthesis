@@ -127,7 +127,7 @@ stage of a clinical trial}
 \end{frame}
 
 
-\begin{frame}{Patient Attrition}
+\begin{frame}{Patient Leakage}
 
 \includegraphics[width=100mm,scale=1]{attrition.png}
 
@@ -167,23 +167,23 @@ Poisson & $C(t) \sim \textrm{Po} (\lambda  t)$ & $\lambda  t$ & $\lambda  t$ & Y
 Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+1)}{\beta^2}$ & Yes & Yes \\
 \end{tabular}
 }
-\caption{Aleatory and epistemic uncertainty in accrual shown by different models for counts.}
+\caption{Moments, aleatory and epistemic uncertainty in accrual shown by different models for counts.}
 \label{tab:count_modeling}
 \end{table}
 
 \end{frame}
 
-\begin{frame}{Study}
+\begin{frame}{A multicenter clinical trial evaluating the palliation benefits of radiation therapy and esophageal stents in subjects with terminal esophageal cancer}
 
 \begin{itemize}
 \item Time $t = 550$ days
-\item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$
+\item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$ \citep{piantadosi2024clinical}
 \end{itemize}
 
 \end{frame}
 
 
-\begin{frame}{Study}
+\begin{frame}{A multicenter clinical trial evaluating the palliation benefits of radiation therapy and esophageal stents in subjects with terminal esophageal cancer}
 
 \begin{itemize}
 \item Time $t = 550$ days
@@ -198,7 +198,7 @@ Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{
 
 \end{frame}
 
-\begin{frame}{Study}
+\begin{frame}{A multicenter clinical trial evaluating the palliation benefits of radiation therapy and esophageal stents in subjects with terminal esophageal cancer}
 \begin{itemize}
 \item Time $t = 550$ days
 \item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$
@@ -227,7 +227,7 @@ Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figures/figunnamed-chunk-2-1} 
 \end{knitrout}
-  \caption{Poisson-distributed counts with $\lambda = 0.591$ over time and uncertainty range \citep{spiegelhalter2011visualizing, pkgacc}.}
+ 
 \end{figure}
 
 
@@ -241,7 +241,7 @@ Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figures/figunnamed-chunk-3-1} 
 \end{knitrout}
-  \caption{Poisson-distributed counts with $\lambda = 0.591$ over time and uncertainty range \citep{spiegelhalter2011visualizing, pkgacc}.}
+  
 \end{figure}
 
 
@@ -254,13 +254,13 @@ Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figures/figunnamed-chunk-4-1} 
 \end{knitrout}
-  \caption{Poisson-distributed counts with $\lambda = 0.591$ over time and uncertainty range \citep{spiegelhalter2011visualizing, pkgacc}.}
+
 \end{figure}
 
 \end{frame}
 
 
-\begin{frame}{Theoretical PMF}
+\begin{frame}{Poisson's theoretical PMF}
 \begin{figure}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
@@ -271,7 +271,7 @@ Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{
 \end{figure}
 \end{frame}
 
-\begin{frame}{Theoretical CDF}
+\begin{frame}{Poisson's theoretical CDF}
 
 \begin{figure}
 \begin{knitrout}
@@ -283,7 +283,7 @@ Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{
 \end{figure}
 \end{frame}
 
-\begin{frame}{Uncertainty bands}
+\begin{frame}{Poisson's uncertainty bands}
 
 
 \begin{figure}
@@ -298,7 +298,7 @@ Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{
 
 
 
-\begin{frame}{Study}
+\begin{frame}{A multicenter clinical trial evaluating the palliation benefits of radiation therapy and esophageal stents in subjects with terminal esophageal cancer}
 \begin{itemize}
 \item Time $t = 550$ days
 \item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$
@@ -413,6 +413,8 @@ Using the expressions of iterated expectation and variance \citep{held2014applie
   \bibliographystyle{apalike}
 \bibliography{illustration}
 \end{frame}
+
+
 
 %\appendix
 %% Possible backup slides...

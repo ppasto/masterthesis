@@ -81,7 +81,7 @@ fig.path='figures/fig', fig.show='hold',
 \end{frame}
 
 
-\begin{frame}{Patient Attrition}
+\begin{frame}{Patient Leakage}
 
 \includegraphics[width=100mm,scale=1]{attrition.png}
 
@@ -121,23 +121,23 @@ Poisson & $C(t) \sim \textrm{Po} (\lambda  t)$ & $\lambda  t$ & $\lambda  t$ & Y
 Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+1)}{\beta^2}$ & Yes & Yes \\
 \end{tabular}
 }
-\caption{Aleatory and epistemic uncertainty in accrual shown by different models for counts.}
+\caption{Moments, aleatory and epistemic uncertainty in accrual shown by different models for counts.}
 \label{tab:count_modeling}
 \end{table}
 
 \end{frame}
 
-\begin{frame}{Study}
+\begin{frame}{A multicenter clinical trial evaluating the palliation benefits of radiation therapy and esophageal stents in subjects with terminal esophageal cancer}
 
 \begin{itemize}
 \item Time $t = 550$ days
-\item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$
+\item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$ \citep{piantadosi2024clinical}
 \end{itemize}
 
 \end{frame}
 
 
-\begin{frame}{Study}
+\begin{frame}{A multicenter clinical trial evaluating the palliation benefits of radiation therapy and esophageal stents in subjects with terminal esophageal cancer}
 
 \begin{itemize}
 \item Time $t = 550$ days
@@ -152,7 +152,7 @@ Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{
 
 \end{frame}
 
-\begin{frame}{Study}
+\begin{frame}{A multicenter clinical trial evaluating the palliation benefits of radiation therapy and esophageal stents in subjects with terminal esophageal cancer}
 \begin{itemize}
 \item Time $t = 550$ days
 \item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$
@@ -216,7 +216,7 @@ legend("topleft",
 			 bg = "white",
 			 cex = 0.7)
 @   
-  \caption{Poisson-distributed counts with $\lambda = 0.591$ over time and uncertainty range \citep{spiegelhalter2011visualizing, pkgacc}.}
+ 
 \end{figure}
 
 
@@ -266,7 +266,7 @@ legend("topleft",
 			 bg = "white",
 			 cex = 0.7) 
 @   
-  \caption{Poisson-distributed counts with $\lambda = 0.591$ over time and uncertainty range \citep{spiegelhalter2011visualizing, pkgacc}.}
+  
 \end{figure}
 
 
@@ -316,8 +316,8 @@ for(i in 1:n){
 
 # Add reference lines
 lines(t, lambda*t)
-lines(t, qpois(p = 0.975, lambda*t), lty = 2, col = "red")
-lines(t, qpois(p = 0.025, lambda*t), lty = 2, col = "red")
+lines(t, qpois(p = 0.975, lambda*t), lty = 2, lwd = 2, col = "red")
+lines(t, qpois(p = 0.025, lambda*t), lty = 2, lwd = 2, col = "red")
 
 
 legend("topleft",
@@ -325,7 +325,7 @@ legend("topleft",
 			 					 "Expected Accrual"),
 			 col = c("red", "black"),
 			 lty = c(2, 1),
-			 lwd = c(1,2),
+			 lwd = c(2,2),
 			 bg = "white",
 			 cex = 0.7)  
 
@@ -338,13 +338,13 @@ hist_data <- hist(final_counts, breaks = hist_bins, plot = FALSE)
 barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray", 
 				axes = FALSE, xlab = "", ylab = "")
 @   
-  \caption{Poisson-distributed counts with $\lambda = 0.591$ over time and uncertainty range \citep{spiegelhalter2011visualizing, pkgacc}.}
+
 \end{figure}
 
 \end{frame}
 
 
-\begin{frame}{Theoretical PMF}
+\begin{frame}{Poisson's theoretical PMF}
 \begin{figure}
 <<echo=FALSE>>=
 bar_positions <- barplot(dpois(200:500, lambda*550), 
@@ -359,7 +359,7 @@ axis(1, at = seq(1, length(200:500), by = 50), labels = seq(200, 500, by = 50))
 \end{figure}
 \end{frame}
 
-\begin{frame}{Theoretical CDF}
+\begin{frame}{Poisson's theoretical CDF}
 
 \begin{figure}
 <<echo=FALSE>>=
@@ -376,7 +376,7 @@ axis(1, at = seq(1, length(200:500), by = 50), labels = seq(200, 500, by = 50))
 \end{figure}
 \end{frame}
 
-\begin{frame}{Uncertainty bands}
+\begin{frame}{Poisson's uncertainty bands}
 
 
 \begin{figure}
@@ -427,7 +427,7 @@ legend("topleft",
 
 
 
-\begin{frame}{Study}
+\begin{frame}{A multicenter clinical trial evaluating the palliation benefits of radiation therapy and esophageal stents in subjects with terminal esophageal cancer}
 \begin{itemize}
 \item Time $t = 550$ days
 \item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$
@@ -576,6 +576,8 @@ legend("topleft",
   \bibliographystyle{apalike}
 \bibliography{illustration}
 \end{frame}
+
+
 
 %\appendix
 %% Possible backup slides...
