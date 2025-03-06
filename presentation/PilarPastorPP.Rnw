@@ -37,13 +37,12 @@ fig.path='figures/fig', fig.show='hold',
 
 \begin{frame}{Why recruitment rates?}
 
+According to \cite{carter2004application}
 \begin{itemize}
 \item Timely recruitment vital to the success of a clinical trial
 \item Inadequate number of subjects $\rightarrow$ lack of power
 \item Recruitment period too long $\rightarrow$ competing treatments
 \item Recruitment of patients varies at each stage 
-\item Accrual = Cumulative Recruitment
-\item \cite{carter2004application}
 \end{itemize}
 
 
@@ -89,18 +88,14 @@ fig.path='figures/fig', fig.show='hold',
 \end{frame}
 
 
-\begin{frame}{Uncertainty}
+\begin{frame}{Definitions}
 
 \begin{itemize}
-\item \textbf{Aleatory}: randomness inherent and unpredictable
-\item \textbf{Epistemic}: arises from limited knowledge about parameters
+\item \textbf{Recruitment rate} = Per time-unit \citep{piantadosi2024clinical}
+\item \textbf{Accrual} = Cumulative Recruitment
+\item \textbf{Aleatory uncertainty}: randomness inherent and unpredictable
+\item \textbf{Epistemic uncertainty}: arises from limited knowledge about parameters
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=60mm,scale=0.7]{illustration_uncertainty.png}
-    \caption{Visualization of two types of uncertainty \citep{yang2023explainable}}
-    \label{fig:uncertainty}
-\end{figure}
 
 
 \end{itemize}
@@ -108,7 +103,23 @@ fig.path='figures/fig', fig.show='hold',
 
 \end{frame}
 
-\begin{frame}{Models for Counts}
+\begin{frame}[shrink = 5]{Models for Counts}
+
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{cccccc}
+ \textbf{Methods} & \textbf{Counts} & \textbf{Expectation} & \textbf{Variance} & \textbf{Aleatory} & \textbf{Epistemic} \\
+\hline
+\hline
+Expectation & $C = \lambda$ & $\lambda $ & 0 & No & No \\
+Poisson & $C \sim \textrm{Po} (\lambda )$ & $\lambda $ & $\lambda $ & Yes & No \\
+Negative Binomial & $C \sim \textrm{Po} (\Lambda )$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+1)}{\beta^2}$ & Yes & Yes \\
+\end{tabular}
+}
+\caption{Moments, aleatory and epistemic uncertainty in recruitment shown by different models for counts.}
+\label{tab:count_modeling}
+\end{table}
 
 \begin{table}[h!]
 \centering
@@ -119,7 +130,7 @@ fig.path='figures/fig', fig.show='hold',
 \hline
 Expectation & $C(t) = \lambda  t$ & $\lambda  t$ & 0 & No & No \\
 Poisson & $C(t) \sim \textrm{Po} (\lambda  t)$ & $\lambda  t$ & $\lambda  t$ & Yes & No \\
-Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+1)}{\beta^2}$ & Yes & Yes \\
+Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & ?? & ?? & Yes & Yes \\
 \end{tabular}
 }
 \caption{Moments, aleatory and epistemic uncertainty in accrual shown by different models for counts.}
@@ -128,48 +139,40 @@ Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{
 
 \end{frame}
 
-\begin{frame}{A multicenter clinical trial evaluating the palliation benefits of radiation therapy and esophageal stents in subjects with terminal esophageal cancer}
+\begin{frame}{Multicenter Trial on Palliation in Terminal Esophageal Cancer}
 
+Example from \cite{carter2004application}:
 \begin{itemize}
+\item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$ per day
 \item Time $t = 550$ days
-\item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$ \citep{piantadosi2024clinical}
 \end{itemize}
 
 \end{frame}
 
 
-\begin{frame}{A multicenter clinical trial evaluating the palliation benefits of radiation therapy and esophageal stents in subjects with terminal esophageal cancer}
+\begin{frame}{Multicenter Trial on Palliation in Terminal Esophageal Cancer}
 
+Example from \cite{carter2004application}:
 \begin{itemize}
+\item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$ per day
 \item Time $t = 550$ days
-\item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$
 \item Models for Counts:
 	\begin{itemize}
 	\item Expectation: $\textrm{E}C(t) = \lambda t = 0.591 \cdot 550 = 325$
 	\item Poisson: $C(t) \sim \textrm{Po}(\lambda t)$
-	\item Negative Binomial: $C(t) \sim \textrm{Po} (\Lambda t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$
 	\end{itemize}
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}{A multicenter clinical trial evaluating the palliation benefits of radiation therapy and esophageal stents in subjects with terminal esophageal cancer}
-\begin{itemize}
-\item Time $t = 550$ days
-\item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$
-\item Models for Counts:
-	\begin{itemize}
-	\item \textbf{Expectation}: $\textrm{E}C(t) = \lambda t = 0.591 \cdot 550 = 325$
-	\item \textbf{Poisson}: $C(t) \sim \textrm{Po}(\lambda t)$
-	\item Negative Binomial: $C(t) \sim \textrm{Po} (\Lambda t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$
-	\end{itemize}
-\end{itemize}
-\end{frame}
+
+
 
 \begin{frame}{Accrual at time point $t$}
 \begin{itemize}
 \item \textbf{Expectation}: $\textrm{E}C(t) = \underbrace{\textrm{E} C +\ldots + C}_{t \ \text{times}} = t \textrm{E} C = \lambda t$
 \item \textbf{Poisson}: $\underbrace{\textrm{Po} (\lambda) +\ldots +\textrm{Po} (\lambda)}_{t \ \text{times}} = \textrm{Po} (\lambda t)$
+% mention this is infinitely divisible property of poisson
 \end{itemize}
 \end{frame}
 
@@ -345,37 +348,6 @@ barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray",
 \end{frame}
 
 
-\begin{frame}{Poisson's theoretical PMF}
-\begin{figure}
-<<echo=FALSE>>=
-bar_positions <- barplot(dpois(200:500, lambda*550), 
-												 main = "Probability Mass Function", 
-												 xlab = "Counts", 
-												 xaxt = "n")  
-
-axis(1, at = seq(1, length(200:500), by = 50), labels = seq(200, 500, by = 50))  
-@   
-  \caption{Poisson Distribution of Counts: This bar plot represents the probability mass function (PMF) of counts ranging from 200 to 500, using a Poisson distribution with a rate parameter $\lambda = 0.591$ based on 550 time periods.}
-  \label{fig:2_3}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Poisson's theoretical CDF}
-
-\begin{figure}
-<<echo=FALSE>>=
-probdist <- dpois(200:500, lambda*550)
-cdf <- cumsum(probdist)
-cdf_positions <- barplot(cdf, 
-												 main = "Cummulative Distribution Function", 
-												 xlab = "Counts", 
-												 xaxt = "n")
-axis(1, at = seq(1, length(200:500), by = 50), labels = seq(200, 500, by = 50))  
-@   
-  \caption{Cumulative Distribution of Poisson-Distributed Counts: The plot illustrates the cumulative probability distribution for counts within the range of 200 to 500, using a Poisson distribution with a rate parameter $\lambda = 0.591$ adjusted for 550 time periods.}
-  \label{fig:2_4}
-\end{figure}
-\end{frame}
 
 \begin{frame}{Poisson's uncertainty bands}
 
@@ -427,19 +399,52 @@ legend("topleft",
 
 
 
+\begin{frame}{Poisson's exact PMF at time point $t=550$ with $\lambda = 0.591$}
+\begin{figure}
+<<echo=FALSE>>=
+bar_positions <- barplot(dpois(200:500, lambda*550), 
+												 main = "Probability Mass Function", 
+												 xlab = "Counts", 
+												 xaxt = "n")  
 
-\begin{frame}{A multicenter clinical trial evaluating the palliation benefits of radiation therapy and esophageal stents in subjects with terminal esophageal cancer}
+axis(1, at = seq(1, length(200:500), by = 50), labels = seq(200, 500, by = 50))  
+@   
+  \caption{Poisson Distribution of Counts: This bar plot represents the probability mass function (PMF) of counts ranging from 200 to 500, using a Poisson distribution with a rate parameter $\lambda = 0.591$ based on 550 time periods.}
+  \label{fig:2_3}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Poisson's exact CDF at time point $t=550$ with $\lambda = 0.591$}
+
+\begin{figure}
+<<echo=FALSE>>=
+probdist <- dpois(200:500, lambda*550)
+cdf <- cumsum(probdist)
+cdf_positions <- barplot(cdf, 
+												 main = "Cummulative Distribution Function", 
+												 xlab = "Counts", 
+												 xaxt = "n")
+axis(1, at = seq(1, length(200:500), by = 50), labels = seq(200, 500, by = 50))  
+@   
+  \caption{Cumulative Distribution of Poisson-Distributed Counts: The plot illustrates the cumulative probability distribution for counts within the range of 200 to 500, using a Poisson distribution with a rate parameter $\lambda = 0.591$ adjusted for 550 time periods.}
+  \label{fig:2_4}
+\end{figure}
+\end{frame}
+
+
+
+
+\begin{frame}{Multicenter Trial on Palliation in Terminal Esophageal Cancer}
+Example from \cite{carter2004application}:
 \begin{itemize}
+\item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$ per day
 \item Time $t = 550$ days
-\item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$
 \item Models for Counts:
 	\begin{itemize}
-	\item Expectation: $\textrm{E}C(t) = \lambda t = 0.591 \cdot 550 = 325$
-	\item \textbf{Poisson}: $C(t) \sim \textrm{Po}(\lambda t)$
-	\item \textbf{Negative Binomial}: $C(t) \sim \textrm{Po} (\Lambda t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$
+	\item \textbf{Negative Binomial}: $C \sim \textrm{Po} (\Lambda)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$
 		\begin{itemize}
 		\item $\alpha = 325$
-		\item $\beta = 1.5\cdot 365$
+		\item $\beta = 548$
 		\item $\textrm{E} \Lambda = \frac{\alpha}{\beta} = 0.591 = \lambda$
 		\end{itemize}
 	\end{itemize}
@@ -457,6 +462,7 @@ p(c)&=\int^\infty_0 p(c|\lambda) p(\lambda) d\lambda\\
 &=\beta^\alpha\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{\alpha+c}\\
 &=\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+1}\Bigg)^{\alpha}, \ C|\Lambda\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+1}\Bigg)
 \end{align*}
+% talk here about interpretations (from report)
 \end{frame}
 
 
@@ -774,8 +780,8 @@ legend("topleft",
 
 \begin{frame}{Summary}
 \begin{itemize}
-\item Theoretical models for \textbf{counts}
-\item Extended Carter's simulation to exact distributions
+\item Extension of Carter's approach based on MC simulations
+\item Exact models for \textbf{counts}
 \item Unified notation
 \item Visualization of study accrual and uncertainty bands 
 \end{itemize}
@@ -785,14 +791,15 @@ legend("topleft",
 
 \begin{frame}{Next steps}
 \begin{itemize}
-\item Application to simulation on \cite{carter2004application}
+\item Extend Negative Binomial proof for accrual 
+\item Compare exact models to those provided by \cite{carter2004application}
 \item Models for \textbf{time} 
 	\begin{itemize}
-	\item Theoretical
-	\item Application on \cite{carter2004application}
+	\item Exact models
+	\item Compare them to those provided by Carter
 	\end{itemize}
 \item Shiny App
-\item Predictions using theoretical models developed on Daniore Nittas dataset of rates (cite?)
+\item Apply theoretical results to dataset
 \end{itemize}
 
 \end{frame}
@@ -804,6 +811,9 @@ legend("topleft",
 \end{frame}
 
 
+\begin{frame}{Thank you for your attention}
+
+\end{frame}
 
 %\appendix
 %% Possible backup slides...
