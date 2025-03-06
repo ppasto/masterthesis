@@ -190,7 +190,7 @@ plot(200:500, dpois(200:500, lambda*550),
 alpha = 324
 beta = 548
 
-lines(200:500, dnbinom(200:500, size = 324, mu = lambda*550), col = 2)
+lines(200:500, dnbinom(200:500, size = alpha, mu = lambda*550), col = 2)
 
 legend("topleft",
 			 legend = c("Poisson",
@@ -208,7 +208,7 @@ plot(200:500, ppois(200:500, lambda*550),
 		 ylab = "")
 
 alpha = 324
-beta = 1.5 * 365
+beta = 548
 
 lines(200:500, pnbinom(200:500, size = alpha, mu = lambda*550), col = 2)
 
@@ -226,13 +226,146 @@ curve(dgamma(x, shape = alpha, rate = beta),
 			from = 0, to = 1,
 			main = "Probability Density Function", 
 			xlab = "Recruitment rate", 
-			ylab = "")
+			ylab = "",
+			col = "red")
+
+
+legend("topleft",
+			 legend = c(expression("Negative Binomial (" ~ alpha == 324 ~ beta == 548 ~ ")")),
+			 col = c("red"),
+			 lty = c(1, 1),
+			 bg = "white",
+			 cex = 0.7)
+
+curve(dgamma(x, shape = alpha, rate = beta), 
+			from = 0, to = 1,
+			main = "Probability Density Function", 
+			xlab = "Recruitment rate", 
+			ylab = "",
+			col = "red")
+
+curve(dgamma(x, shape = 32.4, rate = 54.8), add = TRUE,
+			col = "blue")
+
+
+legend("topleft",
+			 legend = c(expression("Negative Binomial (" ~ alpha == 324 ~ beta == 548 ~ ")"),
+			 					 expression("Negative Binomial (" ~ alpha == 32.4 ~ beta == 54.8 ~ ")")),
+			 col = c("red", "blue"),
+			 lty = c(1, 1),
+			 bg = "white",
+			 cex = 0.7)
+
+curve(dgamma(x, shape = alpha, rate = beta), 
+			from = 0, to = 1,
+			main = "Probability Density Function", 
+			xlab = "Recruitment rate", 
+			ylab = "",
+			col = "red")
 
 curve(dgamma(x, shape = 32.4, rate = 54.8), add = TRUE,
 			col = "blue")
 
 curve(dgamma(x, shape = 3.24, rate = 5.48), add = TRUE,
 			col = "green")
+
+legend("topleft",
+			 legend = c(expression("Negative Binomial (" ~ alpha == 324 ~ beta == 548 ~ ")"),
+			 						expression("Negative Binomial (" ~ alpha == 32.4 ~ beta == 54.8 ~ ")"),
+			 						expression("Negative Binomial (" ~ alpha == 3.24 ~ beta == 5.48 ~ ")")),
+			 col = c("red", "blue", "green"),
+			 lty = c(1, 1),
+			 bg = "white",
+			 cex = 0.7)
+
+### PMF
+plot(200:500, dpois(200:500, lambda*550), 
+		 type = "l",
+		 main = "Probability Mass Function", 
+		 xlab = "Counts", 
+		 ylab = "")
+
+
+lines(200:500, dnbinom(200:500, size = 324, mu = lambda*550), col = "red")
+
+
+legend("topleft",
+			 legend = c("Poisson",
+			 					 expression("Negative Binomial (" ~ alpha == 324 ~ beta == 548 ~ ")")),
+			 col = c("black", "red"),
+			 lty = c(1, 1),
+			 bg = "white",
+			 cex = 0.7)
+
+### PMF
+plot(200:500, dpois(200:500, lambda*550), 
+		 type = "l",
+		 main = "Probability Mass Function", 
+		 xlab = "Counts", 
+		 ylab = "")
+
+
+lines(200:500, dnbinom(200:500, size = 324, mu = lambda*550), col = "red")
+lines(200:500, dnbinom(200:500, size = 32.4, mu = lambda*550), col = "blue")
+
+
+legend("topleft",
+			 legend = c("Poisson",
+			 					 expression("Negative Binomial (" ~ alpha == 324 ~ beta == 548 ~ ")"),
+			 					 expression("Negative Binomial (" ~ alpha == 32.4 ~ beta == 54.8 ~ ")")),
+			 col = c("black", "red", "blue"),
+			 lty = c(1, 1),
+			 bg = "white",
+			 cex = 0.7)
+
+### PMF
+plot(200:500, dpois(200:500, lambda*550), 
+		 type = "l",
+		 main = "Probability Mass Function", 
+		 xlab = "Counts", 
+		 ylab = "")
+
+
+lines(200:500, dnbinom(200:500, size = 324, mu = lambda*550), col = "red")
+lines(200:500, dnbinom(200:500, size = 32.4, mu = lambda*550), col = "blue")
+lines(200:500, dnbinom(200:500, size = 3.24, mu = lambda*550), col = "green")
+
+
+legend("topleft",
+			 legend = c("Poisson",
+			 					 expression("Negative Binomial (" ~ alpha == 324 ~ beta == 548 ~ ")"),
+			 					 expression("Negative Binomial (" ~ alpha == 32.4 ~ beta == 54.8 ~ ")"),
+			 					 expression("Negative Binomial (" ~ alpha == 3.24 ~ beta == 5.48 ~ ")")),
+			 col = c("black", "red", "blue", "green"),
+			 lty = c(1, 1),
+			 bg = "white",
+			 cex = 0.7)
+
+
+### CDF
+plot(200:500, ppois(200:500, lambda*550), 
+		 type = "l",
+		 main = "Cummulative Distribution Function", 
+		 xlab = "Counts", 
+		 ylab = "")
+
+
+
+lines(200:500, pnbinom(200:500, size = 324, mu = lambda*550), col = "red")
+lines(200:500, pnbinom(200:500, size = 32.4, mu = lambda*550), col = "blue")
+lines(200:500, pnbinom(200:500, size = 3.24, mu = lambda*550), col = "green")
+
+
+legend("topleft",
+			 legend = c("Poisson",
+			 					 expression("Negative Binomial (" ~ alpha == 324 ~ beta == 548 ~ ")"),
+			 					 expression("Negative Binomial (" ~ alpha == 32.4 ~ beta == 54.8 ~ ")"),
+			 					 expression("Negative Binomial (" ~ alpha == 3.24 ~ beta == 5.48 ~ ")")),
+			 col = c("black", "red", "blue", "green"),
+			 lty = c(1, 1),
+			 bg = "white",
+			 cex = 0.7)
+
 
 # assumptions of epistemic uncertainty
 # small if we have large alpha and beta
