@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.18)  7 MAR 2025 16:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.18)  7 MAR 2025 17:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -551,11 +551,8 @@ Overfull \hbox (20.02324pt too wide) has occurred while \output is active
 [9 <./figure/ch02_figunnamed-chunk-5-1.pdf>]
 
 [10 <./figure/ch02_figunnamed-chunk-6-1.pdf>]
-<figure/ch02_figunnamed-chunk-7-1.pdf, id=334, 505.89pt x 361.35pt>
-File: figure/ch02_figunnamed-chunk-7-1.pdf Graphic file (type pdf)
-<use figure/ch02_figunnamed-chunk-7-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-7-1.pdf  used on input line 334.
-(pdftex.def)             Requested size: 369.94295pt x 264.25197pt.
+Underfull \vbox (badness 2617) has occurred while \output is active []
+
 
 
 
@@ -564,23 +561,26 @@ Overfull \hbox (25.46718pt too wide) has occurred while \output is active
  []
 
 [11]
-Overfull \hbox (18.06136pt too wide) in paragraph at lines 359--359
+<figure/ch02_figunnamed-chunk-7-1.pdf, id=350, 505.89pt x 361.35pt>
+File: figure/ch02_figunnamed-chunk-7-1.pdf Graphic file (type pdf)
+<use figure/ch02_figunnamed-chunk-7-1.pdf>
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-7-1.pdf  used on input line 338.
+(pdftex.def)             Requested size: 369.94295pt x 264.25197pt.
+
+Overfull \hbox (18.06136pt too wide) in paragraph at lines 363--363
 []\T1/cmr/bx/n/14.4 Important ques-tions when fore-cast-ing re-cruit-ment at the design-
  []
 
 
-Underfull \vbox (badness 1852) has occurred while \output is active []
 
-
-
-[12 <./figure/ch02_figunnamed-chunk-7-1.pdf>]) (./chapter03.tex
+[12]) (./chapter03.tex
 
 
 Overfull \hbox (120.03354pt too wide) has occurred while \output is active
 \T1/cmr/m/sl/10.95 2.6.  IMPORTANT QUESTIONS WHEN FORECASTING RECRUITMENT AT THE DESIGN-STAGE OF A STUDY \T1/cmr/m/n/10.95 13
  []
 
-[13]
+[13 <./figure/ch02_figunnamed-chunk-7-1.pdf>]
 
 [14
 
@@ -641,16 +641,16 @@ Package rerunfilecheck Info: File `msc_report.brf' has not changed.
 Here is how much of TeX's memory you used:
  14957 strings out of 475129
  240802 string characters out of 5762560
- 656646 words of memory out of 5000000
+ 657646 words of memory out of 5000000
  37619 multiletter control sequences out of 15000+600000
  581849 words of font info for 83 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  95i,16n,96p,891b,489s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsl1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1000.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1200.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1440.600pk></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on msc_report.pdf (30 pages, 685761 bytes).
+Output written on msc_report.pdf (30 pages, 687280 bytes).
 PDF statistics:
- 1006 PDF objects out of 1200 (max. 8388607)
- 461 compressed objects within 5 object streams
+ 1009 PDF objects out of 1200 (max. 8388607)
+ 463 compressed objects within 5 object streams
  97 named destinations out of 1000 (max. 500000)
  140 words of extra memory for PDF output out of 10000 (max. 10000000)
 
