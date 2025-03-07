@@ -215,50 +215,6 @@ For example, if we assume $\lambda = 0.591$ per day and $t=550$, we can show the
 % The Negative Binomial $X\sim\textrm{NBin}(r,\pi)$ models the number of 
 % \textit{trials} in a sequence of independent and identically distributed Bernouillis before $r$ \textit{successes} occur. Instead of representing the number of successes in $n$ trials like a $Y\sim \textrm{Bin} (n, \pi)$, with the Negative Binomial we are looking at how many trials will it take to obtain $r$ successes.
 
-There are two different interpretations of the Negative Binomial, Failure-Based and Count-based.
-\subsection{Failure-Based}
-\begin{enumerate}
-\item The Negative Binomial $X\sim\textrm{NBin}(r,\pi)$ models the number of \textbf{failures} before achieving a fixed number of \textbf{successes} in a sequence of Bernoulli trials. 
-\item Parametrization:
-	\begin{itemize}
-	\item $r$: Number of successes to be achieved (fixed).
-	\item $\pi$: Probability of success in each trial
-	\item The random variable $X$ represents the number of failures before achieving $r$ successes.
-	\end{itemize}
-\item Probability Mass Function (PMF):
-\begin{align*}
-\textrm{P}(X=&k) = \binom{k+r-1}{k} \pi^r(1-\pi)^k, \\
-&k\geq 0 
-\end{align*}
-where $k$ is the number of failures.
-\end{enumerate}
-
-\subsection{Count-Based}
-\begin{enumerate}
-\item The Negative Binomial $X\sim\textrm{NBin}\Bigg(\alpha,\frac{\beta}{\beta+1}\Bigg)$ can also be seen as a Poisson-Gamma mixture, where the observed count data follows a Poisson distribution with a mean that itself follows a Gamma distribution, $C|\Lambda \sim \textrm{Po}(\Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$. 
-\item Parametrization:
-	\begin{itemize}
-	\item $\mu = \frac{\alpha}{\beta}$: Mean of the distribution (expected number of occurrences).
-	\item $\alpha$: Dispersion parameter, controlling the variance.
-	\end{itemize}
-\item Alternative formulation of the PMF:
-\begin{align*}
-\textrm{P}(X=&c) = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\mu}{\beta+\mu}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha+\mu}\Bigg)^{\alpha}, \\
-&c\geq 0 
-\end{align*}
-where $c$ is the counts.
-\end{enumerate}
-
-How do we get to our formulation of the PMF:
-
-\begin{align*}
-\textrm{P}(X=c) & = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\mu}{\alpha+\mu}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha+\mu}\Bigg)^{\alpha} \\
-& = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\alpha/\beta}{\alpha+\alpha/\beta}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha+\alpha/\beta}\Bigg)^{\alpha} \\
-& = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\alpha/\beta}{\alpha\beta/\beta+\alpha/\beta}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha\beta/\beta+\alpha/\beta}\Bigg)^{\alpha} \\
-& = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\alpha}{\alpha\beta+\alpha}\Bigg)^{c} \Bigg(\frac{\beta\alpha}{\alpha\beta+\alpha}\Bigg)^{\alpha} \\
-&= \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+1}\Bigg)^{\alpha}
-\end{align*}
-
 \subsection{Recruitment in one unit of time}
 Let $C|\Lambda \sim \textrm{Po}(\Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$
 \begin{align*}
@@ -286,16 +242,70 @@ Using the expressions of iterated expectation and variance \citep{held2014applie
 &=\alpha/\beta^2 + \alpha/\beta = \frac{\alpha(\beta+1)}{\beta^2}
 \end{align*}
 
-With respect to the parameters, $r>0$ represents the number of successes until 
+
+There are two different interpretations of the Negative Binomial, Failure-Based and Count-based.
+\subsection{Failure-Based}
+\begin{enumerate}
+\item The Negative Binomial $X\sim\textrm{NBin}(r,\pi)$ models the number of \textbf{failures} before achieving a fixed number of \textbf{successes} in a sequence of Bernoulli trials. 
+\item Parametrization:
+	\begin{itemize}
+	\item $n$: Number of successes to be achieved (fixed).
+	\item $p$: Probability of success in each trial
+	\item The random variable $X$ represents the number of failures before achieving $n$ successes.
+	\end{itemize}
+\item Probability Mass Function (PMF) \citep{R-stats}:
+\begin{align*}
+\textrm{P}(X=&x) = \frac{\Gamma(x+n)}{\Gamma(x) x!}  p^n(1-p)^x, \\
+&x = 0,1,2, \ldots, n >0\\
+&0<p\leq 1
+\end{align*}
+where $k$ is the number of failures.
+\item Interpretation: 
+
+
+\end{enumerate}
+
+With respect to the parameters, $n>0$ represents the number of successes until 
 the experiment is stopped. The success probability in each experiment is 
-represented by $\pi\in[0,1]$.  In R the functions \texttt{nbinom(..., size = r, prob = $\pi$)} relate to the random variable $X-r$, the number of successes (as opposed to the number of trials) until $r$ successes have been achieved \citep{held2014applied}. 
+represented by $p\in[0,1]$.  In R the functions [-]\texttt{nbinom(..., size = $n$, prob = $p$)} relate to the random variable $X-r$, the number of successes (as opposed to the number of trials) until $r$ successes have been achieved \citep{held2014applied}. 
 
 \begin{align*}
 EX & = \frac{r(1-\pi)}{\pi}\\
 Var(X) & = \frac{r(1-\pi)}{\pi^2}
 \end{align*}
 
-Since we will be using the Count-Based interpretation of the Negative Binomial, our parametrization relates to R with $r = \alpha$ and $\pi = \frac{\beta}{\beta+1}$.
+Since we will be using the Count-Based interpretation of the Negative Binomial \citep{hilbe2011negative}, our parametrization relates to R with $n = \alpha$ and $p = \frac{\beta}{\beta+1}$.
+
+\subsection{Count-Based}
+\begin{enumerate}
+\item The Negative Binomial $X\sim\textrm{NBin}\Bigg(\alpha,\frac{\beta}{\beta+1}\Bigg)$ can also be seen as a Poisson-Gamma mixture, where the observed count data follows a Poisson distribution with a mean that itself follows a Gamma distribution, $C|\Lambda \sim \textrm{Po}(\Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$. 
+\item Parametrization:
+	\begin{itemize}
+	\item $\mu = \frac{\alpha}{\beta}$: Mean of the distribution (expected number of occurrences).
+	\item $\alpha$: Dispersion parameter, controlling the variance.
+	\end{itemize}
+\item Alternative formulation of the PMF \citep{hilbe2011negative}:
+\begin{align*}
+\textrm{P}(X=&c) = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\mu}{\beta+\mu}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha+\mu}\Bigg)^{\alpha}, \\
+&c\geq 0 
+\end{align*}
+where $c$ is the counts.
+\item Interpretation:
+
+\end{enumerate}
+
+How do we get to our formulation of the PMF:
+
+\begin{align*}
+\textrm{P}(X=c) & = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\mu}{\alpha+\mu}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha+\mu}\Bigg)^{\alpha} \\
+& = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\alpha/\beta}{\alpha+\alpha/\beta}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha+\alpha/\beta}\Bigg)^{\alpha} \\
+& = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\alpha/\beta}{\alpha\beta/\beta+\alpha/\beta}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha\beta/\beta+\alpha/\beta}\Bigg)^{\alpha} \\
+& = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\alpha}{\alpha\beta+\alpha}\Bigg)^{c} \Bigg(\frac{\beta\alpha}{\alpha\beta+\alpha}\Bigg)^{\alpha} \\
+&= \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+1}\Bigg)^{\alpha}
+\end{align*}
+
+
+
 % 
 % \begin{align*}
 % Mean &= \frac{\alpha\bigg(1-\frac{\beta}{\beta+1}\bigg)}{\frac{\beta}{\beta+1}}\\
@@ -333,6 +343,17 @@ Since we will be using the Count-Based interpretation of the Negative Binomial, 
 
 \subsection{Accrual at time point $t$}
 Let $C|\Lambda \sim \textrm{Po}(\Lambda t)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$
+
+\begin{align*}
+p(c)&=\int^\infty_0 p(c|\lambda) p(\lambda) d\lambda\\
+&=\int^\infty_0 \frac{(\lambda t)^c\exp(-\lambda t)}{c!}\Bigg[(\lambda t)^{\alpha-1}\exp(-\beta\lambda t)\frac{\beta^\alpha}{\Gamma(\alpha)}\Bigg]d\lambda\\
+&=\frac{\beta^\alpha t^c}{c!\Gamma(\alpha)}\int^\infty_0 \lambda^{\alpha+c-1}\exp(-\lambda t)\exp(-\lambda\beta)d\lambda\\
+&=\frac{\beta^\alpha\Gamma(\alpha+c) t^c}{c!\Gamma(\alpha) (\beta+t)^{\alpha+c}}\underbrace{\int^\infty_0 \frac{(\beta+t)^{\alpha+c}}{\Gamma(\alpha+c)} \lambda^{\alpha+c-1}\exp(-(\beta+t)\lambda)d\lambda}_{=1}\\
+&=\beta^\alpha\binom{\alpha+c-t}{\alpha-t}\Bigg (\frac{1}{\beta+t}\Bigg)^{\alpha+c}\\
+&=\binom{\alpha+c-t}{\alpha-t}\Bigg (\frac{1}{\beta+t}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+t}\Bigg)^{\alpha}
+\end{align*}
+Thus, $C|\Lambda\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+t}\Bigg)$
+
 
 
 \section{Important questions when forecasting recruitment at the design-stage of a study}
