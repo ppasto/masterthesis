@@ -60,7 +60,7 @@ In clinical research, \textbf{Statistical Analysis} involves applying statistica
 
 The number of patients decreases at each stage of a clinical study, from defining the target population to final statistical analysis, see Figure \ref{fig:2_1_b}. This process is known as patient leakage \citep{desai2014preventing}, alternative terms are attrition or retention. Eligibility criteria narrow down participants, and enrollment further reduces numbers as only those meeting strict criteria are registered. Randomization assigns individuals to treatment groups, but some may later be excluded due to protocol deviations, missing data, or loss to follow-up. 
 
-The general notion of \textbf{Recruitment} in this Master Thesis refers to the number of patients (Counts) at the Eligibility, or Enrollment, or Randomization, or Statistical Analysis stage in Figure \ref{fig:2_1_a}. We define \textbf{Accrual} as cumulative recruitment.
+The general notion of \textbf{Recruitment} in this Master Thesis refers to the number of patients (Counts) at the Eligibility, or Enrollment, or Randomization, or Statistical Analysis stage in Figure \ref{fig:2_1_a}. We define  \textbf{Accrual} as cumulative recruitment.
 
 \begin{figure}[h]
   \centering
@@ -71,14 +71,8 @@ The general notion of \textbf{Recruitment} in this Master Thesis refers to the n
 
 \section{Uncertainty and models for counts}
 
-There are two types of uncertainty, aleatory and epistemic \citep{ohagan2006}. The \textbf{Aleatory Uncertainty} reflects randomness that is inherent, irreducible and unpredictable in nature. \textbf{Epistemic Uncertainty} arises primarily from limited or imperfect knowledge about the parameters of a statistical model and can reflect fluctuations of the parameter, see Figure \ref{fig:2_1_c}. Obtaining more or better information about the parameter typically reduces the epistemic uncertainty. 
+There are two types of uncertainty, aleatory and epistemic \citep{ohagan2006}. The \textbf{Aleatory Uncertainty} reflects randomness that is inherent, irreducible and unpredictable in nature. \textbf{Epistemic Uncertainty} arises primarily from limited or imperfect knowledge about the parameters of a statistical model and can reflect fluctuations of the parameter. Obtaining more or better information about the parameter typically reduces the epistemic uncertainty. 
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.7\textwidth]{illustration_uncertainty.png}
-  \caption{Visualization of two types of uncertainty \citep{yang2023explainable}.}
-  \label{fig:2_1_c}
-\end{figure}
 
 Let us denote
 
@@ -88,7 +82,31 @@ Let us denote
 \item $\lambda=\frac{C}{T}$
 \end{itemize}
 
-We define the rate $\lambda=\frac{C}{T}$ at which eligible patients are entered onto a clinical trial, measured as persons per unit of time as \textbf{Accrual Rate}. Where \textbf{rate} is understood as a ratio in which the numerator and denominator are incremental differences \citep{piantadosi2024clinical}. 
+We define \textbf{Recruitment Rate} $\lambda=\frac{C}{T}$ at which patients are collected, measured as persons per unit of time. Where \textbf{Rate} is understood as a ratio in which the numerator and denominator are incremental differences \citep{piantadosi2024clinical}. 
+
+\begin{align*}
+\lambda = \frac{\Delta C}{\Delta T} = \frac{C_1 - C_0}{T_1 - T_0} = \frac{C_1 - 0}{T_1 - 0} = \frac{C_1}{T_1}
+\end{align*}
+
+
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{cccccc}
+ \textbf{Methods} & \textbf{Counts} & \textbf{Expectation} & \textbf{Variance} & \textbf{Aleatory} & \textbf{Epistemic} \\
+\hline
+\hline
+Expectation & $C = \lambda  $ & $\lambda  $ & 0 & No & No \\
+Poisson & $C \sim \textrm{Po} (\lambda )$ & $\lambda $ & $\lambda  $ & Yes & No \\
+Negative Binomial & $C \sim \textrm{Po} (\Lambda )$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+1)}{\beta^2}$ & Yes & Yes \\
+\end{tabular}
+}
+\caption{Moments and aleatory and epistemic uncertainty in one unit of time recruitment covered by different models for counts.}
+\label{tab:count_modeling}
+\end{table}
+
+
+
 
 \begin{table}[h!]
 \centering
@@ -99,28 +117,30 @@ We define the rate $\lambda=\frac{C}{T}$ at which eligible patients are entered 
 \hline
 Expectation & $C(t) = \lambda  t$ & $\lambda  t$ & 0 & No & No \\
 Poisson & $C(t) \sim \textrm{Po} (\lambda  t)$ & $\lambda  t$ & $\lambda  t$ & Yes & No \\
-Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+1)}{\beta^2}$ & Yes & Yes \\
+Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+t)}{\beta^2}$ & Yes & Yes \\
 \end{tabular}
 }
 \caption{Moments and aleatory and epistemic uncertainty in accrual covered by different models for counts.}
-\label{tab:count_modeling}
+\label{tab:count_modeling_2}
 \end{table}
 
 \section{Counts: Model based on Expectations}
 \label{sec:expect}
 
-If we fix the duration of a study at time $T$ and we expect that we collect $C$ patients until $T$, we deterministically predict the recruitment rate (without taking into consideration any uncertainty) to be $\hat{\lambda}=\frac{C}{T}$ . 
+If we fix the duration of a study at time $T$ and we expect that we collect $C$ patients until $T$, we deterministically predict the recruitment rate per one unit of time (without taking into consideration any uncertainty) to be $\hat{\lambda}=\frac{C}{T}$ . 
 
 
 \subsection{Expected recruitment in one unit of time}
 $C = \textrm{E}C = \textrm{E}\lambda = \lambda$\\
 $\textrm{Var}(C) = \textrm{Var}(\lambda) = 0$
 
+As we can see in Table \ref{tab:count_modeling}
+
 \subsection{Expected accrual at time point $t$}
 $C(t) = \textrm{E}(\underbrace{C+\ldots+C}_{t \ \text{times}}) = \textrm{E}(\lambda t) = \lambda t$\\
 $\textrm{Var}(C(t)) = \textrm{Var}(\underbrace{C+\ldots+C}_{t \ \text{times}}) = t \textrm{Var}(\lambda) = 0$
 
-Both the expected accrual and its zero-variance are recorded in Table \ref{tab:count_modeling}
+Both the expected accrual and its zero-variance are recorded in Table \ref{tab:count_modeling_2}
 and visualized in Figure \ref{fig:2_2} and Figure \ref{fig:2_5}.
 
 
@@ -146,15 +166,17 @@ The recruitment of patients in one unit of time follows $C\sim \textrm{Po} (\lam
 \textrm{Var}(C) & = \lambda
 \end{align*}
 
+As we can see in Table \ref{tab:count_modeling}
+
 \subsection{Accrual at time point $t$}
-At time point $t$, the accrual follows $C\sim \textrm{Po} (\lambda t)$. Using the infinitely divisible property from the Poisson applicable to independent random variables, $\underbrace{\textrm{Po} (\lambda) +\cdots +\textrm{Po} (\lambda)}_{t \ \text{times}} = \textrm{Po} (\lambda t)$. We assume that the recruitment of patients at a given time point is independent from another. As we can see in Table \ref{tab:count_modeling}, the expectation and variance are the following:
+At time point $t$, the accrual follows $C\sim \textrm{Po} (\lambda t)$. Using the infinitely divisible property from the Poisson applicable to independent random variables, $\underbrace{\textrm{Po} (\lambda) +\cdots +\textrm{Po} (\lambda)}_{t \ \text{times}} = \textrm{Po} (\lambda t)$. We assume that the recruitment of patients in t unit time intervals is independent from another. As we can see in Table \ref{tab:count_modeling_2}, the expectation and variance are the following:
 
 \begin{align*}
 \textrm{E}C(t) & = \lambda t \\
 \textrm{Var}(C(t)) & = \lambda t
 \end{align*}
 
-For example, if we assume $\lambda = 0.591$ per day and $T=550$, we can show the accrual of 100 different studies in Figure \ref{fig:2_2} and the histogram at $t=550$ days. The exact distribution at $T=550$ is provided in Figure \ref{fig:2_3} and the Cummulative Distribution Function (CDF) in Figure \ref{fig:2_4}. The uncertainty bands based on the theoretical quantiles are displayed in Figure \ref{fig:2_5}.
+For example, if we assume $\lambda = 0.591$ per day and $t=550$, we can show the accrual of 100 different studies in Figure \ref{fig:2_2} and the histogram at $t=550$ days. The exact distribution at $t=550$ is provided in Figure \ref{fig:2_3} and the Cummulative Distribution Function (CDF) in Figure \ref{fig:2_4}. The uncertainty bands based on the exact quantiles are displayed in Figure \ref{fig:2_5}.
 
 \begin{figure}
 <<echo=FALSE>>=
@@ -337,7 +359,7 @@ where $c$ is the counts.
 How do we get to our formulation of the PMF:
 
 \begin{align*}
-\textrm{P}(X=c) & = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\mu}{\beta+\mu}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha+\mu}\Bigg)^{\alpha} \\
+\textrm{P}(X=c) & = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\mu}{\alpha+\mu}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha+\mu}\Bigg)^{\alpha} \\
 & = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\alpha/\beta}{\alpha+\alpha/\beta}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha+\alpha/\beta}\Bigg)^{\alpha} \\
 & = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\alpha/\beta}{\alpha\beta/\beta+\alpha/\beta}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha\beta/\beta+\alpha/\beta}\Bigg)^{\alpha} \\
 & = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\alpha}{\alpha\beta+\alpha}\Bigg)^{c} \Bigg(\frac{\beta\alpha}{\alpha\beta+\alpha}\Bigg)^{\alpha} \\
@@ -397,82 +419,90 @@ Since we will be using the Count-Based interpretation of the Negative Binomial, 
 % \end{align*}
 
 
-\subsection{Accrual at time point $t$}
-Let $C|\Lambda \sim \textrm{Po}(\Lambda t)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$
+\subsection{Sensitivity Analysis}
+
+
 
 
 \begin{figure}
-<<echo=FALSE>>=
-plot(200:500, dpois(200:500, lambda*550), 
-		 type = "l",
-		 main = "Probability Mass Function", 
-		 xlab = "Counts", 
-		 ylab = "",
-		 xaxt = "n")
+<<echo = FALSE,  fig.width=7, fig.height=5>>=
+par(mfrow=c(1,3))
+curve(dgamma(x, shape = 324, rate = 548), 
+			from = 0, to = 1,
+			main = "Prior", 
+			xlab = "Recruitment rate", 
+			ylab = "",
+			col = "red")
 
-alpha = 324
-beta = 1.5 * 365
+curve(dgamma(x, shape = 32.4, rate = 54.8), add = TRUE,
+			col = "blue")
 
-lines(200:500, dnbinom(200:500, size = 324, mu = lambda*550), col = 2)
+curve(dgamma(x, shape = 3.24, rate = 5.48), add = TRUE,
+			col = "green")
 
 legend("topleft",
-			 legend = c("Poisson",
-			 					 "Negative Binomial"),
-			 col = c("black", "red"),
+			 legend = c(expression("G (" ~ alpha == 324 ~ beta == 548 ~ ")"),
+			 						expression("G (" ~ alpha == 32.4 ~ beta == 54.8 ~ ")"),
+			 						expression("G (" ~ alpha == 3.24 ~ beta == 5.48 ~ ")")),
+			 col = c("red", "blue", "green"),
 			 lty = c(1, 1),
 			 bg = "white",
-			 cex = 0.7)  
-@   
-  \caption{Comparison of Probability Mass Function (PMF) between Poisson distribution with $\lambda = 0.591$ and Negative Binomial with $\alpha = 324$ and $\mu = 0.591$.}
+			 cex = 0.6)
+
+
+plot(200:500, dpois(200:500, lambda*550), 
+		 type = "l",
+		 main = "PMF", 
+		 xlab = "Counts", 
+		 ylab = "")
+
+
+lines(200:500, dnbinom(200:500, size = 324, mu = lambda*550), col = "red")
+lines(200:500, dnbinom(200:500, size = 32.4, mu = lambda*550), col = "blue")
+lines(200:500, dnbinom(200:500, size = 3.24, mu = lambda*550), col = "green")
+
+
+legend("topleft",
+       legend = c(expression(Po(lambda == 0.591)),
+                  expression(NBin ~ (alpha == 324 ~ beta == 548)),
+                  expression(NBin ~ (alpha == 32.4 ~ beta == 54.8)),
+                  expression(NBin ~ (alpha == 3.24 ~ beta == 5.48))),
+       col = c("black", "red", "blue", "green"),
+       lty = c(1, 1),
+       bg = "white",
+       cex = 0.6)
+
+
+plot(200:500, ppois(200:500, lambda*550), 
+		 type = "l",
+		 main = "CDF", 
+		 xlab = "Counts", 
+		 ylab = "")
+
+
+
+lines(200:500, pnbinom(200:500, size = 324, mu = lambda*550), col = "red")
+lines(200:500, pnbinom(200:500, size = 32.4, mu = lambda*550), col = "blue")
+lines(200:500, pnbinom(200:500, size = 3.24, mu = lambda*550), col = "green")
+
+
+legend("topleft",
+       legend = c(expression(Po(lambda == 0.591)),
+                  expression(NBin ~ (alpha == 324 ~ beta == 548)),
+                  expression(NBin ~ (alpha == 32.4 ~ beta == 54.8)),
+                  expression(NBin ~ (alpha == 3.24 ~ beta == 5.48))),
+       col = c("black", "red", "blue", "green"),
+       lty = c(1, 1),
+       bg = "white",
+       cex = 0.6)
+
+@
+	\caption{Sensitivity analysis between Poisson distribution with $\lambda = 0.591$ and Negative Binomial changing parameters of Gamma prior that maintain same expectation $\frac{\alpha}{\beta} = 0.591$.}
   \label{fig:2_6}
 \end{figure}
 
-
-
-\begin{figure}
-<<echo=FALSE>>=
-plot(200:500, ppois(200:500, lambda*550), 
-		 type = "l",
-		 main = "Cummulative Distribution Function", 
-		 xlab = "Counts", 
-		 ylab = "",
-		 xaxt = "n")
-
-alpha = 324
-beta = 1.5 * 365
-
-lines(200:500, pnbinom(200:500, size = 324, mu = lambda*550), col = 2)
-
-legend("topleft",
-			 legend = c("Poisson",
-			 					 "Negative Binomial"),
-			 col = c("black", "red"),
-			 lty = c(1, 1),
-			 bg = "white",
-			 cex = 0.7)
-@   
-  \caption{Comparison of Cummulative Distribution Function (CDF) between Poisson distribution with $\lambda = 0.591$ and Negative Binomial with $\alpha = 324$ and $\mu = 0.591$.}
-  \label{fig:2_7}
-\end{figure}
-
-
-
-\begin{figure}
-<<echo=FALSE>>=
-alpha = 324
-beta = 1.5 * 365
-
-plot(200:500, dgamma(200:500, shape = alpha, rate = beta), 
-		 type = "l",
-		 main = "Probability Density Function", 
-		 xlab = "Counts", 
-		 ylab = "",
-		 xaxt = "n")
-@   
-  \caption{Gamma density function with $\alpha = 324$ and $\beta = 1.5 \cdot 365$.}
-  \label{fig:2_8}
-\end{figure}
-
+\subsection{Accrual at time point $t$}
+Let $C|\Lambda \sim \textrm{Po}(\Lambda t)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$
 
 
 \section{Important questions when forecasting recruitment at the design-stage of a study}
