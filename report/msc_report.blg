@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: msc_report.aux
 The style file: mywiley.bst
 Database file #1: biblio.bib
-You've used 22 entries,
+You've used 24 entries,
             1922 wiz_defined-function locations,
-            611 strings with 7828 characters,
-and the built_in function-call counts, 8041 in all, are:
-= -- 779
-> -- 360
+            619 strings with 8086 characters,
+and the built_in function-call counts, 8715 in all, are:
+= -- 839
+> -- 396
 < -- 15
-+ -- 126
-- -- 122
-* -- 684
-:= -- 1475
-add.period$ -- 67
-call.type$ -- 22
-change.case$ -- 162
-chr.to.int$ -- 22
-cite$ -- 22
-duplicate$ -- 283
-empty$ -- 512
-format.name$ -- 152
-if$ -- 1517
++ -- 138
+- -- 134
+* -- 738
+:= -- 1601
+add.period$ -- 73
+call.type$ -- 24
+change.case$ -- 176
+chr.to.int$ -- 24
+cite$ -- 24
+duplicate$ -- 309
+empty$ -- 556
+format.name$ -- 166
+if$ -- 1645
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 33
-newline$ -- 114
-num.names$ -- 66
-pop$ -- 125
+missing$ -- 37
+newline$ -- 124
+num.names$ -- 72
+pop$ -- 145
 preamble$ -- 1
-purify$ -- 169
+purify$ -- 185
 quote$ -- 0
-skip$ -- 214
+skip$ -- 232
 stack$ -- 0
-substring$ -- 507
-swap$ -- 22
+substring$ -- 531
+swap$ -- 24
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 124
+type$ -- 132
 warning$ -- 0
-while$ -- 63
+while$ -- 67
 width$ -- 0
-write$ -- 282
+write$ -- 306

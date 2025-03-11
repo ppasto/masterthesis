@@ -367,7 +367,7 @@ There are two different interpretations of the Negative Binomial, Failure-Based 
 &0<p\leq 1
 \end{align*}
 where $x$ is the number of failures.
-\item Interpretation: In a sequence of independent binary trials with constant probability $p$ of observing a \textit{non-recruited} patient, $X$ is the number of \textit{recruited} patients observed at the time that $x$ \textit{non-recruited} patients are observed. (ref)
+\item Interpretation: In a sequence of independent binary trials with constant probability $p$ of observing a \textit{non-recruited} patient, $X$ is the number of \textit{recruited} patients observed at the time that $x$ \textit{non-recruited} patients are observed \citep{meeker2017statistical}.
 
 
 \end{enumerate}
@@ -397,7 +397,7 @@ Since we will be using the Count-Based interpretation of the Negative Binomial \
 &c\geq 0 
 \end{align*}
 where $c$ is the counts.
-\item Interpretation: This model is used to represent "recruitment proneness". The parameter $\mu = \frac{\alpha}{\beta} = \lambda$ represents the expected number of recruitments. (ref.)
+\item Interpretation: This model is used to represent "recruitment proneness". The parameter $\mu$ represents the expected number of recruitments in a study \citep{johnson2005univariate}.
 
 \end{enumerate}
 

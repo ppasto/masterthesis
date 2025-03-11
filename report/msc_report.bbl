@@ -35,6 +35,11 @@ Hilbe, J.~M. (2011).
 \newblock {\em Negative binomial regression}.
 \newblock Cambridge University Press.
 
+\bibitem[Johnson {\it et~al.}, 2005]{johnson2005univariate}
+Johnson, N.~L., Kemp, A.~W., and Kotz, S. (2005).
+\newblock {\em Univariate discrete distributions}.
+\newblock John Wiley \& Sons.
+
 \bibitem[Lim and In, 2019]{lim2019randomization}
 Lim, C.-Y. and In, J. (2019).
 \newblock Randomization in clinical studies.
@@ -44,6 +49,11 @@ Lim, C.-Y. and In, J. (2019).
 Liu, J., Jiang, Y., Wu, C., Simon, S., Mayo, M.~S., Raghavan, R., and Gajewski, B.~J. (2023).
 \newblock {\em accrual: Bayesian Accrual Prediction}.
 \newblock R package version 1.4.
+
+\bibitem[Meeker {\it et~al.}, 2017]{meeker2017statistical}
+Meeker, W.~Q., Hahn, G.~J., and Escobar, L.~A. (2017).
+\newblock {\em Statistical intervals: a guide for practitioners and researchers}.
+\newblock John Wiley \& Sons.
 
 \bibitem[{National Institute of Allergy and Infectious Diseases}, 2021]{NIH2021}
 {National Institute of Allergy and Infectious Diseases} (2021).
