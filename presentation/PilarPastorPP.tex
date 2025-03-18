@@ -66,7 +66,7 @@ at the design stage of a clinical trial}
 %% The following are all optional, simply comment them
 \author{Supervision by Malgorzata Roos}
 %\institute{Biostatistics Journal Club}  %% optional
-\subtitle{Pilar Pastor}
+\subtitle{Pilar Pastor Martínez}
 %\date{\today}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
@@ -89,6 +89,7 @@ According to \cite{carter2004application}
 \item Inadequate number of subjects $\rightarrow$ lack of power
 \item Recruitment period too long $\rightarrow$ competing treatments
 \item Recruitment of patients varies at each stage 
+\item Methods applicable to all the stages
 \end{itemize}
 
 
@@ -138,6 +139,10 @@ According to \cite{carter2004application}
 
 \begin{itemize}
 \item \textbf{Recruitment rate} = Per time-unit \citep{piantadosi2024clinical}
+\begin{align*}
+\lambda = \frac{\Delta C}{\Delta T} = \frac{C_1 - C_0}{T_1 - T_0} = \frac{C_1}{T_1}
+\end{align*}
+
 \item \textbf{Accrual} = Cumulative Recruitment
 \item \textbf{Aleatory uncertainty}: randomness inherent and unpredictable
 \item \textbf{Epistemic uncertainty}: arises from limited knowledge about parameters
@@ -150,7 +155,7 @@ According to \cite{carter2004application}
 \end{frame}
 
 \begin{frame}[shrink = 5]{Models for Counts}
-
+\textbf{Recruitment} in unit of time (t=1):
 \begin{table}[h!]
 \centering
 \resizebox{\textwidth}{!}{
@@ -159,14 +164,13 @@ According to \cite{carter2004application}
 \hline
 \hline
 Expectation & $C = \lambda$ & $\lambda $ & 0 & No & No \\
-Poisson & $C \sim$ \rm{Po} $(\lambda )$ & $\lambda $ & $\lambda $ & Yes & No \\
-Negative Binomial & $C \sim \mathrm{Po} (\Lambda )$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+1)}{\beta^2}$ & Yes & Yes \\
+Poisson & $C \sim$ Po $(\lambda )$ & $\lambda $ & $\lambda $ & Yes & No \\
+Poisson - Gamma & $C \sim Po (\Lambda )$; $\Lambda \sim G(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+1)}{\beta^2}$ & Yes & Yes \\
 \end{tabular}
 }
-\caption{Moments, aleatory and epistemic uncertainty in recruitment shown by different models for counts.}
-\label{tab:count_modeling}
 \end{table}
 
+\textbf{Accrual} for time t [0,t]:
 \begin{table}[h!]
 \centering
 \resizebox{\textwidth}{!}{
@@ -175,12 +179,10 @@ Negative Binomial & $C \sim \mathrm{Po} (\Lambda )$; $\Lambda \sim \textrm{G}(\a
 \hline
 \hline
 Expectation & $C(t) = \lambda  t$ & $\lambda  t$ & 0 & No & No \\
-Poisson & $C(t) \sim \textrm{Po} (\lambda  t)$ & $\lambda  t$ & $\lambda  t$ & Yes & No \\
-Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & ?? & ?? & Yes & Yes \\
+Poisson & $C(t) \sim Po (\lambda  t)$ & $\lambda  t$ & $\lambda  t$ & Yes & No \\
+Poisson - Gamma & $C(t) \sim Po (\Lambda  t)$; $\Lambda \sim G(\alpha,\beta)$ & $t\frac{\alpha}{\beta}$ & $t\frac{\alpha(\beta+t)}{\beta^2}$ & Yes & Yes \\
 \end{tabular}
 }
-\caption{Moments, aleatory and epistemic uncertainty in accrual shown by different models for counts.}
-\label{tab:count_modeling}
 \end{table}
 
 \end{frame}
@@ -204,8 +206,8 @@ Example from \cite{carter2004application}:
 \item Time $t = 550$ days
 \item Models for Counts:
 	\begin{itemize}
-	\item \textbf{Expectation}: $\textrm{E}C(t) = \lambda t = 0.591 \cdot 550 = 325$
-	\item \textbf{Poisson}: $C(t) \sim \textrm{Po}(\lambda t)$
+	\item \textbf{Expectation}: $EC(t) = \lambda t = 0.591 \cdot 550 = 325$
+	\item \textbf{Poisson}: $C(t) \sim Po(\lambda t)$
 	\end{itemize}
 \end{itemize}
 
@@ -216,8 +218,8 @@ Example from \cite{carter2004application}:
 
 \begin{frame}{Accrual at time point $t$}
 \begin{itemize}
-\item \textbf{Expectation}: $\textrm{E}C(t) = \underbrace{\textrm{E} C +\ldots + C}_{t \ \text{times}} = t \textrm{E} C = \lambda t$
-\item \textbf{Poisson}: $\underbrace{\textrm{Po} (\lambda) +\ldots +\textrm{Po} (\lambda)}_{t \ \text{times}} = \textrm{Po} (\lambda t)$
+\item \textbf{Expectation}: $EC(t) = E\underbrace{(C +\ldots + C)}_{t \ \text{times}} = t E C = \lambda t$
+\item \textbf{Poisson}: $\underbrace{Po (\lambda) +\ldots +Po (\lambda)}_{t \ \text{times}} = Po (\lambda t)$
 % mention this is infinitely divisible property of poisson
 \end{itemize}
 \end{frame}
@@ -312,11 +314,11 @@ Example from \cite{carter2004application}:
 \item Time $t = 550$ days
 \item Models for Counts:
 	\begin{itemize}
-	\item \textbf{Negative Binomial}: $C \sim Po (\Lambda)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$
+	\item \textbf{Poisson - Gamma}: $C(t) \sim Po (\Lambda t)$; $\Lambda \sim G(\alpha,\beta)$
 		\begin{itemize}
 		\item $\alpha = 325$
 		\item $\beta = 548$
-		\item $\textrm{E} \Lambda = \frac{\alpha}{\beta} = 0.591 = \lambda$
+		\item $E \Lambda = \frac{\alpha}{\beta} = 0.591 = \lambda$
 		\end{itemize}
 	\end{itemize}
 \end{itemize}
@@ -324,14 +326,13 @@ Example from \cite{carter2004application}:
 
 \begin{frame}[shrink = 5]{Negative binomial derived from Poisson-Gamma model (t=1)}
 
-Let $C|\Lambda \sim \textrm{Po}(\Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$
+Let $C(t)|\Lambda \sim Po(\Lambda t)$ and $\Lambda \sim G(\alpha,\beta)$
 \begin{align*}
 p(c)&=\int^\infty_0 p(c|\lambda) p(\lambda) d\lambda\\
-&=\int^\infty_0 \frac{\lambda^c\exp(-\lambda)}{c!}\Bigg[\lambda^{\alpha-1}\exp(-\beta\lambda)\frac{\beta^\alpha}{\Gamma(\alpha)}\Bigg]d\lambda\\
-&=\frac{\beta^\alpha}{c!\Gamma(\alpha)}\int^\infty_0 \lambda^{\alpha+c-1}\exp(-\lambda)\exp(-\lambda\beta)d\lambda\\
-&=\frac{\beta^\alpha\Gamma(\alpha+c)}{c!\Gamma(\alpha) (\beta+1)^{\alpha+c}}\underbrace{\int^\infty_0 \frac{(\beta+1)^{\alpha+c}}{\Gamma(\alpha+c)} \lambda^{\alpha+c-1}\exp(-(\beta+1)\lambda)d\lambda}_{=1}\\
-&=\beta^\alpha\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{\alpha+c}\\
-&=\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+1}\Bigg)^{\alpha}, \ C|\Lambda\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+1}\Bigg)
+&=\int^\infty_0 \frac{(\lambda t)^c\exp(-\lambda t)}{c!}\Bigg[(\lambda t)^{\alpha-1}\exp(-\beta\lambda t)\frac{\beta^\alpha}{\Gamma(\alpha)}\Bigg]d\lambda\\
+&=\frac{\beta^\alpha t^c \Gamma(\alpha+c)}{c!\Gamma(\alpha) (\beta+t)^{\alpha+c}}\underbrace{\int^\infty_0 \frac{(\beta+t)^{\alpha+c}}{\Gamma(\alpha+c)} \lambda^{\alpha+c-1}\exp(-(\beta+t)\lambda)d\lambda}_{=1}\\
+&=\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{t}{\beta+t}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+t}\Bigg)^{\alpha}, \\
+C(t)|\Lambda\sim NBin \Bigg(\alpha, \frac{\beta}{\beta+t}\Bigg)
 \end{align*}
 % talk here about interpretations (from report)
 \end{frame}
@@ -341,18 +342,18 @@ p(c)&=\int^\infty_0 p(c|\lambda) p(\lambda) d\lambda\\
 Using the expressions of iterated expectation and variance \citep{held2014applied}
 
 \begin{align*}
-\textrm{E}C &= \textrm{E}_{\Lambda}[\textrm{E}_{C} (C|\Lambda)] = \textrm{E}_{\Lambda}[\Lambda] = \alpha/\beta
+E(C(t)) &= E_{\Lambda}[E_{C(t)} (C(t)|\Lambda)] = E_{\Lambda}[\Lambda t] = t\alpha/\beta
 \end{align*}
 
 \begin{align*}
-\textrm{Var}(C) &= \textrm{Var}_{\Lambda}[\textrm{E}_{C} (C|\Lambda)] + \textrm{E}_{\Lambda}[\textrm{Var}_C(C|\Lambda)]\\
-&=\textrm{Var}_{\Lambda}[\Lambda] + \textrm{E}_{\Lambda}[\Lambda] \\
-&=\alpha/\beta^2 + \alpha/\beta = \frac{\alpha(\beta+1)}{\beta^2}
+Var(C(t)) &= Var_{\Lambda}[E_{C(t)} (C(t)|\Lambda)] + E_{\Lambda}[Var_{C(t)}(C(t)|\Lambda)]\\
+&=Var_{\Lambda}[\Lambda t] + E_{\Lambda}[\Lambda t] \\
+&=t^2\alpha/\beta^2 + t\alpha/\beta = \frac{t \alpha(\beta+t)}{\beta^2}
 \end{align*}
 \end{frame}
 
 \begin{frame}{Gamma Prior}
-$\Lambda \sim \textrm{G}(\alpha,\beta)$
+$\Lambda \sim G(\alpha,\beta)$
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figures/figunnamed-chunk-8-1} 
@@ -361,7 +362,7 @@ $\Lambda \sim \textrm{G}(\alpha,\beta)$
 \end{frame}
 
 
-\begin{frame}{Comparison between Poisson and Negative Binomial}
+\begin{frame}{Comparison between Poisson and Poisson - Gamma}
 \begin{figure}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
@@ -373,7 +374,7 @@ $\Lambda \sim \textrm{G}(\alpha,\beta)$
 \end{frame}
 
 
-\begin{frame}{Comparison between Poisson and Negative Binomial}
+\begin{frame}{Comparison between Poisson and Poisson - Gamma}
 
 \begin{figure}
 \begin{knitrout}
@@ -421,6 +422,39 @@ $\Lambda \sim \textrm{G}(\alpha,\beta)$
 
 
 
+\begin{frame}[shrink = 5]{Models for Counts}
+\textbf{Recruitment} in unit of time (t=1):
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{cccccc}
+ \textbf{Methods} & \textbf{Counts} & \textbf{Expectation} & \textbf{Variance} & \textbf{Aleatory} & \textbf{Epistemic} \\
+\hline
+\hline
+Expectation & $C = \lambda$ & $\lambda $ & 0 & No & No \\
+Poisson & $C \sim$ Po $(\lambda )$ & $\lambda $ & $\lambda $ & Yes & No \\
+Poisson - Gamma & $C \sim Po (\Lambda )$; $\Lambda \sim G(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+1)}{\beta^2}$ & Yes & Yes \\
+\end{tabular}
+}
+\end{table}
+
+\textbf{Accrual} for time t [0,t]:
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{cccccc}
+ \textbf{Methods} & \textbf{Counts} & \textbf{Expectation} & \textbf{Variance} & \textbf{Aleatory} & \textbf{Epistemic} \\
+\hline
+\hline
+Expectation & $C(t) = \lambda  t$ & $\lambda  t$ & 0 & No & No \\
+Poisson & $C(t) \sim Po (\lambda  t)$ & $\lambda  t$ & $\lambda  t$ & Yes & No \\
+Poisson - Gamma & $C(t) \sim Po (\Lambda  t)$; $\Lambda \sim G(\alpha,\beta)$ & $t\frac{\alpha}{\beta}$ & $t\frac{\alpha(\beta+t)}{\beta^2}$ & Yes & Yes \\
+\end{tabular}
+}
+\end{table}
+
+\end{frame}
+
 
 \begin{frame}{Summary}
 \begin{itemize}
@@ -436,7 +470,6 @@ $\Lambda \sim \textrm{G}(\alpha,\beta)$
 
 \begin{frame}{Next steps}
 \begin{itemize}
-\item Extend Negative Binomial proof for accrual 
 \item Compare exact models for counts to those provided by \cite{carter2004application}
 \item Models for \textbf{time} 
 	\begin{itemize}
