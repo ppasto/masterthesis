@@ -138,12 +138,12 @@ According to \cite{carter2004application}
 \begin{frame}{Definitions}
 
 \begin{itemize}
-\item \textbf{Recruitment rate} = Per time-unit \citep{piantadosi2024clinical}
+\item \textbf{Recruitment rate}: Per time-unit \citep{piantadosi2024clinical}
 \begin{align*}
 \lambda = \frac{\Delta C}{\Delta T} = \frac{C_1 - C_0}{T_1 - T_0} = \frac{C_1}{T_1}
 \end{align*}
 
-\item \textbf{Accrual} = Cumulative Recruitment
+\item \textbf{Accrual}: Cumulative Recruitment
 \item \textbf{Aleatory uncertainty}: randomness inherent and unpredictable
 \item \textbf{Epistemic uncertainty}: arises from limited knowledge about parameters
 
@@ -204,7 +204,7 @@ Example from \cite{carter2004application}:
 \begin{itemize}
 \item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$ per day
 \item Time $t = 550$ days
-\item Models for Counts:
+\item Models for Counts at time point $t$:
 	\begin{itemize}
 	\item \textbf{Expectation}: $EC(t) = \lambda t = 0.591 \cdot 550 = 325$
 	\item \textbf{Poisson}: $C(t) \sim Po(\lambda t)$
@@ -312,7 +312,7 @@ Example from \cite{carter2004application}:
 \begin{itemize}
 \item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$ per day
 \item Time $t = 550$ days
-\item Models for Counts:
+\item Models for Counts at time point $t$:
 	\begin{itemize}
 	\item \textbf{Poisson - Gamma}: $C(t) \sim Po (\Lambda t)$; $\Lambda \sim G(\alpha,\beta)$
 		\begin{itemize}
@@ -324,7 +324,7 @@ Example from \cite{carter2004application}:
 \end{itemize}
 \end{frame}
 
-\begin{frame}[shrink = 5]{Negative binomial derived from Poisson-Gamma model (t=1)}
+\begin{frame}[shrink = 5]{Negative binomial derived from Poisson-Gamma model at time point $t$}
 
 Let $C(t)|\Lambda \sim Po(\Lambda t)$ and $\Lambda \sim G(\alpha,\beta)$
 \begin{align*}
@@ -332,7 +332,7 @@ p(c)&=\int^\infty_0 p(c|\lambda) p(\lambda) d\lambda\\
 &=\int^\infty_0 \frac{(\lambda t)^c\exp(-\lambda t)}{c!}\Bigg[(\lambda t)^{\alpha-1}\exp(-\beta\lambda t)\frac{\beta^\alpha}{\Gamma(\alpha)}\Bigg]d\lambda\\
 &=\frac{\beta^\alpha t^c \Gamma(\alpha+c)}{c!\Gamma(\alpha) (\beta+t)^{\alpha+c}}\underbrace{\int^\infty_0 \frac{(\beta+t)^{\alpha+c}}{\Gamma(\alpha+c)} \lambda^{\alpha+c-1}\exp(-(\beta+t)\lambda)d\lambda}_{=1}\\
 &=\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{t}{\beta+t}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+t}\Bigg)^{\alpha}, \\
-C(t)|\Lambda\sim NBin \Bigg(\alpha, \frac{\beta}{\beta+t}\Bigg)
+C(t)\sim NBin \Bigg(\alpha, \frac{\beta}{\beta+t}\Bigg)
 \end{align*}
 % talk here about interpretations (from report)
 \end{frame}
@@ -458,8 +458,8 @@ Poisson - Gamma & $C(t) \sim Po (\Lambda  t)$; $\Lambda \sim G(\alpha,\beta)$ & 
 
 \begin{frame}{Summary}
 \begin{itemize}
-\item Extension of Carter's approach based on MC simulations
-\item Exact models for \textbf{counts}
+\item Exact distributions which extend Carter's approach
+\item Exact models for \textbf{counts} and their properties
 \item Unified notation
 \item Visualization of study accrual and uncertainty bands 
 \item Sensitivity analysis
@@ -470,14 +470,14 @@ Poisson - Gamma & $C(t) \sim Po (\Lambda  t)$; $\Lambda \sim G(\alpha,\beta)$ & 
 
 \begin{frame}{Next steps}
 \begin{itemize}
-\item Compare exact models for counts to those provided by \cite{carter2004application}
+\item Compare exact models for counts to those provided by \cite{carter2004application} based on MC simulations
 \item Models for \textbf{time} 
 	\begin{itemize}
 	\item Exact models
 	\item Compare them to those provided by Carter
 	\end{itemize}
-\item Shiny App
 \item Apply theoretical results to dataset
+\item Shiny App
 \end{itemize}
 
 \end{frame}
