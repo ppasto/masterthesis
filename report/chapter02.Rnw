@@ -68,7 +68,7 @@ In clinical research, \textbf{Statistical Analysis} involves applying statistica
 
 The number of patients decreases at each stage of a clinical study, from defining the target population to final statistical analysis, see Figure \ref{fig:2_1_b}. This process is known as patient leakage \citep{desai2014preventing}, alternative terms are attrition or retention.
 
-We generalized the notion of patient leakage found in trial profiles such as \ref{fig:2_0}. We conceptualized the different stages in a clinical trial and studied the different reasons why we find patient attrition when moving to the following stage in a study.
+We generalized the notion of patient leakage found in trial profiles such as the one found in Figure \ref{fig:2_0}. We conceptualized the different stages in a clinical trial and studied the different reasons why we find patient attrition when moving to the following stage in a study.
 
 Eligibility criteria narrow down participants, and enrollment further reduces numbers as only those meeting strict criteria are registered. Randomization assigns individuals to treatment groups, but some may later be excluded due to protocol deviations, missing data, or loss to follow-up. 
 
