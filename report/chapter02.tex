@@ -91,7 +91,7 @@ Negative Binomial & $C \sim \textrm{Po} (\Lambda )$; $\Lambda \sim \textrm{G}(\a
 \hline
 Expectation & $C(t) = \lambda  t$ & $\lambda  t$ & 0 & No & No \\
 Poisson & $C(t) \sim \textrm{Po} (\lambda  t)$ & $\lambda  t$ & $\lambda  t$ & Yes & No \\
-Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+t)}{\beta^2}$ & Yes & Yes \\
+Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $t\frac{\alpha}{\beta}$ & $t\frac{\alpha(\beta+t)}{\beta^2}$ & Yes & Yes \\
 \end{tabular}
 }
 \caption{Moments and aleatory and epistemic uncertainty in accrual covered by different models for counts.}
@@ -377,10 +377,12 @@ How do we get to our formulation of the PMF:
 
 In Figure \ref{fig:2_6}, the Poisson distribution captures aleatory uncertainty, while the Gamma prior represents epistemic uncertainty. The Negative Binomial distribution incorporates both types of uncertainty. The sensitivity analysis, also shown in Figure \ref{fig:2_6}, highlights that while the expectation remains unchanged, smaller parameter values lead to greater overall uncertainty due to the increased variance introduced by the Gamma distribution. The smaller the $\beta$, the greater the variance.
 
+
 \begin{align*}
 \textrm{Var}(\textrm{G}(\alpha, \beta)) = \frac{\alpha}{\beta^2} =\frac{\textrm{E}(\textrm{G}(\alpha, \beta))}{\beta}
 \end{align*}
 
+In the Poisson-Gamma model we can interpret $\alpha$ as the parameter that represents the sample size and $\beta$ represents time.
 
 \begin{figure}
 \begin{knitrout}
@@ -409,6 +411,8 @@ p(c)&=\int^\infty_0 p(c|\lambda) p(\lambda) d\lambda\\
 & c = 0,1,2,3,\ldots
 \end{align*}
 Thus, $C\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+t}\Bigg)$
+
+We will be focusing on the count-based interpretation of the Negative Binomial distribution. We can relate this interpretation to the more popular failure-based interpretation by seeing $\alpha$ as $n$, the number of successes. In our case, the number of patients we wish to recruit. And, $p = \frac{\beta}{\beta+1}$ which is the probability of success, as the probability of recruiting.
 
 
 Using the expressions of iterated expectation and variance \citep{held2014applied} and the expectation and variance from the respective random variables $C(t)|\Lambda \sim \textrm{Po}(\Lambda t)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$, we have that:
