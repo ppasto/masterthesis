@@ -329,6 +329,21 @@ How do we get to our formulation of the PMF:
 % \end{align*}
 
 
+\begin{figure}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
+
+{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-7-1} 
+
+}
+
+
+\end{knitrout}
+  \caption{Poisson-Gamma distributed counts with $\mu = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from section \ref{sec:expect}, while the red dashed lines indicate Negative Binomial's 95\% aleatory uncertainty. The histogram illustrates the distribution of observed counts in 100 studies at time $t = 550$ days \citep{spiegelhalter2011visualizing, pkgacc}.}
+  \label{fig:2_7}
+\end{figure}
+
+
 \subsection{Sensitivity Analysis}
 
 In Figure \ref{fig:2_6}, the Poisson distribution captures aleatory uncertainty, while the Gamma prior represents epistemic uncertainty. The Negative Binomial distribution incorporates both types of uncertainty. The sensitivity analysis, also shown in Figure \ref{fig:2_6}, highlights that while the expectation remains unchanged, smaller parameter values lead to greater overall uncertainty due to the increased variance introduced by the Gamma distribution. The smaller the $\beta$, the greater the variance.
@@ -342,7 +357,7 @@ In Figure \ref{fig:2_6}, the Poisson distribution captures aleatory uncertainty,
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
 
-{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-7-1} 
+{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-8-1} 
 
 }
 
