@@ -9,7 +9,7 @@
 \contentsline {section}{\numberline {2.3}Counts: Model based on Expectations}{6}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Expected recruitment in one unit of time}{6}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}Expected accrual at time point $t$}{6}{subsection.2.3.2}%
-\contentsline {section}{\numberline {2.4}Counts: Model based on Poisson Process}{6}{section.2.4}%
+\contentsline {section}{\numberline {2.4}Counts: Model based on Poisson Process}{7}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Recruitment in one unit of time}{7}{subsection.2.4.1}%
 \contentsline {subsection}{\numberline {2.4.2}Accrual at time point $t$}{7}{subsection.2.4.2}%
 \contentsline {section}{\numberline {2.5}Counts: Negative Binomial model derived from Poisson-Gamma model}{9}{section.2.5}%

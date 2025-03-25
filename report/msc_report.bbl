@@ -1,5 +1,10 @@
 \begin{thebibliography}{}
 
+\bibitem[Barnard {\it et~al.}, 2010]{barnard2010systematic}
+Barnard, K.~D., Dent, L., and Cook, A. (2010).
+\newblock A systematic review of models to predict recruitment to multicentre clinical trials.
+\newblock {\em BMC medical research methodology}, {\bf10},  1--8.
+
 \bibitem[Bogin, 2022]{bogin2022lasagna}
 Bogin, V. (2022).
 \newblock Lasagna's law: A dish best served early.
@@ -9,6 +14,11 @@ Bogin, V. (2022).
 Carter, R.~E. (2004).
 \newblock Application of stochastic processes to participant recruitment in clinical trials.
 \newblock {\em Controlled Clinical Trials}, {\bf25},  429--436.
+
+\bibitem[Carter {\it et~al.}, 2005]{carter2005practical}
+Carter, R.~E., Sonne, S.~C., and Brady, K.~T. (2005).
+\newblock Practical considerations for estimating clinical trial accrual periods: application to a multi-center effectiveness study.
+\newblock {\em BMC medical research methodology}, {\bf5},  1--5.
 
 \bibitem[Desai, 2014]{desai2014preventing}
 Desai, R. (2014).
@@ -120,5 +130,10 @@ Whelan, J., Le~Deley, M.-C., Dirksen, U., Le~Teuff, G., Brennan, B., Gaspar, N.,
 Willie, M.~M. (2024).
 \newblock Population and target population in research methodology.
 \newblock {\em Golden Ratio of Social Science and Education}, {\bf4},  75--79.
+
+\bibitem[Zhang and Long, 2012]{zhang2012modeling}
+Zhang, X. and Long, Q. (2012).
+\newblock Modeling and prediction of subject accrual and event times in clinical trials: a systematic review.
+\newblock {\em Clinical Trials}, {\bf9},  681--688.
 
 \end{thebibliography}

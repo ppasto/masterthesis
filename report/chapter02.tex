@@ -115,7 +115,12 @@ Methods in Tables \ref{tab:count_modeling} and \ref{tab:count_modeling_2} are ap
 \section{Counts: Model based on Expectations}
 \label{sec:expect}
 
-If we fix the duration of a study at time $T$ and we expect that we collect $C$ patients until $T$, we deterministically predict the recruitment rate per one unit of time (without taking into consideration any uncertainty) to be $\hat{\lambda}=\frac{C}{T}$ . 
+If we fix the duration of a study at time $T$ and we expect that we collect $C$ patients until $T$, we deterministically predict the recruitment rate per one unit of time (without taking into consideration any uncertainty) to be $\hat{\lambda}=\frac{C}{T}$, \cite{carter2004application}.
+
+This is a simple deterministic method based on a linear extrapolation of constant recruitment also called "First Order Recruitment Model" (FORM) (ref.). It is sometimes referred to as the \textit{unconditional approach} and its main limitation is the lack of a mechanism to account for known sources of variation in the rate, \cite{carter2005practical}. 
+
+The model based on expectations is overly simplistic and fails to account for changes in center recruitment or the regulatory environment, \cite{barnard2010systematic}. Therefore, stochastic models that incorporate randomness in the enrollment process are more suitable than the widely used deterministic approach, \cite{zhang2012modeling}.
+
 
 
 \subsection{Expected recruitment in one unit of time}
@@ -125,6 +130,9 @@ $\textrm{Var}(C) = \textrm{Var}(\lambda) = 0$
 As we can see in Table \ref{tab:count_modeling}
 
 \subsection{Expected accrual at time point $t$}
+
+Assuming that recruitments in each unit of time are independent of each other we have:
+
 $C(t) = \textrm{E}(\underbrace{C+\ldots+C}_{t \ \text{times}}) = \textrm{E}(\lambda t) = \lambda t$\\
 $\textrm{Var}(C(t)) = \textrm{Var}(\underbrace{C+\ldots+C}_{t \ \text{times}}) = t \textrm{Var}(\lambda) = 0$
 
