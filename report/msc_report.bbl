@@ -1,5 +1,15 @@
 \begin{thebibliography}{}
 
+\bibitem[Anisimov and Fedorov, 2007]{anisimov2007modelling}
+Anisimov, V.~V. and Fedorov, V.~V. (2007).
+\newblock Modelling, prediction and adaptive adjustment of recruitment in multicentre trials.
+\newblock {\em Statistics in medicine}, {\bf26},  4958--4975.
+
+\bibitem[Bagiella and Heitjan, 2001]{bagiella2001predicting}
+Bagiella, E. and Heitjan, D.~F. (2001).
+\newblock Predicting analysis times in randomized clinical trials.
+\newblock {\em Statistics in medicine}, {\bf20},  2055--2063.
+
 \bibitem[Barnard {\it et~al.}, 2010]{barnard2010systematic}
 Barnard, K.~D., Dent, L., and Cook, A. (2010).
 \newblock A systematic review of models to predict recruitment to multicentre clinical trials.
@@ -64,6 +74,11 @@ Liu, J., Jiang, Y., Wu, C., Simon, S., Mayo, M.~S., Raghavan, R., and Gajewski, 
 Meeker, W.~Q., Hahn, G.~J., and Escobar, L.~A. (2017).
 \newblock {\em Statistical intervals: a guide for practitioners and researchers}.
 \newblock John Wiley \& Sons.
+
+\bibitem[Mountain and Sherlock, 2022]{mountain2022recruitment}
+Mountain, R. and Sherlock, C. (2022).
+\newblock Recruitment prediction for multicenter clinical trials based on a hierarchical poisson--gamma model: Asymptotic analysis and improved intervals.
+\newblock {\em Biometrics}, {\bf78},  636--648.
 
 \bibitem[{National Institute of Allergy and Infectious Diseases}, 2021]{NIH2021}
 {National Institute of Allergy and Infectious Diseases} (2021).
