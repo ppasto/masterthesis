@@ -404,13 +404,13 @@ for (i in 1:n) {
 final_counts <- cval_cum_matrix[, length(t)]
 
 # Reset graphics device to avoid layout issues
-# if (dev.cur() > 1) dev.off()
+if (dev.cur() > 1) dev.off()
 
 # Set up layout: Histogram (small, upper right) + Main plot
 layout(matrix(c(1, 2), ncol = 2), widths = c(3, 1), heights = c(4, 1))  
 
 # Plot the main accrual time series
-par(mar = c(4.1, 4.1, 2.1, 2.1))  # Restore normal margins
+par(mar = c(4.1, 2.1, 2.1, 1))  # Adjust margins for visibility
 plot(t,  cval_cum_matrix[1,], 
 		 type="n", 
 		 main = "Accrual of 100 studies", 
@@ -423,8 +423,8 @@ for(i in 1:n){
 
 # Add reference lines
 lines(t, lambda*t)
-lines(t, qpois(p = 0.975, lambda*t), lty = 2, col = "red")
-lines(t, qpois(p = 0.025, lambda*t), lty = 2, col = "red")
+lines(t, qnbinom(p = 0.975, size = alpha, mu = lambda*t), lty = 2, col = "red")
+lines(t, qnbinom(p = 0.025, size = alpha, mu = lambda*t), lty = 2, col = "red")
 
 legend("topleft",
 			 legend = c("2.5th - 97.5th Percentile [95%]",
@@ -436,13 +436,24 @@ legend("topleft",
 			 cex = 0.5)  
 
 # Plot histogram in the smaller upper right section
-par(mar = c(20, 0.01, 2.1, 2.1))  # Minimize margins
+par(mar = c(12, 0.1, 2.1, 1))  # Adjust margins for visibility
 hist_bins <- seq(min(final_counts), max(final_counts), length.out = 15)
 hist_data <- hist(final_counts, breaks = hist_bins, plot = FALSE)
 
 barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray", 
 				axes = FALSE, xlab = "", ylab = "")
 
+
+# Plot histogram in the smaller upper right section
+hist(final_counts, 
+		 breaks = 15, 
+		 col = "gray", 
+		 main = "",
+		 xlab = "", 
+		 ylab = "", 
+		 border = "black",
+		 axes = FALSE,
+		 horiz = TRUE)
 
 
 ###################################### SIMULATIONS
