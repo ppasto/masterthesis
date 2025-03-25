@@ -407,9 +407,10 @@ p(c)&=\int^\infty_0 p(c|\lambda) p(\lambda) d\lambda\\
 &=\frac{\beta^\alpha}{c!\Gamma(\alpha)}\int^\infty_0 \lambda^{\alpha+c-1}\exp(-\lambda)\exp(-\lambda\beta)d\lambda\\
 &=\frac{\beta^\alpha\Gamma(\alpha+c)}{c!\Gamma(\alpha) (\beta+1)^{\alpha+c}}\underbrace{\int^\infty_0 \frac{(\beta+1)^{\alpha+c}}{\Gamma(\alpha+c)} \lambda^{\alpha+c-1}\exp(-(\beta+1)\lambda)d\lambda}_{=1}\\
 &=\beta^\alpha\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{\alpha+c}\\
-&=\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+1}\Bigg)^{\alpha}
+&=\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+1}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+1}\Bigg)^{\alpha}\\
+& c = 0,1,2,3,\ldots
 \end{align*}
-Thus, $C|\Lambda\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+1}\Bigg)$
+Thus, $C\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+1}\Bigg)$
 
 
 
@@ -727,11 +728,25 @@ p(c)&=\int^\infty_0 p(c|\lambda) p(\lambda) d\lambda\\
 &=\int^\infty_0 \frac{(\lambda t)^c\exp(-\lambda t)}{c!}\Bigg[(\lambda t)^{\alpha-1}\exp(-\beta\lambda t)\frac{\beta^\alpha}{\Gamma(\alpha)}\Bigg]d\lambda\\
 &=\frac{\beta^\alpha t^c}{c!\Gamma(\alpha)}\int^\infty_0 \lambda^{\alpha+c-1}\exp(-\lambda t)\exp(-\lambda\beta)d\lambda\\
 &=\frac{\beta^\alpha\Gamma(\alpha+c) t^c}{c!\Gamma(\alpha) (\beta+t)^{\alpha+c}}\underbrace{\int^\infty_0 \frac{(\beta+t)^{\alpha+c}}{\Gamma(\alpha+c)} \lambda^{\alpha+c-1}\exp(-(\beta+t)\lambda)d\lambda}_{=1}\\
-&=\beta^\alpha\binom{\alpha+c-t}{\alpha-t}\Bigg (\frac{1}{\beta+t}\Bigg)^{\alpha+c}\\
-&=\binom{\alpha+c-t}{\alpha-t}\Bigg (\frac{1}{\beta+t}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+t}\Bigg)^{\alpha}
+&=\beta^\alpha t^c\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+t}\Bigg)^{\alpha+c}\\
+&=\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{t}{\beta+t}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+t}\Bigg)^{\alpha}\\
+& c = 0,1,2,3,\ldots
 \end{align*}
-Thus, $C|\Lambda\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+t}\Bigg)$
+Thus, $C\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+t}\Bigg)$
 
+
+Using the expressions of iterated expectation and variance \citep{held2014applied} and the expectation and variance from the respective random variables $C(t)|\Lambda \sim \textrm{Po}(\Lambda t)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$, we have that:
+
+
+\begin{align*}
+\textrm{E}(C(t)) &= \textrm{E}_{\Lambda}[\textrm{E}_{C(t)} (C(t)|\Lambda)] = \textrm{E}_{\Lambda}[\Lambda t] = t\alpha/\beta
+\end{align*}
+
+\begin{align*}
+\textrm{Var}(C(t)) &= \textrm{Var}_{\Lambda}[\textrm{E}_{C(t)} (C(t)|\Lambda)] + \textrm{E}_{\Lambda}[\textrm{Var}_{C(t)}(C(t)|\Lambda)]\\
+&=\textrm{Var}_{\Lambda}[\Lambda t] + \textrm{E}_{\Lambda}[\Lambda t] \\
+&=t^2\alpha/\beta^2 + t\alpha/\beta = \frac{t\alpha(\beta+t)}{\beta^2}
+\end{align*}
 
 
 \section{Important questions when forecasting recruitment at the design-stage of a study}
