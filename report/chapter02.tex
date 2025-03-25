@@ -214,6 +214,19 @@ For example, if we assume $\lambda = 0.591$ per day and $t=550$, we can show the
 
 % The Negative Binomial $X\sim\textrm{NBin}(r,\pi)$ models the number of 
 % \textit{trials} in a sequence of independent and identically distributed Bernouillis before $r$ \textit{successes} occur. Instead of representing the number of successes in $n$ trials like a $Y\sim \textrm{Bin} (n, \pi)$, with the Negative Binomial we are looking at how many trials will it take to obtain $r$ successes.
+\begin{figure}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
+
+{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-7-1} 
+
+}
+
+
+\end{knitrout}
+	\caption{Sensitivity analysis between Poisson distribution with $\lambda = 0.591$ and Negative Binomial changing parameters of Gamma prior that maintain same expectation $\frac{\alpha}{\beta} = 0.591$ with $t=1$.}
+  \label{fig:2_6}
+\end{figure}
 
 \subsection{Recruitment in one unit of time}
 Let $C|\Lambda \sim \textrm{Po}(\Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$
@@ -333,7 +346,7 @@ How do we get to our formulation of the PMF:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
 
-{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-7-1} 
+{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-8-1} 
 
 }
 
@@ -349,7 +362,7 @@ How do we get to our formulation of the PMF:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
 
-{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-8-1} 
+{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-9-1} 
 
 }
 
@@ -372,13 +385,13 @@ In Figure \ref{fig:2_6}, the Poisson distribution captures aleatory uncertainty,
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
 
-{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-9-1} 
+{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-10-1} 
 
 }
 
 
 \end{knitrout}
-	\caption{Sensitivity analysis between Poisson distribution with $\lambda = 0.591$ and Negative Binomial changing parameters of Gamma prior that maintain same expectation $\frac{\alpha}{\beta} = 0.591$.}
+	\caption{Sensitivity analysis between Poisson distribution with $\lambda = 0.591$ and Negative Binomial changing parameters of Gamma prior that maintain same expectation $\frac{\alpha}{\beta} = 0.591$ with $t=550$.}
   \label{fig:2_6}
 \end{figure}
 

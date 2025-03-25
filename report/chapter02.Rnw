@@ -322,6 +322,82 @@ legend("topleft",
 
 % The Negative Binomial $X\sim\textrm{NBin}(r,\pi)$ models the number of 
 % \textit{trials} in a sequence of independent and identically distributed Bernouillis before $r$ \textit{successes} occur. Instead of representing the number of successes in $n$ trials like a $Y\sim \textrm{Bin} (n, \pi)$, with the Negative Binomial we are looking at how many trials will it take to obtain $r$ successes.
+\begin{figure}
+<<echo = FALSE,  fig.width=7, fig.height=5>>=
+par(mfrow=c(1,3))
+curve(dgamma(x, shape = 324, rate = 548), 
+			from = 0, to = 1,
+			main = "Prior", 
+			xlab = "Recruitment rate", 
+			ylab = "",
+			col = "red")
+
+curve(dgamma(x, shape = 32.4, rate = 54.8), add = TRUE,
+			col = "blue")
+
+curve(dgamma(x, shape = 3.24, rate = 5.48), add = TRUE,
+			col = "green")
+
+legend("topleft",
+			 legend = c(expression("G (" ~ alpha == 324 ~ beta == 548 ~ ")"),
+			 						expression("G (" ~ alpha == 32.4 ~ beta == 54.8 ~ ")"),
+			 						expression("G (" ~ alpha == 3.24 ~ beta == 5.48 ~ ")")),
+			 col = c("red", "blue", "green"),
+			 lty = c(1, 1),
+			 bg = "white",
+			 cex = 0.6)
+
+
+plot(0:5, dpois(0:5, lambda), 
+		 type = "l",
+		 main = "PMF", 
+		 xlab = "Counts", 
+		 ylab = "")
+
+
+lines(0:5, dnbinom(0:5, size = 324, mu = lambda), col = "red")
+lines(0:5, dnbinom(0:5, size = 32.4, mu = lambda), col = "blue")
+lines(0:5, dnbinom(0:5, size = 3.24, mu = lambda), col = "green")
+
+
+legend("topleft",
+       legend = c(expression(Po(lambda == 0.591)),
+                  expression(NBin ~ (alpha == 324 ~ beta == 548)),
+                  expression(NBin ~ (alpha == 32.4 ~ beta == 54.8)),
+                  expression(NBin ~ (alpha == 3.24 ~ beta == 5.48))),
+       col = c("black", "red", "blue", "green"),
+       lty = c(1, 1),
+       bg = "white",
+       cex = 0.6)
+
+
+plot(0:5, ppois(0:5, lambda), 
+		 type = "l",
+		 main = "CDF", 
+		 xlab = "Counts", 
+		 ylab = "")
+
+
+
+lines(0:5, pnbinom(0:5, size = 324, mu = lambda), col = "red")
+lines(0:5, pnbinom(0:5, size = 32.4, mu = lambda), col = "blue")
+lines(0:5, pnbinom(0:5, size = 3.24, mu = lambda), col = "green")
+
+
+legend("topleft",
+       legend = c(expression(Po(lambda == 0.591)),
+                  expression(NBin ~ (alpha == 324 ~ beta == 548)),
+                  expression(NBin ~ (alpha == 32.4 ~ beta == 54.8)),
+                  expression(NBin ~ (alpha == 3.24 ~ beta == 5.48))),
+       col = c("black", "red", "blue", "green"),
+       lty = c(1, 1),
+       bg = "white",
+       cex = 0.6)
+
+@
+	\caption{Sensitivity analysis between Poisson distribution with $\lambda = 0.591$ and Negative Binomial changing parameters of Gamma prior that maintain same expectation $\frac{\alpha}{\beta} = 0.591$ with $t=1$.}
+  \label{fig:2_6}
+\end{figure}
 
 \subsection{Recruitment in one unit of time}
 Let $C|\Lambda \sim \textrm{Po}(\Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$
@@ -639,7 +715,7 @@ legend("topleft",
        cex = 0.6)
 
 @
-	\caption{Sensitivity analysis between Poisson distribution with $\lambda = 0.591$ and Negative Binomial changing parameters of Gamma prior that maintain same expectation $\frac{\alpha}{\beta} = 0.591$.}
+	\caption{Sensitivity analysis between Poisson distribution with $\lambda = 0.591$ and Negative Binomial changing parameters of Gamma prior that maintain same expectation $\frac{\alpha}{\beta} = 0.591$ with $t=550$.}
   \label{fig:2_6}
 \end{figure}
 
@@ -660,7 +736,7 @@ Thus, $C|\Lambda\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+t}\Bigg)$
 
 \section{Important questions when forecasting recruitment at the design-stage of a study}
 
-By normal approximation to the Poisson distribution $C\sim \textrm{N}(\mu=\lambda T, \sigma^2=(\lambda T)^2)$, we know that the probability of recruiting the desired $N$ participants is 0.5. Which means that the study has 50\% chance of obtaining the desired sample size in the suggested $T$ \citep{carter2004application}. We would also be assuming that the recruitment rate is constant over time.
+By normal approximation to the Poisson distribution $C(t)\sim \textrm{N}(\mu=\lambda t, \sigma^2=(\lambda t)^2)$, we know that the probability of recruiting the desired $N$ participants is 0.5. Which means that the study has 50\% chance of obtaining the desired sample size in the suggested $T$ \citep{carter2004application}. We would also be assuming that the recruitment rate is constant over time.
 
 In fact, we do not need normal approximation to see this. This can be shown with the Poisson distribution itself. We only need to specify the probability above $\lambda t$, for example, 0.5. For large $\lambda$, 50\% of the distribution will be below $\lambda t$. With $\lambda < 1$ this is no longer the case. 
 
