@@ -42,7 +42,7 @@ In clinical research, \textbf{Statistical Analysis} involves applying statistica
 
 The number of patients decreases at each stage of a clinical study, from defining the target population to final statistical analysis, see Figure \ref{fig:2_1_b}. This process is known as patient leakage \citep{desai2014preventing}, alternative terms are attrition or retention.
 
-We generalized the notion of patient leakage found in trial profiles such as the one found in Figure \ref{fig:2_0}. We conceptualized the different stages in a clinical trial and studied the different reasons why we find patient attrition when moving to the following stage in a study.
+We generalized the notion of patient leakage found in trial profiles such as the one found in Figure \ref{fig:2_0}. We outlined the various stages of a clinical trial and analyzed the key factors contributing to patient attrition as they transition from one stage to the next.
 
 Eligibility criteria narrow down participants, and enrollment further reduces numbers as only those meeting strict criteria are registered. Randomization assigns individuals to treatment groups, but some may later be excluded due to protocol deviations, missing data, or loss to follow-up. 
 
@@ -143,7 +143,7 @@ and visualized in Figure \ref{fig:2_2} and Figure \ref{fig:2_5}.
 
 \section{Counts: Model based on Poisson Process}
 
-One way to incorporate variation in the mean number of participants per month is by assuming that participants enroll according to a known probability distribution, such as the Poisson distribution \citep{carter2004application}. This approach simulates trial accrual using a random number generator and records the time required to reach the target sample size over multiple iterations, \cite{carter2005practical}. 
+One way to incorporate variation in the mean number of participants per day is by assuming that participants enroll according to a known probability distribution, such as the Poisson distribution \citep{carter2004application}. This approach simulates trial accrual using a random number generator and records the time required to reach the target sample size over multiple iterations, \cite{carter2005practical}. 
 
 The resulting empirical distribution helps estimate the probability of completing enrollment within a given timeframe and assess variability in accrual time. This method is particularly useful when a trial has a fixed duration, as it allows researchers to determine the necessary number of clinical centers and monthly enrollment rate to achieve a high probability (e.g., 80\%) of completing enrollment on time, \cite{carter2005practical}.
 
