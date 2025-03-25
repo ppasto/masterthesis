@@ -169,6 +169,10 @@ and visualized in Figure \ref{fig:2_2} and Figure \ref{fig:2_5}.
 
 \section{Counts: Model based on Poisson Process}
 
+One way to incorporate variation in the mean number of participants per month is by assuming that participants enroll according to a known probability distribution, such as the Poisson distribution \citep{carter2004application}. This approach simulates trial accrual using a random number generator and records the time required to reach the target sample size over multiple iterations, \cite{carter2005practical}. 
+
+The resulting empirical distribution helps estimate the probability of completing enrollment within a given timeframe and assess variability in accrual time. This method is particularly useful when a trial has a fixed duration, as it allows researchers to determine the necessary number of clinical centers and monthly enrollment rate to achieve a high probability (e.g., 80\%) of completing enrollment on time, \cite{carter2005practical}.
+
 The Poisson distribution $C\sim \rm{Po} (\lambda)$ allows us to explain the recruitment of patients. It is a discrete variable that expresses the probability of a given number of events (in our case, patient recruitment) occurring in a fixed unit interval of time. We assume that these events occur with a known constant rate $\lambda$ and are independent of each other.
 
 \begin{align*}
@@ -191,7 +195,7 @@ The recruitment of patients in one unit of time follows $C\sim \textrm{Po} (\lam
 As we can see in Table \ref{tab:count_modeling}
 
 \subsection{Accrual at time point $t$}
-At time point $t$, the accrual follows $C\sim \textrm{Po} (\lambda t)$. Using the infinitely divisible property from the Poisson applicable to independent random variables, $\underbrace{\textrm{Po} (\lambda) +\cdots +\textrm{Po} (\lambda)}_{t \ \text{times}} = \textrm{Po} (\lambda t)$. We assume that the recruitment of patients in t unit time intervals is independent from another. As we can see in Table \ref{tab:count_modeling_2}, the expectation and variance are the following:
+At time point $t$, the accrual follows $C\sim \textrm{Po} (\lambda t)$. Using the infinitely divisible property from the Poisson applicable to independent random variables, $\underbrace{\textrm{Po} (\lambda) +\cdots +\textrm{Po} (\lambda)}_{t \ \text{times}} = \textrm{Po} (\lambda t)$. We assume that the recruitment of patients in $t$ unit time intervals is independent from another. As we can see in Table \ref{tab:count_modeling_2}, the expectation and variance are the following:
 
 \begin{align*}
 \textrm{E}C(t) & = \lambda t \\
