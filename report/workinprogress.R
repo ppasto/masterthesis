@@ -444,16 +444,51 @@ barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray",
 				axes = FALSE, xlab = "", ylab = "")
 
 
-# Plot histogram in the smaller upper right section
-hist(final_counts, 
-		 breaks = 15, 
-		 col = "gray", 
-		 main = "",
-		 xlab = "", 
-		 ylab = "", 
-		 border = "black",
-		 axes = FALSE,
-		 horiz = TRUE)
+########################### Poisson-Gamma Process with Uncertainty Bands V2
+# Set parameters
+n <- 100
+t <- seq(1, 550, 1)
+lambda <- 0.591
+alpha <- 324
+beta <- 548
+
+# Compute Poisson quantiles over time
+q_975_line <- qnbinom(p = 0.975, size = alpha, mu = lambda*t)
+q_900_line <- qnbinom(p = 0.900, size = alpha, mu = lambda*t)
+q_750_line <- qnbinom(p = 0.75, size = alpha, mu = lambda*t)
+q_250_line <- qnbinom(p = 0.25, size = alpha, mu = lambda*t)
+q_100_line <- qnbinom(p = 0.1, size = alpha, mu = lambda*t)
+q_025_line <- qnbinom(p = 0.025, size = alpha, mu = lambda*t)
+
+# Define x and y axis limits
+x_limits <- range(t)
+y_limits <- range(cval_cum_matrix)  # Ensures all quantiles fit
+
+# Create the plot
+par(mar = c(4.1, 4.1, 2.1, 2.1))
+plot(NA, NA, xlim = x_limits, ylim = y_limits, xlab = "Time", ylab = "Count",
+		 main = "Quantiles")
+
+# Fill the area with a green gradient
+polygon(c(t, rev(t)), c(q_975_line, rev(q_900_line)), col = rgb(144/255, 238/255, 144/255, 0.4), border = NA) # Light Green
+polygon(c(t, rev(t)), c(q_900_line, rev(q_750_line)), col = rgb(50/255, 205/255, 50/255, 0.4), border = NA)  # Lime Green
+polygon(c(t, rev(t)), c(q_750_line, rev(q_250_line)), col = rgb(0/255, 100/255, 0/255, 0.4), border = NA)    # Dark Green
+polygon(c(t, rev(t)), c(q_250_line, rev(q_100_line)), col = rgb(50/255, 205/255, 50/255, 0.4), border = NA)  # Lime Green
+polygon(c(t, rev(t)), c(q_100_line, rev(q_025_line)), col = rgb(144/255, 238/255, 144/255, 0.4), border = NA) # Light Green
+
+# Add the mean trend line
+lines(t, lambda * t, col = "black", lwd = 2)  
+
+# Legend
+legend("topleft",
+			 legend = c("2.5th - 97.5th Percentile [95%]", 
+			 					 "10th - 90th Percentile     [80%]", 
+			 					 "25th - 75th Percentile     [50%]", 
+			 					 "Expected Accrual"),
+			 col = c(rgb(144/255, 238/255, 144/255, 0.4), rgb(50/255, 205/255, 50/255, 0.4), rgb(0/255, 100/255, 0/255, 0.4), "black"),
+			 pch = c(15, 15, 15, NA), lty = c(NA, NA, NA, 1), lwd = c(NA, NA, NA, 2),
+			 bg = "white",
+			 cex = 0.5)
 
 
 ###################################### SIMULATIONS
