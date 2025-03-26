@@ -380,7 +380,7 @@ legend("topleft",
 
 
 ########################### Poisson-Gamma Estimate and Spread V2
-
+######### FIRST OPTION
 # 100 PATHS
 # Set parameters
 set.seed(2025)
@@ -442,6 +442,79 @@ hist_data <- hist(final_counts, breaks = hist_bins, plot = FALSE)
 
 barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray", 
 				axes = FALSE, xlab = "", ylab = "")
+
+############# SECOND OPTION
+####----SECOND OPTION----####
+## KEEP ONLY histograms comparing V1 and V2 of PoG
+## USE AT LEAST 100000 (1m)
+## USE truehist() from MASS library
+
+# 100 PATHS
+# Set parameters
+set.seed(2025)
+
+n <- 100
+t <- seq(1, 550, 1)
+lambda <- 0.591
+
+alpha <- 324
+beta <- 548
+# Generate cumulative Poisson paths
+cval_cum_matrix_2 <- matrix(NA, nrow = n, ncol = length(t))
+cval <- rep(NA, length(t))
+
+for (i in 1:n) {
+	for(j in 1:length(t)){
+		cval[j] <- rpois(1, lambda = rgamma(1, shape = alpha, rate = beta))
+	}
+	cval_cum_matrix_2[i, ] <- cumsum(cval)  
+}
+
+# Extract final counts for histogram
+final_counts_2 <- cval_cum_matrix_2[, length(t)]
+
+# Reset graphics device to avoid layout issues
+if (dev.cur() > 1) dev.off()
+
+# Set up layout: Histogram (small, upper right) + Main plot
+layout(matrix(c(1, 2), ncol = 2), widths = c(3, 1), heights = c(4, 1))  
+
+# Plot the main accrual time series
+par(mar = c(4.1, 2.1, 2.1, 1))  # Adjust margins for visibility
+plot(t,  cval_cum_matrix_2[1,], 
+		 type="n", 
+		 main = "Accrual of 100 studies", 
+		 xlab = "Time", 
+		 ylab = "Count")
+
+for(i in 1:n){
+	lines(t,  cval_cum_matrix_2[i,], col = "lightgray")
+}
+
+# Add reference lines
+lines(t, lambda*t)
+lines(t, qnbinom(p = 0.975, size = alpha, mu = lambda*t), lty = 2, col = "red")
+lines(t, qnbinom(p = 0.025, size = alpha, mu = lambda*t), lty = 2, col = "red")
+
+legend("topleft",
+			 legend = c("2.5th - 97.5th Percentile [95%]",
+			 					 "Expected Accrual"),
+			 col = c("red", "black"),
+			 lty = c(2, 1),
+			 lwd = c(1,2),
+			 bg = "white",
+			 cex = 0.5)  
+
+# Plot histogram in the smaller upper right section
+par(mar = c(12, 0.1, 2.1, 1))  # Adjust margins for visibility
+hist_bins <- seq(min(final_counts_2), max(final_counts_2), length.out = 15)
+hist_data <- hist(final_counts_2, breaks = hist_bins, plot = FALSE)
+
+barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray", 
+				axes = FALSE, xlab = "", ylab = "")
+
+
+
 
 
 ########################### Poisson-Gamma Process with Uncertainty Bands V2
