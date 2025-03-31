@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.18)  26 MAR 2025 16:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.18)  31 MAR 2025 11:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -400,6 +400,9 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 
 LaTeX Warning: Label `fig:2_6' multiply defined.
 
+
+LaTeX Warning: Label `fig:2_7' multiply defined.
+
 )
 \openout1 = `msc_report.aux'.
 
@@ -484,7 +487,7 @@ Chapter 1.
 
 ]
 Chapter 2.
-<whelan_flow.png, id=128, 417.56pt x 634.37pt>
+<whelan_flow.png, id=133, 417.56pt x 634.37pt>
 File: whelan_flow.png Graphic file (type png)
 <use whelan_flow.png>
 Package pdftex.def Info: whelan_flow.png  used on input line 24.
@@ -492,7 +495,7 @@ Package pdftex.def Info: whelan_flow.png  used on input line 24.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<fig_2_1_a.png, id=150, 645.41125pt x 401.5pt>
+<fig_2_1_a.png, id=155, 645.41125pt x 401.5pt>
 File: fig_2_1_a.png Graphic file (type png)
 <use fig_2_1_a.png>
 Package pdftex.def Info: fig_2_1_a.png  used on input line 38.
@@ -503,7 +506,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 [3]
-<fig_2_1_b.png, id=186, 752.8125pt x 408.52625pt>
+<fig_2_1_b.png, id=191, 752.8125pt x 408.52625pt>
 File: fig_2_1_b.png Graphic file (type png)
 <use fig_2_1_b.png>
 Package pdftex.def Info: fig_2_1_b.png  used on input line 52.
@@ -521,22 +524,22 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [5 <./fig_2_1_a.png> <./fig_2_1_b.png>]
 
 [6]
-<figure/ch02_figunnamed-chunk-3-1.pdf, id=281, 505.89pt x 505.89pt>
+<figure/ch02_figunnamed-chunk-3-1.pdf, id=286, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-3-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-3-1.pdf>
 Package pdftex.def Info: figure/ch02_figunnamed-chunk-3-1.pdf  used on input line 185.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
-<figure/ch02_figunnamed-chunk-4-1.pdf, id=292, 505.89pt x 505.89pt>
+<figure/ch02_figunnamed-chunk-4-1.pdf, id=297, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-4-1.pdf>
 Package pdftex.def Info: figure/ch02_figunnamed-chunk-4-1.pdf  used on input line 200.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
-<figure/ch02_figunnamed-chunk-5-1.pdf, id=293, 505.89pt x 505.89pt>
+<figure/ch02_figunnamed-chunk-5-1.pdf, id=298, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-5-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-5-1.pdf>
 Package pdftex.def Info: figure/ch02_figunnamed-chunk-5-1.pdf  used on input line 214.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
-<figure/ch02_figunnamed-chunk-6-1.pdf, id=294, 505.89pt x 505.89pt>
+<figure/ch02_figunnamed-chunk-6-1.pdf, id=299, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-6-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-6-1.pdf>
 Package pdftex.def Info: figure/ch02_figunnamed-chunk-6-1.pdf  used on input line 229.
@@ -549,7 +552,7 @@ Overfull \hbox (18.1494pt too wide) in paragraph at lines 239--239
 
 
 [7]
-<figure/ch02_figunnamed-chunk-7-1.pdf, id=316, 505.89pt x 361.35pt>
+<figure/ch02_figunnamed-chunk-7-1.pdf, id=321, 505.89pt x 361.35pt>
 File: figure/ch02_figunnamed-chunk-7-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-7-1.pdf>
 Package pdftex.def Info: figure/ch02_figunnamed-chunk-7-1.pdf  used on input line 249.
@@ -581,12 +584,12 @@ Overfull \hbox (25.46718pt too wide) has occurred while \output is active
 [11 <./figure/ch02_figunnamed-chunk-6-1.pdf>]
 
 [12 <./figure/ch02_figunnamed-chunk-7-1.pdf>]
-<figure/ch02_figunnamed-chunk-8-1.pdf, id=404, 505.89pt x 505.89pt>
+<figure/ch02_figunnamed-chunk-8-1.pdf, id=409, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-8-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-8-1.pdf>
 Package pdftex.def Info: figure/ch02_figunnamed-chunk-8-1.pdf  used on input line 380.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
-<figure/ch02_figunnamed-chunk-9-1.pdf, id=415, 505.89pt x 505.89pt>
+<figure/ch02_figunnamed-chunk-9-1.pdf, id=420, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-9-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-9-1.pdf>
 Package pdftex.def Info: figure/ch02_figunnamed-chunk-9-1.pdf  used on input line 396.
@@ -599,7 +602,7 @@ Overfull \hbox (25.46718pt too wide) has occurred while \output is active
  []
 
 [13]
-<figure/ch02_figunnamed-chunk-10-1.pdf, id=433, 505.89pt x 361.35pt>
+<figure/ch02_figunnamed-chunk-10-1.pdf, id=438, 505.89pt x 361.35pt>
 File: figure/ch02_figunnamed-chunk-10-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-10-1.pdf>
 Package pdftex.def Info: figure/ch02_figunnamed-chunk-10-1.pdf  used on input line 421.
@@ -622,26 +625,27 @@ Overfull \hbox (25.46718pt too wide) has occurred while \output is active
 [15 <./figure/ch02_figunnamed-chunk-9-1.pdf>]
 
 [16 <./figure/ch02_figunnamed-chunk-10-1.pdf>]
-Overfull \hbox (18.06136pt too wide) in paragraph at lines 462--462
+<figure/ch02_figunnamed-chunk-11-1.pdf, id=481, 505.89pt x 505.89pt>
+File: figure/ch02_figunnamed-chunk-11-1.pdf Graphic file (type pdf)
+<use figure/ch02_figunnamed-chunk-11-1.pdf>
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-11-1.pdf  used on input line 467.
+(pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
+
+Overfull \hbox (18.06136pt too wide) in paragraph at lines 478--478
 []\T1/cmr/bx/n/14.4 Important ques-tions when fore-cast-ing re-cruit-ment at the design-
  []
 
-) (./chapter03.tex
 
 
-Overfull \hbox (120.03354pt too wide) has occurred while \output is active
-\T1/cmr/m/sl/10.95 2.6.  IMPORTANT QUESTIONS WHEN FORECASTING RECRUITMENT AT THE DESIGN-STAGE OF A STUDY \T1/cmr/m/n/10.95 17
- []
+[17 <./figure/ch02_figunnamed-chunk-11-1.pdf>]) (./chapter03.tex
 
-[17]
-
-[18
-
-]
+[18]
 Chapter 3.
 ) (./chapter04.tex
 
-[19]
+[19
+
+]
 
 [20
 
@@ -690,23 +694,23 @@ L3 programming layer <2025-01-18>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `msc_report.out' has not changed.
-(rerunfilecheck)             Checksum: 4D02E5694831281CB2AC01CB551D0884;870.
+(rerunfilecheck)             Checksum: AC3975DFA8CBC3FE3E545CBE414706E3;959.
 Package rerunfilecheck Info: File `msc_report.brf' has not changed.
-(rerunfilecheck)             Checksum: DEB79B20A36DD50CEA73E4EA49F933AC;2752.
+(rerunfilecheck)             Checksum: F5912E601454D592F964E1BAE0161576;2752.
  ) 
 Here is how much of TeX's memory you used:
- 15065 strings out of 475129
- 243888 string characters out of 5762560
- 660331 words of memory out of 5000000
- 37710 multiletter control sequences out of 15000+600000
+ 15077 strings out of 475129
+ 244338 string characters out of 5762560
+ 660164 words of memory out of 5000000
+ 37720 multiletter control sequences out of 15000+600000
  581849 words of font info for 83 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  95i,16n,96p,891b,489s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsl1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1000.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1200.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1440.600pk></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on msc_report.pdf (34 pages, 1026147 bytes).
+Output written on msc_report.pdf (34 pages, 1032152 bytes).
 PDF statistics:
- 1143 PDF objects out of 1200 (max. 8388607)
- 572 compressed objects within 6 object streams
- 114 named destinations out of 1000 (max. 500000)
- 160 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1159 PDF objects out of 1200 (max. 8388607)
+ 587 compressed objects within 6 object streams
+ 116 named destinations out of 1000 (max. 500000)
+ 173 words of extra memory for PDF output out of 10000 (max. 10000000)
 

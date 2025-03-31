@@ -446,19 +446,32 @@ barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray",
 ############# SECOND OPTION
 ####----SECOND OPTION----####
 ## KEEP ONLY histograms comparing V1 and V2 of PoG
-## USE AT LEAST 100000 (1m)
+## USE AT LEAST 1000000 (1m)
 ## USE truehist() from MASS library
 
 # 100 PATHS
 # Set parameters
 set.seed(2025)
 
-n <- 100
+n <- 100000
 t <- seq(1, 550, 1)
 lambda <- 0.591
 
 alpha <- 324
 beta <- 548
+### FIRST
+cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
+v_lambda <- rgamma(n, shape = alpha, rate = beta)
+
+for (i in 1:n) {
+	cval <- rpois(length(t), lambda = v_lambda[i])
+	cval_cum_matrix[i, ] <- cumsum(cval)  
+}
+
+# Extract final counts for histogram
+final_counts <- cval_cum_matrix[, length(t)]
+
+### SECOND
 # Generate cumulative Poisson paths
 cval_cum_matrix_2 <- matrix(NA, nrow = n, ncol = length(t))
 cval <- rep(NA, length(t))
@@ -473,45 +486,82 @@ for (i in 1:n) {
 # Extract final counts for histogram
 final_counts_2 <- cval_cum_matrix_2[, length(t)]
 
-# Reset graphics device to avoid layout issues
-if (dev.cur() > 1) dev.off()
 
-# Set up layout: Histogram (small, upper right) + Main plot
-layout(matrix(c(1, 2), ncol = 2), widths = c(3, 1), heights = c(4, 1))  
+#################################### MORE EFFICIENT:
+set.seed(2025)
 
-# Plot the main accrual time series
-par(mar = c(4.1, 2.1, 2.1, 1))  # Adjust margins for visibility
-plot(t,  cval_cum_matrix_2[1,], 
-		 type="n", 
-		 main = "Accrual of 100 studies", 
-		 xlab = "Time", 
-		 ylab = "Count")
+n <- 100000
+t <- seq(1, 550, 1)
+lambda <- 0.591
 
-for(i in 1:n){
-	lines(t,  cval_cum_matrix_2[i,], col = "lightgray")
-}
+alpha <- 324
+beta <- 548
 
-# Add reference lines
-lines(t, lambda*t)
-lines(t, qnbinom(p = 0.975, size = alpha, mu = lambda*t), lty = 2, col = "red")
-lines(t, qnbinom(p = 0.025, size = alpha, mu = lambda*t), lty = 2, col = "red")
+### FIRST
+v_lambda <- rgamma(n, shape = alpha, rate = beta)
 
-legend("topleft",
-			 legend = c("2.5th - 97.5th Percentile [95%]",
-			 					 "Expected Accrual"),
-			 col = c("red", "black"),
-			 lty = c(2, 1),
-			 lwd = c(1,2),
-			 bg = "white",
-			 cex = 0.5)  
+# Use lapply and simplify2array instead of a for-loop
+cval_cum_matrix <- t(simplify2array(lapply(v_lambda, function(l) cumsum(rpois(length(t), lambda = l)))))
 
-# Plot histogram in the smaller upper right section
-par(mar = c(12, 0.1, 2.1, 1))  # Adjust margins for visibility
-hist_bins <- seq(min(final_counts_2), max(final_counts_2), length.out = 15)
-hist_data <- hist(final_counts_2, breaks = hist_bins, plot = FALSE)
+# Extract final counts for histogram
+final_counts <- cval_cum_matrix[, length(t)]
 
-barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray", 
-				axes = FALSE, xlab = "", ylab = "")
+### SECOND
+# Vectorized approach for the second process
+cval_cum_matrix_2 <- t(simplify2array(
+	lapply(1:n, function(x) cumsum(rpois(length(t), lambda = rgamma(1, shape = alpha, rate = beta))))
+))
+
+# Extract final counts for histogram
+final_counts_2 <- cval_cum_matrix_2[, length(t)]
+
+
+library(MASS)
+truehist(final_counts, col = rgb(1, 0, 0, 0.4), main = "Comparison", xlab = "Counts", ylab = "Density")
+par(new = TRUE)
+truehist(final_counts_2, col = rgb(0, 0, 1, 0.4), axes = FALSE, xlab = "", ylab = "")
+
+legend("topright", legend = c("Version 1", "Version 2"), fill = c(rgb(1, 0, 0, 0.4), rgb(0, 0, 1, 0.4)))
+
+# # Reset graphics device to avoid layout issues
+# if (dev.cur() > 1) dev.off()
+# 
+# # Set up layout: Histogram (small, upper right) + Main plot
+# layout(matrix(c(1, 2), ncol = 2), widths = c(3, 1), heights = c(4, 1))  
+# 
+# # Plot the main accrual time series
+# par(mar = c(4.1, 2.1, 2.1, 1))  # Adjust margins for visibility
+# plot(t,  cval_cum_matrix_2[1,], 
+# 		 type="n", 
+# 		 main = "Accrual of 100 studies", 
+# 		 xlab = "Time", 
+# 		 ylab = "Count")
+# 
+# for(i in 1:n){
+# 	lines(t,  cval_cum_matrix_2[i,], col = "lightgray")
+# }
+# 
+# # Add reference lines
+# lines(t, lambda*t)
+# lines(t, qnbinom(p = 0.975, size = alpha, mu = lambda*t), lty = 2, col = "red")
+# lines(t, qnbinom(p = 0.025, size = alpha, mu = lambda*t), lty = 2, col = "red")
+# 
+# legend("topleft",
+# 			 legend = c("2.5th - 97.5th Percentile [95%]",
+# 			 					 "Expected Accrual"),
+# 			 col = c("red", "black"),
+# 			 lty = c(2, 1),
+# 			 lwd = c(1,2),
+# 			 bg = "white",
+# 			 cex = 0.5)  
+# 
+# # Plot histogram in the smaller upper right section
+# par(mar = c(12, 0.1, 2.1, 1))  # Adjust margins for visibility
+# hist_bins <- seq(min(final_counts_2), max(final_counts_2), length.out = 15)
+# hist_data <- hist(final_counts_2, breaks = hist_bins, plot = FALSE)
+# 
+# barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray", 
+# 				axes = FALSE, xlab = "", ylab = "")
 
 
 
