@@ -38,19 +38,13 @@ options(width=74)
 
 \section{Definitions}
 
-The general notion of \textbf{Recruitment} in this Master Thesis refers to the number of patients (Counts) at the Eligibility, or Enrollment, or Randomization, or Statistical Analysis stage in Figure \ref{fig:2_1_a}. We define  \textbf{Accrual} as cumulative recruitment.
+The general notion of \textbf{Recruitment} in this Master Thesis refers to the number of patients (Counts) at the Eligibility, or Enrollment, or Randomization, or Statistical Analysis stage in Figure \ref{fig:2_1_a}. Figure \ref{fig:2_1_a} is a schematic representation of a PRISMA study flow chart inspired by a real PRISMA study flow chart in Figure \ref{fig:2_0}. We define \textbf{Accrual} as cumulative recruitment.
 
 The \textbf{Target Population} is a specific group within the broader population, defined by attributes relevant to the research question. This group is focused on criteria that match the study's goals \citep{willie2024population}. Defining the target population allows researchers to refine their objectives and recruitment methods to align with the study's aims.
 
 
 The \textbf{Eligibility} criteria are the specific requirements that individuals must meet to participate in a study. Eligible patients will be selected from the target population. Inclusion criteria specify the conditions that allow individuals to participate in the trial, particularly focusing on the medical condition of interest. Any other factors that limit eligibility are classified as exclusion criteria \citep{van2007eligibility}, conditions or circumstances that disqualify potential participants \citep{food2018evaluating}.
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.7\textwidth]{whelan_flow.png}
-  \caption{Patient flow-chart. A total of 111 patients with localized high-risk disease were ineligible due to diagnosis issues (n = 14), treatment-related toxicity or contraindications (n = 78), early radiotherapy (n = 13), or psychological problems (n = 6), while 123 eligible patients were not enrolled for other reasons. \citep{whelan2018high}.}
-  \label{fig:2_0}
-\end{figure}
 
 In clinical trials, \textbf{Enrollment} refers to the formal process of registering participants into a study after they have met all eligibility criteria and provided informed consent. This process includes verifying that each participant satisfies the inclusion and exclusion criteria outlined in the study protocol \citep{NIH2021}. It is important to distinguish between recruitment and enrollment. Recruitment involves identifying and inviting potential participants to join the study, whereas enrollment occurs after these individuals have been screened, consented, and officially registered into the trial \citep{frank2004current}. 
 
@@ -66,9 +60,16 @@ In clinical research, \textbf{Statistical Analysis} involves applying statistica
   \label{fig:2_1_a}
 \end{figure}
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{whelan_flow.png}
+  \caption{PRISMA study flow-chart \citep{whelan2018high}.}
+  \label{fig:2_0}
+\end{figure}
+
 The number of patients decreases at each stage of a clinical study, from defining the target population to final statistical analysis, see Figure \ref{fig:2_1_b}. This process is known as patient leakage \citep{desai2014preventing}, alternative terms are attrition or retention.
 
-We generalized the notion of patient leakage found in trial profiles such as the one found in Figure \ref{fig:2_0}. We outlined the various stages of a clinical trial and analyzed the key factors contributing to patient attrition as they transition from one stage to the next.
+Figure \ref{fig:2_1_a} generalizes the notion of patient leakage found in trial profiles such as the one found in Figure \ref{fig:2_0}. Figure \ref{fig:2_1_a} outlines the various stages of a clinical trial and analyzes the key factors contributing to patient attrition as they transition from one stage to the next.
 
 Eligibility criteria narrow down participants, and enrollment further reduces numbers as only those meeting strict criteria are registered. Randomization assigns individuals to treatment groups, but some may later be excluded due to protocol deviations, missing data, or loss to follow-up. 
 
@@ -141,11 +142,8 @@ Methods in Tables \ref{tab:count_modeling} and \ref{tab:count_modeling_2} are ap
 \section{Counts: Model based on Expectations}
 \label{sec:expect}
 
-If we fix the duration of a study at time $T$ and we expect that we collect $C$ patients until $T$, we deterministically predict the recruitment rate per one unit of time (without taking into consideration any uncertainty) to be $\hat{\lambda}=\frac{C}{T}$, \cite{carter2004application}.
+If we fix the duration of a study at time $T$ and we expect that we collect $C$ patients until $T$, we deterministically predict the recruitment rate per one unit of time (without taking into consideration any uncertainty) to be $\hat{\lambda}=\frac{C}{T}$ \citep{carter2004application}.
 
-This is a simple deterministic method based on a linear extrapolation of constant recruitment also called "First Order Recruitment Model" (FORM) \citep{comfort2013}. It is sometimes referred to as the \textit{unconditional approach} and its main limitation is the lack of a mechanism to account for known sources of variation in the rate, \cite{carter2005practical}. 
-
-The model based on expectations is overly simplistic and fails to account for changes in center recruitment or the regulatory environment, \cite{barnard2010systematic}. Therefore, stochastic models that incorporate randomness in the enrollment process are more suitable than the widely used deterministic approach, \cite{zhang2012modeling}.
 
 
 
@@ -165,13 +163,17 @@ $\textrm{Var}(C(t)) = \textrm{Var}(\underbrace{C+\ldots+C}_{t \ \text{times}}) =
 Both the expected accrual and its zero-variance are recorded in Table \ref{tab:count_modeling_2}
 and visualized in Figure \ref{fig:2_2} and Figure \ref{fig:2_5}.
 
+\subsection{Criticism}
 
+This is a simple deterministic method based on a linear extrapolation of the constant expected recruitment also called "First Order Recruitment Model" (FORM) \citep{comfort2013}. It is also referred to as the \textit{unconditional approach} and its main limitation is the lack of a mechanism to account for known sources of variation in the rate \citep{carter2005practical}. 
+
+The model based on expectations is overly simplistic and fails to account for changes in center recruitment or the regulatory environment \citep{barnard2010systematic}. Therefore, stochastic models that incorporate randomness in the recruitment process are more suitable than the widely used deterministic approach \citep{zhang2012modeling}.
 
 \section{Counts: Model based on Poisson Process}
 
-One way to incorporate variation in the mean number of participants per day is by assuming that participants enroll according to a known probability distribution, such as the Poisson distribution \citep{carter2004application}. This approach simulates trial accrual using a random number generator and records the time required to reach the target sample size over multiple iterations, \cite{carter2005practical}. 
+One way to incorporate variation in the mean number of participants per day is by assuming that participants are recruited according to a known probability distribution, such as the Poisson distribution \citep{carter2004application}. This approach emulates trial accrual using a random number generator and records the time required to reach the target sample size over multiple iterations \citep{carter2005practical}. 
 
-The resulting empirical distribution helps estimate the probability of completing enrollment within a given timeframe and assess variability in accrual time. This method is particularly useful when a trial has a fixed duration, as it allows researchers to determine the necessary number of clinical centers and monthly enrollment rate to achieve a high probability (e.g., 80\%) of completing enrollment on time, \cite{carter2005practical}.
+The resulting distribution helps estimate the probability of completing accrual within a given time frame and assess variability in accrual time. This method is particularly useful when a trial has a fixed duration, as it allows researchers to determine the necessary number of clinical centers and monthly recruitment rate to achieve a high probability (e.g., 80\%) of completing enrollment on time \citep{carter2005practical}.
 
 The Poisson distribution $C\sim \rm{Po} (\lambda)$ allows us to explain the recruitment of patients. It is a discrete variable that expresses the probability of a given number of events (in our case, patient recruitment) occurring in a fixed unit interval of time. We assume that these events occur with a known constant rate $\lambda$ and are independent of each other.
 
@@ -344,11 +346,16 @@ legend("topleft",
   \label{fig:2_5}
 \end{figure}
 
+\subsection{Criticism}
+
+This model was used by \cite{carter2004application} and \cite{carter2005practical}. Although this model accounts for aleatory uncertainty, the recruitment rate is assumed to be constant for the entire period of time. Therefore, an alternative method that accounts for varying recruitment rates over time is necessary.
+
 \section{Counts: Negative Binomial model derived from Poisson-Gamma model}
 
-The basic Poisson model does not account for variations in recruitment rates across centers or uncertainties in rate estimates, \cite{mountain2022recruitment}. To address this, \cite{anisimov2007modelling} propose a random effects model where recruitment follows a homogeneous Poisson process within each center, with center-specific rates drawn from a gamma distribution, a probabilistic model with Poisson-Gamma mixture distribution. In this approach, rates are treated as random variables with a prior gamma distribution, whose parameters are estimated using current recruitment data. This allows for a posterior distribution of rates to be used for recruitment prediction in an empirical Bayesian framework.  
+The basic Poisson model does not account for variations in recruitment rates or uncertainties in rate estimates \citep{mountain2022recruitment}. To address this \cite{anisimov2007modelling} propose a random effects model where recruitment follows a homogeneous Poisson process with rates drawn from a gamma distribution, a probabilistic model with Poisson-Gamma mixture distribution. In this approach, rates are treated as random variables with a prior gamma distribution, whose parameters are estimated using current recruitment data. This allows for a posterior distribution of rates to be used for recruitment prediction in an empirical Bayesian framework.  
 
-Building on this, a simple statistical model can be used to make two types of projections: a point prediction estimating when the expected number of events will reach a milestone and a Bayesian interval prediction based on simulations of future accrual and event dates. This method enables flexible forecasting for any milestone at any calendar time \citep{bagiella2001predicting}.
+Building on this, a Poisson-Gamma model can be implemented by randomly generating recruitment rates using a Gamma distribution and plugging them into a Poisson process. This model can be used to make two types of projections: a point prediction estimating when the expected number of events will reach a specific sample size and a Bayesian interval prediction based on the generation of future accrual and event dates. This method enables flexible forecasting for any milestone at any calendar time \citep{bagiella2001predicting}.
+
 
 \begin{figure}
 <<echo = FALSE,  fig.width=7, fig.height=5>>=
@@ -390,9 +397,9 @@ lines(0:5, dnbinom(0:5, size = 3.24, mu = lambda), col = "green")
 
 legend("topleft",
        legend = c(expression(Po(lambda == 0.591)),
-                  expression(NBin ~ (alpha == 324 ~ beta == 548)),
-                  expression(NBin ~ (alpha == 32.4 ~ beta == 54.8)),
-                  expression(NBin ~ (alpha == 3.24 ~ beta == 5.48))),
+                  expression(PoG ~ (alpha == 324 ~ beta == 548)),
+                  expression(PoG ~ (alpha == 32.4 ~ beta == 54.8)),
+                  expression(PoG ~ (alpha == 3.24 ~ beta == 5.48))),
        col = c("black", "red", "blue", "green"),
        lty = c(1, 1),
        bg = "white",
@@ -414,9 +421,9 @@ lines(0:5, pnbinom(0:5, size = 3.24, mu = lambda), col = "green")
 
 legend("topleft",
        legend = c(expression(Po(lambda == 0.591)),
-                  expression(NBin ~ (alpha == 324 ~ beta == 548)),
-                  expression(NBin ~ (alpha == 32.4 ~ beta == 54.8)),
-                  expression(NBin ~ (alpha == 3.24 ~ beta == 5.48))),
+                  expression(PoG ~ (alpha == 324 ~ beta == 548)),
+                  expression(PoG ~ (alpha == 32.4 ~ beta == 54.8)),
+                  expression(PoG ~ (alpha == 3.24 ~ beta == 5.48))),
        col = c("black", "red", "blue", "green"),
        lty = c(1, 1),
        bg = "white",
@@ -429,7 +436,7 @@ legend("topleft",
 
 \subsection{Recruitment in one unit of time}
 
-Let $C|\Lambda \sim \textrm{Po}(\Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$. Where $C$ represents the "recruitment proneness" in the unit of time. The parameter $\lambda$ in the integral represents the expected recruitment rate per unit of time for an individual and this recruitment rate is assumed to vary from individual to individual as it is generated by a $\textrm{G}(\alpha,\beta)$ distribution (ref. Johnson?).
+Let $C|\Lambda \sim \textrm{Po}(\Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$. Where $C$ represents the "recruitment proneness" in the unit of time. The parameter $\lambda$ in the integral represents the expected recruitment rate per unit of time for an individual and this recruitment rate is assumed to vary from individual to individual as it is generated by a $\textrm{G}(\alpha,\beta)$ distribution \citep{johnson2005univariate}.
 
 \begin{align*}
 p(c)&=\int^\infty_0 p(c|\lambda) p(\lambda) d\lambda\\
@@ -482,7 +489,7 @@ where $x$ is the number of failures.
 
 With respect to the parameters, $n>0$ represents the number of successes until 
 the experiment is stopped. The success probability in each experiment is 
-represented by $p\in[0,1]$.  In R the functions [-]\texttt{nbinom(..., size = $n$, prob = $p$)} relate to the random variable $X-r$, the number of successes (as opposed to the number of trials) until $r$ successes have been achieved \citep{held2014applied}. 
+represented by $p\in[0,1]$.  In R the functions \_\texttt{nbinom(..., size = $n$, prob = $p$)} relate to the random variable $X-r$, the number of successes (as opposed to the number of trials) until $r$ successes have been achieved \citep{held2014applied}. 
 
 \begin{align*}
 EX & = \frac{r(1-\pi)}{\pi}\\
@@ -608,7 +615,7 @@ hist_data <- hist(final_counts, breaks = hist_bins, plot = FALSE)
 barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray", 
 				axes = FALSE, xlab = "", ylab = "")
 @   
-  \caption{Poisson-Gamma distributed counts with $\mu = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from section \ref{sec:expect}, while the red dashed lines indicate Negative Binomial's 95\% aleatory uncertainty. The histogram illustrates the distribution of observed counts in 100 studies at time $t = 550$ days \citep{spiegelhalter2011visualizing, pkgacc}.}
+  \caption{Poisson-Gamma $(\alpha = 324, \beta = 548)$ distributed counts with $\mu = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from section \ref{sec:expect}, while the red dashed lines indicate Poisson-Gamma 95\% aleatory and epistemic uncertainty. The histogram illustrates the distribution of observed counts in 100 studies at time $t = 550$ days \citep{spiegelhalter2011visualizing, pkgacc}.}
   \label{fig:2_7}
 \end{figure}
 
@@ -660,7 +667,7 @@ legend("topleft",
 			 bg = "white",
 			 cex = 0.7)
 @   
-  \caption{Predicted uncertainty bands for Poisson-Gamma process with $\mu = 0.591$ per day. The black line represents the expected accrual, while the green shaded regions indicate aleatory uncertainty: the dark green band spans the interquantile range (25th - 75th percentiles), the lighter green band cover the 10th - 90th percentile range and the light green the 2.5th - 97.5th percentile range \citep{spiegelhalter2011visualizing}.}
+  \caption{Predicted uncertainty bands for Poisson-Gamma process with $\mu = 0.591$ per day. The black line represents the expected accrual, while the green shaded regions indicate aleatory and epistemic uncertainty: the dark green band spans the interquantile range (25th - 75th percentiles), the lighter green band cover the 10th - 90th percentile range and the light green the 2.5th - 97.5th percentile range \citep{spiegelhalter2011visualizing}.}
   \label{fig:2_8}
 \end{figure}
 
@@ -715,9 +722,9 @@ lines(200:500, dnbinom(200:500, size = 3.24, mu = lambda*550), col = "green")
 
 legend("topleft",
        legend = c(expression(Po(lambda == 0.591)),
-                  expression(NBin ~ (alpha == 324 ~ beta == 548)),
-                  expression(NBin ~ (alpha == 32.4 ~ beta == 54.8)),
-                  expression(NBin ~ (alpha == 3.24 ~ beta == 5.48))),
+                  expression(PoG ~ (alpha == 324 ~ beta == 548)),
+                  expression(PoG ~ (alpha == 32.4 ~ beta == 54.8)),
+                  expression(PoG ~ (alpha == 3.24 ~ beta == 5.48))),
        col = c("black", "red", "blue", "green"),
        lty = c(1, 1),
        bg = "white",
@@ -739,16 +746,16 @@ lines(200:500, pnbinom(200:500, size = 3.24, mu = lambda*550), col = "green")
 
 legend("topleft",
        legend = c(expression(Po(lambda == 0.591)),
-                  expression(NBin ~ (alpha == 324 ~ beta == 548)),
-                  expression(NBin ~ (alpha == 32.4 ~ beta == 54.8)),
-                  expression(NBin ~ (alpha == 3.24 ~ beta == 5.48))),
+                  expression(PoG ~ (alpha == 324 ~ beta == 548)),
+                  expression(PoG ~ (alpha == 32.4 ~ beta == 54.8)),
+                  expression(PoG ~ (alpha == 3.24 ~ beta == 5.48))),
        col = c("black", "red", "blue", "green"),
        lty = c(1, 1),
        bg = "white",
        cex = 0.6)
 
 @
-	\caption{Sensitivity analysis between Poisson distribution with $\lambda = 0.591$ and Negative Binomial changing parameters of Gamma prior that maintain same expectation $\frac{\alpha}{\beta} = 0.591$ with $t=550$.}
+	\caption{Sensitivity analysis between Poisson distribution with $\lambda = 0.591$ and Poisson-Gamma changing parameters of Gamma prior that maintain same expectation $\frac{\alpha}{\beta} = 0.591$ with $t=550$.}
   \label{fig:2_6}
 \end{figure}
 
@@ -854,15 +861,6 @@ legend("topright", legend = c("Version 1", "Version 2"), fill = c(rgb(1, 0, 0, 0
   \label{fig:2_7}
 \end{figure}
 
-
-\section{Important questions when forecasting recruitment at the design-stage of a study}
-
-By normal approximation to the Poisson distribution $C(t)\sim \textrm{N}(\mu=\lambda t, \sigma^2=(\lambda t)^2)$, we know that the probability of recruiting the desired $N$ participants is 0.5. Which means that the study has 50\% chance of obtaining the desired sample size in the suggested $T$ \citep{carter2004application}. We would also be assuming that the recruitment rate is constant over time.
-
-In fact, we do not need normal approximation to see this. This can be shown with the Poisson distribution itself. We only need to specify the probability above $\lambda t$, for example, 0.5. For large $\lambda$, 50\% of the distribution will be below $\lambda t$. With $\lambda < 1$ this is no longer the case. 
-
-This raises two questions which will be answered throughout this Master Thesis:
-\begin{enumerate}
-\item \textbf{Rate:} If $T$ is fixed, what does the expected rate $\lambda$ need to be to achieve a certain certainty of enrolling the total sample size $N$ within the time frame $T$?
-\item \textbf{Time:} Given a certain rate $\lambda$, how long should the recruitment period $T$ be planned to give a confidence above 50\% of recruiting the total sample size $N$? In Machine Learning, this confidence is aimed at 80\%. In \cite{carter2004application}, at 90\%.
-\end{enumerate}
+\section{Time: Model based on Expectations}
+\section{Time: Model based on Erlang distribution}
+\section{Time: Gamma-Gamma model}
