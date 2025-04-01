@@ -16,6 +16,8 @@ par(mfrow = c(1,1))
 
 # plot(data$Time, data$Counts, type = "l")
 
+####----PATHS PLOT POISSON----####
+
 # 100 PATHS
 # Set parameters
 set.seed(2025)
@@ -133,6 +135,8 @@ axis(1, at = seq(1, length(200:500), by = 50), labels = seq(200, 500, by = 50))
 # 		 xlab = "Counts",
 # 		 ylab = "Cumulative Probability")
 
+####----QUANTILES PLOT POISSON----####
+
 ########################### Poisson Process with Uncertainty Bands V2
 # Set parameters
 # Set parameters
@@ -178,6 +182,7 @@ legend("topleft",
 			 bg = "white",
 			 cex = 0.5)
 
+####----POISSON vs POISSON-GAMMA----####
 
 ########################### Poisson vs Negbin
 ### PMF
@@ -220,6 +225,7 @@ legend("topleft",
 			 bg = "white",
 			 cex = 0.7)
 
+####----SENSITIVITY ANALYSIS----####
 ### Density Gamma Distribution
 
 curve(dgamma(x, shape = alpha, rate = beta), 
@@ -318,6 +324,8 @@ legend("topleft",
 			 bg = "white",
 			 cex = 0.7)
 
+####----POISSON Theoretical PMF----####
+
 ### PMF
 plot(200:500, dpois(200:500, lambda*550), 
 		 type = "l",
@@ -341,7 +349,7 @@ legend("topleft",
 			 bg = "white",
 			 cex = 0.7)
 
-
+####----POISSON Theoretical CDF----####
 ### CDF
 plot(200:500, ppois(200:500, lambda*550), 
 		 type = "l",
@@ -378,7 +386,7 @@ legend("topleft",
 
 
 
-
+####----PATHS PLOT POISSON-GAMMA----####
 ########################### Poisson-Gamma Estimate and Spread V2
 ######### FIRST OPTION
 # 100 PATHS
@@ -444,7 +452,7 @@ barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray",
 				axes = FALSE, xlab = "", ylab = "")
 
 ############# SECOND OPTION
-####----SECOND OPTION----####
+####----LAMBDA GENERATION----####
 ## KEEP ONLY histograms comparing V1 and V2 of PoG
 ## USE AT LEAST 1000000 (1m)
 ## USE truehist() from MASS library
@@ -566,7 +574,7 @@ legend("topright", legend = c("Version 1", "Version 2"), fill = c(rgb(1, 0, 0, 0
 
 
 
-
+####----QUANTILES PLOT POISSON-GAMMA----####
 ########################### Poisson-Gamma Process with Uncertainty Bands V2
 # Set parameters
 n <- 100
@@ -614,7 +622,7 @@ legend("topleft",
 			 cex = 0.5)
 
 
-###################################### SIMULATIONS
+####----APPENDIX----####
 ########################### Poisson Estimate and Spread V1
 library(ggplot2)
 library(ggExtra)
