@@ -485,6 +485,8 @@ Using the expressions of iterated expectation and variance \citep{held2014applie
 
 \section{Comparison of models for the accrual of counts}
 
+As we can see in Figures \ref{fig:2_10} and \ref{fig:2_11}, we are taking into account more uncertainty in our model when we us the Poisson-Gamma model with a varying $\lambda$ than we do in the Poisson process where $\lambda$ is fixed.
+
 \begin{figure}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
@@ -539,7 +541,7 @@ C &\sim \textrm{Po} (\lambda^{(i)} t)\\
 \end{align*}
 
 
-As we can see in \ref{fig:2_12}, the histogram of these two versions overlap and therefore we can conclude that both these ways of generating $\lambda$ are equivalent.
+As we can see in Figure \ref{fig:2_12}, the histogram of these two versions overlap and therefore we can conclude that both these ways of generating $\lambda$ are equivalent.
 
 
 \begin{figure}
@@ -557,7 +559,26 @@ As we can see in \ref{fig:2_12}, the histogram of these two versions overlap and
 \end{figure}
 
 \section{Time: Model based on Expectations}
+
+If we fix the sample size of a study at $c$ and we expect the recruitment rate to be $\lambda$, we deterministically predict the time planned for the study (without taking into consideration any uncertainty) to be $\hat{T}=\frac{c}{\lambda}$ \citep{bagiella2001predicting}.
+
+Regarding the expectation and variance in this framework:
+
+$T = \textrm{E}T = \textrm{E}(c/\lambda) = c/\lambda$\\
+$\textrm{Var}(T) = \textrm{Var}(c/\lambda) = 0$
+
+As we can see in Table \ref{tab:time_modeling}.
+
 \section{Time: Model based on Erlang distribution}
+
+For a fixed sample size $c$, assuming we have a fixed recruitment rate $\lambda$, $T\sim\textrm{G}(c, \lambda)$. Since $c$ is an integer, we can use the additivity property from the Exponential distributions applicable to independent random variables, $\underbrace{\textrm{Exp} (\lambda) +\cdots +\textrm{Exp} (\lambda)}_{c \ \text{times}} = \textrm{G} (c, \lambda)$. Moreover, this distribution is also called the Erlang distribution and can be denoted as $\textrm{Erlang} (c, \lambda)$. As we can see in Table \ref{tab:time_modeling}, the expectation and variance are the following:
+
+\begin{align*}
+\textrm{E}T & = c/\lambda\\
+\textrm{Var}(T) & = c/\lambda^2
+\end{align*}
+
+
 \section{Time: Gamma-Gamma model}
 
 Using the expressions of iterated expectation and variance \citep{held2014applied}, the expectation and variance from the respective random variables $T|\Lambda \sim \textrm{G}(C, \Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$, and the fact that when $\Lambda \sim \textrm{G}(\alpha, \beta)$ then, $\frac{1}{\Lambda} \sim \textrm{IG}(\alpha, \beta)$, we have that:
@@ -577,3 +598,5 @@ Using the expressions of iterated expectation and variance \citep{held2014applie
 &=\frac{c\beta^2(c+\alpha-1)}{(\alpha-1)^2(\alpha-2)}\\
 &\alpha>2
 \end{align*}
+
+As we can see in Table \ref{tab:time_modeling}.
