@@ -118,12 +118,12 @@ Poisson-Gamma & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{G}(\
  \textbf{Methods} & \textbf{Time} & \textbf{Expectation} & \textbf{Variance} & \textbf{Aleatory} & \textbf{Epistemic} \\
 \hline
 \hline
-Expectation & $T = C/\lambda$ & $C/\lambda$ & 0 & No & No \\
-Erlang & $T \sim \textrm{G}(C, \lambda) $ & $C/\lambda$ & $C/\lambda^2$ & Yes & No \\
-Gamma-Gamma & $T \sim \textrm{G}(C, \Lambda)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $C\frac{\beta}{\alpha-1}$ & $\frac{C\beta^2(C+\alpha-1)}{(\alpha-1)^2(\alpha-2)}$ & Yes & Yes \\
+Expectation & $T(c) = c/\lambda$ & $c/\lambda$ & 0 & No & No \\
+Erlang & $T(c) \sim \textrm{G}(c, \lambda) $ & $c/\lambda$ & $c/\lambda^2$ & Yes & No \\
+Gamma-Gamma & $T(c) \sim \textrm{G}(c, \Lambda)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $c\frac{\beta}{\alpha-1}$ & $\frac{c\beta^2(c+\alpha-1)}{(\alpha-1)^2(\alpha-2)}$ & Yes & Yes \\
 \end{tabular}
 }
-\caption{Moments and aleatory and epistemic uncertainty of recruitment covered by different models for time}
+\caption{Moments and aleatory and epistemic uncertainty of recruitment covered by different models for time having a fixed sample size $c$.}
 \label{tab:time_modeling}
 \end{table}
 
@@ -564,16 +564,16 @@ Using the expressions of iterated expectation and variance \citep{held2014applie
 
 
 \begin{align*}
-\textrm{E}T &= \textrm{E}_{\Lambda}[\textrm{E}_{T} (T|\Lambda)] = \textrm{E}_{\Lambda}\Bigg [\frac{C}{\Lambda}\Bigg ] = C \textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda}\Bigg ] = C\frac{\beta}{\alpha-1}\\
+\textrm{E}T &= \textrm{E}_{\Lambda}[\textrm{E}_{T} (T|\Lambda)] = \textrm{E}_{\Lambda}\Bigg [\frac{c}{\Lambda}\Bigg ] = c \textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda}\Bigg ] = c\frac{\beta}{\alpha-1}\\
 &\alpha>1
 \end{align*}
 
 
 \begin{align*}
 \textrm{Var}(T) &= \textrm{Var}_{\Lambda}[\textrm{E}_{T} (T|\Lambda)] + \textrm{E}_{\Lambda}[\textrm{Var}_T(T|\Lambda)]\\
-&=\textrm{Var}_{\Lambda}\Bigg [\frac{C}{\Lambda}\Bigg ] + \textrm{E}_{\Lambda}\Bigg [\frac{C}{\Lambda^2}\Bigg ] \\
-&=C^2\textrm{Var}_{\Lambda}\Bigg [\frac{1}{\Lambda}\Bigg ] + C\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ] \\
-&=\frac{C^2\beta^2}{(\alpha-1)^2(\alpha-2)} + \frac{C\beta^2}{(\alpha-1)(\alpha-2)}\\
-&=\frac{C\beta^2(C+\alpha-1)}{(\alpha-1)^2(\alpha-2)}\\
+&=\textrm{Var}_{\Lambda}\Bigg [\frac{c}{\Lambda}\Bigg ] + \textrm{E}_{\Lambda}\Bigg [\frac{c}{\Lambda^2}\Bigg ] \\
+&=c^2\textrm{Var}_{\Lambda}\Bigg [\frac{1}{\Lambda}\Bigg ] + c\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ] \\
+&=\frac{c^2\beta^2}{(\alpha-1)^2(\alpha-2)} + \frac{c\beta^2}{(\alpha-1)(\alpha-2)}\\
+&=\frac{c\beta^2(c+\alpha-1)}{(\alpha-1)^2(\alpha-2)}\\
 &\alpha>2
 \end{align*}
