@@ -80,6 +80,8 @@ barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray",
 
 
 par(mfrow = c(1,1))
+####----POISSON Theoretical PMF----####
+
 # THEORETICAL: EXACT DISTRIBUTION
 bar_positions <- barplot(dpois(200:500, lambda*550), 
 												 main = "Distribution", 
@@ -89,6 +91,9 @@ bar_positions <- barplot(dpois(200:500, lambda*550),
 axis(1, at = seq(1, length(200:500), by = 50), labels = seq(200, 500, by = 50))  
 
 par(mar = c(4.1, 4.1, 2.1, 2.1))
+
+####----POISSON Theoretical CDF----####
+
 # THEORETICAL: EXACT CUMULATIVE DISTRIBUTION
 probdist <- dpois(200:500, lambda*550)
 cdf <- cumsum(probdist)
@@ -324,7 +329,6 @@ legend("topleft",
 			 bg = "white",
 			 cex = 0.7)
 
-####----POISSON Theoretical PMF----####
 
 ### PMF
 plot(200:500, dpois(200:500, lambda*550), 
@@ -349,7 +353,6 @@ legend("topleft",
 			 bg = "white",
 			 cex = 0.7)
 
-####----POISSON Theoretical CDF----####
 ### CDF
 plot(200:500, ppois(200:500, lambda*550), 
 		 type = "l",
@@ -620,6 +623,65 @@ legend("topleft",
 			 pch = c(15, 15, 15, NA), lty = c(NA, NA, NA, 1), lwd = c(NA, NA, NA, 2),
 			 bg = "white",
 			 cex = 0.5)
+
+####----POISSON vs MC sampling----####
+### PMF
+set.seed(2025)
+
+n <- 100000
+t <- seq(1, 550, 1)
+lambda <- 0.591
+
+# Generate cumulative Poisson paths
+cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
+
+for (i in 1:n) {
+	cval <- rpois(length(t), lambda)  
+	cval_cum_matrix[i, ] <- cumsum(cval)  
+}
+
+# Extract final counts for histogram
+final_counts <- cval_cum_matrix[, length(t)]
+
+
+# THEORETICAL: EXACT DISTRIBUTION
+
+
+library(MASS)
+# Histogram with transparency
+truehist(final_counts, col = rgb(0, 0, 1, 0.4),  
+				 main = "Theoretical vs MC Sampling", 
+				 xlab = "Counts", 
+				 ylab = "Density")
+
+# Overlaying bar plot with transparency
+par(new = TRUE)
+bar_positions <- barplot(dpois(250:400, lambda * 550),
+												 xaxt = "n", yaxt = "n",
+												 col = rgb(0, 1, 0, 0.4))  
+
+# Updated legend
+legend("topright", legend = c("MC sampling", "Theoretical Poisson"), 
+			 fill = c(rgb(0, 0, 1, 0.4), rgb(0, 1, 0, 0.4)), cex = 0.7)
+
+
+
+
+## CDF
+barplot(cumsum(final_counts), col = rgb(0, 0, 1, 0.4),  
+				 main = "Theoretical vs MC Sampling", 
+				 xlab = "Counts", 
+				 ylab = "Density")
+
+probdist <- dpois(200:500, lambda*550)
+cdf <- cumsum(probdist)
+cdf_positions <- barplot(cdf, 
+												 main = "Cummulative distribution", 
+												 xlab = "Counts", 
+												 xaxt = "n")
+
+####----POISSON-GAMMA vs MC sampling----####
+
 
 
 ####----APPENDIX----####
