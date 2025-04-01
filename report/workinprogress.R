@@ -667,22 +667,45 @@ legend("topright", legend = c("MC sampling", "Theoretical Poisson"),
 
 
 
-## CDF
-barplot(cumsum(final_counts), col = rgb(0, 0, 1, 0.4),  
+####----POISSON-GAMMA vs MC sampling----####
+set.seed(2025)
+
+n <- 100000
+t <- seq(1, 550, 1)
+lambda <- 0.591
+
+alpha <- 324
+beta <- 548
+
+# Generate cumulative Poisson paths
+cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
+v_lambda <- rgamma(n, shape = alpha, rate = beta)
+
+for (i in 1:n) {
+	cval <- rpois(length(t), lambda = v_lambda[i])
+	cval_cum_matrix[i, ] <- cumsum(cval)  
+}
+
+# Extract final counts for histogram
+final_counts <- cval_cum_matrix[, length(t)]
+
+
+library(MASS)
+# Histogram with transparency
+truehist(final_counts, col = rgb(0, 0, 1, 0.4),  
 				 main = "Theoretical vs MC Sampling", 
 				 xlab = "Counts", 
 				 ylab = "Density")
 
-probdist <- dpois(200:500, lambda*550)
-cdf <- cumsum(probdist)
-cdf_positions <- barplot(cdf, 
-												 main = "Cummulative distribution", 
-												 xlab = "Counts", 
-												 xaxt = "n")
+# Overlaying bar plot with transparency
+par(new = TRUE)
+bar_positions <- barplot(dnbinom(250:400, size = alpha, mu = lambda*550),
+												 xaxt = "n", yaxt = "n",
+												 col = rgb(0, 1, 0, 0.4))  
 
-####----POISSON-GAMMA vs MC sampling----####
-
-
+# Updated legend
+legend("topright", legend = c("MC sampling", "Theoretical PoG"), 
+			 fill = c(rgb(0, 0, 1, 0.4), rgb(0, 1, 0, 0.4)), cex = 0.7)
 
 ####----APPENDIX----####
 ########################### Poisson Estimate and Spread V1
