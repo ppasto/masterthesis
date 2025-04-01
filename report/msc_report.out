@@ -2,7 +2,7 @@
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 2
 \BOOKMARK [0][-]{chapter.2}{Methodology}{}% 3
 \BOOKMARK [1][-]{section.2.1}{Definitions}{chapter.2}% 4
-\BOOKMARK [1][-]{section.2.2}{Uncertainty and models for counts}{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.2}{Uncertainty and models for counts and time}{chapter.2}% 5
 \BOOKMARK [1][-]{section.2.3}{Counts: Model based on Expectations}{chapter.2}% 6
 \BOOKMARK [1][-]{section.2.4}{Counts: Model based on Poisson Process}{chapter.2}% 7
 \BOOKMARK [1][-]{section.2.5}{Counts: Negative Binomial model derived from Poisson-Gamma model}{chapter.2}% 8
@@ -16,4 +16,4 @@
 \BOOKMARK [1][-]{section.3.2}{Comparison exact vs Monte Carlo simulations}{chapter.3}% 16
 \BOOKMARK [0][-]{chapter.4}{Discussion and Outlook}{}% 17
 \BOOKMARK [0][-]{chapter.5}{Conclusions}{}% 18
-\BOOKMARK [0][-]{section*.19}{Bibliography}{}% 19
+\BOOKMARK [0][-]{section*.20}{Bibliography}{}% 19

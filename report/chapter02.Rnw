@@ -81,7 +81,7 @@ Eligibility criteria narrow down participants, and enrollment further reduces nu
   \label{fig:2_1_b}
 \end{figure}
 
-\section{Uncertainty and models for counts}
+\section{Uncertainty and models for counts and time}
 
 There are two types of uncertainty, aleatory and epistemic \citep{ohagan2006}. The \textbf{Aleatory Uncertainty} reflects randomness that is inherent, irreducible and unpredictable in nature. \textbf{Epistemic Uncertainty} arises primarily from limited or imperfect knowledge about the parameters of a statistical model and can reflect fluctuations of the parameter. Obtaining more or better information about the parameter typically reduces the epistemic uncertainty. 
 
@@ -110,7 +110,7 @@ We define \textbf{Recruitment Rate} $\lambda=\frac{C}{T}$ at which patients are 
 \hline
 Expectation & $C = \lambda  $ & $\lambda  $ & 0 & No & No \\
 Poisson & $C \sim \textrm{Po} (\lambda )$ & $\lambda $ & $\lambda  $ & Yes & No \\
-Negative Binomial & $C \sim \textrm{Po} (\Lambda )$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+1)}{\beta^2}$ & Yes & Yes \\
+Poisson-Gamma & $C \sim \textrm{Po} (\Lambda )$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+1)}{\beta^2}$ & Yes & Yes \\
 \end{tabular}
 }
 \caption{Moments and aleatory and epistemic uncertainty of recruitment in one unit of time recruitment covered by different models for counts.}
@@ -129,14 +129,32 @@ Negative Binomial & $C \sim \textrm{Po} (\Lambda )$; $\Lambda \sim \textrm{G}(\a
 \hline
 Expectation & $C(t) = \lambda  t$ & $\lambda  t$ & 0 & No & No \\
 Poisson & $C(t) \sim \textrm{Po} (\lambda  t)$ & $\lambda  t$ & $\lambda  t$ & Yes & No \\
-Negative Binomial & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $t\frac{\alpha}{\beta}$ & $t\frac{\alpha(\beta+t)}{\beta^2}$ & Yes & Yes \\
+Poisson-Gamma & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $t\frac{\alpha}{\beta}$ & $t\frac{\alpha(\beta+t)}{\beta^2}$ & Yes & Yes \\
 \end{tabular}
 }
 \caption{Moments and aleatory and epistemic uncertainty in accrual until $t$ covered by different models for counts.}
 \label{tab:count_modeling_2}
 \end{table}
 
-Methods in Tables \ref{tab:count_modeling} and \ref{tab:count_modeling_2} are applicable to each level of recruitment in Figures \ref{fig:2_1_a} and \ref{fig:2_1_b}.
+
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{cccccc}
+ \textbf{Methods} & \textbf{Time} & \textbf{Expectation} & \textbf{Variance} & \textbf{Aleatory} & \textbf{Epistemic} \\
+\hline
+\hline
+Expectation & $T = C/\lambda$ & $C/\lambda$ & 0 & No & No \\
+Erlang & $T \sim \textrm{G}(C, \lambda) $ & $C/\lambda$ & $C/\lambda^2$ & Yes & No \\
+Gamma-Gamma & $T \sim \textrm{G}(C, \Lambda)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $C\frac{\beta}{\alpha-1}$ & $\frac{C\beta^2(C+\alpha-1)}{(\alpha-1)^2(\alpha-2)}$ & Yes & Yes \\
+\end{tabular}
+}
+\caption{Moments and aleatory and epistemic uncertainty of recruitment covered by different models for time}
+\label{tab:time_modeling}
+\end{table}
+
+
+Methods in Tables \ref{tab:count_modeling}, \ref{tab:count_modeling_2} and \ref{tab:time_modeling} are applicable to each level of recruitment in Figures \ref{fig:2_1_a} and \ref{fig:2_1_b}.
 
 
 \section{Counts: Model based on Expectations}
@@ -596,13 +614,13 @@ for(i in 1:n){
 
 # Add reference lines
 lines(t, lambda*t)
-lines(t, qnbinom(p = 0.975, size = alpha, mu = lambda*t), lty = 2, col = "darkgreen")
-lines(t, qnbinom(p = 0.025, size = alpha, mu = lambda*t), lty = 2, col = "darkgreen")
+lines(t, qnbinom(p = 0.975, size = alpha, mu = lambda*t), lty = 2, col = "green")
+lines(t, qnbinom(p = 0.025, size = alpha, mu = lambda*t), lty = 2, col = "green")
 
 legend("topleft",
 			 legend = c("2.5th - 97.5th Percentile [95%]",
 			 					 "Expected Accrual"),
-			 col = c("darkgreen", "black"),
+			 col = c("green", "black"),
 			 lty = c(2, 1),
 			 lwd = c(1,2),
 			 bg = "white",
@@ -836,16 +854,16 @@ for(i in 1:n){
 
 # Add reference lines
 lines(t, lambda*t)
-lines(t, qnbinom(p = 0.975, size = alpha, mu = lambda*t), lty = 2, col = "darkgreen")
+lines(t, qnbinom(p = 0.975, size = alpha, mu = lambda*t), lty = 2, col = "green")
 lines(t, qpois(p = 0.975, lambda*t), lty = 2, lwd = 2, col = "red")
 lines(t, qpois(p = 0.025, lambda*t), lty = 2, lwd = 2, col = "red")
-lines(t, qnbinom(p = 0.025, size = alpha, mu = lambda*t), lty = 2, col = "darkgreen")
+lines(t, qnbinom(p = 0.025, size = alpha, mu = lambda*t), lty = 2, col = "green")
 
 legend("topleft",
 			 legend = c("PoG 2.5th - 97.5th Percentile [95%]",
 			 					 "Po 2.5th - 97.5th Percentile [95%]",
 			 					 "Expected Accrual"),
-			 col = c("darkgreen", "red", "black"),
+			 col = c("green", "red", "black"),
 			 lty = c(2, 2, 1),
 			 lwd = c(2,2,2),
 			 bg = "white",
@@ -904,13 +922,13 @@ lines(t, qpois(p = 0.025, lambda*t), lty = 2, lwd = 2, col = "red")
 
 # Legend
 legend("topleft",
-			 legend = c("Po 2.5th - 97.5th Percentile [95%]", 
-			 					 "PoG 2.5th - 97.5th Percentile [95%]", 
+			 legend = c("PoG 2.5th - 97.5th Percentile [95%]", 
 			 					 "PoG 10th - 90th Percentile     [80%]", 
 			 					 "PoG 25th - 75th Percentile     [50%]", 
-			 					 "Expected Accrual"),
-			 col = c("red", rgb(144/255, 238/255, 144/255, 0.4), rgb(50/255, 205/255, 50/255, 0.4), rgb(0/255, 100/255, 0/255, 0.4), "black"),
-			 pch = c(NA, 15, 15, 15, NA), lty = c(2, NA, NA, NA, 1), lwd = c(2, NA, NA, NA, 2),
+			 					 "Expected Accrual",
+			 					 "Po 2.5th - 97.5th Percentile [95%]"),
+			 col = c(rgb(144/255, 238/255, 144/255, 0.4), rgb(50/255, 205/255, 50/255, 0.4), rgb(0/255, 100/255, 0/255, 0.4), "black", "red"),
+			 pch = c(15, 15, 15, NA, NA), lty = c(NA, NA, NA, 1, 2), lwd = c(NA, NA, NA, 2, 2),
 			 bg = "white",
 			 cex = 0.7)
 @   
@@ -990,3 +1008,21 @@ legend("topright", legend = c("Version 1", "Version 2"), fill = c(rgb(1, 0, 0, 0
 \section{Time: Model based on Expectations}
 \section{Time: Model based on Erlang distribution}
 \section{Time: Gamma-Gamma model}
+
+Using the expressions of iterated expectation and variance \citep{held2014applied}, the expectation and variance from the respective random variables $T|\Lambda \sim \textrm{G}(C, \Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$, and the fact that when $\Lambda \sim \textrm{G}(\alpha, \beta)$ then, $\frac{1}{\Lambda} \sim \textrm{IG}(\alpha, \beta)$, we have that:
+
+
+\begin{align*}
+\textrm{E}T &= \textrm{E}_{\Lambda}[\textrm{E}_{T} (T|\Lambda)] = \textrm{E}_{\Lambda}\Bigg [\frac{C}{\Lambda}\Bigg ] = C \textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda}\Bigg ] = C\frac{\beta}{\alpha-1}\\
+&\alpha>1
+\end{align*}
+
+
+\begin{align*}
+\textrm{Var}(T) &= \textrm{Var}_{\Lambda}[\textrm{E}_{T} (T|\Lambda)] + \textrm{E}_{\Lambda}[\textrm{Var}_T(T|\Lambda)]\\
+&=\textrm{Var}_{\Lambda}\Bigg [\frac{C}{\Lambda}\Bigg ] + \textrm{E}_{\Lambda}\Bigg [\frac{C}{\Lambda^2}\Bigg ] \\
+&=C^2\textrm{Var}_{\Lambda}\Bigg [\frac{1}{\Lambda}\Bigg ] + C\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ] \\
+&=\frac{C^2\beta^2}{(\alpha-1)^2(\alpha-2)} + \frac{C\beta^2}{(\alpha-1)(\alpha-2)}\\
+&=\frac{C\beta^2(C+\alpha-1)}{(\alpha-1)^2(\alpha-2)}\\
+&\alpha>2
+\end{align*}
