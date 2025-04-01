@@ -24,7 +24,7 @@
 \contentsline {section}{\numberline {2.7}Generation of Poisson-Gamma model}{17}{section.2.7}%
 \contentsline {subsection}{\numberline {2.7.1}Version 1}{17}{subsection.2.7.1}%
 \contentsline {subsection}{\numberline {2.7.2}Version 2}{18}{subsection.2.7.2}%
-\contentsline {section}{\numberline {2.8}Time: Model based on Expectations}{19}{section.2.8}%
+\contentsline {section}{\numberline {2.8}Time: Model based on Expectations}{18}{section.2.8}%
 \contentsline {section}{\numberline {2.9}Time: Model based on Erlang distribution}{19}{section.2.9}%
 \contentsline {section}{\numberline {2.10}Time: Gamma-Gamma model}{20}{section.2.10}%
 \contentsline {chapter}{\numberline {3}Results}{23}{chapter.3}%

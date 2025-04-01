@@ -614,15 +614,15 @@ for(i in 1:n){
 
 # Add reference lines
 lines(t, lambda*t)
-lines(t, qnbinom(p = 0.975, size = alpha, mu = lambda*t), lty = 2, col = "green")
-lines(t, qnbinom(p = 0.025, size = alpha, mu = lambda*t), lty = 2, col = "green")
+lines(t, qnbinom(p = 0.975, size = alpha, mu = lambda*t), lty = 2, lwd = 2, col = "green")
+lines(t, qnbinom(p = 0.025, size = alpha, mu = lambda*t), lty = 2, lwd = 2, col = "green")
 
 legend("topleft",
 			 legend = c("2.5th - 97.5th Percentile [95%]",
 			 					 "Expected Accrual"),
 			 col = c("green", "black"),
 			 lty = c(2, 1),
-			 lwd = c(1,2),
+			 lwd = c(2,2),
 			 bg = "white",
 			 cex = 0.7)  
 
@@ -856,10 +856,10 @@ for(i in 1:n){
 
 # Add reference lines
 lines(t, lambda*t)
-lines(t, qnbinom(p = 0.975, size = alpha, mu = lambda*t), lty = 2, col = "green")
+lines(t, qnbinom(p = 0.975, size = alpha, mu = lambda*t), lty = 2, lwd = 2, col = "green")
+lines(t, qnbinom(p = 0.025, size = alpha, mu = lambda*t), lty = 2, lwd = 2, col = "green")
 lines(t, qpois(p = 0.975, lambda*t), lty = 2, lwd = 2, col = "red")
 lines(t, qpois(p = 0.025, lambda*t), lty = 2, lwd = 2, col = "red")
-lines(t, qnbinom(p = 0.025, size = alpha, mu = lambda*t), lty = 2, col = "green")
 
 legend("topleft",
 			 legend = c("PoG 2.5th - 97.5th Percentile [95%]",
@@ -879,7 +879,7 @@ hist_data <- hist(final_counts, breaks = hist_bins, plot = FALSE)
 barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray", 
 				axes = FALSE, xlab = "", ylab = "")
 @   
-  \caption{Poisson-Gamma $(\alpha = 324, \beta = 548)$ distributed counts with $\mu = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from section \ref{sec:expect}, while the red dashed lines indicate Poisson-Gamma 95\% aleatory and epistemic uncertainty. The histogram illustrates the distribution of observed counts in 100 studies at time $t = 550$ days \citep{spiegelhalter2011visualizing, pkgacc}.}
+  \caption{Comparison of the 95 \% uncertainty range taken into consideration in the Poisson-Gamma $(\alpha = 324, \beta = 548)$ model as opposed to the Poisson $\lambda = 0.591$ \citep{spiegelhalter2011visualizing, pkgacc}.}
   \label{fig:2_10}
 \end{figure}
 
@@ -934,7 +934,7 @@ legend("topleft",
 			 bg = "white",
 			 cex = 0.7)
 @   
-  \caption{Predicted uncertainty bands for Poisson-Gamma process with $\mu = 0.591$ per day. The black line represents the expected accrual, while the green shaded regions indicate aleatory and epistemic uncertainty: the dark green band spans the interquantile range (25th - 75th percentiles), the lighter green band cover the 10th - 90th percentile range and the light green the 2.5th - 97.5th percentile range \citep{spiegelhalter2011visualizing}.}
+  \caption{Comparison of the theoretical quantiles in the Poisson-Gamma $(\alpha = 324, \beta = 548)$ model and the 95 \% uncertainty range of the Poisson $\lambda = 0.591$ \citep{spiegelhalter2011visualizing, pkgacc}.}
   \label{fig:2_11}
 \end{figure}
 
@@ -1020,7 +1020,7 @@ As we can see in Table \ref{tab:time_modeling}.
 
 \section{Time: Model based on Erlang distribution}
 
-For a fixed sample size $c$, assuming we have a fixed recruitment rate $\lambda$, $T\sim\textrm{G}(c, \lambda)$. Since $c$ is an integer, we can use the additivity property from the Exponential distributions applicable to independent random variables, $\underbrace{\textrm{Exp} (\lambda) +\cdots +\textrm{Exp} (\lambda)}_{c \ \text{times}} = \textrm{G} (c, \lambda)$. Moreover, this distribution is also called the Erlang distribution and can be denoted as $\textrm{Erlang} (c, \lambda)$. As we can see in Table \ref{tab:time_modeling}, the expectation and variance are the following:
+For a fixed sample size $c$, assuming we have a fixed recruitment rate $\lambda$, $T\sim\textrm{G}(c, \lambda)$. Since $c$ is an integer, we can use the additivity property from the Gamma distribution applicable to independent random variables, $\underbrace{\textrm{Exp} (\lambda) +\cdots +\textrm{Exp} (\lambda)}_{c \ \text{times}} = \textrm{G} (c, \lambda)$. Moreover, this distribution is also called the Erlang distribution and can be denoted as $\textrm{Erlang} (c, \lambda)$. As we can see in Table \ref{tab:time_modeling}, the expectation and variance are the following:
 
 \begin{align*}
 \textrm{E}T & = c/\lambda\\
