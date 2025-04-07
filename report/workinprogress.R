@@ -707,6 +707,39 @@ bar_positions <- barplot(dnbinom(250:400, size = alpha, mu = lambda*550),
 legend("topright", legend = c("MC sampling", "Theoretical PoG"), 
 			 fill = c(rgb(0, 0, 1, 0.4), rgb(0, 1, 0, 0.4)), cex = 0.7)
 
+####----MC sampling Counts ----####
+
+####----MC sampling Time: Poisson model ----####
+M <- 10^5
+Nneed <- 324
+lambda <- 0.591
+
+time <- rep(0, M)
+csum <- rep(0, M)
+
+start.time <- Sys.time()
+
+for(m in 1:M){
+	while (csum[m] < Nneed) {
+		csum[m] <- csum[m] + rpois(1, lambda)
+		time[m] <- time[m] + 1
+	}
+}
+end.time <- Sys.time()
+time.taken <- end.time - start.time
+time.taken
+
+plot(density(time),
+		 main = "Density Poisson Model",
+		 xlab = "Day",
+		 col = "red")
+
+### M = 10^4: 8.6 secs
+### M = 10^5: 1.45 mins
+### M = 10^6: 12.8 mins
+
+####----MC sampling Time: Poisson-Gamma model ----####
+
 ####----APPENDIX----####
 ########################### Poisson Estimate and Spread V1
 library(ggplot2)
