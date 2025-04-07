@@ -707,7 +707,41 @@ bar_positions <- barplot(dnbinom(250:400, size = alpha, mu = lambda*550),
 legend("topright", legend = c("MC sampling", "Theoretical PoG"), 
 			 fill = c(rgb(0, 0, 1, 0.4), rgb(0, 1, 0, 0.4)), cex = 0.7)
 
-####----MC sampling Counts ----####
+####----MC sampling Counts: Poisson model ----####
+set.seed(2025)
+
+M <- 10^5
+t <- seq(1, 550, 1)
+lambda <- 0.591
+
+# Generate cumulative Poisson paths
+cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
+
+for (i in 1:M) {
+	cval <- rpois(length(t), lambda)  
+	cval_cum_matrix[i, ] <- cumsum(cval)  
+}
+
+# Extract final counts for histogram
+final_counts <- cval_cum_matrix[, length(t)]
+plot(density(final_counts),
+		 main = "Density",
+		 xlab = "Counts",
+		 col = "purple", 
+		 lwd = 4)
+lines(dpois(200:400, lambda = lambda*550), 
+			lwd = 2,
+			lty = 2,
+			col = "blue")
+legend("topright", 
+			 legend = c("MC sampling", "Theoretical Poisson"), 
+			 col = c("purple", "blue"),
+			 lwd = c(1, 2),
+			 lty = c(1, 2), 
+			 cex = 0.7)
+
+####----MC sampling Counts: Poisson-gamma model ----####
+
 
 ####----MC sampling Time: Poisson model ----####
 set.seed(2025)
@@ -729,15 +763,6 @@ for(m in 1:M){
 end.time <- Sys.time()
 time.taken <- end.time - start.time
 time.taken
-
-plot(density(timep),
-		 main = "Density Poisson Model",
-		 xlab = "Day",
-		 col = "red")
-lines(density(timepg), 
-			lwd = 2,
-			lty = 2,
-			col = "green")
 
 ### M = 10^4: 8.6 secs
 ### M = 10^5: 1.45 mins
