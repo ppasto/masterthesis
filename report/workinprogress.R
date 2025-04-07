@@ -710,35 +710,80 @@ legend("topright", legend = c("MC sampling", "Theoretical PoG"),
 ####----MC sampling Counts ----####
 
 ####----MC sampling Time: Poisson model ----####
+set.seed(2025)
 M <- 10^5
 Nneed <- 324
 lambda <- 0.591
 
-time <- rep(0, M)
-csum <- rep(0, M)
+timep <- rep(0, M)
+csump <- rep(0, M)
 
 start.time <- Sys.time()
 
 for(m in 1:M){
-	while (csum[m] < Nneed) {
-		csum[m] <- csum[m] + rpois(1, lambda)
-		time[m] <- time[m] + 1
+	while (csump[m] < Nneed) {
+		csump[m] <- csump[m] + rpois(1, lambda)
+		timep[m] <- timep[m] + 1
 	}
 }
 end.time <- Sys.time()
 time.taken <- end.time - start.time
 time.taken
 
-plot(density(time),
+plot(density(timep),
 		 main = "Density Poisson Model",
 		 xlab = "Day",
 		 col = "red")
+lines(density(timepg), 
+			lwd = 2,
+			lty = 2,
+			col = "green")
 
 ### M = 10^4: 8.6 secs
 ### M = 10^5: 1.45 mins
 ### M = 10^6: 12.8 mins
 
 ####----MC sampling Time: Poisson-Gamma model ----####
+set.seed(2025)
+M <- 10^5
+Nneed <- 324
+lambda <- 0.591
+alpha <- 324
+beta <- 548
+
+timepg <- rep(0, M)
+csumpg <- rep(0, M)
+
+start.time <- Sys.time()
+
+for(m in 1:M){
+	while (csumpg[m] < Nneed) {
+		csumpg[m] <- csumpg[m] + rnbinom(1, size = alpha, prob = beta/(beta+1))
+		timepg[m] <- timepg[m] + 1
+	}
+}
+end.time <- Sys.time()
+time.taken <- end.time - start.time
+time.taken
+
+plot(density(timep),
+		 main = "Density",
+		 xlab = "Day",
+		 col = "red")
+lines(density(timepg), 
+			lwd = 2,
+			lty = 2,
+			col = "green")
+legend("topright", 
+			 legend = c("Poisson", "Poisson-Gamma"), 
+			 col = c("red", "green"),
+			 lwd = c(1, 2),
+			 lty = c(1, 2), 
+			 cex = 0.7)
+
+### M = 10^4: 
+### M = 10^5: 4 mins
+### M = 10^6: 
 
 ####----APPENDIX----####
 ########################### Poisson Estimate and Spread V1
