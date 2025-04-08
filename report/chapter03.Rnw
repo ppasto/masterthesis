@@ -69,7 +69,7 @@ final_counts <- cval_cum_matrix[, length(t)]
 
 # Plot the density estimate
 plot(density(final_counts),
-		 main = "MC sampling vs Theoretical PMF",
+		 main = "Density Counts",
 		 xlab = "Counts",
 		 col = "purple", 
 		 lwd = 4)
@@ -116,7 +116,7 @@ final_counts <- cval_cum_matrix[, length(t)]
 
 # Plot the density estimate
 plot(density(final_counts),
-		 main = "MC sampling vs Theoretical PMF",
+		 main = "Density Counts",
 		 xlab = "Counts",
 		 col = "purple", 
 		 lwd = 4)
@@ -141,9 +141,8 @@ legend("topright",
 
 
 \section{Time: Comparison exact vs Monte Carlo simulations}
-
-% <<echo = TRUE, cache = TRUE>>=
 % 
+% <<echo=TRUE, cache=TRUE>>=
 % set.seed(2025)
 % M <- 10^5
 % Nneed <- 324
@@ -159,4 +158,100 @@ legend("topright",
 % 	}
 % }
 % @
+
+
+
+
+
+
+\begin{figure}
+<<echo=FALSE>>=
+set.seed(2025)
+M <- 10^5
+Nneed <- 324
+lambda <- 0.591
+
+alpha <- 324
+beta <- 548
+
+timep <- rep(0, M)
+csump <- rep(0, M)
+
+for(m in 1:M){
+	while (csump[m] < Nneed) {
+		csump[m] <- csump[m] + rpois(1, lambda)
+		timep[m] <- timep[m] + 1
+	}
+}
+
+tval <- rgamma(n, shape = alpha, rate = lambda)
+
+plot(density(tval),
+		 main = "Density Time",
+		 xlab = "Day",
+		 col = "purple",
+		 lwd = 4)
+lines(density(timep), 
+			lwd = 2,
+			lty = 2,
+			col = "blue")
+legend("topright", 
+			 legend = c("Theoretical Gamma", "MC sampling"), 
+			 col = c("purple", "blue"),
+			 lwd = c(4, 2),
+			 lty = c(1, 2), 
+			 cex = 0.7)
+@
+\caption{Comparison of theoretical Density function of Gamma model with parameters $\alpha = 324$ and $\beta = 548$ and Monte Carlo (MC) sampling.}
+\label{fig:3_3}
+\end{figure}
+
+
+
+\begin{figure}
+<<echo=FALSE>>=
+set.seed(2025)
+
+M <- 10^5
+Nneed <- 324
+lambda <- 0.591
+alpha <- 324
+beta <- 548
+
+timepg <- rep(0, M)
+csumpg <- rep(0, M)
+
+for(m in 1:M){
+	while (csumpg[m] < Nneed) {
+		csumpg[m] <- csumpg[m] + rnbinom(1, size = alpha, prob = beta/(beta+1))
+		timepg[m] <- timepg[m] + 1
+	}
+}
+
+v_lambda <- rgamma(n, shape = alpha, rate = beta)
+tval <- numeric(n)  
+
+for (i in 1:n) {
+	tval[i] <- rgamma(1, shape = alpha, rate = v_lambda[i])
+}
+
+plot(density(tval),
+		 main = "Density Time",
+		 xlab = "Day",
+		 col = "purple",
+		 lwd = 4)
+lines(density(timepg), 
+			lwd = 2,
+			lty = 2,
+			col = "blue")
+legend("topright", 
+			 legend = c("Theoretical Poisson", "MC sampling"), 
+			 col = c("purple", "blue"),
+			 lwd = c(4, 2),
+			 lty = c(1, 2), 
+			 cex = 0.7)
+@
+\caption{Comparison of theoretical Density function of Gamma-Gamma model with parameters $\alpha = 324$ and $\beta = 548$ and Monte Carlo (MC) sampling.}
+\label{fig:3_3}
+\end{figure}
 
