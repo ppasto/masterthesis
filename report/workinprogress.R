@@ -727,7 +727,7 @@ final_counts <- cval_cum_matrix[, length(t)]
 
 # Plot the density estimate
 plot(density(final_counts),
-		 main = "Density vs Poisson PMF",
+		 main = "MC sampling vs Theoretical PMF",
 		 xlab = "Counts",
 		 col = "purple", 
 		 lwd = 4)
@@ -746,7 +746,46 @@ legend("topright",
 			 cex = 0.7)
 
 ####----MC sampling Counts: Poisson-gamma model ----####
+set.seed(2025)
 
+n <- 10^5
+t <- seq(1, 550, 1)
+lambda <- 0.591
+
+alpha <- 324
+beta <- 548
+# Generate cumulative Poisson paths
+cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
+v_lambda <- rgamma(n, shape = alpha, rate = beta)
+
+for (i in 1:n) {
+	cval <- rpois(length(t), lambda = v_lambda[i])
+	cval_cum_matrix[i, ] <- cumsum(cval)  
+}
+
+# Extract final counts for histogram
+final_counts <- cval_cum_matrix[, length(t)]
+
+
+# Plot the density estimate
+plot(density(final_counts),
+		 main = "MC sampling vs Theoretical PMF",
+		 xlab = "Counts",
+		 col = "purple", 
+		 lwd = 4)
+
+# Overlay the Poisson PMF as points or lines
+x_vals <- 200:400
+lines(x_vals, dnbinom(x_vals, size = 324, mu = lambda * 550), 
+			lwd = 2,
+			lty = 2,
+			col = "blue")
+legend("topright", 
+			 legend = c("MC sampling", "Theoretical Poisson"), 
+			 col = c("purple", "blue"),
+			 lwd = c(1, 2),
+			 lty = c(1, 2), 
+			 cex = 0.7)
 
 ####----MC sampling Time: Poisson model ----####
 set.seed(2025)
