@@ -910,9 +910,13 @@ for (i in 1:n) {
 # Extract final counts for histogram
 final_counts <- cval_cum_matrix[, length(t)]
 
+v_lambda <- rgamma(n, shape = alpha, rate = beta)
+tval <- numeric(n)  
+
 for (i in 1:n) {
-	tval <- rgamma(length(t), shape = alpha, rate = v_lambda[i])
+	tval[i] <- rgamma(1, shape = alpha, rate = v_lambda[i])
 }
+
 
 # Reset layout
 par(mfrow = c(1,1))
@@ -946,8 +950,8 @@ for(i in 1:n){
 }
 
 lines(t, lambda*t)
-lines(t, qpois(p = 0.975, lambda*t), lty = 2, col = "red")
-lines(t, qpois(p = 0.025, lambda*t), lty = 2, col = "red")
+lines(t, qnbinom(p = 0.975, size = alpha, mu = lambda*t), lty = 2, col = "red")
+lines(t, qnbinom(p = 0.025, size = alpha, mu = lambda*t), lty = 2, col = "red")
 
 legend("topleft",
 			 legend = c("2.5th - 97.5th Percentile [95%]",
