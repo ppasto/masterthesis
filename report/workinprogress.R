@@ -813,69 +813,7 @@ legend("topright",
 
 
 
-####----100 paths histogram time + counts----####
-set.seed(2025)
-
-n <- 100
-alpha <- 324
-t <- seq(1, 550, 1)
-lambda <- 0.591
-
-# Generate cumulative Poisson paths
-cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
-
-for (i in 1:n) {
-	cval <- rpois(length(t), lambda)  
-	cval_cum_matrix[i, ] <- cumsum(cval)  
-}
-
-# Extract final counts for histogram
-final_counts <- cval_cum_matrix[, length(t)]
-
-tval <- rgamma(n, shape = alpha, rate = lambda)
-
-# Set up layout: Histogram (small, upper right) + Main plot
-layout(matrix(c(1, 2), ncol = 2), widths = c(3, 1), heights = c(4, 1))  
-
-# Plot the main accrual time series
-par(mar = c(4.1, 4.1, 2.1, 2.1))  # Restore normal margins
-plot(t,  cval_cum_matrix[1,], 
-		 type="n", 
-		 main = "Accrual of 100 studies", 
-		 xlab = "Time", 
-		 ylab = "Count",
-		 ylims = 0:700)
-
-for(i in 1:n){
-	lines(t,  cval_cum_matrix[i,], col = "lightgray")
-}
-
-# Add reference lines
-lines(t, lambda*t)
-lines(t, qpois(p = 0.975, lambda*t), lty = 2, col = "red")
-lines(t, qpois(p = 0.025, lambda*t), lty = 2, col = "red")
-
-legend("topleft",
-			 legend = c("2.5th - 97.5th Percentile [95%]",
-			 					 "Expected Accrual"),
-			 col = c("red", "black"),
-			 lty = c(2, 1),
-			 lwd = c(1,2),
-			 bg = "white",
-			 cex = 0.5)  
-
-# Plot histogram in the smaller upper right section
-par(mar = c(20, 0.01, 2.1, 2.1))  # Minimize margins
-hist_bins <- seq(min(final_counts), max(final_counts), length.out = 15)
-hist_data <- hist(final_counts, breaks = hist_bins, plot = FALSE)
-
-barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray", 
-				axes = FALSE, xlab = "", ylab = "")
-# Force layout to show all plots at once
-par(ask = FALSE)
-par(mfrow = NULL)
-
-#### version layout
+####----Poisson 100 paths histogram time + counts----####
 set.seed(2025)
 
 n <- 100
@@ -902,7 +840,7 @@ layout(matrix(c(1, 1, 2, 3), nrow = 2, byrow = TRUE),
 			 heights = c(1, 4), widths = c(3, 1))
 
 # --- Plot 1: tval histogram (top, horizontal barplot) ---
-par(mar = c(0.1, 4, 2, 1))
+par(mar = c(0.1, 25, 2, 10))
 tval_bins <- seq(min(tval), max(tval), length.out = 15)
 tval_hist <- hist(tval, breaks = tval_bins, plot = FALSE)
 
@@ -938,7 +876,7 @@ legend("topleft",
 			 cex = 0.5)
 
 # --- Plot 3: Final counts histogram (bottom-right) ---
-par(mar = c(4, 0.5, 2, 2))
+par(mar = c(25, 0.5, 2, 1))
 hist_bins <- seq(min(final_counts), max(final_counts), length.out = 15)
 hist_data <- hist(final_counts, breaks = hist_bins, plot = FALSE)
 
@@ -950,28 +888,53 @@ barplot(hist_data$counts,
 
 
 
-
-##### VERSION x,y axis
-
+####----Po-G 100 paths histogram time + counts----####
 set.seed(2025)
 
 n <- 100
-alpha <- 324
 t <- seq(1, 550, 1)
 lambda <- 0.591
 
+alpha <- 324
+beta <- 548
+
 # Generate cumulative Poisson paths
 cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
+v_lambda <- rgamma(n, shape = alpha, rate = beta)
+
 for (i in 1:n) {
-	cval <- rpois(length(t), lambda)  
+	cval <- rpois(length(t), lambda = v_lambda[i])
 	cval_cum_matrix[i, ] <- cumsum(cval)  
 }
 
+# Extract final counts for histogram
 final_counts <- cval_cum_matrix[, length(t)]
-tval <- rgamma(n, shape = alpha, rate = lambda)
 
-# --- Main plot ---
-par(mfrow = c(1,1), mar = c(4, 4, 2, 1))
+for (i in 1:n) {
+	tval <- rgamma(length(t), shape = alpha, rate = v_lambda[i])
+}
+
+# Reset layout
+par(mfrow = c(1,1))
+dev.new()  # Open a new clean graphics window if needed
+
+# Define layout: 2 rows, 2 columns (first row spans both columns)
+layout(matrix(c(1, 1, 2, 3), nrow = 2, byrow = TRUE), 
+			 heights = c(1, 4), widths = c(3, 1))
+
+# --- Plot 1: tval histogram (top, horizontal barplot) ---
+par(mar = c(0.1, 25, 2, 10))
+tval_bins <- seq(min(tval), max(tval), length.out = 15)
+tval_hist <- hist(tval, breaks = tval_bins, plot = FALSE)
+
+barplot(tval_hist$counts,
+				space = 0,
+				col = "skyblue",
+				axes = FALSE,
+				horiz = FALSE)
+
+# --- Plot 2: Accrual time series (bottom-left) ---
+par(mar = c(4, 4, 2, 1))
 plot(t,  cval_cum_matrix[1,], 
 		 type = "n", 
 		 main = "Accrual of 100 studies", 
@@ -995,47 +958,17 @@ legend("topleft",
 			 bg = "white",
 			 cex = 0.5)
 
-# Capture plotting region in user coordinates
-usr <- par("usr")
+# --- Plot 3: Final counts histogram (bottom-right) ---
+par(mar = c(25, 0.5, 2, 1))
+hist_bins <- seq(min(final_counts), max(final_counts), length.out = 15)
+hist_data <- hist(final_counts, breaks = hist_bins, plot = FALSE)
 
-### --- Inset 1: tval histogram at top-right (x = 450:500 range) ---
-x_range <- c(450, 500)
-y_frac  <- c(0.7, 0.95)  # percent of y-axis range (relative)
-
-y_range <- usr[3] + y_frac * (usr[4] - usr[3])
-
-# Convert to normalized device coordinates
-fig_x <- grconvertX(x_range, from = "user", to = "ndc")
-fig_y <- grconvertY(y_range, from = "user", to = "ndc")
-
-par(fig = c(fig_x, fig_y), new = TRUE, mar = c(0, 0, 0, 0))
-tval_hist <- hist(tval, breaks = 15, plot = FALSE)
-barplot(tval_hist$counts,
-				space = 0,
-				col = "skyblue",
-				axes = FALSE,
-				border = NA)
-
-### --- Inset 2: final count histogram at top (y = 250:350 range) ---
-y_range2 <- c(250, 350)
-x_frac2  <- c(0.75, 0.97)
-
-x_range2 <- usr[1] + x_frac2 * (usr[2] - usr[1])
-
-fig_x2 <- grconvertX(x_range2, from = "user", to = "ndc")
-fig_y2 <- grconvertY(y_range2, from = "user", to = "ndc")
-
-par(fig = c(fig_x2, fig_y2), new = TRUE, mar = c(0, 0, 0, 0))
-final_hist <- hist(final_counts, breaks = 15, plot = FALSE)
-barplot(final_hist$counts,
+barplot(hist_data$counts,
 				horiz = TRUE,
 				space = 0,
 				col = "gray",
-				axes = FALSE,
-				border = NA)
+				axes = FALSE)
 
-# Reset plotting to normal
-par(fig = c(0, 1, 0, 1), new = FALSE)
 
 ####----APPENDIX----####
 ########################### Poisson Estimate and Spread V1
