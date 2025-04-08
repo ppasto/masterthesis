@@ -501,7 +501,7 @@ final_counts_2 <- cval_cum_matrix_2[, length(t)]
 #################################### MORE EFFICIENT:
 set.seed(2025)
 
-n <- 100000
+n <- 10^5
 t <- seq(1, 550, 1)
 lambda <- 0.591
 
@@ -527,13 +527,30 @@ cval_cum_matrix_2 <- t(simplify2array(
 final_counts_2 <- cval_cum_matrix_2[, length(t)]
 
 
-library(MASS)
-truehist(final_counts, col = rgb(1, 0, 0, 0.4), main = "Comparison", xlab = "Counts", ylab = "Density")
-par(new = TRUE)
-truehist(final_counts_2, col = rgb(0, 0, 1, 0.4), axes = FALSE, xlab = "", ylab = "")
+# library(MASS)
+# truehist(final_counts, col = rgb(1, 0, 0, 0.4), main = "Comparison", xlab = "Counts", ylab = "Density")
+# par(new = TRUE)
+# truehist(final_counts_2, col = rgb(0, 0, 1, 0.4), axes = FALSE, xlab = "", ylab = "")
+# 
+# legend("topright", legend = c("Version 1", "Version 2"), fill = c(rgb(1, 0, 0, 0.4), rgb(0, 0, 1, 0.4)))
 
-legend("topright", legend = c("Version 1", "Version 2"), fill = c(rgb(1, 0, 0, 0.4), rgb(0, 0, 1, 0.4)))
 
+plot(density(final_counts),
+		 main = "Comparison",
+		 xlab = "Counts",
+		 col = rgb(1, 0, 0, 0.4), 
+		 lwd = 4)
+
+lines(density(final_counts_2), 
+			lwd = 2,
+			lty = 2,
+			col = rgb(0, 0, 1, 0.4))
+legend("topright", 
+			 legend = c("Version 1", "Version 2"), 
+			 col = c(rgb(1, 0, 0, 0.4), rgb(0, 0, 1, 0.4)),
+			 lwd = c(4, 2),
+			 lty = c(1, 2), 
+			 cex = 0.7)
 # # Reset graphics device to avoid layout issues
 # if (dev.cur() > 1) dev.off()
 # 
@@ -741,7 +758,7 @@ lines(x_vals, dpois(x_vals, lambda = lambda * 550),
 legend("topright", 
 			 legend = c("MC sampling", "Theoretical Poisson"), 
 			 col = c("purple", "blue"),
-			 lwd = c(1, 2),
+			 lwd = c(4, 2),
 			 lty = c(1, 2), 
 			 cex = 0.7)
 
@@ -783,7 +800,7 @@ lines(x_vals, dnbinom(x_vals, size = 324, mu = lambda * 550),
 legend("topright", 
 			 legend = c("MC sampling", "Theoretical Poisson"), 
 			 col = c("purple", "blue"),
-			 lwd = c(1, 2),
+			 lwd = c(4, 2),
 			 lty = c(1, 2), 
 			 cex = 0.7)
 
