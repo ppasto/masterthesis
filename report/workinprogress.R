@@ -715,7 +715,7 @@ t <- seq(1, 550, 1)
 lambda <- 0.591
 
 # Generate cumulative Poisson paths
-cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
+cval_cum_matrix <- matrix(NA, nrow = M, ncol = length(t))
 
 for (i in 1:M) {
 	cval <- rpois(length(t), lambda)  
@@ -724,16 +724,20 @@ for (i in 1:M) {
 
 # Extract final counts for histogram
 final_counts <- cval_cum_matrix[, length(t)]
+
+# Plot the density estimate
 plot(density(final_counts),
-		 main = "Density",
+		 main = "Density vs Poisson PMF",
 		 xlab = "Counts",
 		 col = "purple", 
 		 lwd = 4)
-lines(dpois(200:400, lambda = lambda*550), 
+
+# Overlay the Poisson PMF as points or lines
+x_vals <- 200:400
+lines(x_vals, dpois(x_vals, lambda = lambda * 550), 
 			lwd = 2,
 			lty = 2,
 			col = "blue")
-# what happens???
 legend("topright", 
 			 legend = c("MC sampling", "Theoretical Poisson"), 
 			 col = c("purple", "blue"),
@@ -1023,8 +1027,7 @@ plot(0.01:700, dgamma(0.01:700, shape = 324, rate = lambda),
 		 main = "PMF", 
 		 xlab = "Counts", 
 		 ylab = "", 
-		 col = "black",
-		 ylims = c(0,1))
+		 col = "black")
 
 lines(0.01:700, dbetaprime(0.01:700, alpha = 324, beta = lambda), col = "red")
 lines(0.01:700, dbetaprime(0.01:700, alpha = 32.4, beta = lambda), col = "blue")
@@ -1064,6 +1067,11 @@ legend("topleft",
 			 lty = c(1, 1),
 			 bg = "white",
 			 cex = 0.6)
+
+
+
+
+
 ####----APPENDIX----####
 ########################### Poisson Estimate and Spread V1
 library(ggplot2)
