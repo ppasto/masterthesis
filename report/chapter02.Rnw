@@ -1357,7 +1357,7 @@ barplot(hist_data$counts,
 				axes = FALSE)
 
 @   
-  \caption{Poisson-distributed counts with $\lambda = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from section \ref{sec:expect}, while the red dashed lines indicate Poisson's 95\% aleatory uncertainty. The histogram on the y-axis illustrates the distribution of observed counts in 100 studies at time $t = 550$ days and the histogram on the x-axis, is the distribution of time \citep{spiegelhalter2011visualizing, pkgacc}.}
+  \caption{Poisson-distributed counts with $\lambda = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from section \ref{sec:expect}, while the red dashed lines indicate Poisson's 95\% aleatory uncertainty. The histogram on the y-axis illustrates the distribution of observed counts in 100 studies at time $t = 550$ days and the histogram on the x-axis, is the distribution of time for $N=324$ \citep{spiegelhalter2011visualizing, pkgacc}.}
   \label{fig:2_13}
 \end{figure}
 
@@ -1445,6 +1445,6 @@ barplot(hist_data$counts,
 				col = "gray",
 				axes = FALSE)
 @   
-  \caption{Poisson-Gamma $(\alpha = 324, \beta = 548)$ distributed counts with $\mu = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from Section \ref{sec:expect}, while the red dashed lines indicate Poisson-Gamma 95\% aleatory and epistemic uncertainty. The histogram on the y-axis illustrates the distribution of observed counts in 100 studies at time $t = 550$ days and the histogram on the x-axis, the distribution of time \citep{spiegelhalter2011visualizing, pkgacc}.}
+  \caption{Poisson-Gamma $(\alpha = 324, \beta = 548)$ distributed counts with $\mu = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from Section \ref{sec:expect}, while the red dashed lines indicate Poisson-Gamma 95\% aleatory and epistemic uncertainty. The histogram on the y-axis illustrates the distribution of observed counts in 100 studies at time $t = 550$ days and the histogram on the x-axis, the distribution of time for $N=324$ \citep{spiegelhalter2011visualizing, pkgacc}.}
   \label{fig:2_7}
 \end{figure}
