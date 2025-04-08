@@ -607,7 +607,7 @@ For a fixed sample size $c$, assuming we have a fixed recruitment rate $\lambda$
 \end{align*}
 
 
-\section{Time: Gamma-Gamma model}
+\section{Time: Beta-Prime derived from Gamma-Gamma model}
 
 Using the expressions of iterated expectation and variance \citep{held2014applied}, the expectation and variance from the respective random variables $T|\Lambda \sim \textrm{G}(C, \Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$, and the fact that when $\Lambda \sim \textrm{G}(\alpha, \beta)$ then, $\frac{1}{\Lambda} \sim \textrm{IG}(\alpha, \beta)$, we have that:
 
@@ -628,3 +628,18 @@ Using the expressions of iterated expectation and variance \citep{held2014applie
 \end{align*}
 
 As we can see in Table \ref{tab:time_modeling}.
+
+
+\begin{figure}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
+
+{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-16-1} 
+
+}
+
+
+\end{knitrout}
+	\caption{Sensitivity analysis between Poisson distribution with $\lambda = 0.591$ and Poisson-Gamma changing parameters of Gamma prior that maintain same expectation $\frac{\alpha}{\beta} = 0.591$ with $t=550$.}
+  \label{fig:2_6a}
+\end{figure}

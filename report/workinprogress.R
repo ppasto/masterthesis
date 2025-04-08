@@ -230,7 +230,7 @@ legend("topleft",
 			 bg = "white",
 			 cex = 0.7)
 
-####----SENSITIVITY ANALYSIS----####
+####----SENSITIVITY ANALYSIS COUNTS----####
 ### Density Gamma Distribution
 
 curve(dgamma(x, shape = alpha, rate = beta), 
@@ -974,6 +974,96 @@ barplot(hist_data$counts,
 				axes = FALSE)
 
 
+
+
+
+
+
+####----Sensitivity Analysis Time----####
+
+dbetaprime <- function(x, alpha, beta) {
+	if (any(x <= 0)) stop("x must be > 0")
+	coef <- 1 / beta(alpha, beta)
+	dens <- coef * x^(alpha - 1) * (1 + x)^(-alpha - beta)
+	return(dens)
+}
+
+pbetaprime <- function(x, alpha, beta) {
+	if (any(x <= 0)) stop("x must be > 0")
+	z <- x / (1 + x)
+	return(pbeta(z, alpha, beta))
+}
+
+par(mfrow=c(1,3))
+curve(dgamma(x, shape = 324, rate = 548), 
+			from = 0, to = 1,
+			main = "Prior", 
+			xlab = "Recruitment rate", 
+			ylab = "",
+			col = "red")
+
+curve(dgamma(x, shape = 32.4, rate = 54.8), add = TRUE,
+			col = "blue")
+
+curve(dgamma(x, shape = 3.24, rate = 5.48), add = TRUE,
+			col = "green")
+
+legend("topleft",
+			 legend = c(expression("G (" ~ alpha == 324 ~ beta == 548 ~ ")"),
+			 					 expression("G (" ~ alpha == 32.4 ~ beta == 54.8 ~ ")"),
+			 					 expression("G (" ~ alpha == 3.24 ~ beta == 5.48 ~ ")")),
+			 col = c("red", "blue", "green"),
+			 lty = c(1, 1),
+			 bg = "white",
+			 cex = 0.6)
+
+
+plot(0.01:700, dgamma(0.01:700, shape = 324, rate = lambda), 
+		 type = "l",
+		 main = "PMF", 
+		 xlab = "Counts", 
+		 ylab = "", 
+		 col = "black",
+		 ylims = c(0,1))
+
+lines(0.01:700, dbetaprime(0.01:700, alpha = 324, beta = lambda), col = "red")
+lines(0.01:700, dbetaprime(0.01:700, alpha = 32.4, beta = lambda), col = "blue")
+lines(0.01:700, dbetaprime(0.01:700, alpha = 3.24, beta = lambda), col = "green")
+
+
+legend("topleft",
+			 legend = c(expression(G(alpha == 324 ~ beta == 548)),
+			 					 expression(GG ~ (alpha == 324 ~ beta == 548)),
+			 					 expression(GG ~ (alpha == 32.4 ~ beta == 54.8)),
+			 					 expression(GG ~ (alpha == 3.24 ~ beta == 5.48))),
+			 col = c("black", "red", "blue", "green"),
+			 lty = c(1, 1),
+			 bg = "white",
+			 cex = 0.6)
+
+
+
+plot(0.01:700, pgamma(0.01:700, shape = 324, rate = lambda), 
+		 type = "l",
+		 main = "CDF", 
+		 xlab = "Counts", 
+		 ylab = "", 
+		 col = "black")
+
+lines(0.01:700, pbetaprime(0.01:700, alpha = 324, beta = lambda), col = "red")
+lines(0.01:700, pbetaprime(0.01:700, alpha = 32.4, beta = lambda), col = "blue")
+lines(0.01:700, pbetaprime(0.01:700, alpha = 3.24, beta = lambda), col = "green")
+
+
+legend("topleft",
+			 legend = c(expression(Po(lambda == 0.591)),
+			 					 expression(PoG ~ (alpha == 324 ~ beta == 548)),
+			 					 expression(PoG ~ (alpha == 32.4 ~ beta == 54.8)),
+			 					 expression(PoG ~ (alpha == 3.24 ~ beta == 5.48))),
+			 col = c("black", "red", "blue", "green"),
+			 lty = c(1, 1),
+			 bg = "white",
+			 cex = 0.6)
 ####----APPENDIX----####
 ########################### Poisson Estimate and Spread V1
 library(ggplot2)
