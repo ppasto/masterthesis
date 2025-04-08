@@ -634,7 +634,7 @@ hist_data <- hist(final_counts, breaks = hist_bins, plot = FALSE)
 barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray", 
 				axes = FALSE, xlab = "", ylab = "")
 @   
-  \caption{Poisson-Gamma $(\alpha = 324, \beta = 548)$ distributed counts with $\mu = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from section \ref{sec:expect}, while the red dashed lines indicate Poisson-Gamma 95\% aleatory and epistemic uncertainty. The histogram illustrates the distribution of observed counts in 100 studies at time $t = 550$ days \citep{spiegelhalter2011visualizing, pkgacc}.}
+  \caption{Poisson-Gamma $(\alpha = 324, \beta = 548)$ distributed counts with $\mu = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from Section \ref{sec:expect}, while the red dashed lines indicate Poisson-Gamma 95\% aleatory and epistemic uncertainty. The histogram illustrates the distribution of observed counts in 100 studies at time $t = 550$ days \citep{spiegelhalter2011visualizing, pkgacc}.}
   \label{fig:2_7}
 \end{figure}
 
@@ -1297,41 +1297,39 @@ lambda <- 0.591
 # Generate cumulative Poisson paths
 cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
 for (i in 1:n) {
-  cval <- rpois(length(t), lambda)  
-  cval_cum_matrix[i, ] <- cumsum(cval)  
+  cval <- rpois(length(t), lambda)
+  cval_cum_matrix[i, ] <- cumsum(cval)
 }
 
 final_counts <- cval_cum_matrix[, length(t)]
 tval <- rgamma(n, shape = alpha, rate = lambda)
 
-# Start PDF output
-pdf("accrual_plots.pdf", width = 10, height = 8)
 
-# Define layout: 2 rows, 2 columns (first row spans both columns)
+# Define layout: 2 rows, 2 columns (top spans both columns)
 layout(matrix(c(1, 1, 2, 3), nrow = 2, byrow = TRUE), 
-       heights = c(1, 4), widths = c(3, 1))
+       heights = c(2, 6), widths = c(3, 1))
 
 # --- Plot 1: tval histogram (top, horizontal barplot) ---
-par(mar = c(0.1, 4, 2, 2))
+par(mar = c(0.1, 25, 2, 10))
 tval_bins <- seq(min(tval), max(tval), length.out = 15)
 tval_hist <- hist(tval, breaks = tval_bins, plot = FALSE)
 
 barplot(tval_hist$counts,
-        space = 0,
-        col = "skyblue",
-        axes = FALSE,
-        horiz = FALSE)
+				space = 0,
+				col = "skyblue",
+				axes = FALSE,
+				horiz = FALSE)
 
 # --- Plot 2: Accrual time series (bottom-left) ---
 par(mar = c(4, 4, 2, 1))
-plot(t,  cval_cum_matrix[1,], 
-     type = "n", 
-     main = "Accrual of 100 studies", 
-     xlab = "Time", 
-     ylab = "Count")
+plot(t, cval_cum_matrix[1,],
+     type = "n",
+     main = "Accrual of 100 Studies",
+     xlab = "Time",
+     ylab = "Cumulative Count")
 
-for(i in 1:n){
-  lines(t,  cval_cum_matrix[i,], col = "lightgray")
+for (i in 1:n) {
+  lines(t, cval_cum_matrix[i,], col = "lightgray")
 }
 
 lines(t, lambda * t, lwd = 2)
@@ -1348,18 +1346,105 @@ legend("topleft",
        cex = 0.8)
 
 # --- Plot 3: Final counts histogram (bottom-right) ---
-par(mar = c(4, 1, 2, 1))
+par(mar = c(25, 0.5, 2, 1))
 hist_bins <- seq(min(final_counts), max(final_counts), length.out = 15)
 hist_data <- hist(final_counts, breaks = hist_bins, plot = FALSE)
 
 barplot(hist_data$counts,
-        horiz = TRUE,
-        space = 0,
-        col = "gray",
-        axes = FALSE)
-
+				horiz = TRUE,
+				space = 0,
+				col = "gray",
+				axes = FALSE)
 
 @   
   \caption{Poisson-distributed counts with $\lambda = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from section \ref{sec:expect}, while the red dashed lines indicate Poisson's 95\% aleatory uncertainty. The histogram on the y-axis illustrates the distribution of observed counts in 100 studies at time $t = 550$ days and the histogram on the x-axis, is the distribution of time \citep{spiegelhalter2011visualizing, pkgacc}.}
   \label{fig:2_13}
+\end{figure}
+
+
+\begin{figure}
+<<echo=FALSE>>=
+set.seed(2025)
+
+n <- 100
+t <- seq(1, 550, 1)
+lambda <- 0.591
+
+alpha <- 324
+beta <- 548
+
+# Generate cumulative Poisson paths
+cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
+v_lambda <- rgamma(n, shape = alpha, rate = beta)
+
+for (i in 1:n) {
+	cval <- rpois(length(t), lambda = v_lambda[i])
+	cval_cum_matrix[i, ] <- cumsum(cval)  
+}
+
+# Extract final counts for histogram
+final_counts <- cval_cum_matrix[, length(t)]
+
+v_lambda <- rgamma(n, shape = alpha, rate = beta)
+tval <- numeric(n)  
+
+for (i in 1:n) {
+	tval[i] <- rgamma(1, shape = alpha, rate = v_lambda[i])
+}
+
+
+# Define layout: 2 rows, 2 columns (top spans both columns)
+layout(matrix(c(1, 1, 2, 3), nrow = 2, byrow = TRUE), 
+       heights = c(2, 6), widths = c(3, 1))
+
+
+# --- Plot 1: tval histogram (top, horizontal barplot) ---
+par(mar = c(0.1, 25, 2, 10))
+tval_bins <- seq(min(tval), max(tval), length.out = 15)
+tval_hist <- hist(tval, breaks = tval_bins, plot = FALSE)
+
+barplot(tval_hist$counts,
+				space = 0,
+				col = "skyblue",
+				axes = FALSE,
+				horiz = FALSE)
+
+# --- Plot 2: Accrual time series (bottom-left) ---
+par(mar = c(4, 4, 2, 1))
+plot(t,  cval_cum_matrix[1,], 
+		 type = "n", 
+		 main = "Accrual of 100 studies", 
+		 xlab = "Time", 
+		 ylab = "Count")
+
+for(i in 1:n){
+	lines(t,  cval_cum_matrix[i,], col = "lightgray")
+}
+
+lines(t, lambda*t)
+lines(t, qnbinom(p = 0.975, size = alpha, mu = lambda*t), lty = 2, col = "green")
+lines(t, qnbinom(p = 0.025, size = alpha, mu = lambda*t), lty = 2, col = "green")
+
+legend("topleft",
+			 legend = c("2.5th - 97.5th Percentile [95%]",
+			 					 "Expected Accrual"),
+			 col = c("green", "black"),
+			 lty = c(2, 1),
+			 lwd = c(1,2),
+			 bg = "white",
+			 cex = 0.5)
+
+# --- Plot 3: Final counts histogram (bottom-right) ---
+par(mar = c(25, 0.5, 2, 1))
+hist_bins <- seq(min(final_counts), max(final_counts), length.out = 15)
+hist_data <- hist(final_counts, breaks = hist_bins, plot = FALSE)
+
+barplot(hist_data$counts,
+				horiz = TRUE,
+				space = 0,
+				col = "gray",
+				axes = FALSE)
+@   
+  \caption{Poisson-Gamma $(\alpha = 324, \beta = 548)$ distributed counts with $\mu = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from Section \ref{sec:expect}, while the red dashed lines indicate Poisson-Gamma 95\% aleatory and epistemic uncertainty. The histogram on the y-axis illustrates the distribution of observed counts in 100 studies at time $t = 550$ days and the histogram on the x-axis, the distribution of time \citep{spiegelhalter2011visualizing, pkgacc}.}
+  \label{fig:2_7}
 \end{figure}

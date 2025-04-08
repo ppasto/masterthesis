@@ -1010,13 +1010,13 @@ for(i in 1:n){
 }
 
 lines(t, lambda*t)
-lines(t, qnbinom(p = 0.975, size = alpha, mu = lambda*t), lty = 2, col = "red")
-lines(t, qnbinom(p = 0.025, size = alpha, mu = lambda*t), lty = 2, col = "red")
+lines(t, qnbinom(p = 0.975, size = alpha, mu = lambda*t), lty = 2, col = "green")
+lines(t, qnbinom(p = 0.025, size = alpha, mu = lambda*t), lty = 2, col = "green")
 
 legend("topleft",
 			 legend = c("2.5th - 97.5th Percentile [95%]",
 			 					 "Expected Accrual"),
-			 col = c("red", "black"),
+			 col = c("green", "black"),
 			 lty = c(2, 1),
 			 lwd = c(1,2),
 			 bg = "white",

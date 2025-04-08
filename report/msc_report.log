@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.18)  8 APR 2025 18:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.18)  8 APR 2025 19:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -400,6 +400,9 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 
 LaTeX Warning: Label `fig:2_6' multiply defined.
 
+
+LaTeX Warning: Label `fig:2_7' multiply defined.
+
 )
 \openout1 = `msc_report.aux'.
 
@@ -673,6 +676,16 @@ File: figure/ch02_figunnamed-chunk-16-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-16-1.pdf>
 Package pdftex.def Info: figure/ch02_figunnamed-chunk-16-1.pdf  used on input line 637.
 (pdftex.def)             Requested size: 369.94295pt x 264.25197pt.
+<figure/ch02_figunnamed-chunk-17-1.pdf, id=619, 505.89pt x 505.89pt>
+File: figure/ch02_figunnamed-chunk-17-1.pdf Graphic file (type pdf)
+<use figure/ch02_figunnamed-chunk-17-1.pdf>
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-17-1.pdf  used on input line 653.
+(pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
+<figure/ch02_figunnamed-chunk-18-1.pdf, id=630, 505.89pt x 505.89pt>
+File: figure/ch02_figunnamed-chunk-18-1.pdf Graphic file (type pdf)
+<use figure/ch02_figunnamed-chunk-18-1.pdf>
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-18-1.pdf  used on input line 668.
+(pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
 ) (./chapter03.tex
 
 [21 <./figure/ch02_figunnamed-chunk-14-1.pdf>]
@@ -681,7 +694,11 @@ Package pdftex.def Info: figure/ch02_figunnamed-chunk-16-1.pdf  used on input li
 
 [23 <./figure/ch02_figunnamed-chunk-16-1.pdf>]
 
-[24
+[24 <./figure/ch02_figunnamed-chunk-17-1.pdf>]
+
+[25 <./figure/ch02_figunnamed-chunk-18-1.pdf>]
+
+[26
 
 ]
 Chapter 3.
@@ -690,41 +707,41 @@ Overfull \hbox (18.06136pt too wide) in paragraph at lines 6--6
 []\T1/cmr/bx/n/14.4 Important ques-tions when fore-cast-ing re-cruit-ment at the design-
  []
 
-<figure/ch03_figunnamed-chunk-1-1.pdf, id=685, 505.89pt x 505.89pt>
+<figure/ch03_figunnamed-chunk-1-1.pdf, id=718, 505.89pt x 505.89pt>
 File: figure/ch03_figunnamed-chunk-1-1.pdf Graphic file (type pdf)
 <use figure/ch03_figunnamed-chunk-1-1.pdf>
 Package pdftex.def Info: figure/ch03_figunnamed-chunk-1-1.pdf  used on input line 47.
 (pdftex.def)             Requested size: 455.30121pt x 455.31221pt.
-<figure/ch03_figunnamed-chunk-2-1.pdf, id=686, 505.89pt x 505.89pt>
+<figure/ch03_figunnamed-chunk-2-1.pdf, id=719, 505.89pt x 505.89pt>
 File: figure/ch03_figunnamed-chunk-2-1.pdf Graphic file (type pdf)
 <use figure/ch03_figunnamed-chunk-2-1.pdf>
 Package pdftex.def Info: figure/ch03_figunnamed-chunk-2-1.pdf  used on input line 57.
 (pdftex.def)             Requested size: 455.30121pt x 455.31221pt.
 ) (./chapter04.tex
 
-[25]
+[27]
 
-[26 <./figure/ch03_figunnamed-chunk-1-1.pdf>]
+[28 <./figure/ch03_figunnamed-chunk-1-1.pdf>]
 
-[27 <./figure/ch03_figunnamed-chunk-2-1.pdf>]
+[29 <./figure/ch03_figunnamed-chunk-2-1.pdf>]
 
-[28
+[30
 
 ]
 Chapter 4.
 ) (./chapter05.tex
 
-[29]
+[31]
 
-[30
+[32
 
 ]
 Chapter 5.
 )
 
-[31]
+[33]
 
-[32
+[34
 
 ] (./msc_report.bbl (./msc_report.brf)
 \tf@brf=\write6
@@ -732,7 +749,7 @@ Chapter 5.
 
 
 
-[33
+[35
 
 ]
 Underfull \hbox (badness 2343) in paragraph at lines 93--93
@@ -746,7 +763,7 @@ Underfull \hbox (badness 2547) in paragraph at lines 93--93
 
 )
 
-[34] (./msc_report.aux)
+[36] (./msc_report.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -755,23 +772,23 @@ L3 programming layer <2025-01-18>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `msc_report.out' has not changed.
-(rerunfilecheck)             Checksum: 802777EA99454CD124F0F66D0C06BD9C;1508.
+(rerunfilecheck)             Checksum: E14AEA7E9F551B42125B1544F6D4D628;1508.
 Package rerunfilecheck Info: File `msc_report.brf' has not changed.
-(rerunfilecheck)             Checksum: 237D5F38FAA4BD19DD83275817E9D767;3768.
+(rerunfilecheck)             Checksum: 6ACFB04D2ACD48D6906DC14704CF2187;3890.
  ) 
 Here is how much of TeX's memory you used:
- 15183 strings out of 475129
- 247710 string characters out of 5762560
- 661535 words of memory out of 5000000
- 37799 multiletter control sequences out of 15000+600000
+ 15204 strings out of 475129
+ 248559 string characters out of 5762560
+ 661608 words of memory out of 5000000
+ 37817 multiletter control sequences out of 15000+600000
  581849 words of font info for 83 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  95i,16n,96p,891b,489s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsl1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1000.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1200.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1440.600pk></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on msc_report.pdf (42 pages, 1596021 bytes).
+Output written on msc_report.pdf (44 pages, 2006071 bytes).
 PDF statistics:
- 1398 PDF objects out of 1440 (max. 8388607)
- 772 compressed objects within 8 object streams
- 143 named destinations out of 1000 (max. 500000)
- 256 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1436 PDF objects out of 1440 (max. 8388607)
+ 799 compressed objects within 8 object streams
+ 146 named destinations out of 1000 (max. 500000)
+ 266 words of extra memory for PDF output out of 10000 (max. 10000000)
 
