@@ -48,100 +48,97 @@ In Figures \ref{fig:3_1} and \ref{fig:3_2}, we can see how for $n=10^5$, MC samp
 % @
 
 
-% \begin{figure}
-% <<echo=FALSE, cache = TRUE>>=
-% ### PMF
-% set.seed(2025)
-% 
-% n <- 100000
-% t <- seq(1, 550, 1)
-% lambda <- 0.591
-% 
-% # Generate cumulative Poisson paths
-% cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
-% 
-% for (i in 1:n) {
-% 	cval <- rpois(length(t), lambda)  
-% 	cval_cum_matrix[i, ] <- cumsum(cval)  
-% }
-% 
-% # Extract final counts for histogram
-% final_counts <- cval_cum_matrix[, length(t)]
-% 
-% 
-% # THEORETICAL: EXACT DISTRIBUTION
-% 
-% 
-% library(MASS)
-% # Histogram with transparency
-% truehist(final_counts, col = rgb(0, 0, 1, 0.4),  
-% 				 main = "Poisson Theoretical vs MC Sampling PMF", 
-% 				 xlab = "Counts", 
-% 				 ylab = "Density")
-% 
-% # Overlaying bar plot with transparency
-% par(new = TRUE)
-% bar_positions <- barplot(dpois(250:400, lambda * 550),
-% 												 xaxt = "n", yaxt = "n",
-% 												 col = rgb(0, 1, 0, 0.4))  
-% 
-% # Updated legend
-% legend("topright", legend = c("MC sampling", "Theoretical Poisson"), 
-% 			 fill = c(rgb(0, 0, 1, 0.4), rgb(0, 1, 0, 0.4)), cex = 0.7)
-% 
-% @   
-%   \caption{Comparison of theoretical Probability Mass Function (PMF) of Poisson model centered at $\lambda = 0.591$ for accrual at time $t=550$ and Monte Carlo (MC) sampling.}
-%   \label{fig:3_1}
-% \end{figure}
+\begin{figure}
+<<echo=FALSE, cache = TRUE>>=
+set.seed(2025)
+
+M <- 10^5
+t <- seq(1, 550, 1)
+lambda <- 0.591
+
+# Generate cumulative Poisson paths
+cval_cum_matrix <- matrix(NA, nrow = M, ncol = length(t))
+
+for (i in 1:M) {
+	cval <- rpois(length(t), lambda)  
+	cval_cum_matrix[i, ] <- cumsum(cval)  
+}
+
+# Extract final counts for histogram
+final_counts <- cval_cum_matrix[, length(t)]
+
+# Plot the density estimate
+plot(density(final_counts),
+		 main = "MC sampling vs Theoretical PMF",
+		 xlab = "Counts",
+		 col = "purple", 
+		 lwd = 4)
+
+# Overlay the Poisson PMF as points or lines
+x_vals <- 200:400
+lines(x_vals, dpois(x_vals, lambda = lambda * 550), 
+			lwd = 2,
+			lty = 2,
+			col = "blue")
+legend("topright", 
+			 legend = c("MC sampling", "Theoretical Poisson"), 
+			 col = c("purple", "blue"),
+			 lwd = c(4, 2),
+			 lty = c(1, 2), 
+			 cex = 0.7)
+
+@
+  \caption{Comparison of theoretical Probability Mass Function (PMF) of Poisson model centered at $\lambda = 0.591$ for accrual at time $t=550$ and Monte Carlo (MC) sampling.}
+  \label{fig:3_1}
+\end{figure}
 
 
-% \begin{figure}
-% <<echo=FALSE, cache = TRUE>>=
-% set.seed(2025)
-% 
-% n <- 100000
-% t <- seq(1, 550, 1)
-% lambda <- 0.591
-% 
-% alpha <- 324
-% beta <- 548
-% 
-% # Generate cumulative Poisson paths
-% cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
-% v_lambda <- rgamma(n, shape = alpha, rate = beta)
-% 
-% for (i in 1:n) {
-% 	cval <- rpois(length(t), lambda = v_lambda[i])
-% 	cval_cum_matrix[i, ] <- cumsum(cval)  
-% }
-% 
-% # Extract final counts for histogram
-% final_counts <- cval_cum_matrix[, length(t)]
-% 
-% 
-% library(MASS)
-% # Histogram with transparency
-% truehist(final_counts, col = rgb(0, 0, 1, 0.4),  
-% 				 main = "PoG Theoretical vs MC Sampling PMF", 
-% 				 xlab = "Counts", 
-% 				 ylab = "Density")
-% 
-% # Overlaying bar plot with transparency
-% par(new = TRUE)
-% bar_positions <- barplot(dnbinom(250:400, size = alpha, mu = lambda*550),
-% 												 xaxt = "n", yaxt = "n",
-% 												 col = rgb(0, 1, 0, 0.4))  
-% 
-% # Updated legend
-% legend("topright", legend = c("MC sampling", "Theoretical PoG"), 
-% 			 fill = c(rgb(0, 0, 1, 0.4), rgb(0, 1, 0, 0.4)), cex = 0.7)
-% 
-% @   
-%   \caption{Comparison of theoretical Probability Mass Function (PMF) of Poisson-Gamma model with $\alpha = 324$ and $\beta = 548$ for accrual at time $t=550$, and Monte Carlo (MC) sampling.}
-%   \label{fig:3_2}
-% \end{figure}
+\begin{figure}
+<<echo=FALSE, cache = TRUE>>=
+M <- 10^5
+t <- seq(1, 550, 1)
+lambda <- 0.591
 
-% 
+alpha <- 324
+beta <- 548
+# Generate cumulative Poisson paths
+cval_cum_matrix <- matrix(NA, nrow = M, ncol = length(t))
+v_lambda <- rgamma(n, shape = alpha, rate = beta)
+
+for (i in 1:M) {
+	cval <- rpois(length(t), lambda = v_lambda[i])
+	cval_cum_matrix[i, ] <- cumsum(cval)  
+}
+
+# Extract final counts for histogram
+final_counts <- cval_cum_matrix[, length(t)]
+
+
+# Plot the density estimate
+plot(density(final_counts),
+		 main = "MC sampling vs Theoretical PMF",
+		 xlab = "Counts",
+		 col = "purple", 
+		 lwd = 4)
+
+# Overlay the Poisson PMF as points or lines
+x_vals <- 200:400
+lines(x_vals, dnbinom(x_vals, size = 324, mu = lambda * 550), 
+			lwd = 2,
+			lty = 2,
+			col = "blue")
+legend("topright", 
+			 legend = c("MC sampling", "Theoretical Poisson"), 
+			 col = c("purple", "blue"),
+			 lwd = c(4, 2),
+			 lty = c(1, 2), 
+			 cex = 0.7)
+@
+\caption{Comparison of theoretical Probability Mass Function (PMF) of Poisson-Gamma model with $\alpha = 324$ and $\beta = 548$ for accrual at time $t=550$, and Monte Carlo (MC) sampling.}
+\label{fig:3_2}
+\end{figure}
+
+
 
 \section{Time: Comparison exact vs Monte Carlo simulations}
 
