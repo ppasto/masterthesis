@@ -1186,17 +1186,25 @@ The Erlang model explains only the aleatory uncertainty of the waiting time unti
 
 \section{Time: Beta-Prime derived from Gamma-Gamma model}
 
-Using the expressions of iterated expectation and variance \citep{held2014applied}, the expectation and variance from the respective random variables $T|\Lambda \sim \textrm{G}(C, \Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$, and the fact that when $\Lambda \sim \textrm{G}(\alpha, \beta)$ then, $\frac{1}{\Lambda} \sim \textrm{IG}(\alpha, \beta)$, we have that:
+To take into account the epistemic uncertainty of recruitment rates and the aleatory uncertainty of waiting times, a Gamma-Gamma model is recommended \citep{bagiella2001predicting}, $T(c)|\Lambda \sim \textrm{G}(c, \Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$.
 
+Using the expressions of iterated expectation and variance \citep{held2014applied}, the expectation and variance from the respective random variables $T(c)|\Lambda \sim \textrm{G}(c, \Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$, and the fact that when $\Lambda \sim \textrm{G}(\alpha, \beta)$ then, $\frac{1}{\Lambda} \sim \textrm{IG}(\alpha, \beta)$ with:
 
 \begin{align*}
-\textrm{E}T &= \textrm{E}_{\Lambda}[\textrm{E}_{T} (T|\Lambda)] = \textrm{E}_{\Lambda}\Bigg [\frac{c}{\Lambda}\Bigg ] = c \textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda}\Bigg ] = c\frac{\beta}{\alpha-1}\\
+\textrm{E}\Bigg [\frac{1}{\Lambda}\Bigg ] &=\textrm{E}(\textrm{IG}(\alpha, \beta)) = \frac{\beta}{\alpha-1}\\
+\textrm{Var}\Bigg [\frac{1}{\Lambda}\Bigg ] & =\textrm{Var}(\textrm{IG}(\alpha, \beta)) = \frac{\beta^2}{(\alpha-1)^2(\alpha-2)}
+\end{align*}
+
+We have that:
+
+\begin{align*}
+\textrm{E}T(c) &= \textrm{E}_{\Lambda}[\textrm{E}_{T(c)} (T(c)|\Lambda)] = \textrm{E}_{\Lambda}\Bigg [\frac{c}{\Lambda}\Bigg ] = c \textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda}\Bigg ] = c\frac{\beta}{\alpha-1}\\
 &\alpha>1
 \end{align*}
 
 
 \begin{align*}
-\textrm{Var}(T) &= \textrm{Var}_{\Lambda}[\textrm{E}_{T} (T|\Lambda)] + \textrm{E}_{\Lambda}[\textrm{Var}_T(T|\Lambda)]\\
+\textrm{Var}(T(c)) &= \textrm{Var}_{\Lambda}[\textrm{E}_{T(c)} (T(c)|\Lambda)] + \textrm{E}_{\Lambda}[\textrm{Var}_{T(c)}(T(c)|\Lambda)]\\
 &=\textrm{Var}_{\Lambda}\Bigg [\frac{c}{\Lambda}\Bigg ] + \textrm{E}_{\Lambda}\Bigg [\frac{c}{\Lambda^2}\Bigg ] \\
 &=c^2\textrm{Var}_{\Lambda}\Bigg [\frac{1}{\Lambda}\Bigg ] + c\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ] \\
 &=\frac{c^2\beta^2}{(\alpha-1)^2(\alpha-2)} + \frac{c\beta^2}{(\alpha-1)(\alpha-2)}\\
@@ -1204,8 +1212,23 @@ Using the expressions of iterated expectation and variance \citep{held2014applie
 &\alpha>2
 \end{align*}
 
-As we can see in Table \ref{tab:time_modeling}.
+As we can see in Table \ref{tab:time_modeling}. Here, we have again, a clear example of overdispersion because the variance is larger than the expectation:
 
+\begin{align*}
+\textrm{Var}(T(c))&=\textrm{E}(T(c))\frac{\beta(c+\alpha-1)}{(\alpha-1)(\alpha-2)}\\
+&=\textrm{E}(T(c))\beta\Bigg(\frac{c}{(\alpha-1)(\alpha-2)}+\frac{1}{\alpha-2}\Bigg)
+\end{align*}
+
+For small parameter $\alpha$ ($\alpha>2$) and large parameter $\beta$, we will have larger uncertainty (variance).
+
+To compute $\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ]$ we use property $\textrm{Var}X = \textrm{E}X^2-(\textrm{E}X)^2$, therefore, $\textrm{E}X^2 = \textrm{Var}X + (\textrm{E}X)^2$. Thus,
+
+\begin{align*}
+\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ] &= \textrm{Var}\Bigg [\frac{1}{\Lambda}\Bigg ] + \Bigg [\textrm{E}\frac{1}{\Lambda}\Bigg ]^2\\
+&=\frac{\beta^2}{(\alpha-1)^2(\alpha-2)} + \frac{\beta^2}{(\alpha-1)^2}\\
+&=\frac{\beta^2(1+\alpha-2)}{(\alpha-1)^2(\alpha-2)}\\
+&=\frac{\beta^2}{(\alpha-1)(\alpha-2)}
+\end{align*}
 
 \begin{figure}
 <<echo = FALSE,  fig.width=7, fig.height=5>>=

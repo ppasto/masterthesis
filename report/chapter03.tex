@@ -15,6 +15,16 @@ This raises two questions which will be answered throughout this Master Thesis:
 \item \textbf{Time:} Given a certain rate $\lambda$, how long should the recruitment period $T$ be planned to give a confidence above 50\% of recruiting the total sample size $N$? In Machine Learning, this confidence is aimed at 80\%. In \cite{carter2004application}, at 90\%.
 \end{enumerate}
 
+\section{Pros and cons of Monte Carlo's simulations}
+
+Carter suggests using Monte Carlo simulations, independent and identically distributed realizations of random variables. One clear advantage is its flexibility, as we can simulate any distribution we want. However, we must consider the following when we compute MC sampling instead of exact:
+
+\begin{itemize}
+\item $M$, the number of simulations
+\item Set a seed for computational reproducibility
+\item Monte Carlo standard errors (MCse) of estimates based on MC simulations
+\item Pseudo random numbers generated in R rely in the assumption that these pseudo random numbers are close to the true realizations of random variables \citep{held2014applied}
+\end{itemize}
 \section{Counts: Comparison exact vs Monte Carlo simulations}
 
 Carter raises two important questions, enumerated in the previous section \citep{carter2004application, carter2005practical}. He suggests the use of Monte Carlo (MC) simulations for Counts. Here we investigate the accuracy of his MC simulations by comparing them with exact distributions for accrual of counts introduced in Chapter 2. 
@@ -80,7 +90,7 @@ In Figures \ref{fig:3_1} and \ref{fig:3_2}, we can see how for $n=10^5$, MC samp
 % 			 lty = c(1, 2), 
 % 			 cex = 0.7)
 % @
-%   \caption{Comparison of theoretical Probability Mass Function (PMF) of Poisson model centered at $\lambda = 0.591$ for accrual at time $t=550$ and Monte Carlo (MC) sampling.}
+%   \caption{Comparison of theoretical Probability Mass Function (PMF) of Poisson model for counts centered at $\lambda = 0.591$ for accrual at time $t=550$ and Monte Carlo (MC) sampling with $M=10^5$.}
 %   \label{fig:3_1}
 % \end{figure}
 % 
@@ -130,7 +140,7 @@ In Figures \ref{fig:3_1} and \ref{fig:3_2}, we can see how for $n=10^5$, MC samp
 % 
 % 
 % @
-% \caption{Comparison of theoretical Probability Mass Function (PMF) of Poisson-Gamma model with $\alpha = 324$ and $\beta = 548$ for accrual at time $t=550$, and Monte Carlo (MC) sampling.}
+% \caption{Comparison of theoretical Probability Mass Function (PMF) of Poisson-Gamma model for counts with $\alpha = 324$ and $\beta = 548$ for accrual at time $t=550$, and Monte Carlo (MC) sampling with $M=10^5$.}
 % \label{fig:3_2}
 % \end{figure}
 
@@ -196,7 +206,7 @@ In Figures \ref{fig:3_1} and \ref{fig:3_2}, we can see how for $n=10^5$, MC samp
 % 			 cex = 0.7)
 % 
 % @
-% \caption{Comparison of theoretical Density function of Gamma model with parameters $\alpha = 324$ and $\beta = 548$ and Monte Carlo (MC) sampling.}
+% \caption{Comparison of theoretical Density function of Gamma model for time with parameters $\alpha = 324$ and $\beta = 548$ and Monte Carlo (MC) sampling with $M=10^5$.}
 % \label{fig:3_3}
 % \end{figure}
 
@@ -244,7 +254,7 @@ In Figures \ref{fig:3_1} and \ref{fig:3_2}, we can see how for $n=10^5$, MC samp
 % 			 lty = c(1, 2),
 % 			 cex = 0.7)
 % @
-% \caption{Comparison of theoretical Density function of Gamma-Gamma model with parameters $\alpha = 324$ and $\beta = 548$ and Monte Carlo (MC) sampling.}
+% \caption{Comparison of theoretical Density function of Gamma-Gamma model for time with parameters $\alpha = 324$ and $\beta = 548$ and Monte Carlo (MC) sampling with $M=10^5$.}
 % \label{fig:3_4}
 % \end{figure}
 % 
