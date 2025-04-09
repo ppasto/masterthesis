@@ -825,6 +825,14 @@ end.time <- Sys.time()
 time.taken <- end.time - start.time
 time.taken
 
+# for compiling:
+# 1st saving
+# write.csv(timep, "specify_path_and_file_name.csv")
+# read.csv(...) instead of loop
+# 2nd try M=10^6
+
+# is the problem the loop? or the graph with so many (10^5) data points?
+
 ### M = 10^4: 8.6 secs
 ### M = 10^5: 1.45 mins
 ### M = 10^6: 12.8 mins
