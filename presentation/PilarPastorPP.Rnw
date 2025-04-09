@@ -458,7 +458,7 @@ Example from \cite{carter2004application}:
 Let $C(t)|\Lambda \sim Po(\Lambda t)$ and $\Lambda \sim G(\alpha,\beta)$
 \begin{align*}
 p(c)&=\int^\infty_0 p(c|\lambda) p(\lambda) d\lambda\\
-&=\int^\infty_0 \frac{(\lambda t)^c\exp(-\lambda t)}{c!}\Bigg[(\lambda t)^{\alpha-1}\exp(-\beta\lambda t)\frac{\beta^\alpha}{\Gamma(\alpha)}\Bigg]d\lambda\\
+&=\int^\infty_0 \frac{(\lambda t)^c\exp(-\lambda t)}{c!}\Bigg[(\lambda)^{\alpha-1}\exp(-\beta\lambda)\frac{\beta^\alpha}{\Gamma(\alpha)}\Bigg]d\lambda\\
 &=\frac{\beta^\alpha t^c \Gamma(\alpha+c)}{c!\Gamma(\alpha) (\beta+t)^{\alpha+c}}\underbrace{\int^\infty_0 \frac{(\beta+t)^{\alpha+c}}{\Gamma(\alpha+c)} \lambda^{\alpha+c-1}\exp(-(\beta+t)\lambda)d\lambda}_{=1}\\
 &=\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{t}{\beta+t}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+t}\Bigg)^{\alpha}, \\
 C(t)\sim NBin \Bigg(\alpha, \frac{\beta}{\beta+t}\Bigg)
