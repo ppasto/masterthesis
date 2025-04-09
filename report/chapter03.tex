@@ -30,119 +30,46 @@ Carter suggests using Monte Carlo simulations, independent and identically distr
 Carter raises two important questions, enumerated in the previous section \citep{carter2004application, carter2005practical}. He suggests the use of Monte Carlo (MC) simulations for Counts. Here we investigate the accuracy of his MC simulations by comparing them with exact distributions for accrual of counts introduced in Chapter 2. 
 
 In Figures \ref{fig:3_1} and \ref{fig:3_2}, we can see how for $n=10^5$, MC sampling converges to the theoretical approaches discussed in Chapter 2.
-% 
+%
 % <<echo = TRUE, cache=TRUE>>=
 % set.seed(2025)
-% 
+%
 % M <- 10^5
 % t <- seq(1, 550, 1)
 % lambda <- 0.591
-% 
+%
 % # Generate cumulative Poisson paths
 % cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
-% 
+%
 % for (i in 1:M) {
 % 	cval <- rpois(length(t), lambda)
 % 	cval_cum_matrix[i, ] <- cumsum(cval)
 % }
-% 
+%
 % # Extract final counts for histogram
 % final_counts <- cval_cum_matrix[, length(t)]
 % @
 
-% 
-% \begin{figure}
-% <<echo=FALSE, cache = TRUE, warning=FALSE>>=
-% set.seed(2025)
-% 
-% M <- 10^5
-% t <- seq(1, 550, 1)
-% lambda <- 0.591
-% 
-% # Generate cumulative Poisson paths
-% cval_cum_matrix <- matrix(NA, nrow = M, ncol = length(t))
-% 
-% for (i in 1:M) {
-% 	cval <- rpois(length(t), lambda)  
-% 	cval_cum_matrix[i, ] <- cumsum(cval)  
-% }
-% 
-% # Extract final counts for histogram
-% final_counts <- cval_cum_matrix[, length(t)]
-% 
-% # Plot the density estimate
-% plot(density(final_counts),
-% 		 main = "MC sampling vs Theoretical PMF",
-% 		 xlab = "Counts",
-% 		 col = "purple", 
-% 		 lwd = 4)
-% 
-% # Overlay the Poisson PMF as points or lines
-% x_vals <- 200:400
-% lines(x_vals, dpois(x_vals, lambda = lambda * 550), 
-% 			lwd = 2,
-% 			lty = 2,
-% 			col = "blue")
-% legend("topright", 
-% 			 legend = c("MC sampling", "Theoretical Poisson"), 
-% 			 col = c("purple", "blue"),
-% 			 lwd = c(4, 2),
-% 			 lty = c(1, 2), 
-% 			 cex = 0.7)
-% @
-%   \caption{Comparison of theoretical Probability Mass Function (PMF) of Poisson model for counts centered at $\lambda = 0.591$ for accrual at time $t=550$ and Monte Carlo (MC) sampling with $M=10^5$.}
-%   \label{fig:3_1}
-% \end{figure}
-% 
-% 
-% \begin{figure}
-% <<echo=FALSE, cache = TRUE, warning=FALSE>>=
-% set.seed(2025)
-% 
-% n <- 10^5
-% t <- seq(1, 550, 1)
-% lambda <- 0.591
-% 
-% alpha <- 324
-% beta <- 548
-% # Generate cumulative Poisson paths
-% cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
-% v_lambda <- rgamma(n, shape = alpha, rate = beta)
-% 
-% for (i in 1:n) {
-% 	cval <- rpois(length(t), lambda = v_lambda[i])
-% 	cval_cum_matrix[i, ] <- cumsum(cval)  
-% }
-% 
-% # Extract final counts for histogram
-% final_counts <- cval_cum_matrix[, length(t)]
-% 
-% 
-% # Plot the density estimate
-% plot(density(final_counts),
-% 		 main = "MC sampling vs Theoretical PMF",
-% 		 xlab = "Counts",
-% 		 col = "purple", 
-% 		 lwd = 4)
-% 
-% # Overlay the Poisson PMF as points or lines
-% x_vals <- 200:400
-% lines(x_vals, dnbinom(x_vals, size = 324, mu = lambda * 550), 
-% 			lwd = 2,
-% 			lty = 2,
-% 			col = "blue")
-% legend("topright", 
-% 			 legend = c("MC sampling", "Theoretical Poisson"), 
-% 			 col = c("purple", "blue"),
-% 			 lwd = c(4, 2),
-% 			 lty = c(1, 2), 
-% 			 cex = 0.7)
-% 
-% 
-% @
-% \caption{Comparison of theoretical Probability Mass Function (PMF) of Poisson-Gamma model for counts with $\alpha = 324$ and $\beta = 548$ for accrual at time $t=550$, and Monte Carlo (MC) sampling with $M=10^5$.}
-% \label{fig:3_2}
-% \end{figure}
+
+\begin{figure}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/ch03_figunnamed-chunk-1-1} 
+\end{knitrout}
+  \caption{Comparison of theoretical Probability Mass Function (PMF) of Poisson model for counts centered at $\lambda = 0.591$ for accrual at time $t=550$ and Monte Carlo (MC) sampling with $M=10^5$.}
+  \label{fig:3_1}
+\end{figure}
+
+
+
+\begin{figure}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/ch03_figunnamed-chunk-2-1} 
+\end{knitrout}
+\caption{Comparison of theoretical Probability Mass Function (PMF) of Poisson-Gamma model for counts with $\alpha = 324$ and $\beta = 548$ for accrual at time $t=550$, and Monte Carlo (MC) sampling with $M=10^5$.}
+\label{fig:3_2}
+\end{figure}
 
 
 
@@ -166,99 +93,27 @@ In Figures \ref{fig:3_1} and \ref{fig:3_2}, we can see how for $n=10^5$, MC samp
 % @
 
 
-% 
-% \begin{figure}
-% <<echo=FALSE>>=
-% set.seed(2025)
-% M <- 10^5
-% Nneed <- 324
-% lambda <- 0.591
-% 
-% alpha <- 324
-% beta <- 548
-% 
-% timep <- rep(0, M)
-% csump <- rep(0, M)
-% 
-% for(m in 1:M){
-% 	while (csump[m] < Nneed) {
-% 		csump[m] <- csump[m] + rpois(1, lambda)
-% 		timep[m] <- timep[m] + 1
-% 	}
-% }
-% 
-% tval <- rgamma(n, shape = alpha, rate = lambda)
-% 
-% plot(density(tval),
-% 		 main = "Density Time",
-% 		 xlab = "Day",
-% 		 col = "purple",
-% 		 lwd = 4)
-% lines(density(timep),
-% 			lwd = 2,
-% 			lty = 2,
-% 			col = "blue")
-% legend("topright",
-% 			 legend = c("Theoretical Gamma", "MC sampling"),
-% 			 col = c("purple", "blue"),
-% 			 lwd = c(4, 2),
-% 			 lty = c(1, 2),
-% 			 cex = 0.7)
-% 
-% @
-% \caption{Comparison of theoretical Density function of Gamma model for time with parameters $\alpha = 324$ and $\beta = 548$ and Monte Carlo (MC) sampling with $M=10^5$.}
-% \label{fig:3_3}
-% \end{figure}
 
-% 
-% \begin{figure}
-% <<echo=FALSE, warning=FALSE>>=
-% set.seed(2025)
-% 
-% M <- 10^5
-% Nneed <- 324
-% lambda <- 0.591
-% alpha <- 324
-% beta <- 548
-% 
-% timepg <- rep(0, M)
-% csumpg <- rep(0, M)
-% 
-% for(m in 1:M){
-% 	while (csumpg[m] < Nneed) {
-% 		csumpg[m] <- csumpg[m] + rnbinom(1, size = alpha, prob = beta/(beta+1))
-% 		timepg[m] <- timepg[m] + 1
-% 	}
-% }
-% 
-% v_lambda <- rgamma(n, shape = alpha, rate = beta)
-% tval <- numeric(n)
-% 
-% for (i in 1:n) {
-% 	tval[i] <- rgamma(1, shape = alpha, rate = v_lambda[i])
-% }
-% 
-% plot(density(tval),
-% 		 main = "Density Time",
-% 		 xlab = "Day",
-% 		 col = "purple",
-% 		 lwd = 4)
-% lines(density(timepg),
-% 			lwd = 2,
-% 			lty = 2,
-% 			col = "blue")
-% legend("topright",
-% 			 legend = c("Theoretical Poisson", "MC sampling"),
-% 			 col = c("purple", "blue"),
-% 			 lwd = c(4, 2),
-% 			 lty = c(1, 2),
-% 			 cex = 0.7)
-% @
-% \caption{Comparison of theoretical Density function of Gamma-Gamma model for time with parameters $\alpha = 324$ and $\beta = 548$ and Monte Carlo (MC) sampling with $M=10^5$.}
-% \label{fig:3_4}
-% \end{figure}
-% 
-% 
-% 
-% 
-% 
+\begin{figure}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/ch03_figunnamed-chunk-3-1} 
+\end{knitrout}
+\caption{Comparison of theoretical Density function of Gamma model for time with parameters $\alpha = 324$ and $\beta = 548$ and Monte Carlo (MC) sampling with $M=10^5$.}
+\label{fig:3_3}
+\end{figure}
+
+
+\begin{figure}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/ch03_figunnamed-chunk-4-1} 
+\end{knitrout}
+\caption{Comparison of theoretical Density function of Gamma-Gamma model for time with parameters $\alpha = 324$ and $\beta = 548$ and Monte Carlo (MC) sampling with $M=10^5$.}
+\label{fig:3_4}
+\end{figure}
+
+
+
+
+
