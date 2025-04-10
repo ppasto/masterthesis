@@ -636,7 +636,7 @@ p(t) &= \int_0^{\infty} p(t|\lambda) p(\lambda) d\lambda\\
 &=\frac{\beta^{\alpha}}{\B(\alpha + c)}\frac{t^{c-1}}{(\beta+t)^{\alpha+c}}
 \end{align*}
 
-Thus, $T(c)\sim \textrm{G-G} (\alpha, \beta)$
+Thus, $T(c)\sim \textrm{Gg} (\alpha, \beta, c)$
 
 Using the expressions of iterated expectation and variance \citep{held2014applied}, the expectation and variance from the respective random variables $T(c)|\Lambda \sim \textrm{G}(c, \Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$, and the fact that when $\Lambda \sim \textrm{G}(\alpha, \beta)$ then, $\frac{1}{\Lambda} \sim \textrm{IG}(\alpha, \beta)$ with:
 
@@ -690,7 +690,7 @@ To compute $\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ]$ we use proper
 
 
 \end{knitrout}
-	\caption{Sensitivity analysis between Poisson distribution with $\lambda = 0.591$ and Poisson-Gamma changing parameters of Gamma prior that maintain same expectation $\frac{\alpha}{\beta} = 0.591$ with $t=550$.}
+	\caption{Sensitivity analysis between Erlang distribution with $c = 324$ and $\lambda = 0.591$ and Gamma-Gamma changing parameters of Gamma prior that maintain same expectation $\frac{\alpha}{\beta} = 0.591$ with $t=550$.}
   \label{fig:2_6a}
 \end{figure}
 

@@ -1245,19 +1245,6 @@ To compute $\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ]$ we use proper
 
 \begin{figure}
 <<echo = FALSE,  fig.width=7, fig.height=5>>=
-dbetaprime <- function(x, alpha, beta) {
-	if (any(x <= 0)) stop("x must be > 0")
-	coef <- 1 / beta(alpha, beta)
-	dens <- coef * x^(alpha - 1) * (1 + x)^(-alpha - beta)
-	return(dens)
-}
-
-pbetaprime <- function(x, alpha, beta) {
-	if (any(x <= 0)) stop("x must be > 0")
-	z <- x / (1 + x)
-	return(pbeta(z, alpha, beta))
-}
-
 par(mfrow=c(1,3))
 curve(dgamma(x, shape = 324, rate = 548), 
 			from = 0, to = 1,
@@ -1282,23 +1269,35 @@ legend("topleft",
 			 cex = 0.6)
 
 
-plot(0.01:700, dgamma(0.01:700, shape = 324, rate = lambda), 
+plot(0:800, dgamma(0:800, shape = 324, rate = lambda), 
 		 type = "l",
 		 main = "PMF", 
 		 xlab = "Counts", 
 		 ylab = "", 
 		 col = "black")
 
-lines(0.01:700, dbetaprime(0.01:700, alpha = 324, beta = lambda), col = "red")
-lines(0.01:700, dbetaprime(0.01:700, alpha = 32.4, beta = lambda), col = "blue")
-lines(0.01:700, dbetaprime(0.01:700, alpha = 3.24, beta = lambda), col = "green")
+dgammagamma <- function(t, alpha, b, c) {
+	log_dens <- alpha * log(b) - lbeta(alpha, c) + (c - 1) * log(t) - (alpha + c) * log(b + t)
+	dens <- exp(log_dens)
+	return(dens)
+}
+
+pgammagamma <- function(t, alpha, b, c) {
+	sapply(t, function(x) {
+		integrate(function(u) dgammagamma(u, alpha, b, c), lower = 0, upper = x)$value
+	})
+}
+
+lines(0:800, dgammagamma(0:800, alpha = 324, b = 548, c = 324), col = "red")
+lines(0:800, dgammagamma(0:800, alpha = 32.4, b = 54.8, c = 324), col = "blue")
+lines(0:800, dgammagamma(0:800, alpha = 3.24, b = 5.48, c = 324), col = "green")
 
 
 legend("topleft",
 			 legend = c(expression(G(alpha == 324 ~ beta == 548)),
-			 					 expression(GG ~ (alpha == 324 ~ beta == 548)),
-			 					 expression(GG ~ (alpha == 32.4 ~ beta == 54.8)),
-			 					 expression(GG ~ (alpha == 3.24 ~ beta == 5.48))),
+			 					 expression(Gg ~ (alpha == 324 ~ beta == 548)),
+			 					 expression(Gg ~ (alpha == 32.4 ~ beta == 54.8)),
+			 					 expression(Gg ~ (alpha == 3.24 ~ beta == 5.48))),
 			 col = c("black", "red", "blue", "green"),
 			 lty = c(1, 1),
 			 bg = "white",
@@ -1306,30 +1305,29 @@ legend("topleft",
 
 
 
-plot(0.01:700, pgamma(0.01:700, shape = 324, rate = lambda), 
+plot(0:800, pgamma(0:800, shape = 324, rate = lambda), 
 		 type = "l",
-		 main = "CDF", 
+		 main = "PMF", 
 		 xlab = "Counts", 
 		 ylab = "", 
 		 col = "black")
 
-lines(0.01:700, pbetaprime(0.01:700, alpha = 324, beta = lambda), col = "red")
-lines(0.01:700, pbetaprime(0.01:700, alpha = 32.4, beta = lambda), col = "blue")
-lines(0.01:700, pbetaprime(0.01:700, alpha = 3.24, beta = lambda), col = "green")
+lines(0:800, pgammagamma(0:800, alpha = 324, b = 548, c = 324), col = "red")
+lines(0:800, pgammagamma(0:800, alpha = 32.4, b = 54.8, c = 324), col = "blue")
+lines(0:800, pgammagamma(0:800, alpha = 3.24, b = 5.48, c = 324), col = "green")
 
 
 legend("topleft",
-			 legend = c(expression(Po(lambda == 0.591)),
-			 					 expression(PoG ~ (alpha == 324 ~ beta == 548)),
-			 					 expression(PoG ~ (alpha == 32.4 ~ beta == 54.8)),
-			 					 expression(PoG ~ (alpha == 3.24 ~ beta == 5.48))),
+			 legend = c(expression(G(alpha == 324 ~ beta == 548)),
+			 					 expression(Gg ~ (alpha == 324 ~ beta == 548)),
+			 					 expression(Gg ~ (alpha == 32.4 ~ beta == 54.8)),
+			 					 expression(Gg ~ (alpha == 3.24 ~ beta == 5.48))),
 			 col = c("black", "red", "blue", "green"),
 			 lty = c(1, 1),
 			 bg = "white",
 			 cex = 0.6)
-
 @
-	\caption{Sensitivity analysis between Poisson distribution with $\lambda = 0.591$ and Poisson-Gamma changing parameters of Gamma prior that maintain same expectation $\frac{\alpha}{\beta} = 0.591$ with $t=550$.}
+	\caption{Sensitivity analysis between Erlang distribution with $c = 324$ and $\lambda = 0.591$ and Gamma-Gamma changing parameters of Gamma prior that maintain same expectation $\frac{\alpha}{\beta} = 0.591$ with $t=550$.}
   \label{fig:2_6a}
 \end{figure}
 
