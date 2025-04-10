@@ -742,25 +742,30 @@ for (i in 1:M) {
 # Extract final counts for histogram
 final_counts <- cval_cum_matrix[, length(t)]
 
-# Plot the density estimate
-plot(density(final_counts),
-		 main = "MC sampling vs Theoretical PMF",
-		 xlab = "Counts",
-		 col = "purple", 
-		 lwd = 4)
+x_vals <- 200:500
 
-# Overlay the Poisson PMF as points or lines
-x_vals <- 200:400
-lines(x_vals, dpois(x_vals, lambda = lambda * 550), 
+plot(x_vals, dpois(x_vals, lambda = lambda * 550), 
+		 type = "n",
+		 main = "Density Time",
+		 xlab = "Day",
+		 ylab = "Density")
+
+lines(x_vals,  dpois(x_vals, lambda = lambda * 550), 
+			lwd = 4,
+			col = "purple")
+
+lines(density(final_counts), 
+			col = "blue",
 			lwd = 2,
-			lty = 2,
-			col = "blue")
-legend("topright", 
-			 legend = c("MC sampling", "Theoretical Poisson"), 
+			lty = 2)
+
+legend("topright",
+			 legend = c("Theoretical Poisson", "MC sampling"),
 			 col = c("purple", "blue"),
 			 lwd = c(4, 2),
-			 lty = c(1, 2), 
+			 lty = c(1, 2),
 			 cex = 0.7)
+
 
 ####----MC sampling Counts: Poisson-gamma model ----####
 set.seed(2025)
@@ -784,25 +789,30 @@ for (i in 1:n) {
 final_counts <- cval_cum_matrix[, length(t)]
 
 
-# Plot the density estimate
-plot(density(final_counts),
-		 main = "MC sampling vs Theoretical PMF",
-		 xlab = "Counts",
-		 col = "purple", 
-		 lwd = 4)
+x_vals <- 200:500
 
-# Overlay the Poisson PMF as points or lines
-x_vals <- 200:400
-lines(x_vals, dnbinom(x_vals, size = 324, mu = lambda * 550), 
+plot(x_vals,  dnbinom(x_vals, size = 324, mu = lambda * 550), 
+		 type = "n",
+		 main = "Density Time",
+		 xlab = "Day",
+		 ylab = "Density")
+
+lines(x_vals,  dnbinom(x_vals, size = 324, mu = lambda * 550), 
+			lwd = 4,
+			col = "purple")
+
+lines(density(final_counts), 
+			col = "blue",
 			lwd = 2,
-			lty = 2,
-			col = "blue")
-legend("topright", 
-			 legend = c("MC sampling", "Theoretical Poisson"), 
+			lty = 2)
+
+legend("topright",
+			 legend = c("Theoretical PoG", "MC sampling"),
 			 col = c("purple", "blue"),
 			 lwd = c(4, 2),
-			 lty = c(1, 2), 
+			 lty = c(1, 2),
 			 cex = 0.7)
+
 
 ####----MC sampling Time: Poisson model ----####
 set.seed(2025)
@@ -825,6 +835,8 @@ end.time <- Sys.time()
 time.taken <- end.time - start.time
 time.taken
 
+
+
 # for compiling:
 # 1st saving
 # write.csv(timep, "specify_path_and_file_name.csv")
@@ -837,6 +849,51 @@ time.taken
 ### M = 10^5: 1.45 mins
 ### M = 10^6: 12.8 mins
 
+
+set.seed(2025)
+M <- 10^5
+Nneed <- 324
+lambda <- 0.591
+
+alpha <- 324
+beta <- 548
+
+timep <- rep(0, M)
+csump <- rep(0, M)
+
+for(m in 1:M){
+	while (csump[m] < Nneed) {
+		csump[m] <- csump[m] + rpois(1, lambda)
+		timep[m] <- timep[m] + 1
+	}
+}
+
+t_vals <- 400:700
+
+plot(t_vals, dgamma(t_vals, shape = alpha, rate = lambda), 
+		 type = "n",
+		 main = "Density Time",
+		 xlab = "Day",
+		 ylab = "Density")
+
+lines(t_vals, dgamma(t_vals, shape = alpha, rate = lambda), 
+			lwd = 4,
+			col = "purple")
+
+lines(density(timep), 
+			col = "blue",
+			lwd = 2,
+			lty = 2)
+
+legend("topright",
+			 legend = c("Theoretical Erlang", "MC sampling"),
+			 col = c("purple", "blue"),
+			 lwd = c(4, 2),
+			 lty = c(1, 2),
+			 cex = 0.7)
+
+
+
 ####----MC sampling Time: Poisson-Gamma model ----####
 set.seed(2025)
 M <- 10^5
@@ -848,11 +905,17 @@ beta <- 548
 timepg <- rep(0, M)
 csumpg <- rep(0, M)
 
+dgammagamma <- function(t, alpha, b, c) {
+	log_dens <- alpha * log(b) - lbeta(alpha, c) + (c - 1) * log(t) - (alpha + c) * log(b + t)
+	dens <- exp(log_dens)
+	return(dens)
+}
+
 start.time <- Sys.time()
 
 for(m in 1:M){
 	while (csumpg[m] < Nneed) {
-		csumpg[m] <- csumpg[m] + rnbinom(1, size = alpha, prob = beta/(beta+1))
+		csumpg[m] <- csumpg[m] + rnbinom(1, size = alpha, mu = lambda*t)
 		timepg[m] <- timepg[m] + 1
 	}
 }
@@ -860,20 +923,30 @@ end.time <- Sys.time()
 time.taken <- end.time - start.time
 time.taken
 
-plot(density(timep),
-		 main = "Density",
+t_vals <- 400:700
+
+plot(t_vals, dgammagamma(t_vals, alpha = alpha, b = beta, c = Nneed), 
+		 type = "n",
+		 main = "Density Time",
 		 xlab = "Day",
-		 col = "red")
+		 ylab = "Density")
+
+lines(t_vals, dgammagamma(t_vals, alpha = alpha, b = beta, c = Nneed), 
+			lwd = 4,
+			col = "purple")
+
 lines(density(timepg), 
+			col = "blue",
 			lwd = 2,
-			lty = 2,
-			col = "green")
-legend("topright", 
-			 legend = c("Poisson", "Poisson-Gamma"), 
-			 col = c("red", "green"),
-			 lwd = c(1, 2),
-			 lty = c(1, 2), 
+			lty = 2)
+
+legend("topright",
+			 legend = c("Theoretical Gg", "MC sampling"),
+			 col = c("purple", "blue"),
+			 lwd = c(4, 2),
+			 lty = c(1, 2),
 			 cex = 0.7)
+
 
 ### M = 10^4: 
 ### M = 10^5: 4 mins
@@ -1049,17 +1122,16 @@ barplot(hist_data$counts,
 
 ####----Sensitivity Analysis Time----####
 
-dbetaprime <- function(x, alpha, beta) {
-	if (any(x <= 0)) stop("x must be > 0")
-	coef <- 1 / beta(alpha, beta)
-	dens <- coef * x^(alpha - 1) * (1 + x)^(-alpha - beta)
+dgammagamma <- function(t, alpha, b, c) {
+	log_dens <- alpha * log(b) - lbeta(alpha, c) + (c - 1) * log(t) - (alpha + c) * log(b + t)
+	dens <- exp(log_dens)
 	return(dens)
 }
 
-pbetaprime <- function(x, alpha, beta) {
-	if (any(x <= 0)) stop("x must be > 0")
-	z <- x / (1 + x)
-	return(pbeta(z, alpha, beta))
+pgammagamma <- function(t, alpha, b, c) {
+	sapply(t, function(x) {
+		integrate(function(u) dgammagamma(u, alpha, b, c), lower = 0, upper = x)$value
+	})
 }
 
 par(mfrow=c(1,3))
@@ -1086,23 +1158,23 @@ legend("topleft",
 			 cex = 0.6)
 
 
-plot(0.01:700, dgamma(0.01:700, shape = 324, rate = lambda), 
+plot(0:800, dgamma(0:800, shape = 324, rate = lambda), 
 		 type = "l",
 		 main = "PMF", 
 		 xlab = "Counts", 
 		 ylab = "", 
 		 col = "black")
 
-lines(0.01:700, dbetaprime(0.01:700, alpha = 324, beta = lambda), col = "red")
-lines(0.01:700, dbetaprime(0.01:700, alpha = 32.4, beta = lambda), col = "blue")
-lines(0.01:700, dbetaprime(0.01:700, alpha = 3.24, beta = lambda), col = "green")
+lines(0:800, dgammagamma(0:800, alpha = 324, b = 548, c = 324), col = "red")
+lines(0:800, dgammagamma(0:800, alpha = 32.4, b = 54.8, c = 324), col = "blue")
+lines(0:800, dgammagamma(0:800, alpha = 3.24, b = 5.48, c = 324), col = "green")
 
 
 legend("topleft",
 			 legend = c(expression(G(alpha == 324 ~ beta == 548)),
-			 					 expression(GG ~ (alpha == 324 ~ beta == 548)),
-			 					 expression(GG ~ (alpha == 32.4 ~ beta == 54.8)),
-			 					 expression(GG ~ (alpha == 3.24 ~ beta == 5.48))),
+			 					 expression(Gg ~ (alpha == 324 ~ beta == 548)),
+			 					 expression(Gg ~ (alpha == 32.4 ~ beta == 54.8)),
+			 					 expression(Gg ~ (alpha == 3.24 ~ beta == 5.48))),
 			 col = c("black", "red", "blue", "green"),
 			 lty = c(1, 1),
 			 bg = "white",
@@ -1110,23 +1182,23 @@ legend("topleft",
 
 
 
-plot(0.01:700, pgamma(0.01:700, shape = 324, rate = lambda), 
+plot(0:800, pgamma(0:800, shape = 324, rate = lambda), 
 		 type = "l",
-		 main = "CDF", 
+		 main = "PMF", 
 		 xlab = "Counts", 
 		 ylab = "", 
 		 col = "black")
 
-lines(0.01:700, pbetaprime(0.01:700, alpha = 324, beta = lambda), col = "red")
-lines(0.01:700, pbetaprime(0.01:700, alpha = 32.4, beta = lambda), col = "blue")
-lines(0.01:700, pbetaprime(0.01:700, alpha = 3.24, beta = lambda), col = "green")
+lines(0:800, pgammagamma(0:800, alpha = 324, b = 548, c = 324), col = "red")
+lines(0:800, pgammagamma(0:800, alpha = 32.4, b = 54.8, c = 324), col = "blue")
+lines(0:800, pgammagamma(0:800, alpha = 3.24, b = 5.48, c = 324), col = "green")
 
 
 legend("topleft",
-			 legend = c(expression(Po(lambda == 0.591)),
-			 					 expression(PoG ~ (alpha == 324 ~ beta == 548)),
-			 					 expression(PoG ~ (alpha == 32.4 ~ beta == 54.8)),
-			 					 expression(PoG ~ (alpha == 3.24 ~ beta == 5.48))),
+			 legend = c(expression(G(alpha == 324 ~ beta == 548)),
+			 					 expression(Gg ~ (alpha == 324 ~ beta == 548)),
+			 					 expression(Gg ~ (alpha == 32.4 ~ beta == 54.8)),
+			 					 expression(Gg ~ (alpha == 3.24 ~ beta == 5.48))),
 			 col = c("black", "red", "blue", "green"),
 			 lty = c(1, 1),
 			 bg = "white",
