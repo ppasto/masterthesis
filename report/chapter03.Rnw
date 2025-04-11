@@ -80,7 +80,7 @@ for (i in 1:M) {
 }
 
 # Extract final counts for histogram
-final_counts <- cval_cum_matrix[, length(t)]
+final_counts_p <- cval_cum_matrix[, length(t)]
 
 x_vals <- 200:500
 
@@ -94,7 +94,7 @@ lines(x_vals,  dpois(x_vals, lambda = lambda * 550),
 			lwd = 4,
 			col = "purple")
 
-lines(density(final_counts), 
+lines(density(final_counts_p), 
 			col = "blue",
 			lwd = 2,
 			lty = 2)
@@ -132,7 +132,7 @@ for (i in 1:n) {
 }
 
 # Extract final counts for histogram
-final_counts <- cval_cum_matrix[, length(t)]
+final_counts_pg <- cval_cum_matrix[, length(t)]
 
 
 x_vals <- 200:500
@@ -147,7 +147,7 @@ lines(x_vals,  dnbinom(x_vals, size = 324, mu = lambda * 550),
 			lwd = 4,
 			col = "purple")
 
-lines(density(final_counts), 
+lines(density(final_counts_pg), 
 			col = "blue",
 			lwd = 2,
 			lty = 2)
@@ -297,6 +297,21 @@ legend("topright",
 \label{fig:3_4}
 \end{figure}
 
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{cccc}
+Header 1 & Header 2 & Header 3 & Header 4 \\
+\hline
+\hline
+Row 1 Col 1 & Row 1 Col 2 & Row 1 Col 3 & Row 1 Col 4 \\
+Row 2 Col 1 & Row 2 Col 2 & Row 2 Col 3 & Row 2 Col 4 \\
+Row 3 Col 1 & Row 3 Col 2 & Row 3 Col 3 & Row 3 Col 4 \\
+Row 4 Col 1 & Row 4 Col 2 & Row 4 Col 3 & Row 4 Col 4 
+\end{tabular}
+\caption{Moments and aleatory and epistemic uncertainty of recruitment in one unit of time recruitment covered by different models for counts.}
+\label{tab:mcse}
+\end{table}
 
 
 

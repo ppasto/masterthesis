@@ -37,6 +37,7 @@ for (i in 1:n) {
 # Extract final counts for histogram
 final_counts <- cval_cum_matrix[, length(t)]
 
+
 # Reset graphics device to avoid layout issues
 # if (dev.cur() > 1) dev.off()
 
@@ -742,6 +743,9 @@ for (i in 1:M) {
 # Extract final counts for histogram
 final_counts <- cval_cum_matrix[, length(t)]
 
+mean(final_counts>324)
+1-ppois(324, lambda*550)
+
 x_vals <- 200:500
 
 plot(x_vals, dpois(x_vals, lambda = lambda * 550), 
@@ -789,6 +793,9 @@ for (i in 1:n) {
 final_counts <- cval_cum_matrix[, length(t)]
 
 
+mean(final_counts>324)
+1-pnbinom(324, size = 324, mu = lambda * 550)
+
 x_vals <- 200:500
 
 plot(x_vals,  dnbinom(x_vals, size = 324, mu = lambda * 550), 
@@ -835,7 +842,8 @@ end.time <- Sys.time()
 time.taken <- end.time - start.time
 time.taken
 
-
+mean(timep>548)
+1-pgamma(548, shape = alpha, rate = lambda)
 
 # for compiling:
 # 1st saving
@@ -922,6 +930,9 @@ for(m in 1:M){
 end.time <- Sys.time()
 time.taken <- end.time - start.time
 time.taken
+
+mean(timepg>548)
+1-pgammagamma(548, alpha = alpha, b = beta, c = 324)
 
 t_vals <- 400:700
 
