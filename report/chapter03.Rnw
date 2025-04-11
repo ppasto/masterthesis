@@ -257,17 +257,12 @@ dgammagamma <- function(t, alpha, b, c) {
 	return(dens)
 }
 
-start.time <- Sys.time()
-
 for(m in 1:M){
 	while (csumpg[m] < Nneed) {
 		csumpg[m] <- csumpg[m] + rnbinom(1, size = alpha, mu = lambda*t)
 		timepg[m] <- timepg[m] + 1
 	}
 }
-end.time <- Sys.time()
-time.taken <- end.time - start.time
-time.taken
 
 t_vals <- 400:700
 
@@ -300,16 +295,16 @@ legend("topright",
 
 \begin{table}[h!]
 \centering
-\begin{tabular}{cccc}
-Header 1 & Header 2 & Header 3 & Header 4 \\
+\begin{tabular}{ccccc}
+\textbf{Prediction} & \textbf{Model} & \textbf{Estimation} & \textbf{MCse} & \textbf{Exact Probability} \\
 \hline
 \hline
-Row 1 Col 1 & Row 1 Col 2 & Row 1 Col 3 & Row 1 Col 4 \\
-Row 2 Col 1 & Row 2 Col 2 & Row 2 Col 3 & Row 2 Col 4 \\
-Row 3 Col 1 & Row 3 Col 2 & Row 3 Col 3 & Row 3 Col 4 \\
-Row 4 Col 1 & Row 4 Col 2 & Row 4 Col 3 & Row 4 Col 4 
+Counts & $C(t)\sim\textrm{Po}(\lambda t)$ & $\textrm{P}(C(t)\geq 324)$ & \Sexpr{round(mean(final_counts_p>324),3)} & \Sexpr{round(1-ppois(324, lambda*550),3)} \\
+Counts & $C(t)\sim\textrm{PoG}(\alpha, \beta)$ & $\textrm{P}(C(t)\geq 324)$ & \Sexpr{round(mean(final_counts_pg>324),3)} & \Sexpr{round(1-pnbinom(324, size = 324, mu = lambda * 550),3)} \\
+Time & $T(c)\sim\textrm{G}(\alpha, \beta)$& $\textrm{P}(T(c)\geq 548)$ & \Sexpr{round(mean(timep>548),3)} & \Sexpr{round(1-pgamma(548, shape = alpha, rate = lambda),3)}\\
+Time & $T(c)\sim\textrm{Gg}(\alpha, \beta, c)$ & $\textrm{P}(T(c)\geq 548)$ & \Sexpr{round(mean(timepg>548),3)} & \Sexpr{round(1-pgammagamma(548, alpha = alpha, b = beta, c = 324),3)}
 \end{tabular}
-\caption{Moments and aleatory and epistemic uncertainty of recruitment in one unit of time recruitment covered by different models for counts.}
+\caption{Monte Carlo standard errors (MCse) and exact probability computations for all processes considered in modeling counts and time.}
 \label{tab:mcse}
 \end{table}
 

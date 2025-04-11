@@ -113,7 +113,7 @@ In Figures \ref{fig:3_1} and \ref{fig:3_2}, we can see how for $n=10^5$, MC samp
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-## Time difference of 41.48131 secs
+## Time difference of 39.8145 secs
 \end{verbatim}
 \end{kframe}
 \includegraphics[width=\maxwidth]{figure/ch03_figunnamed-chunk-4-1} 
@@ -125,16 +125,16 @@ In Figures \ref{fig:3_1} and \ref{fig:3_2}, we can see how for $n=10^5$, MC samp
 
 \begin{table}[h!]
 \centering
-\begin{tabular}{cccc}
-Header 1 & Header 2 & Header 3 & Header 4 \\
+\begin{tabular}{ccccc}
+\textbf{Prediction} & \textbf{Model} & \textbf{Estimation} & \textbf{MCse} & \textbf{Exact Probability} \\
 \hline
 \hline
-Row 1 Col 1 & Row 1 Col 2 & Row 1 Col 3 & Row 1 Col 4 \\
-Row 2 Col 1 & Row 2 Col 2 & Row 2 Col 3 & Row 2 Col 4 \\
-Row 3 Col 1 & Row 3 Col 2 & Row 3 Col 3 & Row 3 Col 4 \\
-Row 4 Col 1 & Row 4 Col 2 & Row 4 Col 3 & Row 4 Col 4 
+Counts & $C(t)\sim\textrm{Po}(\lambda t)$ & $\textrm{P}(C(t)\geq 324)$ & 0.504 & 0.508 \\
+Counts & $C(t)\sim\textrm{PoG}(\alpha, \beta)$ & $\textrm{P}(C(t)\geq 324)$ & 0.498 & 0.501 \\
+Time & $T(c)\sim\textrm{G}(\alpha, \beta)$& $\textrm{P}(T(c)\geq 548)$ & 0.504 & 0.496\\
+Time & $T(c)\sim\textrm{Gg}(\alpha, \beta, c)$ & $\textrm{P}(T(c)\geq 548)$ & 0.495 & 0.5
 \end{tabular}
-\caption{Moments and aleatory and epistemic uncertainty of recruitment in one unit of time recruitment covered by different models for counts.}
+\caption{Monte Carlo standard errors (MCse) and exact probability computations for all processes considered in modeling counts and time.}
 \label{tab:mcse}
 \end{table}
 
