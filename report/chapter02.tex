@@ -603,13 +603,7 @@ As we can see in Figure \ref{fig:2_12}, the histogram of these two versions over
 
 \section{Time: Model based on Expectations}
 
-If we fix the sample size of a study at $c$ and we expect the recruitment rate to be $\lambda$, we deterministically predict the time planned for the study (without taking into consideration any uncertainty) to be $\hat{T}=\frac{c}{\lambda}$ \citep{bagiella2001predicting}.
-
-Regarding the expectation and variance in this framework:
-
-$T = \textrm{E}T = \textrm{E}(c/\lambda) = c/\lambda$ and $\textrm{Var}(T) = \textrm{Var}(c/\lambda) = 0$
-
-As we can see in Table \ref{tab:time_modeling}.
+If we fix the sample size of a study at $c$ and we expect the recruitment rate to be $\lambda$, we deterministically predict the time planned for the study (without taking into consideration any uncertainty) to be $\hat{T}=\frac{c}{\lambda}$ \citep{bagiella2001predicting}. Regarding the expectation and variance in this framework: $\textrm{E}T = \textrm{E}(c/\lambda) = c/\lambda$ and $\textrm{Var}(T) = \textrm{Var}(c/\lambda) = 0$, as we can see in Table \ref{tab:time_modeling}.
 
 \section{Time: Model based on Erlang distribution}
 Let $T(c)$ denote the waiting time until $c$ objects are recruited. For a fixed sample size $c$, assuming we have a fixed recruitment rate $\lambda$, $T(c)\sim\textrm{G}(c, \lambda)$. Since $c$ is an integer, we can use the additivity property from the Gamma distribution applicable to independent random variables, $\underbrace{\textrm{Exp} (\lambda) +\cdots +\textrm{Exp} (\lambda)}_{c \ \text{times}} = \textrm{G} (c, \lambda)$. Moreover, this distribution is also called the Erlang distribution and can be denoted as $\textrm{Erlang} (c, \lambda)$. As we can see in Table \ref{tab:time_modeling}, the expectation and variance are the following:
@@ -619,7 +613,7 @@ Let $T(c)$ denote the waiting time until $c$ objects are recruited. For a fixed 
 \textrm{Var}(T(c)) & = c/\lambda^2
 \end{align*}
 
-The Erlang model explains only the aleatory uncertainty of the waiting time until $c$ objects have been recruited.
+The Erlang model explains only the aleatory uncertainty of the waiting time until $c$ objects have been recruited. We can visualize the waiting time in Figure \ref{fig:2_14}.
 
 \section{Time: Derivation of Gamma-Gamma model}
 
