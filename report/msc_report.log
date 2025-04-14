@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.18)  14 APR 2025 11:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.18)  14 APR 2025 12:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -704,29 +704,33 @@ Overfull \hbox (18.06136pt too wide) in paragraph at lines 6--6
 <figure/ch03_figunnamed-chunk-1-1.pdf, id=727, 505.89pt x 505.89pt>
 File: figure/ch03_figunnamed-chunk-1-1.pdf Graphic file (type pdf)
 <use figure/ch03_figunnamed-chunk-1-1.pdf>
-Package pdftex.def Info: figure/ch03_figunnamed-chunk-1-1.pdf  used on input line 62.
+Package pdftex.def Info: figure/ch03_figunnamed-chunk-1-1.pdf  used on input line 64.
 (pdftex.def)             Requested size: 455.30121pt x 455.31221pt.
 <figure/ch03_figunnamed-chunk-2-1.pdf, id=728, 505.89pt x 505.89pt>
 File: figure/ch03_figunnamed-chunk-2-1.pdf Graphic file (type pdf)
 <use figure/ch03_figunnamed-chunk-2-1.pdf>
-Package pdftex.def Info: figure/ch03_figunnamed-chunk-2-1.pdf  used on input line 73.
+Package pdftex.def Info: figure/ch03_figunnamed-chunk-2-1.pdf  used on input line 75.
 (pdftex.def)             Requested size: 455.30121pt x 455.31221pt.
-<figure/ch03_figunnamed-chunk-3-1.pdf, id=729, 505.89pt x 505.89pt>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[28 <./figure/ch03_figunnamed-chunk-1-1.pdf>]
+<figure/ch03_figunnamed-chunk-3-1.pdf, id=743, 505.89pt x 505.89pt>
 File: figure/ch03_figunnamed-chunk-3-1.pdf Graphic file (type pdf)
 <use figure/ch03_figunnamed-chunk-3-1.pdf>
-Package pdftex.def Info: figure/ch03_figunnamed-chunk-3-1.pdf  used on input line 105.
+Package pdftex.def Info: figure/ch03_figunnamed-chunk-3-1.pdf  used on input line 114.
 (pdftex.def)             Requested size: 455.30121pt x 455.31221pt.
-<figure/ch03_figunnamed-chunk-4-1.pdf, id=730, 505.89pt x 505.89pt>
+<figure/ch03_figunnamed-chunk-4-1.pdf, id=744, 505.89pt x 505.89pt>
 File: figure/ch03_figunnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use figure/ch03_figunnamed-chunk-4-1.pdf>
-Package pdftex.def Info: figure/ch03_figunnamed-chunk-4-1.pdf  used on input line 115.
+Package pdftex.def Info: figure/ch03_figunnamed-chunk-4-1.pdf  used on input line 124.
 (pdftex.def)             Requested size: 455.30121pt x 455.31221pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 ) (./chapter04.tex
-
-[28 <./figure/ch03_figunnamed-chunk-1-1.pdf>]
 
 [29 <./figure/ch03_figunnamed-chunk-2-1.pdf>]
 
@@ -780,21 +784,21 @@ L3 programming layer <2025-01-18>
 Package rerunfilecheck Info: File `msc_report.out' has not changed.
 (rerunfilecheck)             Checksum: A4B8637A68D2E2422054A4C3172F214C;1587.
 Package rerunfilecheck Info: File `msc_report.brf' has not changed.
-(rerunfilecheck)             Checksum: 17A221F6FEAE3DF25A1ACAA7726F5410;3935.
+(rerunfilecheck)             Checksum: 0321FCF7DEF607833293A40C4CD9A5C2;3998.
  ) 
 Here is how much of TeX's memory you used:
  15268 strings out of 475129
  249987 string characters out of 5762560
- 660057 words of memory out of 5000000
+ 660066 words of memory out of 5000000
  37871 multiletter control sequences out of 15000+600000
  582778 words of font info for 86 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  95i,17n,96p,891b,489s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsl1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1000.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1200.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1440.600pk></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on msc_report.pdf (46 pages, 1842849 bytes).
+Output written on msc_report.pdf (46 pages, 1844657 bytes).
 PDF statistics:
- 1469 PDF objects out of 1728 (max. 8388607)
- 829 compressed objects within 9 object streams
+ 1475 PDF objects out of 1728 (max. 8388607)
+ 835 compressed objects within 9 object streams
  151 named destinations out of 1000 (max. 500000)
  279 words of extra memory for PDF output out of 10000 (max. 10000000)
 
