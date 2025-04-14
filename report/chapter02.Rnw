@@ -160,7 +160,7 @@ Methods in Tables \ref{tab:count_modeling}, \ref{tab:count_modeling_2} and \ref{
 \section{Counts: Model based on Expectations}
 \label{sec:expect}
 
-If we fix the duration of a study at time $T$ and we expect that we collect $C$ patients until $T$, we deterministically predict the recruitment rate per one unit of time (without taking into consideration any uncertainty) to be $\hat{\lambda}=\frac{C}{T}$ \citep{carter2004application}.
+If we fix the duration of a study at time $T$ and we expect that we collect $C$ patients until $T$, we deterministically predict the recruitment rate per one unit of time (without taking into consideration any uncertainty) to be $\hat{\lambda}=\frac{C}{T}$ \citep{carter2004application}. Researchers tend to use simple unconditional methods \citep{white2015projection}.
 
 
 
