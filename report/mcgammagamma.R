@@ -16,6 +16,12 @@ dgammagamma <- function(t, alpha, b, c) {
 	return(dens)
 }
 
+pgammagamma <- function(t, alpha, b, c) {
+	sapply(t, function(x) {
+		integrate(function(u) dgammagamma(u, alpha, b, c), lower = 0, upper = x)$value
+	})
+}
+
 ### Option 1
 
 simulate_time_to_threshold <- function(Nneed, alpha, beta) {
@@ -39,7 +45,7 @@ lines(density(timepg_1), col = "red", lwd = 2)
 
 
 ## we see here that no matter how we change alpha and beta, does not
-## affect the variance
+## affect the variance in the density for time
 
 
 
@@ -60,6 +66,7 @@ timepg <- replicate(M, simulate_time_variable_lambda(Nneed, 32.4, 54.8))
 
 
 mean(timepg>548)
+## I am worried about this relatively low probability
 1-pgammagamma(548, alpha = alpha, b = beta, c = 324)
 
 t_vals <- 400:700
@@ -101,3 +108,5 @@ simulate_time_fixed_lambda <- function(Nneed, alpha, beta) {
 	}
 	return(timepg)
 }
+
+time_fixed <- replicate(M, simulate_time_fixed_lambda(Nneed, alpha, beta))
