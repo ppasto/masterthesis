@@ -880,6 +880,17 @@ for(m in 1:M){
 	}
 }
 
+simulate_time_fixed_lambda <- function(Nneed, alpha, beta) {
+	csumpg <- 0
+	timepg <- 0
+	fixed_lambda <- alpha / beta
+	while (csumpg < Nneed) {
+		csumpg <- csumpg + rpois(1, lambda = fixed_lambda)
+		timepg <- timepg + 1
+	}
+	return(timepg)
+}
+
 t_vals <- 400:700
 
 plot(t_vals, dgamma(t_vals, shape = alpha, rate = lambda), 
@@ -906,7 +917,7 @@ legend("topright",
 
 
 
-####----MC sampling Time: Poisson-Gamma model ----####
+####----MC sampling Time: Gamma-Gamma model ----####
 set.seed(2025)
 M <- 10^5
 Nneed <- 324
@@ -925,29 +936,22 @@ dgammagamma <- function(t, alpha, b, c) {
 	return(dens)
 }
 
-start.time <- Sys.time()
-
-for(m in 1:M){
-	while (csumpg[m] < Nneed) {
-		csumpg[m] <- csumpg[m] + rnbinom(1, size = alpha, mu = lambda*t)
-		timepg[m] <- timepg[m] + 1
-	}
-}
-end.time <- Sys.time()
-time.taken <- end.time - start.time
-time.taken
+# start.time <- Sys.time()
+# 
+# for(m in 1:M){
+# 	while (csumpg[m] < Nneed) {
+# 		csumpg[m] <- csumpg[m] + rnbinom(1, size = alpha, mu = lambda*t)
+# 		timepg[m] <- timepg[m] + 1
+# 	}
+# }
+# end.time <- Sys.time()
+# time.taken <- end.time - start.time
+# time.taken
 
 
 
 #### see if this works:
 
-for(m in 1:M){
-	while (csumpg[m] < Nneed) {
-		lambda <- rgamma(1, shape = alpha, rate = beta)
-		csumpg[m] <- csumpg[m] + rpois(1, lambda = lambda)
-		timepg[m] <- timepg[m] + 1
-	}
-}
 
 simulate_time_to_threshold <- function(Nneed, alpha, beta) {
 	csumpg <- 0
@@ -967,8 +971,6 @@ M <- 10^4
 timepg_1 <- replicate(M, simulate_time_to_threshold(Nneed, 3.24, 5.48))
 timepg_2 <- replicate(M, simulate_time_to_threshold(Nneed, 324, 548))
 
-set.seed(42)
-M <- 10000
 
 
 plot(density(timepg_2), col = "blue", lwd = 2,
@@ -977,16 +979,6 @@ plot(density(timepg_2), col = "blue", lwd = 2,
 lines(density(timepg_1), col = "red", lwd = 2)
 
 
-simulate_time_variable_lambda <- function(Nneed, alpha, beta) {
-	csumpg <- 0
-	timepg <- 0
-	while (csumpg < Nneed) {
-		lambdar <- rgamma(1, shape = alpha, rate = beta) 
-		csumpg <- csumpg + rpois(1, lambda = lambdar)
-		timepg <- timepg + 1
-	}
-	return(timepg)
-}
 
 simulate_time_variable_lambda <- function(Nneed, alpha, beta) {
 	csumpg <- 0
@@ -1000,19 +992,9 @@ simulate_time_variable_lambda <- function(Nneed, alpha, beta) {
 }
 
 M <- 10^4
+
 timepg <- replicate(M, simulate_time_variable_lambda(Nneed, 32.4, 54.8))
 
-
-simulate_time_fixed_lambda <- function(Nneed, alpha, beta) {
-	csumpg <- 0
-	timepg <- 0
-	fixed_lambda <- alpha / beta
-	while (csumpg < Nneed) {
-		csumpg <- csumpg + rpois(1, lambda = fixed_lambda)
-		timepg <- timepg + 1
-	}
-	return(timepg)
-}
 
 set.seed(2025)
 M <- 10^5
