@@ -85,3 +85,19 @@ legend("topright",
 			 lwd = c(4, 2),
 			 lty = c(1, 2),
 			 cex = 0.7)
+
+## this can be a good MC alternative, what do you think?
+
+
+### simulations for fixed lambda
+
+simulate_time_fixed_lambda <- function(Nneed, alpha, beta) {
+	csumpg <- 0
+	timepg <- 0
+	fixed_lambda <- alpha / beta
+	while (csumpg < Nneed) {
+		csumpg <- csumpg + rpois(1, lambda = fixed_lambda)
+		timepg <- timepg + 1
+	}
+	return(timepg)
+}

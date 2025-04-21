@@ -978,7 +978,16 @@ plot(density(timepg_2), col = "blue", lwd = 2,
 		 xlab = "timepg", ylim = c(0, 0.03))
 lines(density(timepg_1), col = "red", lwd = 2)
 
-
+simulate_time_fixed_lambda <- function(Nneed, alpha, beta) {
+	csumpg <- 0
+	timepg <- 0
+	fixed_lambda <- alpha / beta
+	while (csumpg < Nneed) {
+		csumpg <- csumpg + rpois(1, lambda = fixed_lambda)
+		timepg <- timepg + 1
+	}
+	return(timepg)
+}
 
 simulate_time_variable_lambda <- function(Nneed, alpha, beta) {
 	csumpg <- 0
