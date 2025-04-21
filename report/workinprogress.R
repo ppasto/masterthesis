@@ -826,6 +826,8 @@ set.seed(2025)
 M <- 10^5
 Nneed <- 324
 lambda <- 0.591
+t <- seq(1, 550, 1)
+
 
 timep <- rep(0, M)
 csump <- rep(0, M)
@@ -862,6 +864,8 @@ set.seed(2025)
 M <- 10^5
 Nneed <- 324
 lambda <- 0.591
+t <- seq(1, 550, 1)
+
 
 alpha <- 324
 beta <- 548
@@ -907,8 +911,10 @@ set.seed(2025)
 M <- 10^5
 Nneed <- 324
 lambda <- 0.591
-alpha <- 324
-beta <- 548
+alpha <- 32.4
+beta <- 54.8
+t <- seq(1, 550, 1)
+
 
 timepg <- rep(0, M)
 csumpg <- rep(0, M)
@@ -931,20 +937,124 @@ end.time <- Sys.time()
 time.taken <- end.time - start.time
 time.taken
 
+
+
+#### see if this works:
+
+for(m in 1:M){
+	while (csumpg[m] < Nneed) {
+		lambda <- rgamma(1, shape = alpha, rate = beta)
+		csumpg[m] <- csumpg[m] + rpois(1, lambda = lambda)
+		timepg[m] <- timepg[m] + 1
+	}
+}
+
+simulate_time_to_threshold <- function(Nneed, alpha, beta) {
+	csumpg <- 0
+	timepg <- 0
+	while (csumpg < Nneed) {
+		lambdar <- rgamma(1, shape = alpha, rate = beta)
+		csumpg <- csumpg + rpois(1, lambda = lambdar)
+		timepg <- timepg + 1
+	}
+	return(timepg)
+}
+
+
+
+set.seed(2025)
+M <- 10^4
+timepg_1 <- replicate(M, simulate_time_to_threshold(Nneed, 3.24, 5.48))
+timepg_2 <- replicate(M, simulate_time_to_threshold(Nneed, 324, 548))
+
+set.seed(42)
+M <- 10000
+
+
+plot(density(timepg_2), col = "blue", lwd = 2,
+		 main = "Effect of alpha/beta on timepg distribution",
+		 xlab = "timepg", ylim = c(0, 0.03))
+lines(density(timepg_1), col = "red", lwd = 2)
+
+
+simulate_time_variable_lambda <- function(Nneed, alpha, beta) {
+	csumpg <- 0
+	timepg <- 0
+	while (csumpg < Nneed) {
+		lambdar <- rgamma(1, shape = alpha, rate = beta) 
+		csumpg <- csumpg + rpois(1, lambda = lambdar)
+		timepg <- timepg + 1
+	}
+	return(timepg)
+}
+
+simulate_time_variable_lambda <- function(Nneed, alpha, beta) {
+	csumpg <- 0
+	timepg <- 0
+	while (csumpg < Nneed) {
+		lambdar <- rgamma(1, shape = alpha, rate = beta) 
+		csumpg <- csumpg + rpois(1, lambda = lambdar)
+		timepg <- rgamma(1, shape = Nneed, rate = lambdar) + 1
+	}
+	return(timepg)
+}
+
+M <- 10^4
+timepg <- replicate(M, simulate_time_variable_lambda(Nneed, 32.4, 54.8))
+
+
+simulate_time_fixed_lambda <- function(Nneed, alpha, beta) {
+	csumpg <- 0
+	timepg <- 0
+	fixed_lambda <- alpha / beta
+	while (csumpg < Nneed) {
+		csumpg <- csumpg + rpois(1, lambda = fixed_lambda)
+		timepg <- timepg + 1
+	}
+	return(timepg)
+}
+
+set.seed(2025)
+M <- 10^5
+Nneed <- 324
+alpha <- 32.4
+beta <- 54.8
+
+time_var <- replicate(M, simulate_time_variable_lambda(Nneed, alpha, beta))
+time_fixed <- replicate(M, simulate_time_fixed_lambda(Nneed, alpha, beta))
+
+# Compare variances
+var(time_var)
+var(time_fixed)
+
+plot(density(time_var), col = "blue", lwd = 2, 
+		 main = "Effect of Gamma variability on timepg",
+		 xlab = "Time to reach threshold")
+lines(density(time_fixed), col = "red", lwd = 2)
+legend("topright", legend = c("Variable λ ~ Gamma", "Fixed λ = E[Gamma]"),
+			 col = c("blue", "red"), lwd = 2)
+
+
+
+
 mean(timepg>548)
 1-pgammagamma(548, alpha = alpha, b = beta, c = 324)
 
 t_vals <- 400:700
 
-plot(t_vals, dgammagamma(t_vals, alpha = alpha, b = beta, c = Nneed), 
+plot(t_vals, dgammagamma(t_vals, alpha = 32.4, b = 54.8, c = Nneed), 
 		 type = "n",
 		 main = "Density Time",
 		 xlab = "Day",
 		 ylab = "Density")
 
-lines(t_vals, dgammagamma(t_vals, alpha = alpha, b = beta, c = Nneed), 
+lines(t_vals, dgammagamma(t_vals, alpha = 32.4, b = 54.8, c = Nneed), 
 			lwd = 4,
 			col = "purple")
+
+# lines(t_vals, dgammagamma(t_vals, alpha = 32.4, b = 54.8, c = Nneed), 
+# 			lwd = 4,
+# 			col = "red")
 
 lines(density(timepg), 
 			col = "blue",
