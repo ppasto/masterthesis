@@ -689,91 +689,41 @@ To compute $\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ]$ we use proper
 \end{figure}
 
 
-% 
-% \begin{figure}
-% <<echo=FALSE>>=
-% set.seed(2025)
-% 
-% n <- 100
-% alpha <- 324
-% t <- seq(1, 550, 1)
-% lambda <- 0.591
-% 
-% # Generate cumulative Poisson paths
-% cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
-% for (i in 1:n) {
-%   cval <- rpois(length(t), lambda)
-%   cval_cum_matrix[i, ] <- cumsum(cval)
-% }
-% 
-% final_counts <- cval_cum_matrix[, length(t)]
-% tval <- rgamma(n, shape = alpha, rate = lambda)
-% 
-% 
-% # Define layout: 2 rows, 2 columns (top spans both columns)
-% layout(matrix(c(1, 1, 2, 3), nrow = 2, byrow = TRUE), 
-%        heights = c(2, 6), widths = c(3, 1))
-% 
-% # --- Plot 1: tval histogram (top, horizontal barplot) ---
-% par(mar = c(0.1, 25, 2, 10))
-% tval_bins <- seq(min(tval), max(tval), length.out = 15)
-% tval_hist <- hist(tval, breaks = tval_bins, plot = FALSE)
-% 
-% barplot(tval_hist$counts,
-% 				space = 0,
-% 				col = "skyblue",
-% 				axes = FALSE,
-% 				horiz = FALSE)
-% 
-% # --- Plot 2: Accrual time series (bottom-left) ---
-% par(mar = c(4, 4, 2, 1))
-% plot(t, cval_cum_matrix[1,],
-%      type = "n",
-%      main = "Accrual of 100 Studies",
-%      xlab = "Time",
-%      ylab = "Cumulative Count",
-% 		 ylim = c(0, 500))
-% 
-% for (i in 1:n) {
-%   lines(t, cval_cum_matrix[i,], col = "lightgray")
-% }
-% 
-% lines(t, lambda * t, lwd = 2)
-% lines(t, qpois(p = 0.975, lambda * t), lty = 2, col = "red")
-% lines(t, qpois(p = 0.025, lambda * t), lty = 2, col = "red")
-% abline(h = 324, lty = 5, col = "skyblue", lwd = 2)
-% 
-% legend("topleft",
-%        legend = c("2.5th - 97.5th Percentile [95%]",
-%                   "Expected Accrual"),
-%        col = c("red", "black"),
-%        lty = c(2, 1),
-%        lwd = c(1, 2),
-%        bg = "white",
-%        cex = 0.8)
-% 
-% # --- Plot 3: Final counts histogram (bottom-right) ---
-% # par(mar = c(25, 0.5, 2, 1))
-% # hist_bins <- seq(min(final_counts), max(final_counts), length.out = 15)
-% # hist_data <- hist(final_counts, breaks = hist_bins, plot = FALSE)
-% # 
-% # barplot(hist_data$counts,
-% # 				horiz = TRUE,
-% # 				space = 0,
-% # 				col = "gray",
-% # 				axes = FALSE)
-% 
-% @   
-%   \caption{Poisson-distributed counts with $\lambda = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from Section \ref{sec:expect}, while the red dashed lines indicate Poisson's 95\% aleatory uncertainty. The histogram on the x-axis illustrates the distribution of waiting times to accrue $N=324$ objects when the recruitment rate per unit of time is $\lambda = 0.591$ \citep{spiegelhalter2011visualizing, pkgacc}.}
-%   \label{fig:2_13}
-% \end{figure}
+
+\begin{figure}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'M' not found}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'M' not found}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'M' not found}}\end{kframe}
+
+{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-17-1} 
+
+}
+
+
+\end{knitrout}
+  \caption{Poisson-distributed counts with $\lambda = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from Section \ref{sec:expect}, while the red dashed lines indicate Poisson's 95\% aleatory uncertainty. The histogram on the x-axis illustrates the distribution of waiting times to accrue $N=324$ objects when the recruitment rate per unit of time is $\lambda = 0.591$ \citep{spiegelhalter2011visualizing, pkgacc}.}
+  \label{fig:2_13}
+\end{figure}
 
 
 \begin{figure}
 \begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
+\definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}\begin{kframe}
 
-{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-17-1} 
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'M' not found}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'M' not found}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: object 'M' not found}}\end{kframe}
+
+{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-18-1} 
 
 }
 

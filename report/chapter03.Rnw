@@ -162,7 +162,7 @@ legend("topright",
 			 cex = 0.7)
 
 @
-\caption{Comparison of theoretical Probability Mass Function (PMF) of Poisson-Gamma model for counts with $\alpha = 324$ and $\beta = 548$ for accrual at time $t=550$, and Monte Carlo (MC) simulations with $M=10^4$.}
+\caption{Comparison of theoretical Probability Mass Function (PMF) of Poisson-Gamma model for counts with $\alpha = 32.4$ and $\beta = 54.8$ for accrual at time $t=550$, and Monte Carlo (MC) simulations with $M=10^4$.}
 \label{fig:3_2}
 \end{figure}
 
@@ -315,10 +315,10 @@ Time & $T(c)\sim\textrm{Gg}(\alpha, \beta, c)$ & $\textrm{P}(T(c)\geq 548)$ & \S
 \caption{Monte Carlo standard errors (MCse) and exact probability computations for all processes considered in modeling counts and time.}
 \label{tab:mcse}
 \end{table}
-
-<<>>=
-qgamma(p = 0.9, shape = 324, rate = 0.591)
-@
+% 
+% <<>>=
+% qgamma(p = 0.9, shape = 324, rate = 0.591)
+% @
 
 % Small number of simulations (up to 1000) from Carter gives him inaccurate estimate of days (580), when the exact gives 588.
 
