@@ -57,7 +57,7 @@ simulate_time_variable_lambda <- function(Nneed, alpha, beta) {
 	while (csumpg < Nneed) {
 		lambdar <- rgamma(1, shape = alpha, rate = beta) 
 		csumpg <- csumpg + rpois(1, lambda = lambdar)
-		timepg <- rgamma(1, shape = Nneed, rate = lambdar) + 1
+		timepg <- rgamma(1, shape = Nneed, rate = lambdar) 
 	}
 	return(timepg)
 }
@@ -87,7 +87,7 @@ lines(density(timepg),
 			lty = 2)
 
 legend("topright",
-			 legend = c("Theoretical Gg", "MC sampling"),
+			 legend = c("Theoretical GG", "MC sampling"),
 			 col = c("purple", "blue"),
 			 lwd = c(4, 2),
 			 lty = c(1, 2),

@@ -948,36 +948,6 @@ dgammagamma <- function(t, alpha, b, c) {
 # time.taken <- end.time - start.time
 # time.taken
 
-
-
-#### see if this works:
-
-
-simulate_time_to_threshold <- function(Nneed, alpha, beta) {
-	csumpg <- 0
-	timepg <- 0
-	while (csumpg < Nneed) {
-		lambdar <- rgamma(1, shape = alpha, rate = beta)
-		csumpg <- csumpg + rpois(1, lambda = lambdar)
-		timepg <- timepg + 1
-	}
-	return(timepg)
-}
-
-
-
-set.seed(2025)
-M <- 10^4
-timepg_1 <- replicate(M, simulate_time_to_threshold(Nneed, 3.24, 5.48))
-timepg_2 <- replicate(M, simulate_time_to_threshold(Nneed, 324, 548))
-
-
-
-plot(density(timepg_2), col = "blue", lwd = 2,
-		 main = "Effect of alpha/beta on timepg distribution",
-		 xlab = "timepg", ylim = c(0, 0.03))
-lines(density(timepg_1), col = "red", lwd = 2)
-
 simulate_time_fixed_lambda <- function(Nneed, alpha, beta) {
 	csumpg <- 0
 	timepg <- 0
@@ -989,29 +959,20 @@ simulate_time_fixed_lambda <- function(Nneed, alpha, beta) {
 	return(timepg)
 }
 
-simulate_time_variable_lambda <- function(Nneed, alpha, beta) {
+simulate_time_variable_lambda_no <- function(Nneed, alpha, beta) {
 	csumpg <- 0
 	timepg <- 0
 	while (csumpg < Nneed) {
-		lambdar <- rgamma(1, shape = alpha, rate = beta) 
+		lambdar <- rgamma(1, shape = alpha, rate = beta)  # Variable λ
 		csumpg <- csumpg + rpois(1, lambda = lambdar)
-		timepg <- rgamma(1, shape = Nneed, rate = lambdar) + 1
+		timepg <- timepg + 1
 	}
 	return(timepg)
 }
 
-M <- 10^4
+#### variance does not change by changing alpha and beta
 
-timepg <- replicate(M, simulate_time_variable_lambda(Nneed, 32.4, 54.8))
-
-
-set.seed(2025)
-M <- 10^5
-Nneed <- 324
-alpha <- 32.4
-beta <- 54.8
-
-time_var <- replicate(M, simulate_time_variable_lambda(Nneed, alpha, beta))
+time_var <- replicate(M, simulate_time_variable_lambda_no(Nneed, alpha, beta))
 time_fixed <- replicate(M, simulate_time_fixed_lambda(Nneed, alpha, beta))
 
 # Compare variances
@@ -1026,6 +987,20 @@ legend("topright", legend = c("Variable λ ~ Gamma", "Fixed λ = E[Gamma]"),
 			 col = c("blue", "red"), lwd = 2)
 
 
+## Option 2 -- good approximation
+
+simulate_time_variable_lambda <- function(Nneed, alpha, beta) {
+	csumpg <- 0
+	timepg <- 0
+	while (csumpg < Nneed) {
+		lambdar <- rgamma(1, shape = alpha, rate = beta) 
+		csumpg <- csumpg + rpois(1, lambda = lambdar)
+		timepg <- rgamma(1, shape = Nneed, rate = lambdar)
+	}
+	return(timepg)
+}
+
+timepg <- replicate(M, simulate_time_variable_lambda(Nneed, 32.4, 54.8))
 
 
 mean(timepg>548)
@@ -1043,17 +1018,13 @@ lines(t_vals, dgammagamma(t_vals, alpha = 32.4, b = 54.8, c = Nneed),
 			lwd = 4,
 			col = "purple")
 
-# lines(t_vals, dgammagamma(t_vals, alpha = 32.4, b = 54.8, c = Nneed), 
-# 			lwd = 4,
-# 			col = "red")
-
 lines(density(timepg), 
 			col = "blue",
 			lwd = 2,
 			lty = 2)
 
 legend("topright",
-			 legend = c("Theoretical Gg", "MC sampling"),
+			 legend = c("Theoretical GG", "MC sampling"),
 			 col = c("purple", "blue"),
 			 lwd = c(4, 2),
 			 lty = c(1, 2),
