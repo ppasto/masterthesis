@@ -821,7 +821,7 @@ legend("topright",
 			 cex = 0.7)
 
 
-####----MC sampling Time: Poisson model ----####
+####----MC sampling Time: Erlang model ----####
 set.seed(2025)
 M <- 10^5
 Nneed <- 324
@@ -910,6 +910,47 @@ lines(density(timep),
 
 legend("topright",
 			 legend = c("Theoretical Erlang", "MC sampling"),
+			 col = c("purple", "blue"),
+			 lwd = c(4, 2),
+			 lty = c(1, 2),
+			 cex = 0.7)
+
+
+
+##### MR:
+
+M <- 10^4
+Ctarget <- 324
+lambda <- 0.591
+
+alpha <- 32.4
+beta <- 54.8
+
+simulate_time_to_threshold_Erlang_easier <- function(MM, CC, ll, rseed=265735) {
+	set.seed(rseed)
+	timeerlang <- rgamma(n=MM, shape = CC, rate = ll)
+	return(timeerlang)
+}
+
+time_erlang <- simulate_time_to_threshold_Erlang_easier(MM=M, CC=Ctarget, ll=lambda, rseed=265735)
+
+plot(t_vals, dgamma(t_vals, shape = Nneed, rate = lambda), 
+		 type = "n",
+		 main = "MC simulation vs theoretical density",
+		 xlab = "Day",
+		 ylab = "Density")
+
+lines(t_vals, dgamma(t_vals, shape = Nneed, rate = lambda), 
+			lwd = 4,
+			col = "purple")
+
+lines(density(time_erlang), 
+			col = "blue",
+			lwd = 2,
+			lty = 2)
+
+legend("topright",
+			 legend = c("Theoretical Erlang", "MC simulation"),
 			 col = c("purple", "blue"),
 			 lwd = c(4, 2),
 			 lty = c(1, 2),
@@ -1035,6 +1076,38 @@ legend("topright",
 ### M = 10^5: 4 mins
 ### M = 10^6: 
 
+
+##### MR:
+
+set.seed(2025)
+M <- 10^4
+Ctarget <-324 
+lambda <- 0.591
+alpha <- 32.4
+beta <- 54.8
+
+simulate_time_to_threshold_GG_easier <- function(MM, CC, aa, bb, rseed=265735) {
+	set.seed(rseed)
+	timegg <- rep(0, MM)
+	lambdar <- rgamma(n=MM, shape = aa, rate = bb)
+	for (i in 1:MM){
+		timegg[i] <- rgamma(n=1, shape = CC, rate = lambdar[i])
+	}
+	return(timegg)
+}
+
+timegg_easier <- simulate_time_to_threshold_GG_easier(MM=M, CC=Ctarget, aa=alpha, bb=beta) 
+
+t_vals <- 100:1100
+
+plot(t_vals, dgammagamma(t_vals, a = 32.4, b = 54.8, c = Nneed), 
+		 type = "n", main = "Density Time", xlab = "Day", ylab = "Density")
+lines(t_vals, dgammagamma(t_vals, a = 32.4, b = 54.8, c = Nneed), 
+			lwd = 4, col = "purple")
+lines(density(timegg_easier), 
+			col = "blue", lwd = 2, lty = 2)
+legend("topright", legend = c("Theoretical GG", "MC sampling"),
+			 col = c("purple", "blue"), lwd = c(4, 2), lty = c(1, 2), cex = 0.7)
 
 
 ####----Poisson 100 paths histogram time + counts----####
