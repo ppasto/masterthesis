@@ -1340,7 +1340,7 @@ legend("topleft",
 <<echo=FALSE>>=
 set.seed(2025)
 
-n <- 100
+M <- n <- 100
 alpha <- 324
 t <- seq(1, 550, 1)
 lambda <- 0.591
@@ -1430,8 +1430,9 @@ legend("topleft",
 <<echo=FALSE>>=
 set.seed(2025)
 
-n <- 100
-t <- seq(1, 550, 1)
+M <- n <- 100
+t <- seq(1, 700, 1)
+Nneed <- Ctarget <- 324
 lambda <- 0.591
 
 alpha <- 32.4
@@ -1449,25 +1450,36 @@ for (i in 1:n) {
 # Extract final counts for histogram
 final_counts <- cval_cum_matrix[, length(t)]
 
-v_lambda <- rgamma(n, shape = alpha, rate = beta)
-tval <- numeric(n)  
+# v_lambda <- rgamma(n, shape = alpha, rate = beta)
+# tval <- numeric(n)  
+# 
+# for (i in 1:n) {
+# 	tval[i] <- rgamma(1, shape = alpha, rate = v_lambda[i])
+# }
+# 
+# 
+# timepg <- rep(0, M)
+# csumpg <- rep(0, M)
+# 
+# for(m in 1:M){
+# 	while (csumpg[m] < Nneed) {
+# 		csumpg[m] <- csumpg[m] + rnbinom(1, size = alpha, mu = lambda*t)
+# 		timepg[m] <- timepg[m] + 1
+# 	}
+# }
 
-for (i in 1:n) {
-	tval[i] <- rgamma(1, shape = alpha, rate = v_lambda[i])
+simulate_time_to_threshold_GG_easier <- function(MM, CC, aa, bb, rseed=265735) {
+  set.seed(rseed)
+  timegg <- rep(0, MM)
+  lambdar <- rgamma(n=MM, shape = aa, rate = bb)
+  for (i in 1:MM){
+    timegg[i] <- rgamma(n=1, shape = CC, rate = lambdar[i])
+  }
+  return(timegg)
 }
 
+tval <- simulate_time_to_threshold_GG_easier(MM=M, CC=Ctarget, aa=alpha, bb=beta) 
 
-timepg <- rep(0, M)
-csumpg <- rep(0, M)
-
-for(m in 1:M){
-	while (csumpg[m] < Nneed) {
-		csumpg[m] <- csumpg[m] + rnbinom(1, size = alpha, mu = lambda*t)
-		timepg[m] <- timepg[m] + 1
-	}
-}
-
-# instead of tval, timepg
 
 # Define layout: 2 rows, 2 columns (top spans both columns)
 layout(matrix(c(1, 1, 2, 3), nrow = 2, byrow = TRUE), 
@@ -1475,7 +1487,7 @@ layout(matrix(c(1, 1, 2, 3), nrow = 2, byrow = TRUE),
 
 
 # --- Plot 1: tval histogram (top, horizontal barplot) ---
-par(mar = c(0.1, 25, 2, 10))
+par(mar = c(0.1, 17, 2, 10))
 tval_bins <- seq(min(tval), max(tval), length.out = 15)
 tval_hist <- hist(tval, breaks = tval_bins, plot = FALSE)
 
@@ -1492,7 +1504,7 @@ plot(t,  cval_cum_matrix[1,],
 		 main = "Accrual of 100 studies", 
 		 xlab = "Time", 
 		 ylab = "Count",
-		 ylim = c(0,500))
+		 ylim =c(0, 700))
 
 for(i in 1:n){
 	lines(t,  cval_cum_matrix[i,], col = "lightgray")
