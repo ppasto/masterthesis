@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.18)  23 APR 2025 12:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.18)  23 APR 2025 13:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -692,17 +692,17 @@ Underfull \vbox (badness 7777) has occurred while \output is active []
 <figure/ch02_figunnamed-chunk-16-1.pdf, id=694, 505.89pt x 361.35pt>
 File: figure/ch02_figunnamed-chunk-16-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-16-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-16-1.pdf  used on input line 681.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-16-1.pdf  used on input line 682.
 (pdftex.def)             Requested size: 369.94295pt x 264.25197pt.
 <figure/ch02_figunnamed-chunk-17-1.pdf, id=695, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-17-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-17-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-17-1.pdf  used on input line 697.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-17-1.pdf  used on input line 698.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
 <figure/ch02_figunnamed-chunk-18-1.pdf, id=706, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-18-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-18-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-18-1.pdf  used on input line 712.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-18-1.pdf  used on input line 713.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
 ) (./chapter03.tex
 
@@ -824,7 +824,7 @@ Here is how much of TeX's memory you used:
  36 hyphenation exceptions out of 8191
  95i,17n,96p,891b,489s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsl1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1000.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1200.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1440.600pk></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on msc_report.pdf (50 pages, 2111159 bytes).
+Output written on msc_report.pdf (50 pages, 2111155 bytes).
 PDF statistics:
  1530 PDF objects out of 1728 (max. 8388607)
  879 compressed objects within 9 object streams

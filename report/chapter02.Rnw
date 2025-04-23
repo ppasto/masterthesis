@@ -1085,7 +1085,7 @@ legend("topleft",
 
 \section{Generation of Poisson-Gamma model}
 
-There are two ways with which we can generate the $\lambda$ in the $\textrm{PoG}(\alpha, \beta)$ model and we will prove in this section how they are both equivalent.
+There are two ways with which we can generate the $\lambda$ in the $\textrm{PoG}(t, \alpha, \beta)$ model and we will prove in this section how they are both equivalent.
 
 \subsection{Version 1}
 
@@ -1172,6 +1172,7 @@ legend("topright",
   \caption{Comparison of the two versions with which we can generate a Poisson-Gamma model. Version 1: generates a vector of $\lambda$ with length $M=10^5$ using a $\textrm{G}(\alpha = 324, \beta = 548)$. Version 2: at each time point only one $\lambda$ is generated. We compare both these versions at accrual of time $t=550$ for $\lambda=0.591$.}
   \label{fig:2_12}
 \end{figure}
+
 \chapter{Methods for Waiting Time} 
 \section{Time: Model based on Expectations}
 
@@ -1202,7 +1203,7 @@ p(t) &= \int_0^{\infty} p(t|\lambda) p(\lambda) d\lambda\\
 &=\frac{\beta^{\alpha}}{\B(\alpha + c)}\frac{t^{c-1}}{(\beta+t)^{\alpha+c}}
 \end{align*}
 
-Thus, $T(c)\sim \textrm{Gg} (\alpha, \beta, c)$, see \cite{held2014applied}.
+Thus, $T(c)\sim \textrm{GG} (c, \alpha, \beta)$, see \cite{held2014applied}.
 
 Using the expressions of iterated expectation and variance \citep{held2014applied}, the expectation and variance from the respective random variables $T(c)|\Lambda \sim \textrm{G}(c, \Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$, and the fact that when $\Lambda \sim \textrm{G}(\alpha, \beta)$ then, $\frac{1}{\Lambda} \sim \textrm{IG}(\alpha, \beta)$ with:
 
@@ -1298,9 +1299,9 @@ lines(0:800, dgammagamma(0:800, alpha = 3.24, b = 5.48, c = 324), col = "green")
 
 legend("topleft",
 			 legend = c(expression(G(alpha == 324 ~ beta == 548)),
-			 					 expression(Gg ~ (alpha == 324 ~ beta == 548)),
-			 					 expression(Gg ~ (alpha == 32.4 ~ beta == 54.8)),
-			 					 expression(Gg ~ (alpha == 3.24 ~ beta == 5.48))),
+			 					 expression(GG ~ (alpha == 324 ~ beta == 548)),
+			 					 expression(GG ~ (alpha == 32.4 ~ beta == 54.8)),
+			 					 expression(GG ~ (alpha == 3.24 ~ beta == 5.48))),
 			 col = c("black", "red", "blue", "green"),
 			 lty = c(1, 1),
 			 bg = "white",
@@ -1322,9 +1323,9 @@ lines(0:800, pgammagamma(0:800, alpha = 3.24, b = 5.48, c = 324), col = "green")
 
 legend("topleft",
 			 legend = c(expression(G(alpha == 324 ~ beta == 548)),
-			 					 expression(Gg ~ (alpha == 324 ~ beta == 548)),
-			 					 expression(Gg ~ (alpha == 32.4 ~ beta == 54.8)),
-			 					 expression(Gg ~ (alpha == 3.24 ~ beta == 5.48))),
+			 					 expression(GG ~ (alpha == 324 ~ beta == 548)),
+			 					 expression(GG ~ (alpha == 32.4 ~ beta == 54.8)),
+			 					 expression(GG ~ (alpha == 3.24 ~ beta == 5.48))),
 			 col = c("black", "red", "blue", "green"),
 			 lty = c(1, 1),
 			 bg = "white",
