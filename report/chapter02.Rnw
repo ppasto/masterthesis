@@ -1238,17 +1238,16 @@ The Erlang model explains only the aleatory uncertainty of the waiting time unti
 
 \section{Time: Derivation of Gamma-Gamma model}
 
-To take into account the epistemic uncertainty of recruitment rates and the aleatory uncertainty of waiting times, a Gamma-Gamma model is recommended \citep{bagiella2001predicting}, $T(c)|\Lambda \sim \textrm{G}(c, \Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$.
+To take into account the epistemic uncertainty of recruitment rates and the aleatory uncertainty of waiting times, a Gamma-Gamma model is recommended \citep{bagiella2001predicting}, $T(c)|\Lambda \sim \textrm{G}(c, \Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$. This Gamma-Gamma model has parameters $c$, $\alpha$ and $\beta$. Thus, $T(c)\sim \textrm{GG}(c, \alpha, \beta)$.
 
 
 \begin{align*}
 p(t) &= \int_0^{\infty} p(t|\lambda) p(\lambda) d\lambda\\
 &= \int_0^{\infty}\Bigg( \frac{\lambda^ct^{c-1}\exp(-\lambda t)}{\Gamma(c)}\Bigg)\Bigg(\frac{\beta^{\alpha}\lambda^{\alpha-1}\exp(-\beta \lambda)}{\Gamma(\alpha)}\Bigg)d\lambda \\
 &=\frac{t^{c-1}\beta^{\alpha}}{\Gamma(c)\Gamma(\alpha)}\int_0^{\infty}\lambda^{c+\alpha-1}\exp(-\lambda(\beta+t))d\lambda\\
-&=\frac{t^{c-1}\beta^{\alpha}}{\Gamma(c)\Gamma(\alpha)}\int_0^{\infty}\Bigg(\frac{u}{\beta+t}\Bigg)^{c+\alpha-1}\exp(-u)\frac{1}{\beta+t} du \\
-&=\frac{t^{c-1}\beta^{\alpha}}{\Gamma(c)\Gamma(\alpha)}\frac{1}{(\beta+t)^{\alpha+c}}\underbrace{\int_0^{\infty}u^{c+\alpha-1}\exp(-u)du}_{\Gamma(\alpha+c)} \\
+&=\frac{\Gamma(\alpha+c)}{\Gamma(c)\Gamma(\alpha)}\frac{t^{c-1}\beta^{\alpha}}{(\beta+t)^{\alpha+c}}\underbrace{\int_0^{\infty}\frac{(\beta+t)^{\alpha+c}}{\Gamma(\alpha+c)}\lambda^{c+\alpha-1}\exp(-\lambda(\beta+t))d\lambda}_{=1}\\
 &=\frac{\Gamma(\alpha+c)}{\Gamma(c)\Gamma(\alpha)}\frac{t^{c-1}\beta^{\alpha}}{(\beta+t)^{\alpha+c}}\\
-&=\frac{\beta^{\alpha}}{\B(\alpha + c)}\frac{t^{c-1}}{(\beta+t)^{\alpha+c}}
+&=\frac{\beta^{\alpha}}{\B(\alpha, c)}\frac{t^{c-1}}{(\beta+t)^{\alpha+c}}
 \end{align*}
 
 Thus, $T(c)\sim \textrm{GG} (c, \alpha, \beta)$, see \cite{held2014applied}.
