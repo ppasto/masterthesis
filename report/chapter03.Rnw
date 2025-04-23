@@ -166,6 +166,18 @@ legend("topright",
 \label{fig:3_2}
 \end{figure}
 
+\begin{table}[h!]
+\centering
+\begin{tabular}{cccc}
+ \textbf{Model} & \textbf{Estimated Probabilty} & \textbf{MCse} & \textbf{Exact Probability} \\
+\hline
+\hline
+ $C(T)\sim\textrm{Po}(\lambda T)$ & $\textrm{P}(C(T)\geq 324) = \Sexpr{round(mean(final_counts_p>324),3)}$ & \Sexpr{round(sqrt(mean(final_counts_p>324)*(1-mean(final_counts_p>324)/M)), 3)} & \Sexpr{round(1-ppois(324, lambda*550),3)} \\
+ $C(T)\sim\textrm{PoG}(T, \alpha, \beta)$ & $\textrm{P}(C(T)\geq 324) = \Sexpr{round(mean(final_counts_pg>324),3)}$ & \Sexpr{round(sqrt(mean(final_counts_pg>324)*(1-mean(final_counts_pg>324)/M)), 3)} & \Sexpr{round(1-pnbinom(324, size = 324, mu = lambda * 550),3)} 
+\end{tabular}
+\caption{Probability estimates based on Monte Carlo simulations, their respective Monte Carlo standard errors (MCse) and exact probability computations for processes considered in modeling counts where the waiting time is fixed as $T = 548$,  $\lambda = 0.591$, $\alpha = 32.4$ and $\beta = 54.8$.}
+\label{tab:mcsec}
+\end{table}
 
 
 \section{Time: Comparison exact vs Monte Carlo simulations}
@@ -212,14 +224,14 @@ simulate_time_to_threshold_Erlang_easier <- function(MM, CC, ll, rseed=265735) {
 }
 
 time_erlang <- simulate_time_to_threshold_Erlang_easier(MM=M, CC=Ctarget, ll=lambda, rseed=265735)
-
-plot(t_vals, dgamma(t_vals, shape = Nneed, rate = lambda), 
+t_vals <- 100:1100
+plot(t_vals, dgamma(t_vals, shape = Ctarget, rate = lambda), 
 		 type = "n",
 		 main = "MC simulation vs theoretical density",
 		 xlab = "Day",
 		 ylab = "Density")
 
-lines(t_vals, dgamma(t_vals, shape = Nneed, rate = lambda), 
+lines(t_vals, dgamma(t_vals, shape = Ctarget, rate = lambda), 
 			lwd = 4,
 			col = "purple")
 
@@ -263,9 +275,9 @@ timegg_easier <- simulate_time_to_threshold_GG_easier(MM=M, CC=Ctarget, aa=alpha
 
 t_vals <- 100:1100
 
-plot(t_vals, dgammagamma(t_vals, a = 32.4, b = 54.8, c = Nneed), 
+plot(t_vals, dgammagamma(t_vals, a = 32.4, b = 54.8, c = Ctarget), 
 		 type = "n", main = "Density Time", xlab = "Day", ylab = "Density")
-lines(t_vals, dgammagamma(t_vals, a = 32.4, b = 54.8, c = Nneed), 
+lines(t_vals, dgammagamma(t_vals, a = 32.4, b = 54.8, c = Ctarget), 
 			lwd = 4, col = "purple")
 lines(density(timegg_easier), 
 			col = "blue", lwd = 2, lty = 2)
@@ -277,27 +289,29 @@ legend("topright", legend = c("Theoretical GG", "MC sampling"),
 \end{figure}
 
 
+
+
+
+
 \begin{table}[h!]
 \centering
-\begin{tabular}{ccccc}
-\textbf{Prediction} & \textbf{Model} & \textbf{Estimation} & \textbf{MCse} & \textbf{Exact Probability} \\
+\begin{tabular}{cccc}
+ \textbf{Model} & \textbf{Estimated Probabilty} & \textbf{MCse} & \textbf{Exact Probability} \\
 \hline
 \hline
-Counts & $C(t)\sim\textrm{Po}(\lambda t)$ & $\textrm{P}(C(t)\geq 324)$ & \Sexpr{round(mean(final_counts_p>324),3)} & \Sexpr{round(1-ppois(324, lambda*550),3)} \\
-Counts & $C(t)\sim\textrm{PoG}(\alpha, \beta)$ & $\textrm{P}(C(t)\geq 324)$ & \Sexpr{round(mean(final_counts_pg>324),3)} & \Sexpr{round(1-pnbinom(324, size = 324, mu = lambda * 550),3)} \\
-Time & $T(c)\sim\textrm{G}(\alpha, \beta)$& $\textrm{P}(T(c)\geq 548)$ & \Sexpr{round(mean(time_erlang>548),3)} & \Sexpr{round(1-pgamma(548, shape = alpha, rate = lambda),3)}\\
-Time & $T(c)\sim\textrm{Gg}(\alpha, \beta, c)$ & $\textrm{P}(T(c)\geq 548)$ & \Sexpr{round(mean(timegg_easier>548),3)} & \Sexpr{round(1-pgammagamma(548, alpha = alpha, b = beta, c = 324),3)}
+ $T(N)\sim\textrm{G}(N, \lambda)$& $\textrm{P}(T(N)\geq 548) = \Sexpr{round(mean(time_erlang>548),3)}$ & \Sexpr{round(sqrt(mean(time_erlang>548)*(1-mean(time_erlang>548)/M)), 3)} & \Sexpr{round(1-pgamma(548, shape = 324, rate = lambda),3)}\\
+$T(N)\sim\textrm{GG}(N, \alpha, \beta)$ & $\textrm{P}(T(N)\geq 548) = \Sexpr{round(mean(timegg_easier>548),3)}$ & \Sexpr{round(sqrt(mean(timegg_easier>548)*(1-mean(timegg_easier>548)/M)), 3)} & \Sexpr{round(1-pgammagamma(548, alpha = alpha, b = beta, c = 324),3)}
 \end{tabular}
-\caption{Monte Carlo standard errors (MCse) and exact probability computations for all processes considered in modeling counts and time.}
-\label{tab:mcse}
+\caption{Probability estimates based on Monte Carlo simulations, their respective Monte Carlo standard errors (MCse) and exact probability computations for all processes considered in modeling time where the sample size is fixed to be $N = 324$,  $\lambda = 0.591$, $\alpha = 32.4$ and $\beta =54.8$.}
+\label{tab:mcset}
 \end{table}
 % 
 % <<>>=
 % qgamma(p = 0.9, shape = 324, rate = 0.591)
 % @
 
-% Small number of simulations (up to 1000) from Carter gives him inaccurate estimate of days (580), when the exact gives 588.
+Small number of simulations (up to 1000) from \cite{carter2004application} gives him inaccurate estimate of days (580), when the exact using the Erlang distribution gives  \Sexpr{round(qgamma(p = 0.9, shape = 324, rate = 0.591), 0)}.
 
-In Table \ref{tab:mcse} we illustrate how, indeed, by using the expected accrual without taking into consideration any uncertainty we have roughly a 50\% chance of accruing the desired sample size in the established time-frame \citep{carter2004application}.
+In Tables \ref{tab:mcsec} and \ref{tab:mcset} we illustrate how, indeed, by using the expected accrual without taking into consideration any uncertainty we have roughly a 50\% chance of accruing the desired sample size in the established time-frame \citep{carter2004application}.
 
 
