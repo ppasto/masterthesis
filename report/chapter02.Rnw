@@ -1250,7 +1250,7 @@ p(t) &= \int_0^{\infty} p(t|\lambda) p(\lambda) d\lambda\\
 &=\frac{\beta^{\alpha}}{\B(\alpha, c)}\frac{t^{c-1}}{(\beta+t)^{\alpha+c}}
 \end{align*}
 
-Thus, $T(c)\sim \textrm{GG} (c, \alpha, \beta)$, see \cite{held2014applied}.
+Thus, $T(c)\sim \textrm{GG} (c, \alpha, \beta)$, see \cite{held2014applied}, where they use a slightly different notation.
 
 Using the expressions of iterated expectation and variance \citep{held2014applied}, the expectation and variance from the respective random variables $T(c)|\Lambda \sim \textrm{G}(c, \Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$, and the fact that when $\Lambda \sim \textrm{G}(\alpha, \beta)$ then, $\frac{1}{\Lambda} \sim \textrm{IG}(\alpha, \beta)$ with:
 
@@ -1320,10 +1320,10 @@ legend("topleft",
 			 cex = 0.6)
 
 
-plot(0:800, dgamma(0:800, shape = 324, rate = lambda), 
+plot(0:800, dgamma(0:800, shape = 324, rate = 0.591), 
 		 type = "l",
 		 main = "PMF", 
-		 xlab = "Counts", 
+		 xlab = "Time [days]", 
 		 ylab = "", 
 		 col = "black")
 
@@ -1345,7 +1345,7 @@ lines(0:800, dgammagamma(0:800, alpha = 3.24, b = 5.48, c = 324), col = "green")
 
 
 legend("topleft",
-			 legend = c(expression(G(alpha == 324 ~ beta == 548)),
+			 legend = c(expression(G(c == 324 ~ lambda == 0.591)),
 			 					 expression(GG ~ (alpha == 324 ~ beta == 548)),
 			 					 expression(GG ~ (alpha == 32.4 ~ beta == 54.8)),
 			 					 expression(GG ~ (alpha == 3.24 ~ beta == 5.48))),
@@ -1356,10 +1356,10 @@ legend("topleft",
 
 
 
-plot(0:800, pgamma(0:800, shape = 324, rate = lambda), 
+plot(0:800, pgamma(0:800, shape = 324, rate = 0.591), 
 		 type = "l",
-		 main = "PMF", 
-		 xlab = "Counts", 
+		 main = "CDF", 
+		 xlab = "Time [days]", 
 		 ylab = "", 
 		 col = "black")
 
@@ -1369,7 +1369,7 @@ lines(0:800, pgammagamma(0:800, alpha = 3.24, b = 5.48, c = 324), col = "green")
 
 
 legend("topleft",
-			 legend = c(expression(G(alpha == 324 ~ beta == 548)),
+			 legend = c(expression(G(c == 324 ~ lambda == 0.591)),
 			 					 expression(GG ~ (alpha == 324 ~ beta == 548)),
 			 					 expression(GG ~ (alpha == 32.4 ~ beta == 54.8)),
 			 					 expression(GG ~ (alpha == 3.24 ~ beta == 5.48))),
@@ -1378,7 +1378,7 @@ legend("topleft",
 			 bg = "white",
 			 cex = 0.6)
 @
-	\caption{Sensitivity analysis between Erlang distribution with $c = 324$ and $\lambda = 0.591$ and Gamma-Gamma changing parameters of Gamma prior -- that maintain same expectation $\frac{\alpha}{\beta} = 0.591$ with $t=550$?.}
+	\caption{Sensitivity analysis between Erlang distribution with $c = 324$ and $\lambda = 0.591$ and Gamma-Gamma model at $c = 324$ changing the parameters of Gamma prior that maintain same expectation $\frac{\alpha}{\beta} = 0.591$, $\textrm{GG}(c=324,\alpha, \beta)$.}
   \label{fig:2_6a}
 \end{figure}
 
@@ -1389,6 +1389,7 @@ legend("topleft",
 set.seed(2025)
 
 M <- n <- 100
+Nneed <- Ctarget <- 324
 alpha <- 324
 t <- seq(1, 550, 1)
 lambda <- 0.591
@@ -1469,7 +1470,7 @@ legend("topleft",
 # 				axes = FALSE)
 
 @
-  \caption{Poisson-distributed counts with $\lambda = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from Section \ref{sec:expect}, while the red dashed lines indicate Poisson's 95\% aleatory uncertainty. The histogram on the x-axis illustrates the distribution of waiting times to accrue $N=324$ objects when the recruitment rate per unit of time is $\lambda = 0.591$ \citep{spiegelhalter2011visualizing, pkgacc}.}
+  \caption{Poisson-distributed counts with $\lambda = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from Section \ref{sec:expect}, while the red dashed lines indicate Poisson's 95\% aleatory uncertainty. The histogram on the top illustrates the distribution of waiting times to accrue $c=324$ objects when the recruitment rate per unit of time is $\lambda = 0.591$, modelling waiting time with $T(c)\sim \textrm{Erlang} (c=324, \lambda = 0.591)$ \citep{spiegelhalter2011visualizing, pkgacc}.}
   \label{fig:2_13}
 \end{figure}
 
@@ -1583,6 +1584,6 @@ legend("topleft",
 # 				col = "gray",
 # 				axes = FALSE)
 @   
-  \caption{Poisson-Gamma $(\alpha = 32.4, \beta = 54.8)$ distributed counts with $\lambda = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from Section \ref{sec:expect}, while the red dashed lines indicate Poisson-Gamma 95\% aleatory and epistemic uncertainty. The histogram on the x-axis illustrates the distribution of waiting times to accrue $N=324$ objects when the recruitment rate per unit of time is $\lambda = 0.591$ \citep{spiegelhalter2011visualizing, pkgacc}.}
+  \caption{Poisson-Gamma $(\alpha = 32.4, \beta = 54.8)$ distributed counts with $\lambda = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from Section \ref{sec:expect}, while the green dashed lines indicate Poisson-Gamma 95\% aleatory and epistemic uncertainty. The histogram on the top illustrates the distribution of waiting times to accrue $c=324$ objects when the recruitment rate per unit of time follows $\Lambda \sim \textrm{G}(\alpha = 32.4, \beta = 54.8)$, modelling waiting time with $T(c)\sim \textrm{GG} (c=324, \alpha = 32.4, \beta = 54.8)$ \citep{spiegelhalter2011visualizing, pkgacc}.}
   \label{fig:2_14}
 \end{figure}
