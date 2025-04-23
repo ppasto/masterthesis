@@ -38,7 +38,7 @@ options(width=74)
 
 \section{Definitions}
 
-The general notion of \textbf{Recruitment} in this Master Thesis refers to the number of patients (Counts) at the Eligibility, or Enrollment, or Randomization, or Statistical Analysis stage in Figure \ref{fig:2_1_a}. Figure \ref{fig:2_1_a} is a schematic representation of a PRISMA study flow chart inspired by a real PRISMA study flow chart in Figure \ref{fig:2_0}. We define \textbf{Accrual} as cumulative recruitment.
+The general notion of \textbf{Recruitment} in this Master Thesis refers to the number of patients (Counts) at the Eligibility, or Enrollment, or Randomization, or Statistical Analysis stage in Figure \ref{fig:2_1_a}. Figure \ref{fig:2_1_a} is a schematic representation of a CONSORT study flow chart \citep{schulz2010consort} inspired by a real CONSORT study flow chart in Figure \ref{fig:2_0}. We define \textbf{Accrual} as cumulative recruitment.
 
 The \textbf{Target Population} is a specific group within the broader population, defined by attributes relevant to the research question. This group is focused on criteria that match the study's goals \citep{willie2024population}. Defining the target population allows researchers to refine their objectives and recruitment methods to align with the study's aims.
 
@@ -63,7 +63,7 @@ In clinical research, \textbf{Statistical Analysis} involves applying statistica
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.7\textwidth]{whelan_flow.png}
-  \caption{PRISMA study flow-chart \citep{whelan2018high}.}
+  \caption{CONSORT study flow-chart \citep{whelan2018high, schulz2010consort}.}
   \label{fig:2_0}
 \end{figure}
 
