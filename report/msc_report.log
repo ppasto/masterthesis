@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.18)  23 APR 2025 13:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.18)  23 APR 2025 13:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -524,57 +524,56 @@ Chapter 3.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
 
 [7
 
 ]
-
-[8]
-<figure/ch02_figunnamed-chunk-3-1.pdf, id=363, 505.89pt x 505.89pt>
+<figure/ch02_figunnamed-chunk-3-1.pdf, id=351, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-3-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-3-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-3-1.pdf  used on input line 243.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-3-1.pdf  used on input line 235.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
-<figure/ch02_figunnamed-chunk-4-1.pdf, id=374, 505.89pt x 505.89pt>
+<figure/ch02_figunnamed-chunk-4-1.pdf, id=362, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-4-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-4-1.pdf  used on input line 258.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-4-1.pdf  used on input line 250.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
-<figure/ch02_figunnamed-chunk-5-1.pdf, id=375, 505.89pt x 505.89pt>
+<figure/ch02_figunnamed-chunk-5-1.pdf, id=363, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-5-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-5-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-5-1.pdf  used on input line 272.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-5-1.pdf  used on input line 264.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
-<figure/ch02_figunnamed-chunk-6-1.pdf, id=376, 505.89pt x 505.89pt>
+<figure/ch02_figunnamed-chunk-6-1.pdf, id=364, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-6-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-6-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-6-1.pdf  used on input line 287.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-6-1.pdf  used on input line 279.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
 
-Overfull \hbox (18.1494pt too wide) in paragraph at lines 301--301
+
+[8]
+Overfull \hbox (18.1494pt too wide) in paragraph at lines 293--293
 []\T1/cmr/bx/n/14.4 Counts: Neg-a-tive Bi-no-mial model de-rived from Poisson-Gamma
  []
 
 
 
+
+Overfull \hbox (20.02324pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/10.95 3.3.  COUNTS: NEGATIVE BINOMIAL MODEL DERIVED FROM POISSON-GAMMA MODEL \T1/cmr/m/n/10.95 9
+ []
+
 [9 <./figure/ch02_figunnamed-chunk-3-1.pdf>]
-<figure/ch02_figunnamed-chunk-7-1.pdf, id=406, 505.89pt x 361.35pt>
+<figure/ch02_figunnamed-chunk-7-1.pdf, id=405, 505.89pt x 361.35pt>
 File: figure/ch02_figunnamed-chunk-7-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-7-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-7-1.pdf  used on input line 312.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-7-1.pdf  used on input line 304.
 (pdftex.def)             Requested size: 369.94295pt x 264.25197pt.
 
-Underfull \vbox (badness 3657) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [10 <./figure/ch02_figunnamed-chunk-4-1.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 
 Overfull \hbox (25.46718pt too wide) has occurred while \output is active
@@ -582,9 +581,6 @@ Overfull \hbox (25.46718pt too wide) has occurred while \output is active
  []
 
 [11 <./figure/ch02_figunnamed-chunk-5-1.pdf>]
-Overfull \vbox (10.42441pt too high) has occurred while \output is active []
-
-
 
 [12 <./figure/ch02_figunnamed-chunk-6-1.pdf>]
 
@@ -594,26 +590,21 @@ Overfull \hbox (25.46718pt too wide) has occurred while \output is active
  []
 
 [13 <./figure/ch02_figunnamed-chunk-7-1.pdf>]
+Underfull \vbox (badness 1377) has occurred while \output is active []
+
+
 
 [14]
-<figure/ch02_figunnamed-chunk-8-1.pdf, id=494, 505.89pt x 505.89pt>
+<figure/ch02_figunnamed-chunk-8-1.pdf, id=491, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-8-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-8-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-8-1.pdf  used on input line 446.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-8-1.pdf  used on input line 438.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
-<figure/ch02_figunnamed-chunk-9-1.pdf, id=505, 505.89pt x 505.89pt>
+<figure/ch02_figunnamed-chunk-9-1.pdf, id=502, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-9-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-9-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-9-1.pdf  used on input line 462.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-9-1.pdf  used on input line 454.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
-<figure/ch02_figunnamed-chunk-10-1.pdf, id=514, 505.89pt x 361.35pt>
-File: figure/ch02_figunnamed-chunk-10-1.pdf Graphic file (type pdf)
-<use figure/ch02_figunnamed-chunk-10-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-10-1.pdf  used on input line 487.
-(pdftex.def)             Requested size: 369.94295pt x 264.25197pt.
-
-Underfull \vbox (badness 1616) has occurred while \output is active []
-
 
 
 
@@ -621,54 +612,57 @@ Overfull \hbox (25.46718pt too wide) has occurred while \output is active
 \T1/cmr/m/sl/10.95 3.3.  COUNTS: NEGATIVE BINOMIAL MODEL DERIVED FROM POISSON-GAMMA MODEL \T1/cmr/m/n/10.95 15
  []
 
-[15]
-Overfull \vbox (24.02441pt too high) has occurred while \output is active []
+[15 <./figure/ch02_figunnamed-chunk-8-1.pdf>]
+<figure/ch02_figunnamed-chunk-10-1.pdf, id=523, 505.89pt x 361.35pt>
+File: figure/ch02_figunnamed-chunk-10-1.pdf Graphic file (type pdf)
+<use figure/ch02_figunnamed-chunk-10-1.pdf>
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-10-1.pdf  used on input line 479.
+(pdftex.def)             Requested size: 369.94295pt x 264.25197pt.
+
+Underfull \vbox (badness 7064) has occurred while \output is active []
 
 
 
-[16 <./figure/ch02_figunnamed-chunk-8-1.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
+[16 <./figure/ch02_figunnamed-chunk-9-1.pdf>]
 
 
 Overfull \hbox (25.46718pt too wide) has occurred while \output is active
 \T1/cmr/m/sl/10.95 3.3.  COUNTS: NEGATIVE BINOMIAL MODEL DERIVED FROM POISSON-GAMMA MODEL \T1/cmr/m/n/10.95 17
  []
 
-[17 <./figure/ch02_figunnamed-chunk-9-1.pdf>]
-<figure/ch02_figunnamed-chunk-11-1.pdf, id=557, 505.89pt x 505.89pt>
+[17 <./figure/ch02_figunnamed-chunk-10-1.pdf>]
+<figure/ch02_figunnamed-chunk-11-1.pdf, id=561, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-11-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-11-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-11-1.pdf  used on input line 544.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-11-1.pdf  used on input line 537.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
-<figure/ch02_figunnamed-chunk-12-1.pdf, id=566, 505.89pt x 505.89pt>
+<figure/ch02_figunnamed-chunk-12-1.pdf, id=570, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-12-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-12-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-12-1.pdf  used on input line 559.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-12-1.pdf  used on input line 552.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
-<figure/ch02_figunnamed-chunk-13-1.pdf, id=575, 505.89pt x 505.89pt>
+<figure/ch02_figunnamed-chunk-13-1.pdf, id=579, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-13-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-13-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-13-1.pdf  used on input line 573.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-13-1.pdf  used on input line 566.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
-<figure/ch02_figunnamed-chunk-14-1.pdf, id=584, 505.89pt x 505.89pt>
+<figure/ch02_figunnamed-chunk-14-1.pdf, id=588, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-14-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-14-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-14-1.pdf  used on input line 588.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-14-1.pdf  used on input line 581.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
 
 
-[18 <./figure/ch02_figunnamed-chunk-10-1.pdf>]
-Underfull \vbox (badness 2134) has occurred while \output is active []
+[18]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [19 <./figure/ch02_figunnamed-chunk-11-1.pdf>]
-<figure/ch02_figunnamed-chunk-15-1.pdf, id=621, 505.89pt x 505.89pt>
+<figure/ch02_figunnamed-chunk-15-1.pdf, id=618, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-15-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-15-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-15-1.pdf  used on input line 632.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-15-1.pdf  used on input line 625.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
 
 
@@ -692,17 +686,17 @@ Chapter 4.
 <figure/ch02_figunnamed-chunk-16-1.pdf, id=702, 505.89pt x 361.35pt>
 File: figure/ch02_figunnamed-chunk-16-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-16-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-16-1.pdf  used on input line 737.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-16-1.pdf  used on input line 730.
 (pdftex.def)             Requested size: 369.94295pt x 264.25197pt.
 <figure/ch02_figunnamed-chunk-17-1.pdf, id=703, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-17-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-17-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-17-1.pdf  used on input line 753.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-17-1.pdf  used on input line 746.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
 <figure/ch02_figunnamed-chunk-18-1.pdf, id=714, 505.89pt x 505.89pt>
 File: figure/ch02_figunnamed-chunk-18-1.pdf Graphic file (type pdf)
 <use figure/ch02_figunnamed-chunk-18-1.pdf>
-Package pdftex.def Info: figure/ch02_figunnamed-chunk-18-1.pdf  used on input line 768.
+Package pdftex.def Info: figure/ch02_figunnamed-chunk-18-1.pdf  used on input line 761.
 (pdftex.def)             Requested size: 369.94295pt x 369.95276pt.
 ) (./chapter03.tex
 
@@ -813,21 +807,21 @@ L3 programming layer <2025-01-18>
 Package rerunfilecheck Info: File `msc_report.out' has not changed.
 (rerunfilecheck)             Checksum: 0975F18482320980A1EFD639C2CE6330;1700.
 Package rerunfilecheck Info: File `msc_report.brf' has not changed.
-(rerunfilecheck)             Checksum: 55350CF8C169AAADD0E07EFFCDE18C4F;4339.
+(rerunfilecheck)             Checksum: ECEF87B6B7747911FDC5E6A0ADA687F5;4338.
  ) 
 Here is how much of TeX's memory you used:
  15303 strings out of 475129
  250851 string characters out of 5762560
- 665076 words of memory out of 5000000
+ 664076 words of memory out of 5000000
  37896 multiletter control sequences out of 15000+600000
  582778 words of font info for 86 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 95i,17n,96p,891b,511s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 95i,17n,96p,891b,489s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsl1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1000.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1200.600pk> </Users/pilarpastormartinez/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1440.600pk></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/pilarpastormartinez/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on msc_report.pdf (50 pages, 2111942 bytes).
+Output written on msc_report.pdf (50 pages, 2112276 bytes).
 PDF statistics:
- 1541 PDF objects out of 1728 (max. 8388607)
- 888 compressed objects within 9 object streams
+ 1542 PDF objects out of 1728 (max. 8388607)
+ 889 compressed objects within 9 object streams
  161 named destinations out of 1000 (max. 500000)
  300 words of extra memory for PDF output out of 10000 (max. 10000000)
 

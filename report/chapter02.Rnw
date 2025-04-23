@@ -160,16 +160,14 @@ Methods in Tables \ref{tab:count_modeling}, \ref{tab:count_modeling_2} and \ref{
 \section{Counts: Model based on Expectations}
 \label{sec:expect}
 
-If we fix the duration of a study at time $T$ and we expect that we collect $C$ patients until $T$, we deterministically predict the recruitment rate per one unit of time (without taking into consideration any uncertainty) to be $\hat{\lambda}=\frac{C}{T}$ \citep{carter2004application}. Researchers tend to use simple unconditional methods \citep{white2015projection}.
+If we fix the duration of a study at time $T$ and we expect that we collect $C$ patients until $T$, we deterministically predict the recruitment rate per one unit of time (without taking into consideration any uncertainty) to be $\hat{\lambda}=\frac{C}{T}$ \citep{carter2004application}. 
 
 
 
 
 \subsection{Expected recruitment in one unit of time}
-$C = \textrm{E}C = \textrm{E}\lambda = \lambda$\\
-$\textrm{Var}(C) = \textrm{Var}(\lambda) = 0$
 
-As we can see in Table \ref{tab:count_modeling}
+Assume that the recruitment in one unit of time is constant and equal to $\lambda$. Then, $C = \textrm{E}C = \textrm{E}\lambda = \lambda$ and $\textrm{Var}(C) = \textrm{Var}(\lambda) = 0$, as we can see in Table \ref{tab:count_modeling}.
 
 \subsection{Expected accrual at time point $t$}
 
@@ -243,14 +241,8 @@ One important property from the Poisson distribution is that it is infinitely di
 
 \subsection{Recruitment in one unit of time}
 
-The recruitment of patients in one unit of time follows $C\sim \textrm{Po} (\lambda)$ and the expectation and variance are:
-
-\begin{align*}
-\textrm{E}C & = \lambda \\
-\textrm{Var}(C) & = \lambda
-\end{align*}
-
-As we can see in Table \ref{tab:count_modeling}
+The recruitment of patients in one unit of time follows $C\sim \textrm{Po} (\lambda)$ and the expectation and variance are
+$\textrm{E}C = \lambda$ and $\textrm{Var}(C) = \lambda$, as we can see in Table \ref{tab:count_modeling}
 
 \subsection{Accrual at time point $t$}
 At time point $t$, the accrual follows $C\sim \textrm{Po} (\lambda t)$. Using the infinitely divisible property from the Poisson applicable to independent random variables, $\underbrace{\textrm{Po} (\lambda) +\cdots +\textrm{Po} (\lambda)}_{t \ \text{times}} = \textrm{Po} (\lambda t)$. We assume that the recruitment of patients in $t$ unit time intervals is independent from another. As we can see in Table \ref{tab:count_modeling_2}, the expectation and variance are the following:
@@ -828,7 +820,8 @@ legend("topleft",
 \end{figure}
 
 \subsection{Accrual at time point $t$}
-Let $C(t)|\Lambda \sim \textrm{Po}(\Lambda t)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$. By the infinitely divisible property of the Poisson distribution we have that $\underbrace{\textrm{Po} (\Lambda) +\cdots +\textrm{Po} (\Lambda)}_{t \ \text{times}} = \textrm{Po} (\Lambda t)$. 
+
+Let $C(t)|\Lambda \sim \textrm{Po}(\Lambda t)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$. By the infinitely divisible property of the Poisson distribution we have that $\underbrace{\textrm{Po} (\Lambda) +\cdots +\textrm{Po} (\Lambda)}_{t \ \text{times}} = \textrm{Po} (\Lambda t)$. This Poisson-Gamma model has parameters $t$, $\alpha$ and $\beta$. Hence, we denote it as $C(t)\sim \textrm{PoG}(t, \alpha, \beta)$.
 
 \begin{align*}
 p(c)&=\int^\infty_0 p(c|\lambda t) p(\lambda) d\lambda\\
@@ -841,7 +834,7 @@ p(c)&=\int^\infty_0 p(c|\lambda t) p(\lambda) d\lambda\\
 \end{align*}
 Thus, $C(t)\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+t}\Bigg)$
 
-We will be focusing on the count-based interpretation of the Negative Binomial distribution. We can relate this interpretation to the more popular failure-based interpretation by seeing $\alpha$ as $n$, the number of successes. In our case, the number of patients we wish to recruit. And, $p = \frac{\beta}{\beta+1}$ which is the probability of success, as the probability of recruiting.
+We will be focusing on the count-based interpretation of the Negative Binomial distribution. We can relate this interpretation to the more popular failure-based interpretation by seeing $\alpha$ as $n$, the number of successes. In our case, the number of patients we wish to recruit. And, $p = \frac{\beta}{\beta+t}$ which is the probability of success, as the probability of recruiting.
 
 
 Using the expressions of iterated expectation and variance \citep{held2014applied} and the expectation and variance from the respective random variables $C(t)|\Lambda \sim \textrm{Po}(\Lambda t)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$, we have that:
@@ -1123,7 +1116,7 @@ legend("topleft",
 
 \section{Generation of Poisson-Gamma model}
 
-There are two ways with which we can generate the $\lambda$ in the $\textrm{PoG}(t, \alpha, \beta)$ model and we will prove in this section how they are both equivalent.
+There are two ways with which we can generate the random $\Lambda$ in the $\textrm{PoG}(t, \alpha, \beta)$ model and we will prove in this section how they are both equivalent.
 
 \subsection{Version 1}
 
@@ -1137,18 +1130,18 @@ C(t)^m &\sim \textrm{Po} (\lambda^m t) = \underbrace{\textrm{Po} (\lambda^m) +\c
 
 \subsection{Version 2}
 
-At each time point 1 to $t$, we generate a $\lambda^{(i)}$ with $\textrm{G}(\alpha, \beta)$ and a count with $\textrm{Po}(\lambda^{(i)} t)$. For the final counts we sum cumulatively (cumsum) the counts at $t$ so that we get the accrual of patients at time $t$ of each study.
+At each time point $i=1,\ldots, t$, we generate a $\lambda^{(i)}$ with $\textrm{G}(\alpha, \beta)$ and a count with $\textrm{Po}(\lambda^{(i)})$. For the final counts we sum cumulatively (cumsum) the counts at $t$ so that we get the accrual of patients at time $t$ of each study.
 
 \begin{align*}
 \lambda^{(i)m} &\sim \textrm{G}(\alpha, \beta) \\
-C (i)^m&\sim \textrm{Po} (\lambda^{(i)m} t)\\
+C (i)^m&\sim \textrm{Po} (\lambda^{(i)m})\\
 C(t)^m &= \sum_{i=1}^tC(i)^m \\
 & i = 1, \ldots, t \\
 & m = 1, \ldots, M 
 \end{align*}
 
 
-As we can see in Figure \ref{fig:2_12}, the histogram of these two versions overlap and therefore we can conclude that both these ways of generating $\lambda$ are equivalent.
+As we can see in Figure \ref{fig:2_12}, the histogram of these two versions overlap and therefore we can empirically conclude that both these ways of simulating the Poisson-Gamma model are equivalent.
 
 
 \begin{figure}
@@ -1214,7 +1207,7 @@ legend("topright",
 \chapter{Methods for Waiting Time} 
 \section{Time: Model based on Expectations}
 
-If we fix the sample size of a study at $c$ and we expect the recruitment rate to be $\lambda$, we deterministically predict the time planned for the study (without taking into consideration any uncertainty) to be $\hat{T}=\frac{c}{\lambda}$ \citep{bagiella2001predicting}. Regarding the expectation and variance in this framework: $\textrm{E}T = \textrm{E}(c/\lambda) = c/\lambda$ and $\textrm{Var}(T) = \textrm{Var}(c/\lambda) = 0$, as we can see in Table \ref{tab:time_modeling}.
+If we fix the sample size of a study at $c$ and we expect the recruitment rate to be $\lambda$, we deterministically predict the time planned for the study (without taking into consideration any uncertainty) to be $\hat{T}=\frac{c}{\lambda}$ \citep{bagiella2001predicting}. Researchers tend to use simple unconditional methods \citep{white2015projection}. Regarding the expectation and variance in this framework: $\textrm{E}T = \textrm{E}(c/\lambda) = c/\lambda$ and $\textrm{Var}(T) = \textrm{Var}(c/\lambda) = 0$, as we can see in Table \ref{tab:time_modeling}.
 
 
 \begin{table}[h!]
