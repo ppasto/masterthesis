@@ -73,6 +73,94 @@ We define \textbf{Recruitment Rate} $\lambda=\frac{C}{T}$ at which patients are 
 \begin{align*}
 \lambda = \frac{\Delta C}{\Delta T} = \frac{C_1 - C_0}{T_1 - T_0} = \frac{C_1 - 0}{T_1 - 0} = \frac{C_1}{T_1}
 \end{align*}
+% 
+% 
+% \begin{table}[h!]
+% \centering
+% \resizebox{\textwidth}{!}{
+% \begin{tabular}{cccccc}
+%  \textbf{Methods} & \textbf{Counts} & \textbf{Expectation} & \textbf{Variance} & \textbf{Aleatory} & \textbf{Epistemic} \\
+% \hline
+% \hline
+% Expectation & $C = \lambda  $ & $\lambda  $ & 0 & No & No \\
+% Poisson & $C \sim \textrm{Po} (\lambda )$ & $\lambda $ & $\lambda  $ & Yes & No \\
+% Poisson-Gamma & $C \sim \textrm{Po} (\Lambda )$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha(\beta+1)}{\beta^2}$ & Yes & Yes \\
+% \end{tabular}
+% }
+% \caption{Moments and aleatory and epistemic uncertainty of recruitment in one unit of time recruitment covered by different models for counts.}
+% \label{tab:count_modeling0}
+% \end{table}
+% 
+% 
+% 
+% 
+% \begin{table}[h!]
+% \centering
+% \resizebox{\textwidth}{!}{
+% \begin{tabular}{cccccc}
+%  \textbf{Methods} & \textbf{Counts} & \textbf{Expectation} & \textbf{Variance} & \textbf{Aleatory} & \textbf{Epistemic} \\
+% \hline
+% \hline
+% Expectation & $C(t) = \lambda  t$ & $\lambda  t$ & 0 & No & No \\
+% Poisson & $C(t) \sim \textrm{Po} (\lambda  t)$ & $\lambda  t$ & $\lambda  t$ & Yes & No \\
+% Poisson-Gamma & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $t\frac{\alpha}{\beta}$ & $t\frac{\alpha(\beta+t)}{\beta^2}$ & Yes & Yes \\
+% \end{tabular}
+% }
+% \caption{Moments and aleatory and epistemic uncertainty in accrual until $t$ covered by different models for counts.}
+% \label{tab:count_modeling_20}
+% \end{table}
+% 
+% 
+% \begin{table}[h!]
+% \centering
+% \resizebox{\textwidth}{!}{
+% \begin{tabular}{cccccc}
+%  \textbf{Methods} & \textbf{Time} & \textbf{Expectation} & \textbf{Variance} & \textbf{Aleatory} & \textbf{Epistemic} \\
+% \hline
+% \hline
+% Expectation & $T(c) = c/\lambda$ & $c/\lambda$ & 0 & No & No \\
+% Erlang & $T(c) \sim \textrm{G}(c, \lambda) $ & $c/\lambda$ & $c/\lambda^2$ & Yes & No \\
+% Gamma-Gamma & $T(c) \sim \textrm{G}(c, \Lambda)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $c\frac{\beta}{\alpha-1}$ & $\frac{c\beta^2(c+\alpha-1)}{(\alpha-1)^2(\alpha-2)}$ & Yes & Yes \\
+% \end{tabular}
+% }
+% \caption{Moments and aleatory and epistemic uncertainty of recruitment covered by different models for time having a fixed sample size $c$.}
+% \label{tab:time_modeling0}
+% \end{table}
+
+
+Methods in Tables \ref{tab:count_modeling}, \ref{tab:count_modeling_2} and \ref{tab:time_modeling} are applicable to each level of recruitment in Figures \ref{fig:2_1_a} and \ref{fig:2_1_b}.
+
+\chapter{Methods for Counts} 
+\section{Counts: Model based on Expectations}
+\label{sec:expect}
+
+If we fix the duration of a study at time $T$ and we expect that we collect $C$ patients until $T$, we deterministically predict the recruitment rate per one unit of time (without taking into consideration any uncertainty) to be $\hat{\lambda}=\frac{C}{T}$ \citep{carter2004application}. Researchers tend to use simple unconditional methods \citep{white2015projection}.
+
+
+
+
+\subsection{Expected recruitment in one unit of time}
+$C = \textrm{E}C = \textrm{E}\lambda = \lambda$\\
+$\textrm{Var}(C) = \textrm{Var}(\lambda) = 0$
+
+As we can see in Table \ref{tab:count_modeling}
+
+\subsection{Expected accrual at time point $t$}
+
+Assuming that recruitments in each unit of time are independent of each other we have:
+
+$C(t) = \textrm{E}(\underbrace{C+\ldots+C}_{t \ \text{times}}) = \textrm{E}(\lambda t) = \lambda t$\\
+$\textrm{Var}(C(t)) = \textrm{Var}(\underbrace{C+\ldots+C}_{t \ \text{times}}) = t \textrm{Var}(\lambda) = 0$
+
+Both the expected accrual and its zero-variance are recorded in Table \ref{tab:count_modeling_2}
+and visualized in Figure \ref{fig:2_2} and Figure \ref{fig:2_5}.
+
+\subsection{Criticism}
+
+This is a simple deterministic method based on a linear extrapolation of the constant expected recruitment also called "First Order Recruitment Model" (FORM) \citep{comfort2013}. It is also referred to as the \textit{unconditional approach} and its main limitation is the lack of a mechanism to account for known sources of variation in the rate \citep{carter2005practical}. 
+
+The model based on expectations is overly simplistic and fails to account for changes in center recruitment or the regulatory environment \citep{barnard2010systematic}. Therefore, stochastic models that incorporate randomness in the recruitment process are more suitable than the widely used deterministic approach \citep{zhang2012modeling}.
+
 
 
 \begin{table}[h!]
@@ -110,56 +198,6 @@ Poisson-Gamma & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{G}(\
 \label{tab:count_modeling_2}
 \end{table}
 
-
-\begin{table}[h!]
-\centering
-\resizebox{\textwidth}{!}{
-\begin{tabular}{cccccc}
- \textbf{Methods} & \textbf{Time} & \textbf{Expectation} & \textbf{Variance} & \textbf{Aleatory} & \textbf{Epistemic} \\
-\hline
-\hline
-Expectation & $T(c) = c/\lambda$ & $c/\lambda$ & 0 & No & No \\
-Erlang & $T(c) \sim \textrm{G}(c, \lambda) $ & $c/\lambda$ & $c/\lambda^2$ & Yes & No \\
-Gamma-Gamma & $T(c) \sim \textrm{G}(c, \Lambda)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $c\frac{\beta}{\alpha-1}$ & $\frac{c\beta^2(c+\alpha-1)}{(\alpha-1)^2(\alpha-2)}$ & Yes & Yes \\
-\end{tabular}
-}
-\caption{Moments and aleatory and epistemic uncertainty of recruitment covered by different models for time having a fixed sample size $c$.}
-\label{tab:time_modeling}
-\end{table}
-
-
-Methods in Tables \ref{tab:count_modeling}, \ref{tab:count_modeling_2} and \ref{tab:time_modeling} are applicable to each level of recruitment in Figures \ref{fig:2_1_a} and \ref{fig:2_1_b}.
-
-\chapter{Methods for Counts} 
-\section{Counts: Model based on Expectations}
-\label{sec:expect}
-
-If we fix the duration of a study at time $T$ and we expect that we collect $C$ patients until $T$, we deterministically predict the recruitment rate per one unit of time (without taking into consideration any uncertainty) to be $\hat{\lambda}=\frac{C}{T}$ \citep{carter2004application}. Researchers tend to use simple unconditional methods \citep{white2015projection}.
-
-
-
-
-\subsection{Expected recruitment in one unit of time}
-$C = \textrm{E}C = \textrm{E}\lambda = \lambda$\\
-$\textrm{Var}(C) = \textrm{Var}(\lambda) = 0$
-
-As we can see in Table \ref{tab:count_modeling}
-
-\subsection{Expected accrual at time point $t$}
-
-Assuming that recruitments in each unit of time are independent of each other we have:
-
-$C(t) = \textrm{E}(\underbrace{C+\ldots+C}_{t \ \text{times}}) = \textrm{E}(\lambda t) = \lambda t$\\
-$\textrm{Var}(C(t)) = \textrm{Var}(\underbrace{C+\ldots+C}_{t \ \text{times}}) = t \textrm{Var}(\lambda) = 0$
-
-Both the expected accrual and its zero-variance are recorded in Table \ref{tab:count_modeling_2}
-and visualized in Figure \ref{fig:2_2} and Figure \ref{fig:2_5}.
-
-\subsection{Criticism}
-
-This is a simple deterministic method based on a linear extrapolation of the constant expected recruitment also called "First Order Recruitment Model" (FORM) \citep{comfort2013}. It is also referred to as the \textit{unconditional approach} and its main limitation is the lack of a mechanism to account for known sources of variation in the rate \citep{carter2005practical}. 
-
-The model based on expectations is overly simplistic and fails to account for changes in center recruitment or the regulatory environment \citep{barnard2010systematic}. Therefore, stochastic models that incorporate randomness in the recruitment process are more suitable than the widely used deterministic approach \citep{zhang2012modeling}.
 
 \section{Counts: Model based on Poisson Process}
 
@@ -605,6 +643,23 @@ As we can see in Figure \ref{fig:2_12}, the histogram of these two versions over
 \section{Time: Model based on Expectations}
 
 If we fix the sample size of a study at $c$ and we expect the recruitment rate to be $\lambda$, we deterministically predict the time planned for the study (without taking into consideration any uncertainty) to be $\hat{T}=\frac{c}{\lambda}$ \citep{bagiella2001predicting}. Regarding the expectation and variance in this framework: $\textrm{E}T = \textrm{E}(c/\lambda) = c/\lambda$ and $\textrm{Var}(T) = \textrm{Var}(c/\lambda) = 0$, as we can see in Table \ref{tab:time_modeling}.
+
+
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{cccccc}
+ \textbf{Methods} & \textbf{Time} & \textbf{Expectation} & \textbf{Variance} & \textbf{Aleatory} & \textbf{Epistemic} \\
+\hline
+\hline
+Expectation & $T(c) = c/\lambda$ & $c/\lambda$ & 0 & No & No \\
+Erlang & $T(c) \sim \textrm{G}(c, \lambda) $ & $c/\lambda$ & $c/\lambda^2$ & Yes & No \\
+Gamma-Gamma & $T(c) \sim \textrm{G}(c, \Lambda)$; $\Lambda \sim \textrm{G}(\alpha,\beta)$ & $c\frac{\beta}{\alpha-1}$ & $\frac{c\beta^2(c+\alpha-1)}{(\alpha-1)^2(\alpha-2)}$ & Yes & Yes \\
+\end{tabular}
+}
+\caption{Moments and aleatory and epistemic uncertainty of recruitment covered by different models for time having a fixed sample size $c$.}
+\label{tab:time_modeling}
+\end{table}
 
 \section{Time: Model based on Erlang distribution}
 Let $T(c)$ denote the waiting time until $c$ objects are recruited. For a fixed sample size $c$, assuming we have a fixed recruitment rate $\lambda$, $T(c)\sim\textrm{G}(c, \lambda)$. Since $c$ is an integer, we can use the additivity property from the Gamma distribution applicable to independent random variables, $\underbrace{\textrm{Exp} (\lambda) +\cdots +\textrm{Exp} (\lambda)}_{c \ \text{times}} = \textrm{G} (c, \lambda)$. Moreover, this distribution is also called the Erlang distribution and can be denoted as $\textrm{Erlang} (c, \lambda)$. As we can see in Table \ref{tab:time_modeling}, the expectation and variance are the following:
