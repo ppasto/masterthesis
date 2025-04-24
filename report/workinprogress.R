@@ -1290,6 +1290,16 @@ pgammagamma <- function(t, alpha, b, c) {
 	})
 }
 
+qgammagamma <- function(p, alpha, b, c, tol = 1e-6, max = 100000) {
+	uniroot(function(x) pgammagamma(x, alpha, b, c) - 0.9, c(tol,max))$root
+}
+
+pgammagamma(548, alpha = 32.4, b = 54.8, c = 324)
+qgammagamma(p = 0.9, alpha = 32.4, b = 54.8, c = 324)
+
+
+
+
 par(mfrow=c(1,3))
 curve(dgamma(x, shape = 324, rate = 548), 
 			from = 0, to = 1,
