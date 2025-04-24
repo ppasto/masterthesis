@@ -99,9 +99,9 @@ x_vals <- 200:500
 
 plot(x_vals, dpois(x_vals, lambda = lambda * 550), 
 		 type = "n",
-		 main = "MC simulation vs theoretical density",
-		 xlab = "Day",
-		 ylab = "Density")
+		 main = "MC simulation vs theoretical PMF",
+		 xlab = "Counts",
+		 ylab = "PMF")
 
 lines(x_vals,  dpois(x_vals, lambda = lambda * 550), 
 			lwd = 4,
@@ -119,7 +119,7 @@ legend("topright",
 			 lty = c(1, 2),
 			 cex = 0.7)
 @
-  \caption{Comparison of theoretical Probability Mass Function (PMF) of Poisson model for counts with $\lambda = 0.591$ for accrual at time $t=550$ and Monte Carlo (MC) simulations with $M=10^4$.}
+  \caption{Comparison of theoretical smoothed Probability Mass Function (PMF) of Poisson model for counts with $\lambda = 0.591$ for accrual at time $T=548$ and Monte Carlo (MC) simulations with $M=10^4$.}
   \label{fig:3_1}
 \end{figure}
 
@@ -152,9 +152,9 @@ x_vals <- 200:500
 
 plot(x_vals,  dnbinom(x_vals, size = alpha, prob = beta/(beta+550)), 
 		 type = "n",
-		 main = "MC simulation vs theoretical density",
-		 xlab = "Day",
-		 ylab = "Density")
+		 main = "MC simulation vs theoretical PMF",
+		 xlab = "Counts",
+		 ylab = "PMF")
 
 lines(x_vals,  dnbinom(x_vals, size = alpha, prob = beta/(beta+550)), 
 			lwd = 4,
@@ -173,7 +173,7 @@ legend("topright",
 			 cex = 0.7)
 
 @
-\caption{Comparison of theoretical Probability Mass Function (PMF) of Poisson-Gamma model for counts with $\alpha = 32.4$ and $\beta = 54.8$ for accrual at time $t=550$, and Monte Carlo (MC) simulations with $M=10^4$.}
+\caption{Comparison of theoretical smoothed Probability Mass Function (PMF) of Poisson-Gamma model for counts with $\alpha = 32.4$ and $\beta = 54.8$ for accrual at time $T=548$, and Monte Carlo (MC) simulations with $M=10^4$.}
 \label{fig:3_2}
 \end{figure}
 
@@ -258,7 +258,7 @@ legend("topright",
 			 lty = c(1, 2),
 			 cex = 0.7)
 @
-\caption{Comparison of theoretical density function of Erlang model for time with parameters $c = 324$ and $\lambda = 0.591$ and Monte Carlo (MC) simulations with $M=10^4$.}
+\caption{Comparison of theoretical density function of Erlang model for the waiting time until $N = 324$ subjects are accrued with recruitment rate $\lambda = 0.591$ and Monte Carlo (MC) simulations with $M=10^4$.}
 \label{fig:3_3}
 \end{figure}
 
@@ -287,7 +287,10 @@ timegg_easier <- simulate_time_to_threshold_GG_easier(MM=M, CC=Ctarget, aa=alpha
 t_vals <- 100:1100
 
 plot(t_vals, dgammagamma(t_vals, a = 32.4, b = 54.8, c = Ctarget), 
-		 type = "n", main = "Density Time", xlab = "Day", ylab = "Density")
+		 type = "n", 
+		 main = "MC simulation vs theoretical density", 
+		 xlab = "Day", 
+		 ylab = "Density")
 lines(t_vals, dgammagamma(t_vals, a = 32.4, b = 54.8, c = Ctarget), 
 			lwd = 4, col = "purple")
 lines(density(timegg_easier), 
@@ -295,7 +298,7 @@ lines(density(timegg_easier),
 legend("topright", legend = c("Theoretical GG", "MC sampling"),
 			 col = c("purple", "blue"), lwd = c(4, 2), lty = c(1, 2), cex = 0.7)
 @
-\caption{Comparison of theoretical Density function of Gamma-Gamma model for time with parameters $\alpha = 32.4$ and $\beta = 54.8$ and Monte Carlo (MC) simulations with $M=10^4$.}
+\caption{Comparison of theoretical density function of Gamma-Gamma model for waiting time with parameters $N=324$, $\alpha = 32.4$ and $\beta = 54.8$ and Monte Carlo (MC) simulations with $M=10^4$.}
 \label{fig:3_4}
 \end{figure}
 
