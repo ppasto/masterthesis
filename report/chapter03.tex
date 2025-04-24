@@ -38,11 +38,11 @@ This raises two questions which will be answered throughout this Master Thesis:
 
 \section{Counts: Comparison exact vs Monte Carlo simulations}
 
-Carter raises two important questions, enumerated in the previous section \citep{carter2004application, carter2005practical}. He suggests the use of Monte Carlo (MC) simulations for counts. Here we investigate the accuracy of his MC simulations by comparing them with exact distributions for accrual of counts introduced in Chapter 2.
+Carter raises two important questions, enumerated in the previous section \citep{carter2004application, carter2005practical}. He suggests the use of Monte Carlo (MC) simulations for counts. Here we investigate the accuracy of his MC simulations by comparing them with exact distributions for accrual of counts introduced in Chapter 3.
 
-As we saw in the previous chapter we can model the counts taking into account only the aleatory uncertainty using $C(t)\sim \textrm{Po}(\lambda t)$. Or, more realistically, take into consideration the fluctuation of $\Lambda$ over time using $C(t)\sim \textrm{Po}(\Lambda t)$ with $\Lambda\sim \textrm{G}(\alpha, \beta)$.
+As we saw in the previous chapter we can model the counts taking into account only the aleatory uncertainty using $C(T)\sim \textrm{Po}(\lambda T)$ with $T=548$. Or, more realistically, take into consideration the fluctuation of $\Lambda$ over time using $C(T)\sim \textrm{Po}(\Lambda T)$ with $\Lambda\sim \textrm{G}(\alpha, \beta)$.
 
-In Figures \ref{fig:3_1} and \ref{fig:3_2}, we can see how we need at least $M=10^4$ MC results of simulations to converge to the theoretical probability distribution discussed in Chapter 2.
+Figures \ref{fig:3_1} and \ref{fig:3_2} show the comparison between the theoretical models for counts discussed in Chapter 3 and their respective MC simulations. In Figures \ref{fig:3_1} and \ref{fig:3_2}, we can see how we need at least $M=10^4$ MC results of simulations to converge to the theoretical probability distribution discussed in Chapter 3. \cite{carter2004application} uses $M = 10^3$.
 
 % otherwise, show picture of code
 
@@ -106,10 +106,10 @@ In Figures \ref{fig:3_1} and \ref{fig:3_2}, we can see how we need at least $M=1
 \section{Time: Comparison exact vs Monte Carlo simulations}
 
 
-As we saw in the previous chapter we can model the waiting time to accrue $c = 324$ objects when unit-time recruitment rate is $\lambda = 0.591$ taking into account only aleatory uncertainty with $T(c)\sim \textrm{Erlang}(c,\lambda)$. Or, taking into account both aleatory and epistemic uncertainty with $T(c)\sim\textrm{G}(c, \Lambda)$ where $\Lambda\sim \textrm{G}(\alpha,\beta)$.
+As we saw in the previous chapter we can model the waiting time to accrue $N = 324$ objects when unit-time recruitment rate is $\lambda = 0.591$ taking into account only aleatory uncertainty with $T(N)\sim \textrm{Erlang}(N,\lambda)$. Or, taking into account both aleatory and epistemic uncertainty with $T(N)\sim\textrm{G}(N, \Lambda)$ where $\Lambda\sim \textrm{G}(\alpha,\beta)$.
 
 
-In Figures \ref{fig:3_3} and \ref{fig:3_4}, we can see how we need at least $M=10^4$ MC results of simulations converge to the theoretical probability distribution discussed in Chapter 2.
+Figures \ref{fig:3_3} and \ref{fig:3_4} show the comparison between the theoretical models for waiting time discussed in Chapter 4 and their respective MC simulations. In Figures \ref{fig:3_3} and \ref{fig:3_4}, we can see how we need at least $M=10^4$ MC results of simulations converge to the theoretical probability distribution discussed in Chapter 4.
 
 % LALALA
 % <<echo=TRUE, cache=TRUE, warning=FALSE>>=
@@ -172,7 +172,7 @@ $T(N)\sim\textrm{GG}(N, \alpha, \beta)$ & $\textrm{P}(T(N)\geq 548) = 0.52$ & 0.
 % qgamma(p = 0.9, shape = 324, rate = 0.591)
 % @
 
-Small number of simulations (up to 1000) from \cite{carter2004application} gives him inaccurate estimate of days (580), when the exact using the Erlang distribution gives  588.
+Small number of simulations (up to $M=10^3$) from \cite{carter2004application} gives him inaccurate estimate of days (580), when the exact using the Erlang distribution gives  588 to have 90\% chance of accruing $N=324$ subjects with a recruitment rate of $\lambda=0.591$.
 
 In Tables \ref{tab:mcsec} and \ref{tab:mcset} we illustrate how, indeed, by using the expected accrual without taking into consideration any uncertainty we have roughly a 50\% chance of accruing the desired sample size in the established time-frame \citep{carter2004application}.
 
