@@ -3,17 +3,13 @@
 
 \chapter{Results}
 
-\section{Important questions when forecasting recruitment at the design-stage of a study}
 
-By normal approximation to the Poisson distribution $C(t)\sim \textrm{N}(\mu=\lambda t, \sigma^2=(\lambda t)^2)$, we know that the probability of recruiting the desired $N$ participants is 0.5. Which means that the study has 50\% chance of obtaining the desired sample size in the suggested $T$ \citep{carter2004application}. We would also be assuming that the recruitment rate is constant over time.
+\section{Example from Carter}
 
-In fact, we do not need normal approximation to see this. This can be shown with the Poisson distribution itself. We only need to specify the probability above $\lambda t$, for example, 0.5. For large $\lambda$, 50\% of the distribution will be below $\lambda t$. With $\lambda < 1$ this is no longer the case. 
+The clinical trial aims to assess the palliative effects of radiation therapy and esophageal stents in terminal esophageal cancer patients. It plans to enroll 324 participants, with an expected accrual rate of 18 subjects per month (or about 0.591 per day) across multiple centers. A simple estimate suggests that recruitment will take 18 months or 548 days ($324/18$), assuming a constant enrollment rate. However, the proposed method in the study evaluates whether this estimate is realistic and feasible using Monte Carlo (MC) simulations \citep{carter2004application}.
 
-This raises two questions which will be answered throughout this Master Thesis:
-\begin{enumerate}
-\item \textbf{Rate:} If $T$ is fixed, what does the expected rate $\lambda$ need to be to achieve a certain certainty of enrolling the total sample size $N$ within the time frame $T$?
-\item \textbf{Time:} Given a certain rate $\lambda$, how long should the recruitment period $T$ be planned to give a confidence above 50\% of recruiting the total sample size $N$? In Machine Learning, this confidence is aimed at 80\%. In \cite{carter2004application}, at 90\%.
-\end{enumerate}
+Before running simulations, it's assumed that participant arrivals follow a Poisson process with a constant rate over 18 months (548 days). This results in a Poisson distribution with a mean of $\lambda = 0.591 \cdot 548 = 324$ participants, matching the trial's target. This approach allows assigning probabilities to different recruitment durations, helping assess how likely it is to meet the enrollment goal within the planned timeframe.
+
 
 \section{Pros and cons of Monte Carlo's simulations}
 
@@ -25,6 +21,21 @@ Carter suggests using Monte Carlo simulations, independent and identically distr
 \item Monte Carlo standard errors (MCse) of estimates based on MC simulations
 \item Pseudo random numbers generated in R rely in the assumption that these pseudo random numbers are close to the true realizations of random variables \citep{held2014applied}
 \end{itemize}
+
+
+\section{Important questions when forecasting recruitment at the design-stage of a study}
+
+By normal approximation to the Poisson distribution $C(t)\sim \textrm{N}(\mu=\lambda t, \sigma^2=(\lambda t)^2)$, we know that the probability of recruiting the desired $N$ participants is 0.5. Which means that the study has 50\% chance of obtaining the desired sample size in the suggested $T$ \citep{carter2004application}. We would also be assuming that the recruitment rate is constant over time.
+
+In fact, we do not need normal approximation to see this. This can be shown with the Poisson distribution itself, see Tables \ref{tab:mcsec} and \ref{tab:mcset}. We only need to specify the probability above $\lambda t$, for example, $0.9$. For large $\lambda$, 50\% of the distribution will be below $\lambda t$. With $\lambda < 1$ this is no longer the case. 
+
+This raises two questions which will be answered throughout this Master Thesis:
+\begin{enumerate}
+\item \textbf{Rate:} If $T$ is fixed, what does the expected rate $\lambda$ need to be to achieve a certain certainty of enrolling the total sample size $N$ within the time frame $T$?
+\item \textbf{Time:} Given a certain rate $\lambda$, how long should the recruitment period $T$ be planned to give a confidence above 50\% of recruiting the total sample size $N$? In Machine Learning, this confidence is aimed at 80\%. In \cite{carter2004application}, at 90\%.
+\end{enumerate}
+
+
 \section{Counts: Comparison exact vs Monte Carlo simulations}
 
 Carter raises two important questions, enumerated in the previous section \citep{carter2004application, carter2005practical}. He suggests the use of Monte Carlo (MC) simulations for counts. Here we investigate the accuracy of his MC simulations by comparing them with exact distributions for accrual of counts introduced in Chapter 2.
