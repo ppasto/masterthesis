@@ -319,12 +319,18 @@ $T(N)\sim\textrm{GG}(N, \alpha, \beta)$ & $\textrm{P}(T(N)\geq 548) = \Sexpr{rou
 \caption{Probability estimates based on Monte Carlo simulations, their respective Monte Carlo standard errors (MCse) and exact probability computations for all processes considered in modeling time where the sample size is fixed to be $N = 324$,  $\lambda = 0.591$, $\alpha = 32.4$ and $\beta =54.8$.}
 \label{tab:mcset}
 \end{table}
-% 
-% <<>>=
-% qgamma(p = 0.9, shape = 324, rate = 0.591)
-% @
+
+<<echo=FALSE>>=
+erl <- qgamma(p = 0.9, shape = 324, rate = 0.591)
+qgammagamma <- function(p, alpha, b, c, tol = 1e-6, max = 100000) {
+	uniroot(function(x) pgammagamma(x, alpha, b, c) - p, c(tol,max))$root
+}
+gg <- qgammagamma(p = 0.9, alpha = 32.4, b = 54.8, c = 324)
+@
 
 Small number of simulations (up to $M=10^3$) from \cite{carter2004application} gives him inaccurate estimate of days (580), when the exact using the Erlang distribution gives  \Sexpr{round(qgamma(p = 0.9, shape = 324, rate = 0.591), 0)} to have 90\% chance of accruing $N=324$ subjects with a recruitment rate of $\lambda=0.591$.
+
+Moreover, if we wish to be more realistic in the uncertainty our model takes into consideration and choose the Gamma-Gamma distribution, \Sexpr{round(qgammagamma(p = 0.9, alpha = 32.4, b = 54.8, c = 324), 0)} days would be required to have a 90\% chance of accruing the desired sample size. 
 
 In Tables \ref{tab:mcsec} and \ref{tab:mcset} we illustrate how, indeed, by using the expected accrual without taking into consideration any uncertainty we have roughly a 50\% chance of accruing the desired sample size in the established time-frame \citep{carter2004application}.
 
