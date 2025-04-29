@@ -1,4 +1,9 @@
 % LaTeX file for Chapter 03
+<<setup, include=FALSE>>=
+knitr::opts_chunk$set(highlight = FALSE, echo = TRUE)
+@
+
+
 <<'preamble03',include=FALSE>>=
 library(knitr)
 opts_chunk$set(
@@ -49,38 +54,34 @@ Carter raises two important questions, enumerated in the previous section \citep
 
 As we saw in the previous chapter we can model the counts taking into account only the aleatory uncertainty using $C(T)\sim \textrm{Po}(\lambda T)$ with $T=548$. Or, more realistically, take into consideration the fluctuation of $\Lambda$ over time using $C(T)\sim \textrm{Po}(\Lambda T)$ with $\Lambda\sim \textrm{G}(\alpha, \beta)$.
 
-Figures \ref{fig:3_1} and \ref{fig:3_2} show the comparison between the theoretical models for counts discussed in Chapter 3 and their respective MC simulations. In Figures \ref{fig:3_1} and \ref{fig:3_2}, we can see how we need at least $M=10^4$ MC results of simulations to converge to the theoretical probability distribution discussed in Chapter 3. \cite{carter2004application} uses $M = 10^3$.
-
-% otherwise, show picture of code
+Figures \ref{fig:3_1} and \ref{fig:3_2} show the comparison between the theoretical models for counts discussed in Chapter 3 and their respective MC simulations. In Figures \ref{fig:3_1} and \ref{fig:3_2}, we can see how we need at least $M=10^5$ MC results of simulations to converge to the theoretical probability distribution discussed in Chapter 3. \cite{carter2004application} uses $M = 10^3$.
 
 
-% 
-% lalalalal
-% <<echo=TRUE, eval=TRUE>>=
-% set.seed(2025)
-% 
-% M <- 10^5
-% t <- seq(1, 550, 1)
-% lambda <- 0.591
-% 
-% # Generate cumulative Poisson paths
-% cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
-% 
-% for (i in 1:M) {
-% 	cval <- rpois(length(t), lambda)
-% 	cval_cum_matrix[i, ] <- cumsum(cval)
-% }
-% 
-% # Extract final counts for histogram
-% final_counts <- cval_cum_matrix[, length(t)]
-% @
-% 
+<<counts, echo=TRUE, warnings=FALSE>>=
+set.seed(2025)
+
+M <- 10^5
+t <- seq(1, 550, 1)
+lambda <- 0.591
+
+# Generate cumulative Poisson paths
+cval_cum_matrix <- matrix(NA, nrow = M, ncol = length(t))
+
+for (i in 1:M) {
+	cval <- rpois(length(t), lambda)
+	cval_cum_matrix[i, ] <- cumsum(cval)
+}
+
+# Extract final counts for histogram
+final_counts <- cval_cum_matrix[, length(t)]
+@
+
 
 \begin{figure}
 <<echo=FALSE, cache = TRUE, warning=FALSE>>=
 set.seed(2025)
 
-M <- 10^4
+M <- 10^5
 t <- seq(1, 550, 1)
 lambda <- 0.591
 
@@ -119,7 +120,7 @@ legend("topright",
 			 lty = c(1, 2),
 			 cex = 0.7)
 @
-  \caption{Comparison of theoretical smoothed Probability Mass Function (PMF) of Poisson model for counts with $\lambda = 0.591$ for accrual at time $T=548$ and Monte Carlo (MC) simulations with $M=10^4$.}
+  \caption{Comparison of theoretical smoothed Probability Mass Function (PMF) of Poisson model for counts with $\lambda = 0.591$ for accrual at time $T=548$ and Monte Carlo (MC) simulations with $M=10^5$.}
   \label{fig:3_1}
 \end{figure}
 
@@ -129,7 +130,7 @@ legend("topright",
 <<echo=FALSE, cache = TRUE, warning=FALSE>>=
 set.seed(2025)
 
-n <- 10^4
+n <- 10^5
 t <- seq(1, 550, 1)
 lambda <- 0.591
 
@@ -173,7 +174,7 @@ legend("topright",
 			 cex = 0.7)
 
 @
-\caption{Comparison of theoretical smoothed Probability Mass Function (PMF) of Poisson-Gamma model for counts with $\alpha = 32.4$ and $\beta = 54.8$ for accrual at time $T=548$, and Monte Carlo (MC) simulations with $M=10^4$.}
+\caption{Comparison of theoretical smoothed Probability Mass Function (PMF) of Poisson-Gamma model for counts with $\alpha = 32.4$ and $\beta = 54.8$ for accrual at time $T=548$, and Monte Carlo (MC) simulations with $M=10^5$.}
 \label{fig:3_2}
 \end{figure}
 
@@ -197,31 +198,41 @@ legend("topright",
 As we saw in the previous chapter we can model the waiting time to accrue $N = 324$ objects when unit-time recruitment rate is $\lambda = 0.591$ taking into account only aleatory uncertainty with $T(N)\sim \textrm{Erlang}(N,\lambda)$. Or, taking into account both aleatory and epistemic uncertainty with $T(N)\sim\textrm{G}(N, \Lambda)$ where $\Lambda\sim \textrm{G}(\alpha,\beta)$.
 
 
-Figures \ref{fig:3_3} and \ref{fig:3_4} show the comparison between the theoretical models for waiting time discussed in Chapter 4 and their respective MC simulations. In Figures \ref{fig:3_3} and \ref{fig:3_4}, we can see how we need at least $M=10^4$ MC results of simulations converge to the theoretical probability distribution discussed in Chapter 4.
+Figures \ref{fig:3_3} and \ref{fig:3_4} show the comparison between the theoretical models for waiting time discussed in Chapter 4 and their respective MC simulations. In Figures \ref{fig:3_3} and \ref{fig:3_4}, we can see how we need at least $M=10^5$ MC results of simulations converge to the theoretical probability distribution discussed in Chapter 4.
 
-% LALALA
-% <<echo=TRUE, cache=TRUE, warning=FALSE>>=
-% set.seed(2025)
-% M <- 10^5
-% Nneed <- 324
-% lambda <- 0.591
-% 
-% timep <- rep(0, M)
-% csump <- rep(0, M)
-% 
-% for(m in 1:M){
-% 	while (csump[m] < Nneed) {
-% 		csump[m] <- csump[m] + rpois(1, lambda)
-% 		timep[m] <- timep[m] + 1
-% 	}
-% }
-% @
-% first check if it works!!
-% add also the code chunk with negative binomial (extension of carter and bagiella)
+
+<<time, echo=TRUE, warnings=FALSE>>=
+M <- 10^5
+Ctarget <- 324
+lambda <- 0.591
+
+alpha <- 32.4
+beta <- 54.8
+
+simulate_time_to_threshold_Erlang <- function(MM, CC, ll, rseed=265735) {
+  set.seed(rseed)
+  timeerlang <- rgamma(n=MM, shape = CC, rate = ll)
+  return(timeerlang)
+}
+
+time_erlang <- simulate_time_to_threshold_Erlang(MM=M, CC=Ctarget, ll=lambda, rseed=265735)
+
+simulate_time_to_threshold_GG <- function(MM, CC, aa, bb, rseed=265735) {
+  set.seed(rseed)
+  timegg <- rep(0, MM)
+  lambdar <- rgamma(n=MM, shape = aa, rate = bb)
+  for (i in 1:MM){
+    timegg[i] <- rgamma(n=1, shape = CC, rate = lambdar[i])
+  }
+  return(timegg)
+}
+
+timegg_easier <- simulate_time_to_threshold_GG(MM=M, CC=Ctarget, aa=alpha, bb=beta) 
+@
 
 \begin{figure}
 <<echo=FALSE>>=
-M <- 10^4
+M <- 10^5
 Ctarget <- 324
 lambda <- 0.591
 
@@ -258,7 +269,7 @@ legend("topright",
 			 lty = c(1, 2),
 			 cex = 0.7)
 @
-\caption{Comparison of theoretical density function of Erlang model for the waiting time until $N = 324$ subjects are accrued with recruitment rate $\lambda = 0.591$ and Monte Carlo (MC) simulations with $M=10^4$.}
+\caption{Comparison of theoretical density function of Erlang model for the waiting time until $N = 324$ subjects are accrued with recruitment rate $\lambda = 0.591$ and Monte Carlo (MC) simulations with $M=10^5$.}
 \label{fig:3_3}
 \end{figure}
 
@@ -266,7 +277,7 @@ legend("topright",
 \begin{figure}
 <<echo=FALSE, warning=FALSE, cache=TRUE>>=
 set.seed(2025)
-M <- 10^4
+M <- 10^5
 Ctarget <-324 
 lambda <- 0.591
 alpha <- 32.4
@@ -298,7 +309,7 @@ lines(density(timegg_easier),
 legend("topright", legend = c("Theoretical GG", "MC sampling"),
 			 col = c("purple", "blue"), lwd = c(4, 2), lty = c(1, 2), cex = 0.7)
 @
-\caption{Comparison of theoretical density function of Gamma-Gamma model for waiting time with parameters $N=324$, $\alpha = 32.4$ and $\beta = 54.8$ and Monte Carlo (MC) simulations with $M=10^4$.}
+\caption{Comparison of theoretical density function of Gamma-Gamma model for waiting time with parameters $N=324$, $\alpha = 32.4$ and $\beta = 54.8$ and Monte Carlo (MC) simulations with $M=10^5$.}
 \label{fig:3_4}
 \end{figure}
 
