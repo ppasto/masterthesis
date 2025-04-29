@@ -57,7 +57,6 @@ M <- 10^5
 t <- seq(1, 550, 1)
 lambda <- 0.591
 
-# Generate cumulative Poisson paths
 cval_cum_matrix <- matrix(NA, nrow = M, ncol = length(t))
 
 for (i in 1:M) {
@@ -65,7 +64,6 @@ for (i in 1:M) {
 	cval_cum_matrix[i, ] <- cumsum(cval)
 }
 
-# Extract final counts for histogram
 final_counts <- cval_cum_matrix[, length(t)]
 \end{verbatim}
 \end{kframe}
@@ -143,7 +141,7 @@ simulate_time_to_threshold_GG <- function(MM, CC, aa, bb, rseed=265735) {
   return(timegg)
 }
 
-timegg_easier <- simulate_time_to_threshold_GG(MM=M, CC=Ctarget, aa=alpha, bb=beta) 
+timegg <- simulate_time_to_threshold_GG(MM=M, CC=Ctarget, aa=alpha, bb=beta) 
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
