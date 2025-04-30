@@ -602,6 +602,29 @@ C(t)^m &\sim \textrm{Po} (\lambda^m t) = \underbrace{\textrm{Po} (\lambda^m) +\c
 & m = 1, \ldots, M
 \end{align*}
 
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+set.seed(2025)
+
+M <- 10^4
+t <- seq(1, 550, 1)
+lambda <- 0.591
+alpha <- 324
+beta <- 548
+
+cval_cum_matrix <- matrix(NA, nrow = M, ncol = length(t))
+v_lambda <- rgamma(M, shape = alpha, rate = beta)
+
+for (i in 1:M) {
+	cval <- rpois(length(t), lambda = v_lambda[i])
+	cval_cum_matrix[i, ] <- cumsum(cval)
+}
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
 \subsection{Version 2}
 
 At each time point $i=1,\ldots, t$, we generate a $\lambda^{(i)}$ with $\textrm{G}(\alpha, \beta)$ and a count with $\textrm{Po}(\lambda^{(i)})$. For the final counts we sum cumulatively (cumsum) the counts at $t$ so that we get the accrual of patients at time $t$ of each study.
@@ -615,6 +638,30 @@ C(t)^m &= \sum_{i=1}^tC(i)^m \\
 \end{align*}
 
 
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+set.seed(2025)
+
+M <- 10^4
+t <- seq(1, 550, 1)
+lambda <- 0.591
+alpha <- 324
+beta <- 548
+
+cval_cum_matrix_2 <- matrix(NA, nrow = M, ncol = length(t))
+cval <- rep(NA, length(t))
+
+for (i in 1:M) {
+	for(j in 1:length(t)){
+		cval[j] <- rpois(1, lambda = rgamma(1, shape = alpha, rate = beta))
+	}
+	cval_cum_matrix_2[i, ] <- cumsum(cval)
+}
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
 
 
 As we can see in Figure \ref{fig:2_12}, the density of these two versions do not overlap and therefore we can empirically conclude that these ways of simulating the Poisson-Gamma model are not equivalent. Both methods share the same expectation but the spread differs. We can see these both in Figure \ref{fig:2_12} and theoretically. In version 1, we have a $C(t)|\Lambda\sim\textrm{Po}(\Lambda t)$ with $\Lambda\sim\textrm{G}(\alpha,\beta)$ with expectation and variance (proved above):
