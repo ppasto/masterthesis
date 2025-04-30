@@ -76,7 +76,7 @@ final_counts <- cval_cum_matrix[, length(t)]
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figure/ch03_figunnamed-chunk-1-1} 
 \end{knitrout}
-  \caption{Comparison of theoretical smoothed Probability Mass Function (PMF) of Poisson model for counts with $\lambda = 0.591$ for accrual at time $Ttarget=548$ and Monte Carlo (MC) simulations with $M=10^5$.}
+  \caption{Comparison of smoothed theoretical Probability Mass Function (PMF) of Poisson model for counts with $\lambda = 0.591$ for accrual at time $Ttarget=548$ and Monte Carlo (MC) simulations with $M=10^5$.}
   \label{fig:3_1}
 \end{figure}
 
@@ -87,7 +87,7 @@ final_counts <- cval_cum_matrix[, length(t)]
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figure/ch03_figunnamed-chunk-2-1} 
 \end{knitrout}
-\caption{Comparison of theoretical smoothed Probability Mass Function (PMF) of Poisson-Gamma model for counts with $\alpha = 32.4$ and $\beta = 54.8$ for accrual at time $Ttarget=548$, and Monte Carlo (MC) simulations with $M=10^5$.}
+\caption{Comparison of smoothed theoretical Probability Mass Function (PMF) of Poisson-Gamma model for counts with $\alpha = 32.4$ and $\beta = 54.8$ for accrual at time $Ttarget=548$, and Monte Carlo (MC) simulations with $M=10^5$.}
 \label{fig:3_2}
 \end{figure}
 
@@ -104,6 +104,7 @@ final_counts <- cval_cum_matrix[, length(t)]
 \label{tab:mcsec}
 \end{table}
 
+In Table \ref{tab:mcsec} we illustrate how, indeed, by using the expected accrual without taking into consideration any uncertainty we have roughly a 50\% chance of accruing the desired sample size in the established time-frame \citep{carter2004application}.
 
 \section{Time: Comparison exact vs Monte Carlo simulations}
 
@@ -216,6 +217,6 @@ Small number of simulations (up to $M=10^3$) from \cite{carter2004application} g
 
 Moreover, if we wish to be more realistic in the uncertainty our model takes into consideration and choose the Gamma-Gamma distribution, 707 days would be required to have a 90\% chance of accruing the desired sample size. 
 
-In Tables \ref{tab:mcsec} and \ref{tab:mcset} we illustrate how, indeed, by using the expected accrual without taking into consideration any uncertainty we have roughly a 50\% chance of accruing the desired sample size in the established time-frame \citep{carter2004application}.
+In Table \ref{tab:mcset} we illustrate how, indeed, by using the expected accrual without taking into consideration any uncertainty we have roughly a 50\% chance of accruing the desired sample size in the established time-frame \citep{carter2004application}.
 
 
