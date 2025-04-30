@@ -615,7 +615,42 @@ C(t)^m &= \sum_{i=1}^tC(i)^m \\
 \end{align*}
 
 
-As we can see in Figure \ref{fig:2_12}, the histogram of these two versions overlap and therefore we can empirically conclude that both these ways of simulating the Poisson-Gamma model are equivalent.
+
+
+As we can see in Figure \ref{fig:2_12}, the density of these two versions do not overlap and therefore we can empirically conclude that these ways of simulating the Poisson-Gamma model are not equivalent. Both methods share the same expectation but the spread differs. We can see these both in Figure \ref{fig:2_12} and theoretically. In version 1, we have a $C(t)|\Lambda\sim\textrm{Po}(\Lambda t)$ with $\Lambda\sim\textrm{G}(\alpha,\beta)$ with expectation and variance (proved above):
+
+
+\begin{align*}
+\textrm{E}(C(t))=\frac{t\alpha}{\beta}
+\end{align*}
+
+\begin{align*}
+\textrm{Var}(C(t))=\frac{t\alpha(\beta+t)}{\beta^2}
+\end{align*}
+
+Whereas in version 2, we have a $C(t)|\Lambda^*\sim\textrm{Po}(\Lambda^*)$ with $\Lambda^*\sim\textrm{G}(\alpha t,\beta)$ because:
+
+\begin{align*}
+\sum_{i=1}^t C_i &= \sum_{i=1}^t \textrm{Po}(\lambda_i)\\
+&=\textrm{Po}\Bigg(\sum_{i=1}^t \lambda_i\Bigg)\\
+&=\textrm{Po}\Bigg(\sum_{i=1}^t \textrm{G}(\alpha,\beta)\Bigg)\\
+&=\textrm{Po}(\textrm{G}(t\alpha,\beta))
+\end{align*}
+
+with,
+\begin{align*}
+\textrm{E}(C(t))=\frac{t\alpha}{\beta}
+\end{align*}
+
+and using the variance iterated formula \citep{held2014applied},
+
+\begin{align*}
+\textrm{Var}(C(t))&= \textrm{Var}_{\Lambda}[\textrm{E}_{C(t)} (C(t)|\Lambda^*] + \textrm{E}_{\Lambda^*}[\textrm{Var}_{C(t)}(C(t)|\Lambda^*)]\\
+&=\frac{t\alpha}{\beta}+\frac{t\alpha}{\beta^2}\\
+&=\frac{t\alpha(\beta+1)}{\beta^2}
+\end{align*}
+
+Hence, the spread in version 2 is smaller than in version 1.
 
 
 \begin{figure}
@@ -628,7 +663,7 @@ As we can see in Figure \ref{fig:2_12}, the histogram of these two versions over
 
 
 \end{knitrout}
-  \caption{Comparison of the two versions with which we can generate a Poisson-Gamma model. Version 1: generates a vector of $\lambda$ with length $M=10^5$ using a $\textrm{G}(\alpha = 324, \beta = 548)$. Version 2: at each time point only one $\lambda$ is generated. We compare both these versions at accrual of time $t=550$ for $\lambda=0.591$.}
+  \caption{Comparison of the two versions with which we can generate a Poisson-Gamma model. Version 1: generates a vector of $\lambda$ with length $M=10^4$ using a $\textrm{G}(\alpha = 324, \beta = 548)$. Version 2: at each time point only one $\lambda$ is generated. We compare both these versions at accrual of time $t=550$ for $\lambda=0.591$.}
   \label{fig:2_12}
 \end{figure}
 
