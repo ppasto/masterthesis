@@ -8,7 +8,7 @@
 
 
 
-\chapter{Methodology} 
+\chapter{Background} 
 
 \section{Definitions}
 
@@ -206,8 +206,7 @@ The resulting distribution helps estimate the probability of completing accrual 
 The Poisson distribution $C\sim \rm{Po} (\lambda)$ allows us to explain the recruitment of patients. It is a discrete variable that expresses the probability of a given number of events (in our case, patient recruitment) occurring in a fixed unit interval of time. We assume that these events occur with a known constant rate $\lambda$ and are independent of each other.
 
 \begin{align*}
-\textrm{P}[C=&c] = \frac{\lambda^c}{c!}e^{-\lambda} \\
-&c = 0,1,2,\ldots
+\textrm{P}[C=&c] = \frac{\lambda^c}{c!}e^{-\lambda}, \ c = 0,1,2,\ldots
 \end{align*}
 
 
@@ -388,8 +387,7 @@ Since we will be using the Count-Based interpretation of the Negative Binomial \
 	\end{itemize}
 \item Alternative formulation of the PMF \citep{hilbe2011negative}:
 \begin{align*}
-\textrm{P}(X=&c) = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\mu}{\beta+\mu}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha+\mu}\Bigg)^{\alpha}, \\
-&c\geq 0 
+\textrm{P}(X=&c) = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\mu}{\beta+\mu}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha+\mu}\Bigg)^{\alpha}, \ c\geq 0 
 \end{align*}
 where $c$ is the counts.
 \item Interpretation: This model is used to represent "recruitment proneness". The parameter $\mu$ represents the expected number of recruitments in a study \citep{johnson2005univariate}.
@@ -772,8 +770,7 @@ Using the expressions of iterated expectation and variance \citep{held2014applie
 We have that:
 
 \begin{align*}
-\textrm{E}T(c) &= \textrm{E}_{\Lambda}[\textrm{E}_{T(c)} (T(c)|\Lambda)] = \textrm{E}_{\Lambda}\Bigg [\frac{c}{\Lambda}\Bigg ] = c \textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda}\Bigg ] = c\frac{\beta}{\alpha-1}\\
-&\alpha>1
+\textrm{E}T(c) &= \textrm{E}_{\Lambda}[\textrm{E}_{T(c)} (T(c)|\Lambda)] = \textrm{E}_{\Lambda}\Bigg [\frac{c}{\Lambda}\Bigg ] = c \textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda}\Bigg ] = c\frac{\beta}{\alpha-1}, \ \alpha>1
 \end{align*}
 
 
@@ -782,8 +779,7 @@ We have that:
 &=\textrm{Var}_{\Lambda}\Bigg [\frac{c}{\Lambda}\Bigg ] + \textrm{E}_{\Lambda}\Bigg [\frac{c}{\Lambda^2}\Bigg ] \\
 &=c^2\textrm{Var}_{\Lambda}\Bigg [\frac{1}{\Lambda}\Bigg ] + c\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ] \\
 &=\frac{c^2\beta^2}{(\alpha-1)^2(\alpha-2)} + \frac{c\beta^2}{(\alpha-1)(\alpha-2)}\\
-&=\frac{c\beta^2(c+\alpha-1)}{(\alpha-1)^2(\alpha-2)}\\
-&\alpha>2
+&=\frac{c\beta^2(c+\alpha-1)}{(\alpha-1)^2(\alpha-2)}, \ \alpha>2
 \end{align*}
 
 As we can see in Table \ref{tab:time_modeling}. Here, we have again, a clear example of overdispersion because the variance is larger than the expectation:
