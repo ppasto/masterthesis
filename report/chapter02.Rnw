@@ -1141,53 +1141,56 @@ C(t)^m &= \sum_{i=1}^tC(i)^m \\
 \end{align*}
 
 
-As we can see in Figure \ref{fig:2_12}, the histogram of these two versions overlap and therefore we can empirically conclude that both these ways of simulating the Poisson-Gamma model are equivalent.
+As we can see in Figure \ref{fig:2_12}, the histogram of these two versions do not overlap and therefore we can empirically conclude that these ways of simulating the Poisson-Gamma model are not equivalent. Both methods share the same expectation but the spread differs. 
 
 
 \begin{figure}
 <<echo=FALSE, cache = TRUE>>=
-##################################### MORE EFFICIENT:
 set.seed(2025)
 
-n <- 10^5
+n <- 10^4
 t <- seq(1, 550, 1)
 lambda <- 0.591
 
 alpha <- 324
 beta <- 548
-
 ### FIRST
+cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
 v_lambda <- rgamma(n, shape = alpha, rate = beta)
 
-# Use lapply and simplify2array instead of a for-loop
-cval_cum_matrix <- t(simplify2array(lapply(v_lambda, function(l) cumsum(rpois(length(t), lambda = l)))))
+for (i in 1:n) {
+	cval <- rpois(length(t), lambda = v_lambda[i])
+	cval_cum_matrix[i, ] <- cumsum(cval)  
+}
+
+cval <- rep(NA, n)
+for (i in 1:n) {
+	cval[i] <- rpois(1, lambda = v_lambda[i]*t)
+}
 
 # Extract final counts for histogram
 final_counts <- cval_cum_matrix[, length(t)]
 
 ### SECOND
-# Vectorized approach for the second process
-cval_cum_matrix_2 <- t(simplify2array(
-	lapply(1:n, function(x) cumsum(rpois(length(t), lambda = rgamma(1, shape = alpha, rate = beta))))
-))
+# Generate cumulative Poisson paths
+cval_cum_matrix_2 <- matrix(NA, nrow = n, ncol = length(t))
+cval <- rep(NA, length(t))
+
+for (i in 1:n) {
+	for(j in 1:length(t)){
+		cval[j] <- rpois(1, lambda = rgamma(1, shape = alpha, rate = beta))
+	}
+	cval_cum_matrix_2[i, ] <- cumsum(cval)  
+}
 
 # Extract final counts for histogram
 final_counts_2 <- cval_cum_matrix_2[, length(t)]
-
-
-# library(MASS)
-# truehist(final_counts, col = rgb(1, 0, 0, 0.4), main = "Comparison", xlab = "Counts", ylab = "Density")
-# par(new = TRUE)
-# truehist(final_counts_2, col = rgb(0, 0, 1, 0.4), axes = FALSE, xlab = "", ylab = "")
-# 
-# legend("topright", legend = c("Version 1", "Version 2"), fill = c(rgb(1, 0, 0, 0.4), rgb(0, 0, 1, 0.4)))
-
-
 plot(density(final_counts),
 		 main = "Comparison",
 		 xlab = "Counts",
 		 col = rgb(1, 0, 0, 0.4), 
-		 lwd = 4)
+		 lwd = 4,
+		 ylim = c(0,0.025))
 
 lines(density(final_counts_2), 
 			lwd = 2,
@@ -1200,7 +1203,7 @@ legend("topright",
 			 lty = c(1, 2), 
 			 cex = 0.7)
 @   
-  \caption{Comparison of the two versions with which we can generate a Poisson-Gamma model. Version 1: generates a vector of $\lambda$ with length $M=10^5$ using a $\textrm{G}(\alpha = 324, \beta = 548)$. Version 2: at each time point only one $\lambda$ is generated. We compare both these versions at accrual of time $t=550$ for $\lambda=0.591$.}
+  \caption{Comparison of the two versions with which we can generate a Poisson-Gamma model. Version 1: generates a vector of $\lambda$ with length $M=10^4$ using a $\textrm{G}(\alpha = 324, \beta = 548)$. Version 2: at each time point only one $\lambda$ is generated. We compare both these versions at accrual of time $t=550$ for $\lambda=0.591$.}
   \label{fig:2_12}
 \end{figure}
 
