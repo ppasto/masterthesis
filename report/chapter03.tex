@@ -96,8 +96,8 @@ final_counts <- cval_cum_matrix[, length(t)]
  \textbf{Model} & \textbf{Estimated Probabilty} & \textbf{MCse} & \textbf{Exact Probability} \\
 \hline
 \hline
- $C(T)\sim\textrm{Po}(\lambda T)$ & $\textrm{P}(C(T)\geq 324) = 0.508$ & 0.713 & 0.508 \\
- $C(T)\sim\textrm{PoG}(T, \alpha, \beta)$ & $\textrm{P}(C(T)\geq 324) = 0.483$ & 0.695 & 0.501 
+ $C(T)\sim\textrm{Po}(\lambda T)$ & $\textrm{P}(C(T)\geq 324) = 0.508$ & 0.002 & 0.508 \\
+ $C(T)\sim\textrm{PoG}(T, \alpha, \beta)$ & $\textrm{P}(C(T)\geq 324) = 0.483$ & 0.002 & 0.501 
 \end{tabular}
 \caption{Probability estimates based on Monte Carlo simulations, their respective Monte Carlo standard errors (MCse) and exact probability computations for processes considered in modeling counts where the waiting time is fixed as $T = 548$,  $\lambda = 0.591$, $\alpha = 32.4$ and $\beta = 54.8$.}
 \label{tab:mcsec}
@@ -176,8 +176,8 @@ timegg <- simulate_time_to_threshold_GG(MM=M, CC=Ctarget, aa=alpha, bb=beta)
  \textbf{Model} & \textbf{Estimated Probabilty} & \textbf{MCse} & \textbf{Exact Probability} \\
 \hline
 \hline
- $T(N)\sim\textrm{G}(N, \lambda)$& $\textrm{P}(T(N)\geq 548) = 0.497$ & 0.705 & 0.496\\
-$T(N)\sim\textrm{GG}(N, \alpha, \beta)$ & $\textrm{P}(T(N)\geq 548) = 0.518$ & 0.72 & 0.52
+ $T(N)\sim\textrm{G}(N, \lambda)$& $\textrm{P}(T(N)\geq 548) = 0.497$ & 0.002 & 0.496\\
+$T(N)\sim\textrm{GG}(N, \alpha, \beta)$ & $\textrm{P}(T(N)\geq 548) = 0.518$ & 0.002 & 0.52
 \end{tabular}
 \caption{Probability estimates based on Monte Carlo simulations, their respective Monte Carlo standard errors (MCse) and exact probability computations for all processes considered in modeling time where the sample size is fixed to be $N = 324$,  $\lambda = 0.591$, $\alpha = 32.4$ and $\beta =54.8$.}
 \label{tab:mcset}

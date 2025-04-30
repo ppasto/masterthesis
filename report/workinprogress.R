@@ -480,6 +480,11 @@ for (i in 1:n) {
 	cval_cum_matrix[i, ] <- cumsum(cval)  
 }
 
+cval <- rep(NA, n)
+for (i in 1:n) {
+	cval[i] <- rpois(1, lambda = v_lambda[i]*t)
+}
+
 # Extract final counts for histogram
 final_counts <- cval_cum_matrix[, length(t)]
 
