@@ -113,6 +113,32 @@ As we saw in Chapter 4 we can model the waiting time to accrue $Ctarget = 324$ o
 
 Figures \ref{fig:3_3} and \ref{fig:3_4} show the comparison between the theoretical models for waiting time discussed in Chapter 4 and their respective MC simulations. In Figures \ref{fig:3_3} and \ref{fig:3_4}, we can see how we need at least $M=10^5$ MC results of simulations converge to the theoretical probability distribution discussed in Chapter 4.
 
+In the following chunk of code we show \cite{carter2004application} approach:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+set.seed(2025)
+M <- 10^5
+Ctarget <- 324
+Ttarget <- 548
+lambda <- 0.591
+t <- seq(1, Ttarget, 1)
+
+timep <- rep(0, M)
+csump <- rep(0, M)
+
+for(m in 1:M){
+	while (csump[m] < Ctarget) {
+		csump[m] <- csump[m] + rpois(1, lambda)
+		timep[m] <- timep[m] + 1
+	}
+}
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+However, a more efficient version was used for the MC simulations shown alongside the adaptations for the Gamma-Gamma model.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
