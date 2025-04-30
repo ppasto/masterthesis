@@ -9,7 +9,7 @@
 
 \section{Example from Carter}
 
-The clinical trial aims to assess the palliative effects of radiation therapy and esophageal stents in terminal esophageal cancer patients. It plans to enroll 324 participants, with an expected accrual rate of 18 subjects per month (or about 0.591 per day) across multiple centers. A simple estimate suggests that recruitment will take 18 months or 548 days ($324/18$), assuming a constant enrollment rate. However, the proposed method in the study evaluates whether this estimate is realistic and feasible using Monte Carlo (MC) simulations \citep{carter2004application}.
+The clinical trial aims to assess the palliative effects of radiation therapy and esophageal stents in terminal esophageal cancer patients. It plans to enroll $Ctarget = 324$ participants, with an expected accrual rate of 18 subjects per month (or about 0.591 per day) across multiple centers. A simple estimate suggests that recruitment will take 18 months or $Ttarget=548$ days ($324/18$), assuming a constant enrollment rate. However, the proposed method in the study evaluates whether this estimate is realistic and feasible using Monte Carlo (MC) simulations \citep{carter2004application}.
 
 Before running simulations, it's assumed that participant arrivals follow a Poisson process with a constant rate over 18 months (548 days). This results in a Poisson distribution with a mean of $\lambda = 0.591 \cdot 548 = 324$ participants, matching the trial's target. This approach allows assigning probabilities to different recruitment durations, helping assess how likely it is to meet the enrollment goal within the planned timeframe.
 
@@ -43,7 +43,7 @@ This raises two questions which will be answered throughout this Master Thesis:
 
 Carter raises two important questions, enumerated in the previous section \citep{carter2004application, carter2005practical}. He suggests the use of Monte Carlo (MC) simulations for counts. Here we investigate the accuracy of his MC simulations by comparing them with exact distributions for accrual of counts introduced in Chapter 3.
 
-As we saw in the previous chapter we can model the counts taking into account only the aleatory uncertainty using $C(T)\sim \textrm{Po}(\lambda T)$ with $T=548$. Or, more realistically, take into consideration the fluctuation of $\Lambda$ over time using $C(T)\sim \textrm{Po}(\Lambda T)$ with $\Lambda\sim \textrm{G}(\alpha, \beta)$.
+As we saw in the previous chapter we can model the counts taking into account only the aleatory uncertainty using $C(Ttarget)\sim \textrm{Po}(\lambda Ttarget)$ with $Ttarget=548$. Or, more realistically, take into consideration the fluctuation of $\Lambda$ over time using $C(Ttarget)\sim \textrm{Po}(\Lambda Ttarget)$ with $\Lambda\sim \textrm{G}(\alpha, \beta)$.
 
 Figures \ref{fig:3_1} and \ref{fig:3_2} show the comparison between the theoretical models for counts discussed in Chapter 3 and their respective MC simulations. In Figures \ref{fig:3_1} and \ref{fig:3_2}, we can see how we need at least $M=10^5$ MC results of simulations to converge to the theoretical probability distribution discussed in Chapter 3. \cite{carter2004application} uses $M = 10^3$.
 
@@ -54,7 +54,8 @@ Figures \ref{fig:3_1} and \ref{fig:3_2} show the comparison between the theoreti
 set.seed(2025)
 
 M <- 10^5
-t <- seq(1, 550, 1)
+Ttarget <- 548
+t <- seq(1, Ttarget, 1)
 lambda <- 0.591
 
 cval_cum_matrix <- matrix(NA, nrow = M, ncol = length(t))
@@ -75,7 +76,7 @@ final_counts <- cval_cum_matrix[, length(t)]
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figure/ch03_figunnamed-chunk-1-1} 
 \end{knitrout}
-  \caption{Comparison of theoretical smoothed Probability Mass Function (PMF) of Poisson model for counts with $\lambda = 0.591$ for accrual at time $T=548$ and Monte Carlo (MC) simulations with $M=10^5$.}
+  \caption{Comparison of theoretical smoothed Probability Mass Function (PMF) of Poisson model for counts with $\lambda = 0.591$ for accrual at time $Ttarget=548$ and Monte Carlo (MC) simulations with $M=10^5$.}
   \label{fig:3_1}
 \end{figure}
 
@@ -86,7 +87,7 @@ final_counts <- cval_cum_matrix[, length(t)]
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figure/ch03_figunnamed-chunk-2-1} 
 \end{knitrout}
-\caption{Comparison of theoretical smoothed Probability Mass Function (PMF) of Poisson-Gamma model for counts with $\alpha = 32.4$ and $\beta = 54.8$ for accrual at time $T=548$, and Monte Carlo (MC) simulations with $M=10^5$.}
+\caption{Comparison of theoretical smoothed Probability Mass Function (PMF) of Poisson-Gamma model for counts with $\alpha = 32.4$ and $\beta = 54.8$ for accrual at time $Ttarget=548$, and Monte Carlo (MC) simulations with $M=10^5$.}
 \label{fig:3_2}
 \end{figure}
 
@@ -96,10 +97,10 @@ final_counts <- cval_cum_matrix[, length(t)]
  \textbf{Model} & \textbf{Estimated Probabilty} & \textbf{MCse} & \textbf{Exact Probability} \\
 \hline
 \hline
- $C(T)\sim\textrm{Po}(\lambda T)$ & $\textrm{P}(C(T)\geq 324) = 0.508$ & 0.002 & 0.508 \\
- $C(T)\sim\textrm{PoG}(T, \alpha, \beta)$ & $\textrm{P}(C(T)\geq 324) = 0.483$ & 0.002 & 0.501 
+ $C(Ttarget)\sim\textrm{Po}(\lambda Ttarget)$ & $\textrm{P}(C(Ttarget)\geq 324) = 0.481$ & 0.002 & 0.508 \\
+ $C(Ttarget)\sim\textrm{PoG}(Ttarget, \alpha, \beta)$ & $\textrm{P}(C(Ttarget)\geq 324) = 0.483$ & 0.002 & 0.501 
 \end{tabular}
-\caption{Probability estimates based on Monte Carlo simulations, their respective Monte Carlo standard errors (MCse) and exact probability computations for processes considered in modeling counts where the waiting time is fixed as $T = 548$,  $\lambda = 0.591$, $\alpha = 32.4$ and $\beta = 54.8$.}
+\caption{Probability estimates based on Monte Carlo simulations, their respective Monte Carlo standard errors (MCse) and exact probability computations for processes considered in modeling counts where the waiting time is fixed as $Ttarget=548$,  $\lambda = 0.591$, $\alpha = 32.4$ and $\beta = 54.8$.}
 \label{tab:mcsec}
 \end{table}
 
@@ -107,7 +108,7 @@ final_counts <- cval_cum_matrix[, length(t)]
 \section{Time: Comparison exact vs Monte Carlo simulations}
 
 
-As we saw in the previous chapter we can model the waiting time to accrue $N = 324$ objects when unit-time recruitment rate is $\lambda = 0.591$ taking into account only aleatory uncertainty with $T(N)\sim \textrm{Erlang}(N,\lambda)$. Or, taking into account both aleatory and epistemic uncertainty with $T(N)\sim\textrm{G}(N, \Lambda)$ where $\Lambda\sim \textrm{G}(\alpha,\beta)$.
+As we saw in Chapter 4 we can model the waiting time to accrue $Ctarget = 324$ objects when unit-time recruitment rate is $\lambda = 0.591$ taking into account only aleatory uncertainty with $T(Ctarget)\sim \textrm{Erlang}(Ctarget,\lambda)$. Or, taking into account both aleatory and epistemic uncertainty with $T(Ctarget)\sim\textrm{G}(Ctarget, \Lambda)$ where $\Lambda\sim \textrm{G}(\alpha,\beta)$.
 
 
 Figures \ref{fig:3_3} and \ref{fig:3_4} show the comparison between the theoretical models for waiting time discussed in Chapter 4 and their respective MC simulations. In Figures \ref{fig:3_3} and \ref{fig:3_4}, we can see how we need at least $M=10^5$ MC results of simulations converge to the theoretical probability distribution discussed in Chapter 4.
@@ -151,7 +152,7 @@ timegg <- simulate_time_to_threshold_GG(MM=M, CC=Ctarget, aa=alpha, bb=beta)
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figure/ch03_figunnamed-chunk-3-1} 
 \end{knitrout}
-\caption{Comparison of theoretical density function of Erlang model for the waiting time until $N = 324$ subjects are accrued with recruitment rate $\lambda = 0.591$ and Monte Carlo (MC) simulations with $M=10^5$.}
+\caption{Comparison of theoretical density function of Erlang model for the waiting time until $Ctarget = 324$ subjects are accrued with recruitment rate $\lambda = 0.591$ and Monte Carlo (MC) simulations with $M=10^5$.}
 \label{fig:3_3}
 \end{figure}
 
@@ -161,7 +162,7 @@ timegg <- simulate_time_to_threshold_GG(MM=M, CC=Ctarget, aa=alpha, bb=beta)
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figure/ch03_figunnamed-chunk-4-1} 
 \end{knitrout}
-\caption{Comparison of theoretical density function of Gamma-Gamma model for waiting time with parameters $N=324$, $\alpha = 32.4$ and $\beta = 54.8$ and Monte Carlo (MC) simulations with $M=10^5$.}
+\caption{Comparison of theoretical density function of Gamma-Gamma model for waiting time with parameters $Ctarget = 324$, $\alpha = 32.4$ and $\beta = 54.8$ and Monte Carlo (MC) simulations with $M=10^5$.}
 \label{fig:3_4}
 \end{figure}
 
@@ -176,16 +177,16 @@ timegg <- simulate_time_to_threshold_GG(MM=M, CC=Ctarget, aa=alpha, bb=beta)
  \textbf{Model} & \textbf{Estimated Probabilty} & \textbf{MCse} & \textbf{Exact Probability} \\
 \hline
 \hline
- $T(N)\sim\textrm{G}(N, \lambda)$& $\textrm{P}(T(N)\geq 548) = 0.497$ & 0.002 & 0.496\\
-$T(N)\sim\textrm{GG}(N, \alpha, \beta)$ & $\textrm{P}(T(N)\geq 548) = 0.518$ & 0.002 & 0.52
+ $T(Ctarget)\sim\textrm{G}(Ctarget, \lambda)$& $\textrm{P}(T(Ctarget)\geq 548) = 0.497$ & 0.002 & 0.496\\
+$T(Ctarget)\sim\textrm{GG}(Ctarget, \alpha, \beta)$ & $\textrm{P}(T(Ctarget)\geq 548) = 0.518$ & 0.002 & 0.52
 \end{tabular}
-\caption{Probability estimates based on Monte Carlo simulations, their respective Monte Carlo standard errors (MCse) and exact probability computations for all processes considered in modeling time where the sample size is fixed to be $N = 324$,  $\lambda = 0.591$, $\alpha = 32.4$ and $\beta =54.8$.}
+\caption{Probability estimates based on Monte Carlo simulations, their respective Monte Carlo standard errors (MCse) and exact probability computations for all processes considered in modeling time where the sample size is fixed to be $Ctarget = 324$,  $\lambda = 0.591$, $\alpha = 32.4$ and $\beta =54.8$.}
 \label{tab:mcset}
 \end{table}
 
 
 
-Small number of simulations (up to $M=10^3$) from \cite{carter2004application} gives him inaccurate estimate of days (580), when the exact using the Erlang distribution gives  588 to have 90\% chance of accruing $N=324$ subjects with a recruitment rate of $\lambda=0.591$.
+Small number of simulations (up to $M=10^3$) from \cite{carter2004application} gives him inaccurate estimate of days (580), when the exact using the Erlang distribution gives  588 to have 90\% chance of accruing $Ctarget = 324$ subjects with a recruitment rate of $\lambda=0.591$.
 
 Moreover, if we wish to be more realistic in the uncertainty our model takes into consideration and choose the Gamma-Gamma distribution, 707 days would be required to have a 90\% chance of accruing the desired sample size. 
 
