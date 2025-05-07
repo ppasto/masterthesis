@@ -53,7 +53,7 @@ Figures \ref{fig:3_1} and \ref{fig:3_2} show the comparison between the theoreti
 \begin{verbatim}
 set.seed(2025)
 
-M <- 10^5
+M <- 10^3
 Ttarget <- 548
 t <- seq(1, Ttarget, 1)
 lambda <- 0.591
@@ -97,8 +97,8 @@ final_counts <- cval_cum_matrix[, length(t)]
  \textbf{Model} & \textbf{Estimated Probabilty} & \textbf{MCse} & \textbf{Exact Probability} \\
 \hline
 \hline
- $C(Ttarget)\sim\textrm{Po}(\lambda Ttarget)$ & $\textrm{P}(C(Ttarget)\geq 324) = 0.481$ & 0.002 & 0.508 \\
- $C(Ttarget)\sim\textrm{PoG}(Ttarget, \alpha, \beta)$ & $\textrm{P}(C(Ttarget)\geq 324) = 0.483$ & 0.002 & 0.501 
+ $C(Ttarget)\sim\textrm{Po}(\lambda Ttarget)$ & $\textrm{P}(C(Ttarget)\geq 324) = 0.473$ & 0.016 & 0.508 \\
+ $C(Ttarget)\sim\textrm{PoG}(Ttarget, \alpha, \beta)$ & $\textrm{P}(C(Ttarget)\geq 324) = 0.493$ & 0.016 & 0.501 
 \end{tabular}
 \caption{Probability estimates based on Monte Carlo simulations, their respective Monte Carlo standard errors (MCse) and exact probability computations for processes considered in modeling counts where the waiting time is fixed as $Ttarget=548$,  $\lambda = 0.591$, $\alpha = 32.4$ and $\beta = 54.8$.}
 \label{tab:mcsec}
@@ -120,7 +120,7 @@ In the following chunk of code we show \cite{carter2004application} approach:
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 set.seed(2025)
-M <- 10^5
+M <- 10^3
 Ctarget <- 324
 Ttarget <- 548
 lambda <- 0.591
@@ -144,7 +144,7 @@ However, a more efficient version was used for the MC simulations shown alongsid
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-M <- 10^5
+M <- 10^3
 Ctarget <- 324
 lambda <- 0.591
 
@@ -204,8 +204,8 @@ timegg <- simulate_time_to_threshold_GG(MM=M, CC=Ctarget, aa=alpha, bb=beta)
  \textbf{Model} & \textbf{Estimated Probabilty} & \textbf{MCse} & \textbf{Exact Probability} \\
 \hline
 \hline
- $T(Ctarget)\sim\textrm{G}(Ctarget, \lambda)$& $\textrm{P}(T(Ctarget)\geq 548) = 0.497$ & 0.002 & 0.496\\
-$T(Ctarget)\sim\textrm{GG}(Ctarget, \alpha, \beta)$ & $\textrm{P}(T(Ctarget)\geq 548) = 0.518$ & 0.002 & 0.52
+ $T(Ctarget)\sim\textrm{G}(Ctarget, \lambda)$& $\textrm{P}(T(Ctarget)\geq 548) = 0.526$ & 0.016 & 0.496\\
+$T(Ctarget)\sim\textrm{GG}(Ctarget, \alpha, \beta)$ & $\textrm{P}(T(Ctarget)\geq 548) = 0.5$ & 0.016 & 0.52
 \end{tabular}
 \caption{Probability estimates based on Monte Carlo simulations, their respective Monte Carlo standard errors (MCse) and exact probability computations for all processes considered in modeling time where the sample size is fixed to be $Ctarget = 324$,  $\lambda = 0.591$, $\alpha = 32.4$ and $\beta =54.8$.}
 \label{tab:mcset}

@@ -1114,7 +1114,7 @@ legend("topleft",
 
 \section{Generation of Poisson-Gamma model}
 
-There are two ways with which we can generate the random $\Lambda$ in the $\textrm{PoG}(t, \alpha, \beta)$ model and we will prove in this section how they are both equivalent.
+There are two ways with which we can generate the random $\Lambda$ in the $\textrm{PoG}(t, \alpha, \beta)$ model and we will investigate in this section whether they are both equivalent.
 
 \subsection{Version 1}
 
@@ -1133,8 +1133,8 @@ set.seed(2025)
 M <- 10^4
 t <- seq(1, 550, 1)
 lambda <- 0.591
-alpha <- 324
-beta <- 548
+alpha <- 32.4
+beta <- 54.8
 
 cval_cum_matrix <- matrix(NA, nrow = M, ncol = length(t))
 v_lambda <- rgamma(M, shape = alpha, rate = beta)
@@ -1165,8 +1165,8 @@ set.seed(2025)
 M <- 10^4
 t <- seq(1, 550, 1)
 lambda <- 0.591
-alpha <- 324
-beta <- 548
+alpha <- 32.4
+beta <- 54.8
 
 cval_cum_matrix_2 <- matrix(NA, nrow = M, ncol = length(t))
 cval <- rep(NA, length(t))
@@ -1180,7 +1180,7 @@ for (i in 1:M) {
 @
 
 
-As we can see in Figure \ref{fig:2_12}, the density of these two versions do not overlap and therefore we can empirically conclude that these ways of simulating the Poisson-Gamma model are not equivalent. Both methods share the same expectation but the spread differs. We can see these both in Figure \ref{fig:2_12} and theoretically. In version 1, we have a $C(t)|\Lambda\sim\textrm{Po}(\Lambda t)$ with $\Lambda\sim\textrm{G}(\alpha,\beta)$ with expectation and variance (proved above):
+As we can see in Figure \ref{fig:2_12}, the density of these two versions do not overlap and therefore we can empirically conclude that these two ways of simulating the Poisson-Gamma model are not equivalent. Both methods share the same expectation but the spread differs. We can see these both in Figure \ref{fig:2_12} and theoretically. In Version 1, we have a $C(t)|\Lambda\sim\textrm{Po}(\Lambda t)$ with $\Lambda\sim\textrm{G}(\alpha,\beta)$ with expectation and variance (proved above):
 
 
 \begin{align*}
@@ -1191,7 +1191,7 @@ As we can see in Figure \ref{fig:2_12}, the density of these two versions do not
 \textrm{Var}(C(t))=\frac{t\alpha(\beta+t)}{\beta^2}
 \end{align*}
 
-Whereas in version 2, we have a $C(t)|\Lambda^*\sim\textrm{Po}(\Lambda^*)$ with $\Lambda^*\sim\textrm{G}(\alpha t,\beta)$ because:
+Whereas in Version 2, we have a $C(t)|\Lambda^*\sim\textrm{Po}(\Lambda^*)$ with $\Lambda^*\sim\textrm{G}(t\alpha,\beta)$ because:
 
 \begin{align*}
 \sum_{i=1}^t C_i &= \sum_{i=1}^t \textrm{Po}(\lambda_i)\\
@@ -1213,7 +1213,7 @@ and using the variance iterated formula \citep{held2014applied},
 &=\frac{t\alpha(\beta+1)}{\beta^2}
 \end{align*}
 
-Hence, the spread in version 2 is smaller than in version 1.
+Hence, the spread in Version 2 is smaller than in Version 1. Version 1 for Counts and Time will be used in Chapter 5.
 
 
 \begin{figure}
@@ -1224,8 +1224,8 @@ n <- 10^4
 t <- seq(1, 550, 1)
 lambda <- 0.591
 
-alpha <- 324
-beta <- 548
+alpha <- 32.4
+beta <- 54.8
 ### FIRST
 cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
 v_lambda <- rgamma(n, shape = alpha, rate = beta)
@@ -1275,9 +1275,11 @@ legend("topright",
 			 lty = c(1, 2), 
 			 cex = 0.7)
 @   
-  \caption{Comparison of the two versions with which we can generate a Poisson-Gamma model. Version 1: generates a vector of $\lambda$ with length $M=10^4$ using a $\textrm{G}(\alpha = 324, \beta = 548)$. Version 2: at each time point only one $\lambda$ is generated. We compare both these versions at accrual of time $t=550$ for $\lambda=0.591$.}
+  \caption{Comparison of the two versions with which we can generate a Poisson-Gamma model. Version 1: generates for each $m=1, \ldots, M$, a vector of $\lambda$ with length $M=10^4$ using a $\textrm{G}(\alpha = 32.4, \beta = 54.8)$ and then uses each of these random $\lambda^m$s to generate $t$ independent $\textrm{Po}(\lambda^m)$ counts. Version 2: at each time point a different random $\lambda$ is generated from $\textrm{G}(\alpha = 32.4, \beta = 54.8)$. We compare both these versions at accrual of time $t=550$ for $\lambda=0.591$.}
   \label{fig:2_12}
 \end{figure}
+
+
 
 \chapter{Methods for Waiting Time} 
 \section{Time: Model based on Expectations}
@@ -1366,6 +1368,27 @@ To compute $\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ]$ we use proper
 &=\frac{\beta^2(1+\alpha-2)}{(\alpha-1)^2(\alpha-2)}\\
 &=\frac{\beta^2}{(\alpha-1)(\alpha-2)}
 \end{align*}
+
+For Version 2 of generating $\Lambda^*$ with $T(c)|\Lambda^*\sim\textrm{G}(c,\Lambda^*)$ with $\Lambda^*\sim \textrm{G}(t\alpha,\beta)$, we have as expectation and variance:
+
+
+\begin{align*}
+\textrm{E}T(c) &= \textrm{E}_{\Lambda^*}[\textrm{E}_{T(c)} (T(c)|\Lambda^*)] = \textrm{E}_{\Lambda^*}\Bigg [\frac{c}{\Lambda^*}\Bigg ] = c \textrm{E}_{\Lambda^*}\Bigg [\frac{1}{\Lambda^*}\Bigg ] = c\frac{\beta}{t\alpha-1}, \ t\alpha>1
+\end{align*}
+
+\begin{align*}
+\textrm{Var}(T(c)) &= \textrm{Var}_{\Lambda^*}[\textrm{E}_{T(c)} (T(c)|\Lambda^*)] + \textrm{E}_{\Lambda^*}[\textrm{Var}_{T(c)}(T(c)|\Lambda^*)]\\
+&=\textrm{Var}_{\Lambda^*}\Bigg [\frac{c}{\Lambda^*}\Bigg ] + \textrm{E}_{\Lambda^*}\Bigg [\frac{c}{\Lambda^{*2}}\Bigg ] \\
+&=c^2\textrm{Var}_{\Lambda^*}\Bigg [\frac{1}{\Lambda^*}\Bigg ] + c\textrm{E}_{\Lambda^*}\Bigg [\frac{1}{\Lambda^{*2}}\Bigg ] \\
+&=\frac{c^2\beta^2}{(t\alpha-1)^2(t\alpha-2)} + \frac{c\beta^2}{(t\alpha-1)(t\alpha-2)}\\
+&=\frac{c\beta^2(c+t\alpha-1)}{(t\alpha-1)^2(t\alpha-2)}, \ t\alpha>2
+\end{align*}
+
+
+For $t>1$ this variance from Version 2 is smaller than $\frac{c\beta^2(c+\alpha-1)}{(\alpha-1)^2(\alpha-2)}$, when accrual follows Version 1. We get a narrower distribution if Version 2 is applicable. In Chapter 5, we consider only Version 1 with a higher spread as \cite{carter2004application} suggested (constant $\lambda$ over time).
+
+
+
 
 \begin{figure}
 <<echo = FALSE,  fig.width=7, fig.height=5>>=

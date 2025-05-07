@@ -60,7 +60,7 @@ Figures \ref{fig:3_1} and \ref{fig:3_2} show the comparison between the theoreti
 <<counts, echo=TRUE, warnings=FALSE>>=
 set.seed(2025)
 
-M <- 10^5
+M <- 10^3
 Ttarget <- 548
 t <- seq(1, Ttarget, 1)
 lambda <- 0.591
@@ -80,7 +80,7 @@ final_counts <- cval_cum_matrix[, length(t)]
 <<echo=FALSE, cache = TRUE, warning=FALSE>>=
 set.seed(2025)
 
-M <- 10^5
+M <- 10^3
 t <- seq(1, Ttarget, 1)
 lambda <- 0.591
 
@@ -129,7 +129,7 @@ legend("topright",
 <<echo=FALSE, cache = TRUE, warning=FALSE>>=
 set.seed(2025)
 
-n <- 10^5
+n <- 10^3
 t <- seq(1, 550, 1)
 lambda <- 0.591
 
@@ -183,7 +183,7 @@ legend("topright",
  \textbf{Model} & \textbf{Estimated Probabilty} & \textbf{MCse} & \textbf{Exact Probability} \\
 \hline
 \hline
- $C(Ttarget)\sim\textrm{Po}(\lambda Ttarget)$ & $\textrm{P}(C(Ttarget)\geq 324) = \Sexpr{round(mean(final_counts_p>324),3)}$ & \Sexpr{round(sqrt(mean(final_counts_p>324)*(1-mean(final_counts_p>324))/10^5), 3)} & \Sexpr{round(1-ppois(324, lambda*550),3)} \\
+ $C(Ttarget)\sim\textrm{Po}(\lambda Ttarget)$ & $\textrm{P}(C(Ttarget)\geq 324) = \Sexpr{round(mean(final_counts_p>324),3)}$ & \Sexpr{round(sqrt(mean(final_counts_p>324)*(1-mean(final_counts_p>324))/M), 3)} & \Sexpr{round(1-ppois(324, lambda*550),3)} \\
  $C(Ttarget)\sim\textrm{PoG}(Ttarget, \alpha, \beta)$ & $\textrm{P}(C(Ttarget)\geq 324) = \Sexpr{round(mean(final_counts_pg>324),3)}$ & \Sexpr{round(sqrt(mean(final_counts_pg>324)*(1-mean(final_counts_pg>324))/M), 3)} & \Sexpr{round(1-pnbinom(324, size = 324, mu = lambda * 550),3)} 
 \end{tabular}
 \caption{Probability estimates based on Monte Carlo simulations, their respective Monte Carlo standard errors (MCse) and exact probability computations for processes considered in modeling counts where the waiting time is fixed as $Ttarget=548$,  $\lambda = 0.591$, $\alpha = 32.4$ and $\beta = 54.8$.}
@@ -204,7 +204,7 @@ In the following chunk of code we show \cite{carter2004application} approach:
 
 <<time1, echo=TRUE, warnings=FALSE>>=
 set.seed(2025)
-M <- 10^5
+M <- 10^3
 Ctarget <- 324
 Ttarget <- 548
 lambda <- 0.591
@@ -224,7 +224,7 @@ for(m in 1:M){
 However, a more efficient version was used for the MC simulations shown alongside the adaptations for the Gamma-Gamma model.
 
 <<time2, echo=TRUE, warnings=FALSE>>=
-M <- 10^5
+M <- 10^3
 Ctarget <- 324
 lambda <- 0.591
 
@@ -254,7 +254,7 @@ timegg <- simulate_time_to_threshold_GG(MM=M, CC=Ctarget, aa=alpha, bb=beta)
 
 \begin{figure}
 <<echo=FALSE>>=
-M <- 10^5
+M <- 10^3
 Ctarget <- 324
 lambda <- 0.591
 
@@ -299,7 +299,7 @@ legend("topright",
 \begin{figure}
 <<echo=FALSE, warning=FALSE, cache=TRUE>>=
 set.seed(2025)
-M <- 10^5
+M <- 10^3
 Ctarget <-324 
 lambda <- 0.591
 alpha <- 32.4
