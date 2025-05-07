@@ -3,3 +3,29 @@
 
 \chapter{Discussion and Outlook}
 
+\begin{itemize}
+\item Graphical representation of study flow and recruitment at each stage of a clinical trial as well as leakage
+\item Figure visualizations (graphical representations of accrual process, waiting time, simulation of accrual in 100 studies)
+\item unified derivations and mathematical notation of theoretical models for counts and time
+\item Properties of expectation and variance of the distributions for the models of time and counts
+\item Extension of code snippet from Carter to model counts but instead of having lambda fixed, it can vary using a poisson-gamma model
+\item Extension of carter to exact distributions
+\item Not only poisson (aleatory) but poisson-gamma (aleatory and epistemic)
+\item Counts: const, Po, PoG
+\item Extension of Bagiella's exact distributions
+\item Not only Erlang (aleatory) but gamma-gamma (aleatory and epistemic)
+\item Time: const, Erlang, GG
+\item Exploration of two different approaches to the generation of fluctuating recruitment rates (version 1 and 2)
+\item Version 1 different from Version 2
+\item Extension of code snippet from Carter to model time but instead of havinng lambda fixed, it can vary using Gamma-gamma model
+\item Sensitiviy analysis for models of counts and time
+\item Results, I applied theoretical methods to a real example from Carter and compared Carter MC example vs exact
+\item MC can be replaced by exact. Faster exact.
+\item Limitation 1: only focused on const, Po, PoG, const, Erlang, GG. Future extensions to assume Weibull likelihood are possible
+\item Limitation 2: whole study, no consideration of different recruiting centers. Future extensions are possible.
+\item Limitation 3: Prior parametrizaton, no elicitation
+\item Limitation 4: Do the same for lambda changing over time (version 2)
+\item Benefits: Faster, more reliable exact methods that can be used at the design stage of a study to predict accrued counts and the waiting time at each stage indicated by fig 2.
+\item Clear extension of Carter's and Bagiella's methods
+\item Addressed questions provided by Carter of rate and time based on MC simulations and exact distributions for models on count and time
+\end{itemize}
