@@ -8,7 +8,21 @@ opts_chunk$set(
 ) 
 @
 
-\chapter{Discussion and Outlook}
+\chapter{Discussion}
+
+A comprehensive graphical representation of study flow and recruitment at each stage of a clinical trial, including points of participant leakage, provides valuable insights into trial dynamics. Visual depictions of the accrual process, waiting times, and simulated accrual patterns across a hundred studies help clarify the complexities involved in participant recruitment and trial progression \citep{spiegelhalter2011visualizing}. These visual tools not only aid in the interpretation of recruitment efficiency but also highlight the importance of taking into consideration the uncertainty when planning a study at the design stage of a clinical trial.
+
+Unified mathematical notation for theoretical models of counts and time has been developed to facilitate consistent analysis across the different scenarios \citep{anisimov2007modelling}. This notation allowed for the derivation of exact mathematical properties, including the expectation and variance, of the underlying distributions in both time and count models.
+
+We extended the Monte Carlo simulation approach for count data introduced by \cite{carter2004application} to exact distributions. The code snippet from Carter with fixed recruitment rate was extended to model counts where the recruitment rate varies and follows a Gamma distribution. This extension allows for the representation of both aleatory uncertainty, as captured by the Poisson model, and both aleatory and epistemic uncertainty through the Poisson-Gamma model \citep{ohagan2006}. Additionally, we also consider the deterministic model using only the expectation which does not consider any uncertainty. 
+
+
+For modeling time, we extended the simulation framework of \cite{carter2004application} to incorporate the exact time distribution described by \cite{bagiella2001predicting}. The Erlang distribution, which models time under a fixed recruitment rate, was generalized to allow for a varying rate using a Gamma-Gamma model. This extension enables the modeling of aleatory uncertainty through the Erlang distribution and incorporates epistemic uncertainty by allowing the rate parameter itself to vary, consistent with the hierarchical structure of the Gamma-Gamma model \citep{ohagan2006}.
+
+
+In the results section, we applied the exact theoretical methods to a real-world example drawn from \cite{carter2004application} and compared the outcomes of Carter's Monte Carlo simulations with those obtained using our exact approach. While we recommend the use of exact methods whenever feasible due to their precision and analytical rigor, we note that Monte Carlo simulations can approximate the exact results closely when the number of simulations is sufficiently large (e.g. $M=10^5$).
+
+We explored two distinct approaches for generating fluctuating recruitment rates. In Version 1, the rate is fixed over time but varies across studies, while in Version 2, the rate varies both over time and across studies. These two versions differ not only empirically, as demonstrated through Monte Carlo simulations, but also theoretically, with derivations provided for both count and time models. Throughout this project, all methods were implemented using Version 1; however, the framework can be extended to accommodate time-varying rates as in Version 2. Sensitivity analyses were conducted for both the count and time models, revealing that decreasing certain parameters increases uncertainty.
 
 \begin{itemize}
 \item Graphical representation of study flow and recruitment at each stage of a clinical trial as well as leakage
