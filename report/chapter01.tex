@@ -4,18 +4,24 @@
 
 \chapter{Introduction}
 
-Why, what and how\dots
+At the design stage of a clinical trial researchers develop the trial protocol, determine the study population and define objectives. Accurate statistical analysis at the end of a trial require an adequate number of observations to draw valid and reliable conclusions \citep{panos2023statistical}. These observations ($Ctarget$) are specified by the optimal sample size computation to show a relevant effect. However, the study duration in which these patients ought to be recruited ($Ttarget$) is often limited by funding. As such, reliable recruitment projections at the design stage are essential for all areas of scientific research. Inaccurate or overly optimistic projections can lead to studies failing to collect enough data within the required time frame, potentially resulting in study discontinuation or inconclusive statistical results.
 
-\begin{itemize}
-\item Design stage planning
-\item Recruitment
-\item Count prediction
-\item waiting time predictions
-\item carter 2004 focus on DERA
-\item Poisson process + MC simulations only aleatory
-\item Anisimov exact, bagiella exact, aleatory and epistemic
-\item goal clarify can carter's approach be improved?
-\item short summary of chapters
-\end{itemize}
+The Design-Stage Recruitment Analysis (DSRA), as described by \cite{carter2004application}, involves predicting the number of participants expected to be recruited by a specified future time point, as well as estimating the waiting time required to reach a predetermined target number of observations.
+
+Carter's approach models recruitment using a Poisson process with a fixed rate, employing Monte Carlo (MC) simulations to account solely for aleatory uncertainty \citep{ohagan2006}. In contrast, more advanced methods - such as the exact approach by \cite{anisimov2007modelling} or the Bayesian method proposed by \cite{bagiella2001predicting} - address both aleatory and epistemic uncertainty \citep{ohagan2006}, by allowing the recruitment rate to vary. The aim of this Master's thesis is to evaluate whether Carter's method can be improved and extended to incorporate these additional sources of uncertainty.
+
+Chapter 2 presents a generalized framework for the stages of a clinical trial, inspired by a real CONSORT study flow diagram \citep{schulz2010consort}. Each stage is clearly defined, with particular attention given to patient leakage between stages \citep{desai2014preventing}. This chapter also introduces the concept of recruitment rate and distinguishes between two types of uncertainty: aleatory and epistemic \citep{ohagan2006}. Chapters 3 and 4 detail the methodological approaches for predicting participant counts and recruitment times, respectively. These range from deterministic models, which assume no uncertainty, to more sophisticated exact methods that incorporate both aleatory and epistemic uncertainty. Both chapters include sensitivity analyses and summary tables reporting statistical moments and measures of uncertainty. Finally, Chapter 5 applies the exact methods developed in the preceding chapters to a real clinical trial \citep{carter2004application}, compares them with corresponding Monte Carlo simulations, and evaluates their reliability.
+
+% \begin{itemize}
+% \item Design stage planning
+% \item Recruitment
+% \item Count prediction
+% \item waiting time predictions
+% \item carter 2004 focus on DERA
+% \item Poisson process + MC simulations only aleatory
+% \item Anisimov exact, bagiella exact, aleatory and epistemic
+% \item goal clarify can carter's approach be improved?
+% \item short summary of chapters
+% \end{itemize}
 
 
