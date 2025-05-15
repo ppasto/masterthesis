@@ -1,4 +1,10 @@
 % LaTeX file for Chapter 05
+
+<<setup, include=FALSE>>=
+knitr::opts_chunk$set(highlight = FALSE, echo = TRUE)
+@
+
+
 <<'preamble05',include=FALSE>>=
 library(knitr)
 opts_chunk$set(
@@ -8,7 +14,7 @@ opts_chunk$set(
 ) 
 @
 
-\chapter*{Appendix: Reproducibility}
+\chapter*{Appendix: Reproducibility} \label{appndx}
 \addcontentsline{toc}{chapter}{Appendix: Reproducibility}
 % 
 % Closed gaps:
@@ -35,15 +41,29 @@ opts_chunk$set(
 % Addressed questions provided by Carter of rate and time based on MC simulations and exact distributions for models on count and time
 % 
 \section*{A1. Code Availability}
+
+The code to reproduce this Master Thesis along with README.md files to compile the report itself are publicly available on \url{https://github.com/ppasto/masterthesis#}. 
+
+
+
 \section*{A2. Personal Statement}
 
-NOT AI:
+% NOT AI:
 This thesis was not written by any generative AI. It was written independently and
 without assistance from third parties. All sources utilized in this thesis are appropriately cited in the references
 
-AI:
-During the preparation of this Master Thesis, I used [NAME OF TOOLS AND SERVICES] in order to [REASON]. After using this tool/service, I reviewed and edited the content as needed and I take full responsibility for the content of the Master Thesis.
+% AI:
+% During the preparation of this Master Thesis, I used [NAME OF TOOLS AND SERVICES] in order to [REASON]. After using this tool/service, I reviewed and edited the content as needed and I take full responsibility for the content of the Master Thesis.
 
 \section*{A3. Session Info}
+
+
+\rr{sessionInfo()}
+
+\begin{scriptsize}
+<<sessionInfo>>=
+sessionInfo()
+@
+\end{scriptsize}
 
 
