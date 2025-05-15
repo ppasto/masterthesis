@@ -1,11 +1,12 @@
 \documentclass{book}
+
 \begin{document}
 
 <<setup, include=FALSE>>=
 knitr::opts_chunk$set(highlight = FALSE, echo = TRUE)
 @
 
-% Now include chapters; they are simple .Rnw fragments.
+
 \include{chapter01}
 \include{chapter02}
 \include{chapter03}
