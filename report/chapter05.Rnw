@@ -8,7 +8,8 @@ opts_chunk$set(
 ) 
 @
 
-% \chapter{Conclusions}
+\chapter*{Appendix: Reproducibility}
+\addcontentsline{toc}{chapter}{Appendix: Reproducibility}
 % 
 % Closed gaps:
 % Graphical representation of study flow and recruitment at each stage of a clinical trial as well as leakage
@@ -33,14 +34,16 @@ opts_chunk$set(
 % 
 % Addressed questions provided by Carter of rate and time based on MC simulations and exact distributions for models on count and time
 % 
-% \subsection{Personal Statement}
-% 
-% NOT AI:
-% This thesis was not written by any generative AI. It was written independently and
-% without assistance from third parties. All sources utilized in this thesis are appropriately cited in the references
-% 
-% AI:
-% During the preparation of this Master Thesis, I used [NAME OF TOOLS AND SERVICES] in order to [REASON]. After using this tool/service, I reviewed and edited the content as needed and I take full responsibility for the content of the Master Thesis.
+\section*{A1. Code Availability}
+\section*{A2. Personal Statement}
 
+NOT AI:
+This thesis was not written by any generative AI. It was written independently and
+without assistance from third parties. All sources utilized in this thesis are appropriately cited in the references
+
+AI:
+During the preparation of this Master Thesis, I used [NAME OF TOOLS AND SERVICES] in order to [REASON]. After using this tool/service, I reviewed and edited the content as needed and I take full responsibility for the content of the Master Thesis.
+
+\section*{A3. Session Info}
 
 
