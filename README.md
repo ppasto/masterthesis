@@ -19,7 +19,10 @@ This project focuses on improving participant recruitment projections at the des
 - **Application to Real Data:** Validation of proposed methods using data from an actual clinical trial (Carter, 2004), with comparisons to existing approaches.
 - **Open-Source Tools:** Implementation of the methods in R, with code made available in the appendix for reproducibility and further use by the research community.
 
-
+### **Reproducibility guidance**
+In **Report** folder:
+1. Run knit.R script
+2. Compile 
 
 ## Author Responsible
 
