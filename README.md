@@ -21,8 +21,9 @@ This project focuses on improving participant recruitment projections at the des
 
 ### **Reproducibility guidance**
 In **Report** folder:
-1. Run knit.R script
-2. Compile 
+1. Open report.Rproj
+2. Run knit.R script
+3. Compile compile.Rnw
 
 ## Author Responsible
 
