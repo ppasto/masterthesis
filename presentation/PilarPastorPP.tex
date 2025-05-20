@@ -517,7 +517,7 @@ C(t)\sim NBin \Bigg(\alpha, \frac{\beta}{\beta+t}\Bigg)
 \end{frame}
 
 
-\begin{frame}{Expectation and Variance}
+\begin{frame}{Expectation and Variance for Counts}
 Using the expressions of iterated expectation and variance \citep{held2014applied}
 
 \begin{align*}
@@ -709,6 +709,35 @@ Gamma-Gamma & $T(c) \sim \textrm{G}(c, \Lambda)$; $\Lambda \sim \textrm{G}(\alph
 \end{table}
 \end{frame}
 
+% \begin{frame}
+% \begin{align*}
+% p(t) &= \int_0^{\infty} p(t|\lambda) p(\lambda) d\lambda\\
+% &= \int_0^{\infty}\Bigg( \frac{\lambda^ct^{c-1}\exp(-\lambda t)}{\Gamma(c)}\Bigg)\Bigg(\frac{\beta^{\alpha}\lambda^{\alpha-1}\exp(-\beta \lambda)}{\Gamma(\alpha)}\Bigg)d\lambda \\
+% &=\frac{t^{c-1}\beta^{\alpha}}{\Gamma(c)\Gamma(\alpha)}\int_0^{\infty}\lambda^{c+\alpha-1}\exp(-\lambda(\beta+t))d\lambda\\
+% &=\frac{\Gamma(\alpha+c)}{\Gamma(c)\Gamma(\alpha)}\frac{t^{c-1}\beta^{\alpha}}{(\beta+t)^{\alpha+c}}\underbrace{\int_0^{\infty}\frac{(\beta+t)^{\alpha+c}}{\Gamma(\alpha+c)}\lambda^{c+\alpha-1}\exp(-\lambda(\beta+t))d\lambda}_{=1}\\
+% &=\frac{\Gamma(\alpha+c)}{\Gamma(c)\Gamma(\alpha)}\frac{t^{c-1}\beta^{\alpha}}{(\beta+t)^{\alpha+c}}\\
+% &=\frac{\beta^{\alpha}}{\B(\alpha, c)}\frac{t^{c-1}}{(\beta+t)^{\alpha+c}}
+% \end{align*}
+% \end{frame}
+
+
+\begin{frame}[shrink=5]{Expectation and Variance for Waiting Times}
+Using the expressions of iterated expectation and variance \citep{held2014applied} and that when $\Lambda \sim \textrm{G}(\alpha, \beta)$ then, $\frac{1}{\Lambda} \sim \textrm{IG}(\alpha, \beta)$
+
+\begin{align*}
+\textrm{E}T(c) &= \textrm{E}_{\Lambda}[\textrm{E}_{T(c)} (T(c)|\Lambda)] = \textrm{E}_{\Lambda}\Bigg [\frac{c}{\Lambda}\Bigg ] = c \textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda}\Bigg ] = c\frac{\beta}{\alpha-1}, \ \alpha>1
+\end{align*}
+
+
+\begin{align*}
+\textrm{Var}(T(c)) &= \textrm{Var}_{\Lambda}[\textrm{E}_{T(c)} (T(c)|\Lambda)] + \textrm{E}_{\Lambda}[\textrm{Var}_{T(c)}(T(c)|\Lambda)]\\
+&=\textrm{Var}_{\Lambda}\Bigg [\frac{c}{\Lambda}\Bigg ] + \textrm{E}_{\Lambda}\Bigg [\frac{c}{\Lambda^2}\Bigg ] \\
+&=c^2\textrm{Var}_{\Lambda}\Bigg [\frac{1}{\Lambda}\Bigg ] + c\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ] \\
+%&=\frac{c^2\beta^2}{(\alpha-1)^2(\alpha-2)} + \frac{c\beta^2}{(\alpha-1)(\alpha-2)}\\
+&=\frac{c\beta^2(c+\alpha-1)}{(\alpha-1)^2(\alpha-2)}, \ \alpha>2
+\end{align*}
+\end{frame}
+
 \begin{frame}{Sensitivity Analysis for Time}
 
 \begin{figure}
@@ -787,11 +816,11 @@ $T(C)\sim\textrm{GG}(C, \alpha, \beta)$ & $\textrm{P}(T(C)\geq 548) = 0.52$ & 0.
 \begin{frame}{Conclusions}
 
 \begin{itemize}
-\item \textbf{Visual tools:} Graphs clarify recruitment flow, delays, and dropout points in trials
-\item \textbf{Unified Notation:} Consistent math framework allows precise analysis of count and time models.
-\item \textbf{Exact Methods:} Extended Monte Carlo methods to capture both aleatory and epistemic uncertainty.
-\item \textbf{Flexible Recruitment:} Framework supports both fixed and time-varying recruitment rates.
-\item \textbf{Practical Impact:} Exact methods aid trial design; open-source R code enables real-world use.
+\item \textbf{Visual tools:} Graphs clarify recruitment flow, delays, and patient leakage in trials
+\item \textbf{Unified Notation:} Consistent math framework allows precise analysis of count and time models
+\item \textbf{Exact Methods:} Extended Monte Carlo methods to capture both aleatory and epistemic uncertainty
+\item \textbf{Flexible Recruitment:} Framework supports both fixed and time-varying recruitment rates
+\item \textbf{Practical Impact:} Exact methods aid trial design; open-source R code enables real-world use
 \end{itemize}
 \end{frame}
 
