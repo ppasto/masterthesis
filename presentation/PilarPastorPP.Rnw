@@ -1539,13 +1539,22 @@ legend("topright", legend = c("Theoretical GG", "MC sampling"),
 \begin{itemize}
 \item $M=10^3$ from Carter's $\rightarrow$ 580 days (innacurate)
 \item 90\% chance of accruing $N=324$ patients: 
-\item Erlang exact distribution $\rightarrow$ 588 days
-\item Gamma-Gamma exact distribution $\rightarrow$ 707 days
+	\begin{itemize}
+	\item Erlang exact distribution $\rightarrow$ 588 days
+	\item Gamma-Gamma exact distribution $\rightarrow$ 707 days
+	\end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Conclusions}
 
+\begin{itemize}
+\item \textbf{Visual tools:} Graphs clarify recruitment flow, delays, and dropout points in trials
+\item \textbf{Unified Notation:} Consistent math framework allows precise analysis of count and time models.
+\item \textbf{Exact Methods:} Extended Monte Carlo methods to capture both aleatory and epistemic uncertainty.
+\item \textbf{Flexible Recruitment:} Framework supports both fixed and time-varying recruitment rates.
+\item \textbf{Practical Impact:} Exact methods aid trial design; open-source R code enables real-world use.
+\end{itemize}
 \end{frame}
 
 % \begin{frame}{Summary}
