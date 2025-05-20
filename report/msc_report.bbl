@@ -60,6 +60,11 @@ Hilbe, J.~M. (2011).
 \newblock {\em Negative Binomial Regression}.
 \newblock Cambridge University Press.
 
+\bibitem[Hopewell {\it et~al.}, 2025]{hopewell2025consort}
+Hopewell, S., Chan, A.-W., Collins, G.~S., Schultz, K.~F.,{\it et~al.} (2025).
+\newblock Consort 2025 statement: updated guideline for reporting randomised trials.
+\newblock {\em The Lancet}, {\bf405},  1633--1640.
+
 \bibitem[Johnson {\it et~al.}, 2005]{johnson2005univariate}
 Johnson, N.~L., Kemp, A.~W., and Kotz, S. (2005).
 \newblock {\em Univariate Discrete Distributions}.
