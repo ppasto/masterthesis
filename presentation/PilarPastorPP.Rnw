@@ -5,17 +5,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 %% Header data: (adjust to your needs:
-\def\uzhunit{Master Thesis Biostatistics}             %% if (not) needed comment/uncomment
+\def\uzhunit{Master Program in Biostatistics}             %% if (not) needed comment/uncomment
 %\def\uzhunitext{STA480}
 \title[Recruitment rate stochasticity
-at the design stage of a clinical trial]{Frequentists and Bayesian methods to incorporate
+at the design stage of a clinical trial, Master Exam]{Frequentists and Bayesian methods to incorporate
 recruitment rate stochasticity
 at the design stage of a clinical trial}
 %% Optional Argument in [Brackets]: Short Title for Footline
 
 %% The following are all optional, simply comment them
 \author{Supervision by Malgorzata Roos}
-%\institute{Biostatistics Journal Club}  %% optional
+\institute{Biostatistics Master Exam}  %% optional
 \subtitle{Pilar Pastor Martínez}
 %\date{\today}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -34,15 +34,16 @@ fig.path='figures/fig', fig.show='hold',
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %% Start with slides here: put them between `\begin{frame}` and `\end{frame}`
 
-\begin{frame}{Index}
+\begin{frame}{Content}
 
-\begin{enumerate}
+\begin{itemize}
 \item Recruitment and Patient Leakage
 \item Methods for Recruited Counts
 \item Methods for Waiting Time
-\item Comparison Exact methods vs Monte Carlo
+\item Exact methods vs MC simulations
 \item Conclusions
-\end{enumerate}
+\item Reproducibility (\href{https://github.com/ppasto/masterthesis}{GitHub})
+\end{itemize}
 
 \end{frame}
 
@@ -55,15 +56,21 @@ fig.path='figures/fig', fig.show='hold',
 According to \cite{carter2004application}
 \begin{itemize}
 \item Timely recruitment vital to the success of a clinical trial
-\item Inadequate number of subjects $\rightarrow$ lack of power
+\item Inadequate number of patients $\rightarrow$ lack of power
 \item Recruitment period too long $\rightarrow$ competing treatments
 \item Recruitment of patients varies at each stage 
 \item Methods applicable to all the stages
 \end{itemize}
 
-
 \end{frame}
 
+
+
+\begin{frame}{CONSORT}
+\begin{center}
+\includegraphics[width=0.4\textwidth]{whelan_flow.png}
+\end{center}
+\end{frame}
 
 \begin{frame}{Target Population}
 
@@ -96,11 +103,6 @@ According to \cite{carter2004application}
 
 \end{frame}
 
-\begin{frame}{CONSORT}
-\begin{center}
-\includegraphics[width=0.4\textwidth]{whelan_flow.png}
-\end{center}
-\end{frame}
 
 
 \begin{frame}{Patient Leakage}
@@ -120,7 +122,7 @@ According to \cite{carter2004application}
 
 \item \textbf{Accrual}: Cumulative Recruitment
 \item \textbf{Aleatory uncertainty}: randomness inherent and unpredictable
-\item \textbf{Epistemic uncertainty}: arises from limited knowledge about parameters
+\item \textbf{Epistemic uncertainty}: arises from limited knowledge about recruitment rates
 
 
 
@@ -171,7 +173,8 @@ plot(t,  cval_cum_matrix[1,],
 		 main = "Accrual of 100 studies",
 		 xlab = "Time",
 		 ylab = "Count",
-		 ylim = c(0, 500))
+		 ylim = c(0, 500), 
+		 las = 1)
 
 for(i in 1:n){
 	lines(t,  cval_cum_matrix[i,], col = "lightgray")
@@ -246,8 +249,8 @@ Poisson - Gamma & $C(t) \sim Po (\Lambda  t)$; $\Lambda \sim G(\alpha,\beta)$ & 
 
 Example from \cite{carter2004application}:
 \begin{itemize}
-\item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$ per day
-\item Time $t = 550$ days
+\item Recruitment Rate $\lambda = 0.591$ per day
+\item Time $Ttaget = 550$ days
 \end{itemize}
 
 \end{frame}
@@ -257,13 +260,17 @@ Example from \cite{carter2004application}:
 
 Example from \cite{carter2004application}:
 \begin{itemize}
-\item Recruitment Rate $\lambda = \frac{Counts}{Time} = 0.591$ per day
-\item Time $t = 550$ days
+\item Recruitment Rate $\lambda = 0.591$ per day
+\item Time $Ttarget = 550$ days
 \item Models for Counts at time point $t$:
 	\begin{itemize}
 	\item \textbf{Expectation}: $EC(t) = \lambda t$
 	\item \textbf{Poisson}: $C(t) \sim Po(\lambda t)$
 	\item \textbf{Poisson - Gamma}: $C(t) \sim Po (\Lambda t)$; $\Lambda \sim G(\alpha,\beta)$
+	\begin{itemize}
+	\item $\alpha = 32.4$ and $\beta = 54.8$
+	\item $E\Lambda = \frac{\alpha}{\beta} = 0.591$
+	\end{itemize}
 	\end{itemize}
 \end{itemize}
 
@@ -490,7 +497,8 @@ plot(t,  cval_cum_matrix[1,],
 		 main = "Accrual of 100 studies",
 		 xlab = "Time",
 		 ylab = "Count",
-		 ylim = c(0, 500))
+		 ylim = c(0, 500),
+		 las = 1)
 
 for(i in 1:n){
 	lines(t,  cval_cum_matrix[i,], col = "lightgray")
@@ -527,7 +535,7 @@ barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray",
 
 \end{frame}
 
-\begin{frame}{Poisson-Gamma's uncertainty bands}
+\begin{frame}{Exact Poisson's and Poisson-Gamma's uncertainty bands}
 \begin{figure}
 <<echo=FALSE>>=
 n <- 100
@@ -551,7 +559,7 @@ y_limits <- range(cval_cum_matrix)  # Ensures all quantiles fit
 # Create the plot
 par(mar = c(4.1, 4.1, 2.1, 2.1))
 plot(NA, NA, xlim = x_limits, ylim = y_limits, xlab = "Time", ylab = "Count",
-		 main = "Quantiles")
+		 main = "Quantiles", las = 1)
 
 # Fill the area with a green gradient
 polygon(c(t, rev(t)), c(q_975_line, rev(q_900_line)), col = rgb(144/255, 238/255, 144/255, 0.4), border = NA) # Light Green
@@ -561,7 +569,7 @@ polygon(c(t, rev(t)), c(q_250_line, rev(q_100_line)), col = rgb(50/255, 205/255,
 polygon(c(t, rev(t)), c(q_100_line, rev(q_025_line)), col = rgb(144/255, 238/255, 144/255, 0.4), border = NA) # Light Green
 
 # Add the mean trend line
-lines(t, lambda * t, col = "black", lwd = 2)  
+# lines(t, lambda * t, col = "black", lwd = 2)  
 lines(t, qpois(p = 0.975, lambda*t), lty = 2, lwd = 2, col = "red")
 lines(t, qpois(p = 0.025, lambda*t), lty = 2, lwd = 2, col = "red")
 
@@ -569,11 +577,10 @@ lines(t, qpois(p = 0.025, lambda*t), lty = 2, lwd = 2, col = "red")
 legend("topleft",
 			 legend = c("PoG 2.5th - 97.5th Percentile [95%]", 
 			 					 "PoG 10th - 90th Percentile     [80%]", 
-			 					 "PoG 25th - 75th Percentile     [50%]", 
-			 					 "Expected Accrual",
+			 					 "PoG 25th - 75th Percentile     [50%]",
 			 					 "Po 2.5th - 97.5th Percentile [95%]"),
-			 col = c(rgb(144/255, 238/255, 144/255, 0.4), rgb(50/255, 205/255, 50/255, 0.4), rgb(0/255, 100/255, 0/255, 0.4), "black", "red"),
-			 pch = c(15, 15, 15, NA, NA), lty = c(NA, NA, NA, 1, 2), lwd = c(NA, NA, NA, 2, 2),
+			 col = c(rgb(144/255, 238/255, 144/255, 0.4), rgb(50/255, 205/255, 50/255, 0.4), rgb(0/255, 100/255, 0/255, 0.4), "red"),
+			 pch = c(15, 15, 15, NA), lty = c(NA, NA, NA, 2), lwd = c(NA, NA, NA, 2),
 			 bg = "white",
 			 cex = 0.7)
 @   
@@ -683,11 +690,11 @@ legend("topleft",
 % \end{itemize}
 % \end{frame}
 
-\begin{frame}{Different Versions for generating $\lambda$}
-\begin{enumerate}
-\item $\lambda$ fixed over time and varies across studies
-\item $\lambda$ varies over time and across studies
-\end{enumerate}
+\begin{frame}{Two versions of randomness of $\Lambda$}
+\begin{itemize}
+\item \textbf{Version 1:} Random recruitment rate realization $\lambda$ varies across studies and remains \textbf{fixed} within study \textbf{over time} \\ $\rightarrow$ PoG distribution
+\item \textbf{Version 2:} Random recruitment rate realization $\lambda$ varies across studies and \textbf{varies} within study \textbf{over time} \\ $\rightarrow$ Distribution with unexpected properties
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Version 1 different from Version 2}
@@ -737,7 +744,8 @@ plot(density(final_counts),
 		 xlab = "Counts",
 		 col = rgb(1, 0, 0, 0.4), 
 		 lwd = 4,
-		 ylim = c(0,0.025))
+		 ylim = c(0,0.025),
+		 las = 1)
 
 lines(density(final_counts_2), 
 			lwd = 2,
@@ -875,7 +883,8 @@ curve(dgamma(x, shape = 324, rate = 548),
 			main = "Prior", 
 			xlab = "Recruitment rate", 
 			ylab = "",
-			col = "red")
+			col = "red", 
+			las = 1)
 
 
 
@@ -891,7 +900,8 @@ plot(200:500, dpois(200:500, lambda*550),
 		 type = "l",
 		 main = "PMF", 
 		 xlab = "Counts", 
-		 ylab = "")
+		 ylab = "", 
+		 las = 1)
 
 
 lines(200:500, dnbinom(200:500, size = 324, mu = lambda*550), col = "red")
@@ -910,7 +920,8 @@ plot(200:500, ppois(200:500, lambda*550),
 		 type = "l",
 		 main = "CDF", 
 		 xlab = "Counts", 
-		 ylab = "")
+		 ylab = "", 
+		 las = 1)
 
 
 
@@ -938,7 +949,8 @@ curve(dgamma(x, shape = 324, rate = 548),
 			main = "Prior", 
 			xlab = "Recruitment rate", 
 			ylab = "",
-			col = "red")
+			col = "red", 
+			las = 1)
 
 curve(dgamma(x, shape = 32.4, rate = 54.8), add = TRUE,
 			col = "blue")
@@ -957,7 +969,8 @@ plot(200:500, dpois(200:500, lambda*550),
 		 type = "l",
 		 main = "PMF", 
 		 xlab = "Counts", 
-		 ylab = "")
+		 ylab = "", 
+		 las = 1)
 
 
 lines(200:500, dnbinom(200:500, size = 324, mu = lambda*550), col = "red")
@@ -978,7 +991,8 @@ plot(200:500, ppois(200:500, lambda*550),
 		 type = "l",
 		 main = "CDF", 
 		 xlab = "Counts", 
-		 ylab = "")
+		 ylab = "", 
+		 las = 1)
 
 
 
@@ -1009,7 +1023,8 @@ curve(dgamma(x, shape = 324, rate = 548),
 			main = "Prior", 
 			xlab = "Recruitment rate", 
 			ylab = "",
-			col = "red")
+			col = "red", 
+			las = 1)
 
 curve(dgamma(x, shape = 32.4, rate = 54.8), add = TRUE,
 			col = "blue")
@@ -1031,7 +1046,8 @@ plot(200:500, dpois(200:500, lambda*550),
 		 type = "l",
 		 main = "PMF", 
 		 xlab = "Counts", 
-		 ylab = "")
+		 ylab = "", 
+		 las = 1)
 
 
 lines(200:500, dnbinom(200:500, size = 324, mu = lambda*550), col = "red")
@@ -1054,7 +1070,8 @@ plot(200:500, ppois(200:500, lambda*550),
 		 type = "l",
 		 main = "CDF", 
 		 xlab = "Counts", 
-		 ylab = "")
+		 ylab = "", 
+		 las = 1)
 
 
 
@@ -1196,7 +1213,8 @@ plot(t,  cval_cum_matrix[1,],
 		 main = "Accrual of 100 studies", 
 		 xlab = "Time", 
 		 ylab = "Count",
-		 ylim =c(0, 700))
+		 ylim =c(0, 700), 
+		 las = 1)
 
 for(i in 1:n){
 	lines(t,  cval_cum_matrix[i,], col = "lightgray")
@@ -1231,7 +1249,7 @@ legend("topleft",
 \end{figure}
 \end{frame}
 
-\begin{frame}{Models for Waiting Time with fixed sample sixe $c$}
+\begin{frame}{Models for Waiting Time until Target Sample Size $c$}
 \begin{table}[h!]
 \centering
 \resizebox{\textwidth}{!}{
@@ -1245,6 +1263,12 @@ Gamma-Gamma & $T(c) \sim \textrm{G}(c, \Lambda)$; $\Lambda \sim \textrm{G}(\alph
 \end{tabular}
 }
 \end{table}
+
+\begin{itemize}
+\item Two versions of randomness of $\Lambda$
+\item Version 1 $\rightarrow$ GG distribution 
+\item Similar derivations as shown for counts
+\end{itemize}
 \end{frame}
 
 % \begin{frame}
@@ -1259,24 +1283,24 @@ Gamma-Gamma & $T(c) \sim \textrm{G}(c, \Lambda)$; $\Lambda \sim \textrm{G}(\alph
 % \end{frame}
 
 
-\begin{frame}[shrink=5]{Expectation and Variance for Waiting Times}
-Using the expressions of iterated expectation and variance \citep{held2014applied} and that when $\Lambda \sim \textrm{G}(\alpha, \beta)$ then, $\frac{1}{\Lambda} \sim \textrm{IG}(\alpha, \beta)$
+% \begin{frame}[shrink=5]{Expectation and Variance for Waiting Times}
+% Using the expressions of iterated expectation and variance \citep{held2014applied} and that when $\Lambda \sim \textrm{G}(\alpha, \beta)$ then, $\frac{1}{\Lambda} \sim \textrm{IG}(\alpha, \beta)$
+% 
+% \begin{align*}
+% \textrm{E}T(c) &= \textrm{E}_{\Lambda}[\textrm{E}_{T(c)} (T(c)|\Lambda)] = \textrm{E}_{\Lambda}\Bigg [\frac{c}{\Lambda}\Bigg ] = c \textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda}\Bigg ] = c\frac{\beta}{\alpha-1}, \ \alpha>1
+% \end{align*}
+% 
+% 
+% \begin{align*}
+% \textrm{Var}(T(c)) &= \textrm{Var}_{\Lambda}[\textrm{E}_{T(c)} (T(c)|\Lambda)] + \textrm{E}_{\Lambda}[\textrm{Var}_{T(c)}(T(c)|\Lambda)]\\
+% &=\textrm{Var}_{\Lambda}\Bigg [\frac{c}{\Lambda}\Bigg ] + \textrm{E}_{\Lambda}\Bigg [\frac{c}{\Lambda^2}\Bigg ] \\
+% &=c^2\textrm{Var}_{\Lambda}\Bigg [\frac{1}{\Lambda}\Bigg ] + c\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ] \\
+% %&=\frac{c^2\beta^2}{(\alpha-1)^2(\alpha-2)} + \frac{c\beta^2}{(\alpha-1)(\alpha-2)}\\
+% &=\frac{c\beta^2(c+\alpha-1)}{(\alpha-1)^2(\alpha-2)}, \ \alpha>2
+% \end{align*}
+% \end{frame}
 
-\begin{align*}
-\textrm{E}T(c) &= \textrm{E}_{\Lambda}[\textrm{E}_{T(c)} (T(c)|\Lambda)] = \textrm{E}_{\Lambda}\Bigg [\frac{c}{\Lambda}\Bigg ] = c \textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda}\Bigg ] = c\frac{\beta}{\alpha-1}, \ \alpha>1
-\end{align*}
-
-
-\begin{align*}
-\textrm{Var}(T(c)) &= \textrm{Var}_{\Lambda}[\textrm{E}_{T(c)} (T(c)|\Lambda)] + \textrm{E}_{\Lambda}[\textrm{Var}_{T(c)}(T(c)|\Lambda)]\\
-&=\textrm{Var}_{\Lambda}\Bigg [\frac{c}{\Lambda}\Bigg ] + \textrm{E}_{\Lambda}\Bigg [\frac{c}{\Lambda^2}\Bigg ] \\
-&=c^2\textrm{Var}_{\Lambda}\Bigg [\frac{1}{\Lambda}\Bigg ] + c\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ] \\
-%&=\frac{c^2\beta^2}{(\alpha-1)^2(\alpha-2)} + \frac{c\beta^2}{(\alpha-1)(\alpha-2)}\\
-&=\frac{c\beta^2(c+\alpha-1)}{(\alpha-1)^2(\alpha-2)}, \ \alpha>2
-\end{align*}
-\end{frame}
-
-\begin{frame}{Sensitivity Analysis for Time}
+\begin{frame}{Sensitivity Analysis for Waiting Time}
 
 \begin{figure}
 \centering
@@ -1287,7 +1311,8 @@ curve(dgamma(x, shape = 324, rate = 548),
 			main = "Prior", 
 			xlab = "Recruitment rate", 
 			ylab = "",
-			col = "red")
+			col = "red", 
+			las = 1)
 
 curve(dgamma(x, shape = 32.4, rate = 54.8), add = TRUE,
 			col = "blue")
@@ -1310,7 +1335,8 @@ plot(0:800, dgamma(0:800, shape = 324, rate = 0.591),
 		 main = "PMF", 
 		 xlab = "Time [days]", 
 		 ylab = "", 
-		 col = "black")
+		 col = "black",
+		 las = 1)
 
 dgammagamma <- function(t, alpha, b, c) {
 	log_dens <- alpha * log(b) - lbeta(alpha, c) + (c - 1) * log(t) - (alpha + c) * log(b + t)
@@ -1346,7 +1372,8 @@ plot(0:800, pgamma(0:800, shape = 324, rate = 0.591),
 		 main = "CDF", 
 		 xlab = "Time [days]", 
 		 ylab = "", 
-		 col = "black")
+		 col = "black", 
+		 las = 1)
 
 lines(0:800, pgammagamma(0:800, alpha = 324, b = 548, c = 324), col = "red")
 lines(0:800, pgammagamma(0:800, alpha = 32.4, b = 54.8, c = 324), col = "blue")
@@ -1366,12 +1393,110 @@ legend("topleft",
 \end{figure}
 \end{frame}
 
-\begin{frame}{Comparison Exact Methods vs Monte Carlo}
+\begin{frame}{Exact Methods vs MC simulations}
 
 \end{frame}
 
+% 
+% \begin{frame}[shrink=20]{Exact Methods vs MC simulations}
+% <<echo=FALSE, cache = TRUE, warning=FALSE>>=
+% set.seed(2025)
+% 
+% M <- 10^4
+% t <- seq(1, 550, 1)
+% lambda <- 0.591
+% 
+% # Generate cumulative Poisson paths
+% cval_cum_matrix <- matrix(NA, nrow = M, ncol = length(t))
+% 
+% for (i in 1:M) {
+% 	cval <- rpois(length(t), lambda)  
+% 	cval_cum_matrix[i, ] <- cumsum(cval)  
+% }
+% 
+% # Extract final counts for histogram
+% final_counts_p <- cval_cum_matrix[, length(t)]
+% 
+% set.seed(2025)
+% 
+% n <- 10^4
+% t <- seq(1, 550, 1)
+% lambda <- 0.591
+% 
+% alpha <- 32.4
+% beta <- 54.8
+% # Generate cumulative Poisson paths
+% cval_cum_matrix <- matrix(NA, nrow = n, ncol = length(t))
+% v_lambda <- rgamma(n, shape = alpha, rate = beta)
+% 
+% for (i in 1:n) {
+% 	cval <- rpois(length(t), lambda = v_lambda[i])
+% 	cval_cum_matrix[i, ] <- cumsum(cval)  
+% }
+% 
+% # Extract final counts for histogram
+% final_counts_pg <- cval_cum_matrix[, length(t)]
+% 
+% M <- 10^4
+% Ctarget <- 324
+% lambda <- 0.591
+% 
+% alpha <- 32.4
+% beta <- 54.8
+% 
+% simulate_time_to_threshold_Erlang_easier <- function(MM, CC, ll, rseed=265735) {
+%   set.seed(rseed)
+%   timeerlang <- rgamma(n=MM, shape = CC, rate = ll)
+%   return(timeerlang)
+% }
+% 
+% time_erlang <- simulate_time_to_threshold_Erlang_easier(MM=M, CC=Ctarget, ll=lambda, rseed=265735)
+% 
+% set.seed(2025)
+% M <- 10^4
+% Ctarget <-324 
+% lambda <- 0.591
+% alpha <- 32.4
+% beta <- 54.8
+% 
+% simulate_time_to_threshold_GG_easier <- function(MM, CC, aa, bb, rseed=265735) {
+%   set.seed(rseed)
+%   timegg <- rep(0, MM)
+%   lambdar <- rgamma(n=MM, shape = aa, rate = bb)
+%   for (i in 1:MM){
+%     timegg[i] <- rgamma(n=1, shape = CC, rate = lambdar[i])
+%   }
+%   return(timegg)
+% }
+% 
+% timegg_easier <- simulate_time_to_threshold_GG_easier(MM=M, CC=Ctarget, aa=alpha, bb=beta) 
+% 
+% @
+% \begin{table}[h!]
+% \centering
+% \begin{tabular}{cccc}
+%  \textbf{Model} & \textbf{Estimated Probabilty} & \textbf{MCse} & \textbf{Exact Probability} \\
+% \hline
+% \hline
+%  $C(T)\sim\textrm{Po}(\lambda T)$ & $\textrm{P}(C(T)\geq 324) = \Sexpr{round(mean(final_counts_p>324),3)}$ & \Sexpr{round(sqrt(mean(final_counts_p>324)*(1-mean(final_counts_p>324))/M), 3)} & \Sexpr{round(1-ppois(324, lambda*550),3)} \\
+%  $C(T)\sim\textrm{PoG}(T, \alpha, \beta)$ & $\textrm{P}(C(T)\geq 324) = \Sexpr{round(mean(final_counts_pg>324),3)}$ & \Sexpr{round(sqrt(mean(final_counts_pg>324)*(1-mean(final_counts_pg>324))/M), 3)} & \Sexpr{round(1-pnbinom(324, size = 324, mu = lambda * 550),3)} 
+% \end{tabular}
+% \end{table}
+% 
+% \begin{table}[h!]
+% \centering
+% \begin{tabular}{cccc}
+%  \textbf{Model} & \textbf{Estimated Probabilty} & \textbf{MCse} & \textbf{Exact Probability} \\
+% \hline
+% \hline
+%  $T(C)\sim\textrm{G}(C, \lambda)$& $\textrm{P}(T(C)\geq 548) = \Sexpr{round(mean(time_erlang>548),3)}$ & \Sexpr{round(sqrt(mean(time_erlang>548)*(1-mean(time_erlang>548))/M), 3)} & \Sexpr{round(1-pgamma(548, shape = 324, rate = lambda),3)}\\
+% $T(C)\sim\textrm{GG}(C, \alpha, \beta)$ & $\textrm{P}(T(C)\geq 548) = \Sexpr{round(mean(timegg_easier>548),3)}$ & \Sexpr{round(sqrt(mean(timegg_easier>548)*(1-mean(timegg_easier>548))/M), 3)} & \Sexpr{round(1-pgammagamma(548, alpha = alpha, b = beta, c = 324),3)}
+% \end{tabular}
+% \end{table}
+% 
+% \end{frame}
 
-\begin{frame}[shrink=20]{Comparison Exact Methods vs Monte Carlo}
+
 <<echo=FALSE, cache = TRUE, warning=FALSE>>=
 set.seed(2025)
 
@@ -1445,31 +1570,8 @@ simulate_time_to_threshold_GG_easier <- function(MM, CC, aa, bb, rseed=265735) {
 timegg_easier <- simulate_time_to_threshold_GG_easier(MM=M, CC=Ctarget, aa=alpha, bb=beta) 
 
 @
-\begin{table}[h!]
-\centering
-\begin{tabular}{cccc}
- \textbf{Model} & \textbf{Estimated Probabilty} & \textbf{MCse} & \textbf{Exact Probability} \\
-\hline
-\hline
- $C(T)\sim\textrm{Po}(\lambda T)$ & $\textrm{P}(C(T)\geq 324) = \Sexpr{round(mean(final_counts_p>324),3)}$ & \Sexpr{round(sqrt(mean(final_counts_p>324)*(1-mean(final_counts_p>324))/M), 3)} & \Sexpr{round(1-ppois(324, lambda*550),3)} \\
- $C(T)\sim\textrm{PoG}(T, \alpha, \beta)$ & $\textrm{P}(C(T)\geq 324) = \Sexpr{round(mean(final_counts_pg>324),3)}$ & \Sexpr{round(sqrt(mean(final_counts_pg>324)*(1-mean(final_counts_pg>324))/M), 3)} & \Sexpr{round(1-pnbinom(324, size = 324, mu = lambda * 550),3)} 
-\end{tabular}
-\end{table}
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{cccc}
- \textbf{Model} & \textbf{Estimated Probabilty} & \textbf{MCse} & \textbf{Exact Probability} \\
-\hline
-\hline
- $T(C)\sim\textrm{G}(C, \lambda)$& $\textrm{P}(T(C)\geq 548) = \Sexpr{round(mean(time_erlang>548),3)}$ & \Sexpr{round(sqrt(mean(time_erlang>548)*(1-mean(time_erlang>548))/M), 3)} & \Sexpr{round(1-pgamma(548, shape = 324, rate = lambda),3)}\\
-$T(C)\sim\textrm{GG}(C, \alpha, \beta)$ & $\textrm{P}(T(C)\geq 548) = \Sexpr{round(mean(timegg_easier>548),3)}$ & \Sexpr{round(sqrt(mean(timegg_easier>548)*(1-mean(timegg_easier>548))/M), 3)} & \Sexpr{round(1-pgammagamma(548, alpha = alpha, b = beta, c = 324),3)}
-\end{tabular}
-\end{table}
-
-\end{frame}
-
-\begin{frame}{Comparison Exact Methods vs Monte Carlo -- Poisson-Gamma Counts}
+\begin{frame}{Exact Methods vs MC simulations -- Poisson-Gamma Counts}
 
 \begin{figure}
 <<echo=FALSE, cache = TRUE, warning=FALSE>>=
@@ -1498,9 +1600,9 @@ x_vals <- 200:500
 
 plot(x_vals,  dnbinom(x_vals, size = alpha, prob = beta/(beta+550)), 
 		 type = "n",
-		 main = "MC simulation vs theoretical PMF",
 		 xlab = "Counts",
-		 ylab = "PMF")
+		 ylab = "PMF", 
+		 las = 1)
 
 lines(x_vals,  dnbinom(x_vals, size = alpha, prob = beta/(beta+550)), 
 			lwd = 4,
@@ -1524,7 +1626,7 @@ legend("topright",
 \end{frame}
 
 
-\begin{frame}{Comparison Exact Methods vs Monte Carlo -- Gamma-Gamma Time}
+\begin{frame}{Exact Methods vs MC simulations -- Gamma-Gamma Time}
 \begin{figure}
 <<echo=FALSE, warning=FALSE, cache=TRUE>>=
 set.seed(2025)
@@ -1550,39 +1652,124 @@ t_vals <- 100:1100
 
 plot(t_vals, dgammagamma(t_vals, a = 32.4, b = 54.8, c = Ctarget), 
 		 type = "n", 
-		 main = "MC simulation vs theoretical density", 
 		 xlab = "Day", 
-		 ylab = "Density")
+		 ylab = "Density",
+		 las = 1)
 lines(t_vals, dgammagamma(t_vals, a = 32.4, b = 54.8, c = Ctarget), 
 			lwd = 4, col = "purple")
 lines(density(timegg_easier), 
 			col = "blue", lwd = 2, lty = 2)
-legend("topright", legend = c("Theoretical GG", "MC sampling"),
+legend("topright", legend = c("Theoretical GG", "MC simulation"),
 			 col = c("purple", "blue"), lwd = c(4, 2), lty = c(1, 2), cex = 0.7)
 @
 \end{figure}
 \end{frame}
 
-\begin{frame}{Carter's Questions}
+\begin{frame}[shrink=20]{Exact Methods vs MC simulations}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{cccc}
+ \textbf{Model} & \textbf{Estimated Probabilty} & \textbf{MCse} & \textbf{Exact Probability} \\
+\hline
+\hline
+ $C(T)\sim\textrm{Po}(\lambda T)$ & $\textrm{P}(C(T)\geq 324) = \Sexpr{round(mean(final_counts_p>324),4)}$ & \Sexpr{round(sqrt(mean(final_counts_p>324)*(1-mean(final_counts_p>324))/M), 4)} & \Sexpr{round(1-ppois(324, lambda*550),4)} \\
+ $C(T)\sim\textrm{PoG}(T, \alpha, \beta)$ & $\textrm{P}(C(T)\geq 324) = \Sexpr{round(mean(final_counts_pg>324),4)}$ & \Sexpr{round(sqrt(mean(final_counts_pg>324)*(1-mean(final_counts_pg>324))/M), 4)} & \Sexpr{round(1-pnbinom(324, size = 324, mu = lambda * 550),4)} 
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{cccc}
+ \textbf{Model} & \textbf{Estimated Probabilty} & \textbf{MCse} & \textbf{Exact Probability} \\
+\hline
+\hline
+ $T(C)\sim\textrm{G}(C, \lambda)$& $\textrm{P}(T(C)\geq 548) = \Sexpr{round(mean(time_erlang>548),4)}$ & \Sexpr{round(sqrt(mean(time_erlang>548)*(1-mean(time_erlang>548))/M), 4)} & \Sexpr{round(1-pgamma(548, shape = 324, rate = lambda),4)}\\
+$T(C)\sim\textrm{GG}(C, \alpha, \beta)$ & $\textrm{P}(T(C)\geq 548) = \Sexpr{round(mean(timegg_easier>548),4)}$ & \Sexpr{round(sqrt(mean(timegg_easier>548)*(1-mean(timegg_easier>548))/M), 4)} & \Sexpr{round(1-pgammagamma(548, alpha = alpha, b = beta, c = 324),4)}
+\end{tabular}
+\end{table}
+\textbf{Number of simulations:} $M=10^4$
+\end{frame}
+
+\begin{frame}{Aleatory VS Aleatory \& Epistemic}
+
+\textbf{90\% chance} of accruing $Ctarget=324$ patients: 
 
 \begin{itemize}
 \item $M=10^3$ from Carter's $\rightarrow$ 580 days (innacurate)
-\item 90\% chance of accruing $N=324$ patients: 
-	\begin{itemize}
-	\item Erlang exact distribution $\rightarrow$ 588 days
-	\item Gamma-Gamma exact distribution $\rightarrow$ 707 days
-	\end{itemize}
+\item Erlang exact distribution $\rightarrow$ 588 days
+\item Gamma-Gamma exact distribution $\rightarrow$ 707 days
 \end{itemize}
+\end{frame}
+
+\begin{frame}{Aleatory \& Epistemic}
+\begin{figure}
+<<echo=FALSE, warning=FALSE, cache=TRUE>>=
+set.seed(2025)
+M <- 10^4
+Ctarget <- 324 
+lambda <- 0.591
+alpha <- 32.4
+beta <- 54.8
+
+simulate_time_to_threshold_GG_easier <- function(MM, CC, aa, bb, rseed=265735) {
+  set.seed(rseed)
+  timegg <- rep(0, MM)
+  lambdar <- rgamma(n=MM, shape = aa, rate = bb)
+  for (i in 1:MM){
+    timegg[i] <- rgamma(n=1, shape = CC, rate = lambdar[i])
+  }
+  return(timegg)
+}
+
+timegg_easier <- simulate_time_to_threshold_GG_easier(MM=M, CC=Ctarget, aa=alpha, bb=beta) 
+
+t_vals <- 100:1100
+dens_vals <- dgammagamma(t_vals, a = 32.4, b = 54.8, c = Ctarget)
+
+plot(t_vals, dens_vals, 
+     type = "n", 
+     xlab = "Day", 
+     ylab = "Density",
+		 las = 1)
+
+# Shading region under curve up to day 707
+shade_t <- t_vals[t_vals <= 707]
+shade_y <- dens_vals[t_vals <= 707]
+polygon(c(shade_t, rev(shade_t)), c(shade_y, rep(0, length(shade_y))),
+        col = rgb(0.6, 0.6, 0.6, 0.5), border = NA)
+
+# Plot theoretical density
+lines(t_vals, dens_vals, lwd = 4, col = "purple")
+
+# Plot empirical density
+lines(density(timegg_easier), col = "blue", lwd = 2, lty = 2)
+
+# Vertical line at day 707
+abline(v = 707, col = "black", lwd = 2, lty = 3)
+
+legend("topright", legend = c("Theoretical GG", "MC sampling", "90% chance (707 days)"),
+       col = c("purple", "blue", "black"), 
+       lwd = c(4, 2, 2), 
+       lty = c(1, 2, 3), cex = 0.7)
+@
+\end{figure}
+
 \end{frame}
 
 \begin{frame}{Conclusions}
 
 \begin{itemize}
-\item \textbf{Visual tools:} Graphs clarify recruitment flow, delays, and patient leakage in trials
-\item \textbf{Unified Notation:} Consistent math framework allows precise analysis of count and time models
-\item \textbf{Exact Methods:} Extended Monte Carlo methods to capture both aleatory and epistemic uncertainty
-\item \textbf{Flexible Recruitment:} Framework supports both fixed and time-varying recruitment rates
-\item \textbf{Practical Impact:} Exact methods aid trial design; open-source R code enables real-world use
+\item Visual tools
+% Graphs clarify recruitment flow, delays, and patient leakage in trials
+\item Unified Notation
+% Consistent math framework allows precise analysis of count and time models
+\item Exact Methods
+% Extended Monte Carlo methods to capture both aleatory and epistemic uncertainty
+\item Flexible Recruitment
+% Framework supports both fixed and time-varying recruitment rates
+\item Practical Impact
+% Exact methods aid trial design; open-source R code enables real-world use
 \end{itemize}
 \end{frame}
 
