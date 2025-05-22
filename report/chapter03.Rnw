@@ -363,8 +363,42 @@ gg <- qgammagamma(p = 0.9, alpha = 32.4, b = 54.8, c = 324)
 
 Small number of simulations (up to $M=10^3$) from \cite{carter2004application} gives him inaccurate estimate of days (580), when the exact using the Erlang distribution gives  \Sexpr{round(qgamma(p = 0.9, shape = 324, rate = 0.591), 0)} to have 90\% chance of accruing $Ctarget = 324$ subjects with a recruitment rate of $\lambda=0.591$.
 
-Moreover, if we wish to be more realistic in the uncertainty our model takes into consideration and choose the Gamma-Gamma distribution, \Sexpr{round(qgammagamma(p = 0.9, alpha = 32.4, b = 54.8, c = 324), 0)} days would be required to have a 90\% chance of accruing the desired sample size. 
+Moreover, if we wish to be more realistic in the uncertainty our model takes into consideration and choose the Gamma-Gamma distribution, \Sexpr{round(qgammagamma(p = 0.9, alpha = 32.4, b = 54.8, c = 324), 0)} days would be required to have a 90\% chance of accruing the desired sample size, see Figure \ref{fig:3_5}. 
 
 In Table \ref{tab:mcset} we illustrate how, indeed, by using the expected accrual without taking into consideration any uncertainty we have roughly a 50\% chance of accruing the desired sample size in the established time-frame \citep{carter2004application}.
 
 
+\begin{figure}
+<<echo=FALSE, warning=FALSE, cache=TRUE>>=
+t_vals <- 100:1100
+dens_vals <- dgammagamma(t_vals, a = 32.4, b = 54.8, c = Ctarget)
+
+plot(t_vals, dens_vals, 
+     type = "n", 
+     xlab = "Day", 
+     ylab = "Density",
+		 las = 1)
+
+# Shading region under curve up to day 707
+shade_t <- t_vals[t_vals <= 707]
+shade_y <- dens_vals[t_vals <= 707]
+polygon(c(shade_t, rev(shade_t)), c(shade_y, rep(0, length(shade_y))),
+        col = rgb(0.6, 0.6, 0.6, 0.5), border = NA)
+
+# Plot theoretical density
+lines(t_vals, dens_vals, lwd = 4, col = "purple")
+
+# Plot empirical density
+lines(density(timegg_easier), col = "blue", lwd = 2, lty = 2)
+
+# Vertical line at day 707
+abline(v = 707, col = "black", lwd = 2, lty = 3)
+
+legend("topright", legend = c("Theoretical GG", "MC simulation", "90% chance (707 days)"),
+       col = c("purple", "blue", "black"), 
+       lwd = c(4, 2, 2), 
+       lty = c(1, 2, 3), cex = 0.7)
+@
+\caption{Illustration showing that, under a theoretical Gamma-Gamma model with parameters $\alpha = 32.4$ and $\beta = 54.8$, it takes approximately 707 days to reach a 90\% probability of achieving the target sample size ($C_{\text{target}} = 324$).}
+\label{fig:3_5}
+\end{figure}

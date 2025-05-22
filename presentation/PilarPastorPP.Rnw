@@ -1748,7 +1748,7 @@ lines(density(timegg_easier), col = "blue", lwd = 2, lty = 2)
 # Vertical line at day 707
 abline(v = 707, col = "black", lwd = 2, lty = 3)
 
-legend("topright", legend = c("Theoretical GG", "MC sampling", "90% chance (707 days)"),
+legend("topright", legend = c("Theoretical GG", "MC simulation", "90% chance (707 days)"),
        col = c("purple", "blue", "black"), 
        lwd = c(4, 2, 2), 
        lty = c(1, 2, 3), cex = 0.7)
