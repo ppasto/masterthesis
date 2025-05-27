@@ -14,7 +14,7 @@ Pilar Pastor Martínez
 
 # SessionInfo()
 
-R version 4.4.2 (2024-10-31)
+`R version 4.4.2 (2024-10-31)
 Platform: x86_64-apple-darwin20
 Running under: macOS Sonoma 14.7.4
 
@@ -49,7 +49,7 @@ loaded via a namespace (and not attached):
 [28] lifecycle_1.0.4 vctrs_0.6.5 evaluate_1.0.3
 [31] glue_1.8.0 codetools_0.2-20 colorspace_2.1-1
 [34] purrr_1.0.2 tools_4.4.2 pkgconfig_2.0.3
-[37] htmltools_0.5.8.1
+[37] htmltools_0.5.8.1`
 
 # Date and time
 
