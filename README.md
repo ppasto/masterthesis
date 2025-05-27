@@ -20,7 +20,7 @@ In clinical trials, inaccurate or overly optimistic projections of recruitment r
 
 ### **Reproducibility guidance**
 
-Guidances to reproduce the report and presentation can be found in the .RMD of the respective folders. 
+Guidances to reproduce the report and presentation can be found in the .md of the respective folders. 
 
 ## Author Responsible
 
