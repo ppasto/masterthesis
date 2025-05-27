@@ -35,7 +35,7 @@ Pilar Pastor Martínez
 `[1] MASS_7.3-61 tidyr_1.3.1 dplyr_1.1.4 ggExtra_0.10.1`
 `[5] ggplot2_3.5.1 knitr_1.49`
 
-`loaded via a namespace (and not attached):`
+`loaded via a namespace (and not attached):`\\
 `[1] gtable_0.3.6 miniUI_0.1.1.1 compiler_4.4.2`
 `[4] highr_0.11 promises_1.3.2 tidyselect_1.2.1`
 `[7] Rcpp_1.0.14 later_1.4.1 scales_1.3.0` 
