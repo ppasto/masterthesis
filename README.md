@@ -4,8 +4,7 @@
 
 ### **Project Description**
 
-This project focuses on improving participant recruitment projections at the design stage of clinical trials. Recruitment projections are crucial for ensuring that a study reaches its target sample size within a limited timeframe, often constrained by funding. Traditional methods, like Carter’s Poisson-based approach using Monte Carlo simulations, account only for aleatory (random) uncertainty. This Master's thesis aims to enhance Carter’s method by integrating epistemic (knowledge-based) uncertainty, making recruitment forecasts more realistic and robust. The project involves both theoretical model development and practical application to real clinical trial data.
-
+In clinical trials, inaccurate or overly optimistic projections of recruitment rates can lead to the failure of enrolling a sufficient number of patients within the required time frame. This can ultimately result in study discontinuation, delays, or inconclusive statistical findings. In practice, many researchers rely on deterministic models that do not adequately capture the uncertainty inherent in the patient recruitment process. While more sophisticated stochastic methods are available, they often use simulations, which can yield approximate estimates of trial duration. These limitations highlight the need for exact methods for predicting recruitment timelines. To address this gap, we developed exact statistical methods that account for both aleatory uncertainty (stemming from random variability) and epistemic uncertainty (due to lack of knowledge about the true recruitment rate). To support the implementation of the methods, visualizations of patient leakage and a unified mathematical notation were developed. For modeling the number of patients recruited over time  ($Ttarget$), we use a Poisson-Gamma model, while for waiting times until a certain number of patients is recruited ($Ctarget$), we apply a Gamma-Gamma approach. These exact models allow for more accurate predictions of the time needed to reach a desired sample size. This provides a more reliable basis for planning clinical trials, allocating resources, and setting expectations on realistic recruitment. By integrating uncertainty more thoroughly, our approach enhances the transparency and credibility of trial planning and supports better-informed decision-making in clinical research.
 
 ### **Project Scope**
 
@@ -20,10 +19,8 @@ This project focuses on improving participant recruitment projections at the des
 - **Open-Source Tools:** Implementation of the methods in R, with code made available in the appendix for reproducibility and further use by the research community.
 
 ### **Reproducibility guidance**
-In **Report** folder:
-1. Open report.Rproj
-2. Run knit.R script
-3. Compile compile.Rnw
+
+Guidances to reproduce the report and presentation can be found in the .RMD of the respective folders. 
 
 ## Author Responsible
 
