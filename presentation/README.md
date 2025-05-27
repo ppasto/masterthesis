@@ -1,4 +1,4 @@
-_Basic instructions_
+# Basic Instructions
 
 You need a running installation of (pdf)LaTeX including the package 'beamer'. Typical installations of LaTeX provide the necessary environment.
 
@@ -19,3 +19,4 @@ If you include R code via knitr, you may use 'present_withR.Rnw'.
 
 For illustration, we have also included a minimal bibtex file.
 
+*Template taken from course STA490: Statistical Consulting*
