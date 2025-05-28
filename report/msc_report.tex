@@ -19,7 +19,7 @@
   \rm
 
   \LARGE
-  Pilar Pastor \\[12mm]
+  Pilar Pastor Martinez \\[12mm]
   
   \normalsize
   Version \today
@@ -33,18 +33,18 @@
 \tableofcontents
 \setkeys{Gin}{width=.8\textwidth}
 
-\chapter*{Preface}
+\chapter*{Acknowledgements}
 \addtocontents{toc}{\protect \vspace*{13.mm}}
-\addcontentsline{toc}{chapter}{\bfseries{Preface}}
-\thispagestyle{plain}\markboth{Preface}{Preface}
+\addcontentsline{toc}{chapter}{\bfseries{Acknowledgements}}
+\thispagestyle{plain}\markboth{Acknowledgements}{Acknowledgements}
 
 Howdy!
 
 \bigskip
 
 \begin{flushright}
-  Pilar Pastor \\
-  June 2025
+  Pilar Pastor Martinez\\
+  Zurich, June 2025
 \end{flushright}
 
 \addtocontents{toc}{\protect \vspace*{10mm}}
@@ -52,12 +52,13 @@ Howdy!
 \cleardoublepage
 \pagenumbering{arabic}
 
-\begin{center}
-\Large\textbf{Abstract}
-\end{center}
+\chapter*{Abstract}
+\addtocontents{toc}{\protect \vspace*{13.mm}}
+\addcontentsline{toc}{chapter}{\bfseries{Abstract}}
+\thispagestyle{plain}\markboth{Abstract}{Abstract}
 
 \noindent
-In clinical trials, inaccurate or overly optimistic projections of recruitment rates can lead to the failure of enrolling a sufficient number of patients within the required time frame. This can ultimately result in study discontinuation, delays, or inconclusive statistical findings. In practice, many researchers rely on deterministic models that do not adequately capture the uncertainty inherent in the patient recruitment process. While more sophisticated stochastic methods are available, they often use simulations, which can yield approximate estimates of trial duration. These limitations highlight the need for exact methods for predicting recruitment timelines. To address this gap, we developed exact statistical methods that account for both aleatory uncertainty (stemming from random variability) and epistemic uncertainty (due to lack of knowledge about the true recruitment rate). To support the implementation of the methods, visualizations of patient leakage and a unified mathematical notation were developed. For modeling the number of patients recruited over time  ($Ttarget$), we use a Poisson-Gamma model, while for waiting times until a certain number of patients is recruited ($Ctarget$), we apply a Gamma-Gamma approach. These exact models allow for more accurate predictions of the time needed to reach a desired sample size. This provides a more reliable basis for planning clinical trials, allocating resources, and setting expectations on realistic recruitment. By integrating uncertainty more thoroughly, our approach enhances the transparency and credibility of trial planning and supports better-informed decision-making in clinical research.
+In clinical trials, inaccurate or overly optimistic projections of recruitment rates can lead to the failure of enrolling a sufficient number of patients within the required time frame. This can ultimately result in study discontinuation, delays, or inconclusive statistical findings. In practice, many researchers rely on deterministic models that do not adequately capture the stochasticity inherent in the patient recruitment process. While more sophisticated exact stochastic methods exist, they often use simulations, which can yield approximate estimates of trial duration. These limitations highlight the need for exact methods for predicting recruitment timelines and accrual. To address this gap, we developed exact statistical methods that account for both aleatory uncertainty (stemming from random variability) and epistemic uncertainty (due to lack of knowledge about the true recruitment rate). To support the implementation of the methods, visualizations of patient leakage and a unified mathematical notation were developed. For modeling the number of patients recruited over time  ($Ttarget$), we use Poisson and Poisson-Gamma models, while for waiting times until a certain number of patients is recruited ($Ctarget$), we apply Erlang and Gamma-Gamma approach. These developments are supported by open source Software provided on GitHub. These exact models allow for more accurate predictions of the time needed to reach a desired sample size. This provides a more reliable basis for planning clinical trials, allocating resources, and setting expectations on realistic recruitment. By integrating uncertainty more thoroughly, our approach enhances the transparency and credibility of trial planning and supports better-informed decision-making in clinical research.
 
 \vspace{2em}  % Optional space after abstract
 
