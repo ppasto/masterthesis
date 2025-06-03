@@ -12,6 +12,17 @@ Pilar Pastor Martínez
 2. Run knit.R script
 3. Compile compile.Rnw
 
+We recommend having installed the following R paackages:
+- tidyr
+- ggextra
+
+And the following LaTeX packages:
+- listings
+- upquote
+- fancyhdr
+- caption
+
+
 # SessionInfo()
 
 `R version 4.4.2 (2024-10-31)`
