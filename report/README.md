@@ -12,7 +12,7 @@ Pilar Pastor Martínez
 2. Run knit.R script
 3. Compile compile.Rnw
 
-We recommend having installed the following R paackages:
+We recommend having installed the following R packages:
 - tidyr
 - ggextra
 
