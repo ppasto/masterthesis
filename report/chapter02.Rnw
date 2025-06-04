@@ -174,16 +174,16 @@ Assume that the recruitment in one unit of time is constant and equal to $\lambd
 Assuming that recruitments in each unit of time are independent of each other we have:
 
 $C(t) = \textrm{E}(\underbrace{C+\ldots+C}_{t \ \text{times}}) = \textrm{E}(\lambda t) = \lambda t$\\
-$\textrm{Var}(C(t)) = \textrm{Var}(\underbrace{C+\ldots+C}_{t \ \text{times}}) = t \textrm{Var}(\lambda) = 0$
+$\textrm{Var}(C(t)) = \textrm{Var}(\underbrace{C+\ldots+C}_{t \ \text{times}}) = t \textrm{Var}(\lambda) = 0$ or $\textrm{Var}(C(t))=\textrm{Var}(tC)=t^2\textrm{Var}(C)=0$
 
 Both the expected accrual and its zero-variance are recorded in Table \ref{tab:count_modeling_2}
 and visualized in Figure \ref{fig:2_2} and Figure \ref{fig:2_5}.
 
 \subsection{Criticism}
 
-This is a simple deterministic method based on a linear extrapolation of the constant expected recruitment also called "First Order Recruitment Model" (FORM) \citep{comfort2013}. It is also referred to as the \textit{unconditional approach} and its main limitation is the lack of a mechanism to account for known sources of variation in the rate \citep{carter2005practical}. 
+This is a simple, widely-used deterministic method based on a linear extrapolation of the constant expected recruitment also called "First Order Recruitment Model" (FORM) \citep{comfort2013}. It is also referred to as the \textit{unconditional approach} and its main limitation is the lack of a mechanism to account for known sources of variation in the rate \citep{carter2005practical}. 
 
-The model based on expectations is overly simplistic and fails to account for changes in center recruitment or the regulatory environment \citep{barnard2010systematic}. Therefore, stochastic models that incorporate randomness in the recruitment process are more suitable than the widely used deterministic approach \citep{zhang2012modeling}.
+The model based on expectations is overly simplistic and fails to account for changes in center recruitment or the regulatory environment \citep{barnard2010systematic}. Therefore, stochastic models that incorporate randomness in the recruitment process are more suitable than this simple deterministic approach \citep{zhang2012modeling}.
 
 
 
@@ -225,11 +225,11 @@ Poisson-Gamma & $C(t) \sim \textrm{Po} (\Lambda  t)$; $\Lambda \sim \textrm{G}(\
 
 \section{Counts: Model based on Poisson Process}
 
-One way to incorporate variation in the mean number of participants per day is by assuming that participants are recruited according to a known probability distribution, such as the Poisson distribution \citep{carter2004application}. This approach emulates trial accrual using a random number generator and records the time required to reach the target sample size over multiple iterations \citep{carter2005practical}. 
+One way to incorporate variation in the mean number of participants per day is by assuming that participants are recruited according to a known probability distribution, such as the Poisson distribution \citep{carter2004application}. This approach emulates trial accrual using a random number generator and records the numbers of patients (counts) recruited at each time point over multiple iterations \citep{carter2005practical}. 
 
-The resulting distribution helps estimate the probability of completing accrual within a given time frame and assess variability in accrual time. This method is particularly useful when a trial has a fixed duration, as it allows researchers to determine the necessary number of clinical centers and monthly recruitment rate to achieve a high probability (e.g., 80\%) of completing enrollment on time \citep{carter2005practical}.
+The resulting distribution helps estimate the probability of completing accrual within a given time frame and assess variability in accrual. This method is particularly useful when a trial has a fixed duration, as it allows researchers to determine the necessary number of clinical centers and monthly recruitment rate to achieve a high probability (e.g., 80\%) of completing enrollment on time \citep{carter2005practical}.
 
-The Poisson distribution $C\sim \rm{Po} (\lambda)$ allows us to explain the recruitment of patients. It is a discrete variable that expresses the probability of a given number of events (in our case, patient recruitment) occurring in a fixed unit interval of time. We assume that these events occur with a known constant rate $\lambda$ and are independent of each other.
+The Poisson distribution $C\sim \rm{Po} (\lambda)$ allows us to explain the recruitment of patients. It is a discrete variable that expresses the probability of a given number of events (in our case, patient recruitment) occurring in a fixed unit interval of time. We assume that these events occur with a known constant rate $\lambda$ and are independent between units of time.
 
 \begin{align*}
 \textrm{P}[C=&c] = \frac{\lambda^c}{c!}e^{-\lambda}, \ c = 0,1,2,\ldots
@@ -315,13 +315,13 @@ hist_data <- hist(final_counts, breaks = hist_bins, plot = FALSE)
 barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray", 
 				axes = FALSE, xlab = "", ylab = "")
 @   
-  \caption{Poisson-distributed counts with $\lambda = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from section \ref{sec:expect}, while the red dashed lines indicate Poisson's 95\% aleatory uncertainty. The histogram illustrates the distribution of observed counts in 100 studies at time $t = 550$ days \citep{spiegelhalter2011visualizing, pkgacc}.}
+  \caption{Poisson-distributed counts with $\lambda = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from Section \ref{sec:expect}, while the red dashed lines indicate Poisson's 95\% aleatory uncertainty. The histogram illustrates the distribution of observed counts in 100 studies at time $t = 550$ days \citep{spiegelhalter2011visualizing, pkgacc}.}
   \label{fig:2_2}
 \end{figure}
 
 
 \begin{figure}
-<<echo=FALSE>>=
+<<echo=FALSE,  fig.width=7, fig.height=5>>=
 bar_positions <- barplot(dpois(200:500, lambda*550), 
 												 main = "Probability Mass Function (PMF)", 
 												 xlab = "Counts", 
@@ -334,7 +334,7 @@ axis(1, at = seq(1, length(200:500), by = 50), labels = seq(200, 500, by = 50))
 \end{figure}
 
 \begin{figure}
-<<echo=FALSE>>=
+<<echo=FALSE,  fig.width=7, fig.height=5>>=
 probdist <- dpois(200:500, lambda*550)
 cdf <- cumsum(probdist)
 cdf_positions <- barplot(cdf, 
@@ -349,7 +349,7 @@ axis(1, at = seq(1, length(200:500), by = 50), labels = seq(200, 500, by = 50))
 
 
 \begin{figure}
-<<echo=FALSE>>=
+<<echo=FALSE,  fig.width=7, fig.height=5>>=
 
 # Compute Poisson quantiles over time
 q_975_line <- qpois(0.975, lambda * t)
@@ -400,9 +400,9 @@ This model was used by \cite{carter2004application} and \cite{carter2005practica
 
 \section{Counts: Negative Binomial model derived from Poisson-Gamma model}
 
-The basic Poisson model does not account for variations in recruitment rates or uncertainties in rate estimates \citep{mountain2022recruitment}. To address this \cite{anisimov2007modelling} propose a random effects model where recruitment follows a homogeneous Poisson process with rates drawn from a gamma distribution, a probabilistic model with Poisson-Gamma mixture distribution. In this approach, rates are treated as random variables with a prior gamma distribution, whose parameters are estimated using current recruitment data. This allows for a posterior distribution of rates to be used for recruitment prediction in an empirical Bayesian framework.  
+The basic Poisson model does not account for variations in recruitment rates or uncertainties in rate estimates \citep{mountain2022recruitment}. To address this issue, \cite{anisimov2007modelling} propose a random effects model where recruitment follows a homogeneous Poisson process with rates drawn from a gamma distribution, a probabilistic model with Poisson-Gamma mixture distribution. In this approach, rates are treated as random variables with a prior gamma distribution, whose parameters are either elicited from historical data or estimated using current recruitment data. This allows for a posterior distribution of rates to be used for recruitment prediction in a Bayesian or an empirical Bayesian framework.  
 
-Building on this, a Poisson-Gamma model can be implemented by randomly generating recruitment rates using a Gamma distribution and plugging them into a Poisson process. This model can be used to make two types of projections: a point prediction estimating when the expected number of events will reach a specific sample size and a Bayesian interval prediction based on the generation of future accrual and event dates. This method enables flexible forecasting for any milestone at any calendar time \citep{bagiella2001predicting}.
+Building on this, a Poisson-Gamma model can be implemented by randomly generating recruitment rates using a Gamma distribution and plugging them into a Poisson process. This model can be used to make two types of projections: a point prediction estimating when the expected number of events will reach a specific sample size and a Bayesian interval prediction based on the generation of future accrual and event dates. This method enables flexible forecasting for any milestone at any calendar time \citep{bagiella2001predicting}, as we will see in Chapter 4.
 
 
 \begin{figure}
