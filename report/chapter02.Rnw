@@ -1360,7 +1360,7 @@ As we can see in Table \ref{tab:time_modeling}. Here, we have again, a clear exa
 
 If the multiplicator of $\textrm{E}T(c)$ is larger than 1, overdispersion is produced.
 
-To compute $\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ]$ we use property $\textrm{Var}X = \textrm{E}X^2-(\textrm{E}X)^2$, therefore, $\textrm{E}X^2 = \textrm{Var}X + (\textrm{E}X)^2$. Thus,
+To compute $\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ]$ we use the property $\textrm{Var}X = \textrm{E}X^2-(\textrm{E}X)^2$. Therefore, $\textrm{E}X^2 = \textrm{Var}X + (\textrm{E}X)^2$. Thus,
 
 \begin{align*}
 \textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ] &= \textrm{Var}\Bigg [\frac{1}{\Lambda}\Bigg ] + \Bigg [\textrm{E}\frac{1}{\Lambda}\Bigg ]^2\\
@@ -1368,116 +1368,6 @@ To compute $\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ]$ we use proper
 &=\frac{\beta^2(1+\alpha-2)}{(\alpha-1)^2(\alpha-2)}\\
 &=\frac{\beta^2}{(\alpha-1)(\alpha-2)}
 \end{align*}
-
-For Version 2 of generating $\Lambda^*$ with $T(c)|\Lambda^*\sim\textrm{G}(c,\Lambda^*)$ and $\Lambda^*\sim \textrm{G}(t\alpha,\beta)$, we have as expectation and variance:
-
-
-\begin{align*}
-\textrm{E}T(c) &= \textrm{E}_{\Lambda^*}[\textrm{E}_{T(c)} (T(c)|\Lambda^*)] = \textrm{E}_{\Lambda^*}\Bigg [\frac{c}{\Lambda^*}\Bigg ] = c \textrm{E}_{\Lambda^*}\Bigg [\frac{1}{\Lambda^*}\Bigg ] = c\frac{\beta}{t\alpha-1}, \ t\alpha>1
-\end{align*}
-
-\begin{align*}
-\textrm{Var}(T(c)) &= \textrm{Var}_{\Lambda^*}[\textrm{E}_{T(c)} (T(c)|\Lambda^*)] + \textrm{E}_{\Lambda^*}[\textrm{Var}_{T(c)}(T(c)|\Lambda^*)]\\
-&=\textrm{Var}_{\Lambda^*}\Bigg [\frac{c}{\Lambda^*}\Bigg ] + \textrm{E}_{\Lambda^*}\Bigg [\frac{c}{\Lambda^{*2}}\Bigg ] \\
-&=c^2\textrm{Var}_{\Lambda^*}\Bigg [\frac{1}{\Lambda^*}\Bigg ] + c\textrm{E}_{\Lambda^*}\Bigg [\frac{1}{\Lambda^{*2}}\Bigg ] \\
-&=\frac{c^2\beta^2}{(t\alpha-1)^2(t\alpha-2)} + \frac{c\beta^2}{(t\alpha-1)(t\alpha-2)}\\
-&=\frac{c\beta^2(c+t\alpha-1)}{(t\alpha-1)^2(t\alpha-2)}, \ t\alpha>2
-\end{align*}
-
-
-For $t>1$ this variance from Version 2 is smaller than $\frac{c\beta^2(c+\alpha-1)}{(\alpha-1)^2(\alpha-2)}$, when accrual follows Version 1. We get a narrower distribution if Version 2 is applicable. In Chapter 5, we consider only Version 1 with a higher spread as \cite{carter2004application} suggested (constant $\lambda$ over time).
-
-
-
-
-\begin{figure}
-<<echo = FALSE,  fig.width=7, fig.height=5>>=
-par(mfrow=c(1,3))
-curve(dgamma(x, shape = 324, rate = 548), 
-			from = 0, to = 1,
-			main = "Prior", 
-			xlab = "Recruitment rate", 
-			ylab = "",
-			col = "red")
-
-curve(dgamma(x, shape = 32.4, rate = 54.8), add = TRUE,
-			col = "blue")
-
-curve(dgamma(x, shape = 3.24, rate = 5.48), add = TRUE,
-			col = "green")
-
-legend("topleft",
-			 legend = c(expression("G (" ~ alpha == 324 ~ beta == 548 ~ ")"),
-			 					 expression("G (" ~ alpha == 32.4 ~ beta == 54.8 ~ ")"),
-			 					 expression("G (" ~ alpha == 3.24 ~ beta == 5.48 ~ ")")),
-			 col = c("red", "blue", "green"),
-			 lty = c(1, 1),
-			 bg = "white",
-			 cex = 0.6)
-
-
-plot(0:800, dgamma(0:800, shape = 324, rate = 0.591), 
-		 type = "l",
-		 main = "PMF", 
-		 xlab = "Time [days]", 
-		 ylab = "", 
-		 col = "black")
-
-dgammagamma <- function(t, alpha, b, c) {
-	log_dens <- alpha * log(b) - lbeta(alpha, c) + (c - 1) * log(t) - (alpha + c) * log(b + t)
-	dens <- exp(log_dens)
-	return(dens)
-}
-
-pgammagamma <- function(t, alpha, b, c) {
-	sapply(t, function(x) {
-		integrate(function(u) dgammagamma(u, alpha, b, c), lower = 0, upper = x)$value
-	})
-}
-
-lines(0:800, dgammagamma(0:800, alpha = 324, b = 548, c = 324), col = "red")
-lines(0:800, dgammagamma(0:800, alpha = 32.4, b = 54.8, c = 324), col = "blue")
-lines(0:800, dgammagamma(0:800, alpha = 3.24, b = 5.48, c = 324), col = "green")
-
-
-legend("topleft",
-			 legend = c(expression(G(c == 324 ~ lambda == 0.591)),
-			 					 expression(GG ~ (alpha == 324 ~ beta == 548)),
-			 					 expression(GG ~ (alpha == 32.4 ~ beta == 54.8)),
-			 					 expression(GG ~ (alpha == 3.24 ~ beta == 5.48))),
-			 col = c("black", "red", "blue", "green"),
-			 lty = c(1, 1),
-			 bg = "white",
-			 cex = 0.6)
-
-
-
-plot(0:800, pgamma(0:800, shape = 324, rate = 0.591), 
-		 type = "l",
-		 main = "CDF", 
-		 xlab = "Time [days]", 
-		 ylab = "", 
-		 col = "black")
-
-lines(0:800, pgammagamma(0:800, alpha = 324, b = 548, c = 324), col = "red")
-lines(0:800, pgammagamma(0:800, alpha = 32.4, b = 54.8, c = 324), col = "blue")
-lines(0:800, pgammagamma(0:800, alpha = 3.24, b = 5.48, c = 324), col = "green")
-
-
-legend("topleft",
-			 legend = c(expression(G(c == 324 ~ lambda == 0.591)),
-			 					 expression(GG ~ (alpha == 324 ~ beta == 548)),
-			 					 expression(GG ~ (alpha == 32.4 ~ beta == 54.8)),
-			 					 expression(GG ~ (alpha == 3.24 ~ beta == 5.48))),
-			 col = c("black", "red", "blue", "green"),
-			 lty = c(1, 1),
-			 bg = "white",
-			 cex = 0.6)
-@
-	\caption{Sensitivity analysis between Erlang distribution with $c = 324$ and $\lambda = 0.591$ and Gamma-Gamma model at $c = 324$ changing the parameters of Gamma prior that maintain same expectation $\frac{\alpha}{\beta} = 0.591$, $\textrm{GG}(c=324,\alpha, \beta)$.}
-  \label{fig:2_6a}
-\end{figure}
-
 
 
 \begin{figure}
@@ -1683,3 +1573,115 @@ legend("topleft",
   \caption{Poisson-Gamma $(\alpha = 32.4, \beta = 54.8)$ distributed counts with $\lambda = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from Section \ref{sec:expect}, while the green dashed lines indicate Poisson-Gamma 95\% aleatory and epistemic uncertainty. The histogram on the top illustrates the distribution of waiting times to accrue $c=324$ objects when the recruitment rate per unit of time follows $\Lambda \sim \textrm{G}(\alpha = 32.4, \beta = 54.8)$, modelling waiting time with $T(c)\sim \textrm{GG} (c=324, \alpha = 32.4, \beta = 54.8)$ \citep{spiegelhalter2011visualizing, pkgacc}.}
   \label{fig:2_14}
 \end{figure}
+
+For Version 2 of generating $\Lambda^*$ with $T(c)|\Lambda^*\sim\textrm{G}(c,\Lambda^*)$ and $\Lambda^*\sim \textrm{G}(t\alpha,\beta)$ (see Figure \ref{fig:2_14}), we have as expectation and variance:
+
+
+\begin{align*}
+\textrm{E}T(c) &= \textrm{E}_{\Lambda^*}[\textrm{E}_{T(c)} (T(c)|\Lambda^*)] = \textrm{E}_{\Lambda^*}\Bigg [\frac{c}{\Lambda^*}\Bigg ] = c \textrm{E}_{\Lambda^*}\Bigg [\frac{1}{\Lambda^*}\Bigg ] = c\frac{\beta}{t\alpha-1}, \ t\alpha>1
+\end{align*}
+
+\begin{align*}
+\textrm{Var}(T(c)) &= \textrm{Var}_{\Lambda^*}[\textrm{E}_{T(c)} (T(c)|\Lambda^*)] + \textrm{E}_{\Lambda^*}[\textrm{Var}_{T(c)}(T(c)|\Lambda^*)]\\
+&=\textrm{Var}_{\Lambda^*}\Bigg [\frac{c}{\Lambda^*}\Bigg ] + \textrm{E}_{\Lambda^*}\Bigg [\frac{c}{\Lambda^{*2}}\Bigg ] \\
+&=c^2\textrm{Var}_{\Lambda^*}\Bigg [\frac{1}{\Lambda^*}\Bigg ] + c\textrm{E}_{\Lambda^*}\Bigg [\frac{1}{\Lambda^{*2}}\Bigg ] \\
+&=\frac{c^2\beta^2}{(t\alpha-1)^2(t\alpha-2)} + \frac{c\beta^2}{(t\alpha-1)(t\alpha-2)}\\
+&=\frac{c\beta^2(c+t\alpha-1)}{(t\alpha-1)^2(t\alpha-2)}, \ t\alpha>2
+\end{align*}
+
+
+For $t>1$ this variance from Version 2 is smaller than $\frac{c\beta^2(c+\alpha-1)}{(\alpha-1)^2(\alpha-2)}$, when accrual follows Version 1. We get a narrower distribution if Version 2 is applicable. In Chapter 5, we consider only Version 1 with a higher spread as \cite{carter2004application} suggested (constant $\lambda$ over time).
+
+Similarly to prior predictive distributions for counts also the prior predictive distributions that follows the Gamma-Gamma model are sensitive to the choice of the parameters of the Gamma prior. This is shown in Figure \ref{fig:2_6a}.
+
+
+
+\begin{figure}
+<<echo = FALSE,  fig.width=7, fig.height=5>>=
+par(mfrow=c(1,3))
+curve(dgamma(x, shape = 324, rate = 548), 
+			from = 0, to = 1,
+			main = "Prior", 
+			xlab = "Recruitment rate", 
+			ylab = "",
+			col = "red")
+
+curve(dgamma(x, shape = 32.4, rate = 54.8), add = TRUE,
+			col = "blue")
+
+curve(dgamma(x, shape = 3.24, rate = 5.48), add = TRUE,
+			col = "green")
+
+legend("topleft",
+			 legend = c(expression("G (" ~ alpha == 324 ~ beta == 548 ~ ")"),
+			 					 expression("G (" ~ alpha == 32.4 ~ beta == 54.8 ~ ")"),
+			 					 expression("G (" ~ alpha == 3.24 ~ beta == 5.48 ~ ")")),
+			 col = c("red", "blue", "green"),
+			 lty = c(1, 1),
+			 bg = "white",
+			 cex = 0.6)
+
+
+plot(0:800, dgamma(0:800, shape = 324, rate = 0.591), 
+		 type = "l",
+		 main = "PMF", 
+		 xlab = "Time [days]", 
+		 ylab = "", 
+		 col = "black")
+
+dgammagamma <- function(t, alpha, b, c) {
+	log_dens <- alpha * log(b) - lbeta(alpha, c) + (c - 1) * log(t) - (alpha + c) * log(b + t)
+	dens <- exp(log_dens)
+	return(dens)
+}
+
+pgammagamma <- function(t, alpha, b, c) {
+	sapply(t, function(x) {
+		integrate(function(u) dgammagamma(u, alpha, b, c), lower = 0, upper = x)$value
+	})
+}
+
+lines(0:800, dgammagamma(0:800, alpha = 324, b = 548, c = 324), col = "red")
+lines(0:800, dgammagamma(0:800, alpha = 32.4, b = 54.8, c = 324), col = "blue")
+lines(0:800, dgammagamma(0:800, alpha = 3.24, b = 5.48, c = 324), col = "green")
+
+
+legend("topleft",
+			 legend = c(expression(G(c == 324 ~ lambda == 0.591)),
+			 					 expression(GG ~ (alpha == 324 ~ beta == 548)),
+			 					 expression(GG ~ (alpha == 32.4 ~ beta == 54.8)),
+			 					 expression(GG ~ (alpha == 3.24 ~ beta == 5.48))),
+			 col = c("black", "red", "blue", "green"),
+			 lty = c(1, 1),
+			 bg = "white",
+			 cex = 0.6)
+
+
+
+plot(0:800, pgamma(0:800, shape = 324, rate = 0.591), 
+		 type = "l",
+		 main = "CDF", 
+		 xlab = "Time [days]", 
+		 ylab = "", 
+		 col = "black")
+
+lines(0:800, pgammagamma(0:800, alpha = 324, b = 548, c = 324), col = "red")
+lines(0:800, pgammagamma(0:800, alpha = 32.4, b = 54.8, c = 324), col = "blue")
+lines(0:800, pgammagamma(0:800, alpha = 3.24, b = 5.48, c = 324), col = "green")
+
+
+legend("topleft",
+			 legend = c(expression(G(c == 324 ~ lambda == 0.591)),
+			 					 expression(GG ~ (alpha == 324 ~ beta == 548)),
+			 					 expression(GG ~ (alpha == 32.4 ~ beta == 54.8)),
+			 					 expression(GG ~ (alpha == 3.24 ~ beta == 5.48))),
+			 col = c("black", "red", "blue", "green"),
+			 lty = c(1, 1),
+			 bg = "white",
+			 cex = 0.6)
+@
+	\caption{Sensitivity analysis between Erlang distribution with $c = 324$ and $\lambda = 0.591$ and Gamma-Gamma model at $c = 324$ changing the parameters of Gamma prior that maintain same expected recruitment rate $\frac{\alpha}{\beta} = 0.591$, $\textrm{GG}(c=324,\alpha, \beta)$.}
+  \label{fig:2_6a}
+\end{figure}
+
+

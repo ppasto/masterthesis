@@ -757,7 +757,7 @@ p(t) &= \int_0^{\infty} p(t|\lambda) p(\lambda) d\lambda\\
 &=\frac{t^{c-1}\beta^{\alpha}}{\Gamma(c)\Gamma(\alpha)}\int_0^{\infty}\lambda^{c+\alpha-1}\exp(-\lambda(\beta+t))d\lambda\\
 &=\frac{\Gamma(\alpha+c)}{\Gamma(c)\Gamma(\alpha)}\frac{t^{c-1}\beta^{\alpha}}{(\beta+t)^{\alpha+c}}\underbrace{\int_0^{\infty}\frac{(\beta+t)^{\alpha+c}}{\Gamma(\alpha+c)}\lambda^{c+\alpha-1}\exp(-\lambda(\beta+t))d\lambda}_{=1}\\
 &=\frac{\Gamma(\alpha+c)}{\Gamma(c)\Gamma(\alpha)}\frac{t^{c-1}\beta^{\alpha}}{(\beta+t)^{\alpha+c}}\\
-&=\frac{\beta^{\alpha}}{B(\alpha, c)}\frac{t^{c-1}}{(\beta+t)^{\alpha+c}}, \ where \ B(\alpha, c) = \frac{\Gamma(c)\Gamma(\alpha)}{\Gamma(\alpha+c)}
+&=\frac{\beta^{\alpha}}{\B(\alpha, c)}\frac{t^{c-1}}{(\beta+t)^{\alpha+c}}, \ where \ \B(\alpha, c) = \frac{\Gamma(c)\Gamma(\alpha)}{\Gamma(\alpha+c)}
 \end{align*}
 
 Thus, $T(c)\sim \textrm{GG} (c, \alpha, \beta)$, see \cite{held2014applied}, where they use a slightly different notation.
@@ -787,13 +787,13 @@ We have that:
 As we can see in Table \ref{tab:time_modeling}. Here, we have again, a clear example of overdispersion because the variance is larger than the expectation:
 
 \begin{align*}
-\textrm{Var}(T(c))&=\textrm{E}(T(c))\frac{\beta(c+\alpha-1)}{(\alpha-1)(\alpha-2)}\\
-&=\textrm{E}(T(c))\beta\Bigg(\frac{c}{(\alpha-1)(\alpha-2)}+\frac{1}{\alpha-2}\Bigg)
+\textrm{Var}(T(c))&=\textrm{E}(T(c))\frac{\beta(c+\alpha-1)}{(\alpha-1)(\alpha-2)} \ \alpha > 2
+% &=\textrm{E}(T(c))\beta\Bigg(\frac{c}{(\alpha-1)(\alpha-2)}+\frac{1}{\alpha-2}\Bigg)
 \end{align*}
 
-For small parameter $\alpha$ ($\alpha>2$) and large parameter $\beta$, we will have larger uncertainty (variance).
+If the multiplicator of $\textrm{E}T(c)$ is larger than 1, overdispersion is produced.
 
-To compute $\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ]$ we use property $\textrm{Var}X = \textrm{E}X^2-(\textrm{E}X)^2$, therefore, $\textrm{E}X^2 = \textrm{Var}X + (\textrm{E}X)^2$. Thus,
+To compute $\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ]$ we use the property $\textrm{Var}X = \textrm{E}X^2-(\textrm{E}X)^2$. Therefore, $\textrm{E}X^2 = \textrm{Var}X + (\textrm{E}X)^2$. Thus,
 
 \begin{align*}
 \textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ] &= \textrm{Var}\Bigg [\frac{1}{\Lambda}\Bigg ] + \Bigg [\textrm{E}\frac{1}{\Lambda}\Bigg ]^2\\
@@ -802,7 +802,37 @@ To compute $\textrm{E}_{\Lambda}\Bigg [\frac{1}{\Lambda^2}\Bigg ]$ we use proper
 &=\frac{\beta^2}{(\alpha-1)(\alpha-2)}
 \end{align*}
 
-For Version 2 of generating $\Lambda^*$ with $T(c)|\Lambda^*\sim\textrm{G}(c,\Lambda^*)$ and $\Lambda^*\sim \textrm{G}(t\alpha,\beta)$, we have as expectation and variance:
+
+\begin{figure}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
+
+{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-16-1} 
+
+}
+
+
+\end{knitrout}
+  \caption{Poisson-distributed counts with $\lambda = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from Section \ref{sec:expect}, while the red dashed lines indicate Poisson's 95\% aleatory uncertainty. The histogram on the top illustrates the distribution of waiting times to accrue $c=324$ objects when the recruitment rate per unit of time is $\lambda = 0.591$, modelling waiting time with $T(c)\sim \textrm{Erlang} (c=324, \lambda = 0.591)$ \citep{spiegelhalter2011visualizing, pkgacc}.}
+  \label{fig:2_13}
+\end{figure}
+
+
+\begin{figure}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
+
+{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-17-1} 
+
+}
+
+
+\end{knitrout}
+  \caption{Poisson-Gamma $(\alpha = 32.4, \beta = 54.8)$ distributed counts with $\lambda = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from Section \ref{sec:expect}, while the green dashed lines indicate Poisson-Gamma 95\% aleatory and epistemic uncertainty. The histogram on the top illustrates the distribution of waiting times to accrue $c=324$ objects when the recruitment rate per unit of time follows $\Lambda \sim \textrm{G}(\alpha = 32.4, \beta = 54.8)$, modelling waiting time with $T(c)\sim \textrm{GG} (c=324, \alpha = 32.4, \beta = 54.8)$ \citep{spiegelhalter2011visualizing, pkgacc}.}
+  \label{fig:2_14}
+\end{figure}
+
+For Version 2 of generating $\Lambda^*$ with $T(c)|\Lambda^*\sim\textrm{G}(c,\Lambda^*)$ and $\Lambda^*\sim \textrm{G}(t\alpha,\beta)$ (see Figure \ref{fig:2_14}), we have as expectation and variance:
 
 
 \begin{align*}
@@ -820,38 +850,8 @@ For Version 2 of generating $\Lambda^*$ with $T(c)|\Lambda^*\sim\textrm{G}(c,\La
 
 For $t>1$ this variance from Version 2 is smaller than $\frac{c\beta^2(c+\alpha-1)}{(\alpha-1)^2(\alpha-2)}$, when accrual follows Version 1. We get a narrower distribution if Version 2 is applicable. In Chapter 5, we consider only Version 1 with a higher spread as \cite{carter2004application} suggested (constant $\lambda$ over time).
 
+Similarly to prior predictive distributions for counts also the prior predictive distributions that follows the Gamma-Gamma model are sensitive to the choice of the parameters of the Gamma prior. This is shown in Figure \ref{fig:2_6a}.
 
-
-
-\begin{figure}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
-
-{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-16-1} 
-
-}
-
-
-\end{knitrout}
-	\caption{Sensitivity analysis between Erlang distribution with $c = 324$ and $\lambda = 0.591$ and Gamma-Gamma model at $c = 324$ changing the parameters of Gamma prior that maintain same expectation $\frac{\alpha}{\beta} = 0.591$, $\textrm{GG}(c=324,\alpha, \beta)$.}
-  \label{fig:2_6a}
-\end{figure}
-
-
-
-\begin{figure}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
-
-{\centering \includegraphics[width=\textwidth-3cm]{figure/ch02_figunnamed-chunk-17-1} 
-
-}
-
-
-\end{knitrout}
-  \caption{Poisson-distributed counts with $\lambda = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from Section \ref{sec:expect}, while the red dashed lines indicate Poisson's 95\% aleatory uncertainty. The histogram on the top illustrates the distribution of waiting times to accrue $c=324$ objects when the recruitment rate per unit of time is $\lambda = 0.591$, modelling waiting time with $T(c)\sim \textrm{Erlang} (c=324, \lambda = 0.591)$ \citep{spiegelhalter2011visualizing, pkgacc}.}
-  \label{fig:2_13}
-\end{figure}
 
 
 \begin{figure}
@@ -864,6 +864,8 @@ For $t>1$ this variance from Version 2 is smaller than $\frac{c\beta^2(c+\alpha-
 
 
 \end{knitrout}
-  \caption{Poisson-Gamma $(\alpha = 32.4, \beta = 54.8)$ distributed counts with $\lambda = 0.591$ per day and uncertainty range. The black line represents the point estimate of the expected accrual from Section \ref{sec:expect}, while the green dashed lines indicate Poisson-Gamma 95\% aleatory and epistemic uncertainty. The histogram on the top illustrates the distribution of waiting times to accrue $c=324$ objects when the recruitment rate per unit of time follows $\Lambda \sim \textrm{G}(\alpha = 32.4, \beta = 54.8)$, modelling waiting time with $T(c)\sim \textrm{GG} (c=324, \alpha = 32.4, \beta = 54.8)$ \citep{spiegelhalter2011visualizing, pkgacc}.}
-  \label{fig:2_14}
+	\caption{Sensitivity analysis between Erlang distribution with $c = 324$ and $\lambda = 0.591$ and Gamma-Gamma model at $c = 324$ changing the parameters of Gamma prior that maintain same expected recruitment rate $\frac{\alpha}{\beta} = 0.591$, $\textrm{GG}(c=324,\alpha, \beta)$.}
+  \label{fig:2_6a}
 \end{figure}
+
+
