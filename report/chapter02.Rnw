@@ -569,7 +569,7 @@ Since we will be using the Count-Based interpretation of the Negative Binomial \
 \begin{align*}
 \textrm{P}(X=&c) = \binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{\mu}{\beta+\mu}\Bigg)^{c} \Bigg(\frac{\alpha}{\alpha+\mu}\Bigg)^{\alpha}, \ c\geq 0 
 \end{align*}
-where $c$ is the counts.
+where $c$ are the counts.
 \item Interpretation: This model is used to represent "recruitment proneness". The parameter $\mu$ represents the expected number of recruitments in a study \citep{johnson2005univariate}.
 
 \end{enumerate}
@@ -577,7 +577,7 @@ where $c$ is the counts.
 In the count-based method we take into account the overdispersion of the data. When the variability in the observed data is greater than what is expected.
 
 \begin{align*}
-\textrm{E}X&=\mu\\
+\textrm{E}X&=\mu = \frac{\alpha}{\beta}\\
 \textrm{Var}X&=\mu + \frac{\mu}{\beta}
 \end{align*}
 
@@ -680,7 +680,7 @@ barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray",
 
 
 \begin{figure}
-<<echo=FALSE>>=
+<<echo=FALSE,  fig.width=7, fig.height=5>>=
 n <- 100
 t <- seq(1, 550, 1)
 lambda <- 0.591
@@ -819,7 +819,7 @@ legend("topleft",
 
 \subsection{Accrual at time point $t$}
 
-Let $C(t)|\Lambda \sim \textrm{Po}(\Lambda t)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$. By the infinitely divisible property of the Poisson distribution we have that $\underbrace{\textrm{Po} (\Lambda) +\cdots +\textrm{Po} (\Lambda)}_{t \ \text{times}} = \textrm{Po} (\Lambda t)$. This Poisson-Gamma model has parameters $t$, $\alpha$ and $\beta$. Hence, we denote it as $C(t)\sim \textrm{PoG}(t, \alpha, \beta)$.
+Let $C(t)|\Lambda \sim \textrm{Po}(\Lambda t)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$. By the infinitely divisible property of the Poisson distribution we have that $\underbrace{\textrm{Po} (\Lambda) +\cdots +\textrm{Po} (\Lambda)}_{t \ \text{times}} = \textrm{Po} (\Lambda t)$. This Poisson-Gamma model has parameters $t$, $\alpha$ and $\beta$. Hence, we denote it as $C(t)\sim \textrm{PoG}(t, \alpha, \beta)$. The prior predictive distribution can be computed as follows:
 
 \begin{align*}
 p(c)&=\int^\infty_0 p(c|\lambda t) p(\lambda) d\lambda\\
@@ -828,7 +828,7 @@ p(c)&=\int^\infty_0 p(c|\lambda t) p(\lambda) d\lambda\\
 &=\frac{\beta^\alpha\Gamma(\alpha+c) t^c}{c!\Gamma(\alpha) (\beta+t)^{\alpha+c}}\underbrace{\int^\infty_0 \frac{(\beta+t)^{\alpha+c}}{\Gamma(\alpha+c)} \lambda^{\alpha+c-1}\exp(-(\beta+t)\lambda)d\lambda}_{=1}\\
 &=\beta^\alpha t^c\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{1}{\beta+t}\Bigg)^{\alpha+c}\\
 &=\binom{\alpha+c-1}{\alpha-1}\Bigg (\frac{t}{\beta+t}\Bigg)^{c} \Bigg(\frac{\beta}{\beta+t}\Bigg)^{\alpha}\\
-& c = 0,1,2,3,\ldots
+& c = 0,1,2,3,\ldots, \ \alpha \in \mathbb{N}
 \end{align*}
 Thus, $C(t)\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+t}\Bigg)$
 
