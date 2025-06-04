@@ -22,20 +22,20 @@ Carter suggests using Monte Carlo simulations, independent and identically distr
 \item $M$, the number of simulations
 \item Set a seed for computational reproducibility
 \item Monte Carlo standard errors (MCse) of estimates based on MC simulations
-\item Pseudo random numbers generated in R rely in the assumption that these pseudo random numbers are close to the true realizations of random variables \citep{held2014applied}
+\item Pseudo random numbers generated in R rely in the assumption that these pseudo random numbers are close to the true realizations of random variables \citep{held2014applied}.
 \end{itemize}
 
 
 \section{Important questions when forecasting recruitment at the design-stage of a study}
 
-By normal approximation to the Poisson distribution $C(t)\sim \textrm{N}(\mu=\lambda t, \sigma^2=(\lambda t)^2)$, we know that the probability of recruiting the desired $N$ participants is 0.5. Which means that the study has 50\% chance of obtaining the desired sample size in the suggested $T$ \citep{carter2004application}. We would also be assuming that the recruitment rate is constant over time.
+If the recruitment rate $\lambda$ is true and constant, then by normal approximation to the Poisson distribution $C(t)\sim \textrm{N}(\mu=\lambda t, \sigma^2=(\lambda t)^2)$, we know that the probability of recruiting the desired $Ctarget$ participants is 0.5. Which means that the study has 50\% chance of obtaining the desired sample size in the suggested $Ttarget$ \citep{carter2004application}. We would also be assuming that the recruitment rate is constant over time.
 
-In fact, we do not need normal approximation to see this. This can be shown with the Poisson distribution itself, see Tables \ref{tab:mcsec} and \ref{tab:mcset}. We only need to specify the probability above $\lambda t$, for example, $0.9$. For large $\lambda$, 50\% of the distribution will be below $\lambda t$. With $\lambda < 1$ this is no longer the case. 
+In fact, we do not need normal approximation to see this. This can be shown with the Poisson distribution itself, see Tables \ref{tab:mcsec} and \ref{tab:mcset}. For large $\lambda$, 50\% of the distribution will be below $\lambda t$. With $\lambda < 1$ this is no longer the case. In addition, quantiles of predictive distributions that guarantee probability equal 0.9 can be found.  
 
 This raises two questions which will be answered throughout this Master Thesis:
 \begin{enumerate}
-\item \textbf{Rate:} If $T$ is fixed, what does the expected rate $\lambda$ need to be to achieve a certain certainty of enrolling the total sample size $N$ within the time frame $T$?
-\item \textbf{Time:} Given a certain rate $\lambda$, how long should the recruitment period $T$ be planned to give a confidence above 50\% of recruiting the total sample size $N$? In Machine Learning, this confidence is aimed at 80\%. In \cite{carter2004application}, at 90\%.
+\item \textbf{Rate:} If $Ttarget$ is fixed, what does the expected rate $\lambda$ need to be to achieve a certain certainty of enrolling the total sample size $Ctarget$ within the time frame $Ttarget$?
+\item \textbf{Time:} Given a certain rate $\lambda$, how long should the recruitment period $Ttarget$ recommended be planned to give a confidence above 50\% of recruiting the total sample size $Ctarget$? In Machine Learning, this confidence is aimed at 80\%. In \cite{carter2004application}, at 90\%.
 \end{enumerate}
 
 
@@ -157,7 +157,8 @@ simulate_time_to_threshold_Erlang <- function(MM, CC, ll, rseed=265735) {
   return(timeerlang)
 }
 
-time_erlang <- simulate_time_to_threshold_Erlang(MM=M, CC=Ctarget, ll=lambda, rseed=265735)
+time_erlang <- simulate_time_to_threshold_Erlang(MM=M, CC=Ctarget, 
+																								 ll=lambda, rseed=265735)
 
 simulate_time_to_threshold_GG <- function(MM, CC, aa, bb, rseed=265735) {
   set.seed(rseed)
@@ -225,6 +226,6 @@ In Table \ref{tab:mcset} we illustrate how, indeed, by using the expected accrua
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figure/ch03_figunnamed-chunk-6-1} 
 \end{knitrout}
-\caption{Illustration showing that, under a theoretical Gamma-Gamma model with parameters $\alpha = 32.4$ and $\beta = 54.8$, it takes approximately 707 days to reach a 90\% probability of achieving the target sample size ($C_{\text{target}} = 324$).}
+\caption{Illustration showing that, under a theoretical Gamma-Gamma model with parameters $\alpha = 32.4$ and $\beta = 54.8$, it takes approximately 707 days to reach a 90\% probability of achieving the target sample size ($Ctarget = 324$).}
 \label{fig:3_5}
 \end{figure}
