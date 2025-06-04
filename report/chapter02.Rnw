@@ -67,11 +67,11 @@ In clinical research, \textbf{Statistical Analysis} involves applying statistica
   \label{fig:2_0}
 \end{figure}
 
-The number of patients decreases at each stage of a clinical study, from defining the target population to final statistical analysis, see Figure \ref{fig:2_1_b}. This process is known as patient leakage \citep{desai2014preventing}, alternative terms are attrition or retention.
+The number of patients decreases at each stage of a clinical study, from defining the target population to final statistical analysis, see Figure \ref{fig:2_1_b}. Eligibility criteria narrow down participants, and enrollment further reduces numbers as only those meeting strict criteria are registered. Randomization assigns individuals to treatment groups, but some may later be excluded due to protocol deviations, missing data, or loss to follow-up. This process is known as patient leakage \citep{desai2014preventing}, alternative terms are attrition or retention.
 
-Figure \ref{fig:2_1_a} generalizes the notion of patient leakage found in trial profiles such as the one found in Figure \ref{fig:2_0}. Figure \ref{fig:2_1_a} outlines the various stages of a clinical trial and analyzes the key factors contributing to patient attrition as they transition from one stage to the next.
+Figure \ref{fig:2_1_a} generalizes the notion of patient leakage found in trial profiles such as the one found in Figure \ref{fig:2_0}. Figure \ref{fig:2_1_a} outlines the various stages of a clinical trial and analyzes the key factors contributing to patient attrition as they transition from one stage to the next. Although these stages differ, we apply the same general notion of Recruitment to each stage meaning ``the number of patients (counts) at this stage''.
 
-Eligibility criteria narrow down participants, and enrollment further reduces numbers as only those meeting strict criteria are registered. Randomization assigns individuals to treatment groups, but some may later be excluded due to protocol deviations, missing data, or loss to follow-up. 
+
 
 
 \begin{figure}[h]
@@ -94,7 +94,7 @@ Let us denote
 \item $\lambda=\frac{C}{T}$
 \end{itemize}
 
-We define \textbf{Recruitment Rate} $\lambda=\frac{C}{T}$ at which patients are collected, measured as persons per unit of time, where \textbf{Rate} is understood as a ratio in which the numerator and denominator are incremental differences \citep{piantadosi2024clinical}:
+We define \textbf{Design Stage} as the stage where no data is available and elaborated parameters are used in order to determine the prior predictive distributions. We define \textbf{Recruitment Rate} $\lambda=\frac{C}{T}$ at which patients are collected, measured as persons per unit of time, where \textbf{Rate} is understood as a ratio in which the numerator and denominator are incremental differences \citep{piantadosi2024clinical}:
 
 \begin{align*}
 \lambda = \frac{\Delta C}{\Delta T} = \frac{C_1 - C_0}{T_1 - T_0} = \frac{C_1 - 0}{T_1 - 0} = \frac{C_1}{T_1}
@@ -154,7 +154,7 @@ We define \textbf{Recruitment Rate} $\lambda=\frac{C}{T}$ at which patients are 
 % \end{table}
 
 
-Methods in Tables \ref{tab:count_modeling}, \ref{tab:count_modeling_2} and \ref{tab:time_modeling} are applicable to each level of recruitment in Figures \ref{fig:2_1_a} and \ref{fig:2_1_b}.
+Where $C_0, C_1$ are the counts at the beginning and end of a study and $T_0, T_1$, the waiting times. At the design stage $C_0=T_0=0$. Methods in Tables \ref{tab:count_modeling}, \ref{tab:count_modeling_2} and \ref{tab:time_modeling} are applicable to each level of recruitment in Figures \ref{fig:2_1_a} and \ref{fig:2_1_b}.
 
 \chapter{Methods for Counts} 
 \section{Counts: Model based on Expectations}
