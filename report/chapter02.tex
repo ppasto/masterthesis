@@ -524,7 +524,7 @@ Therefore, we clearly have overdispersion $\textrm{Var}(C(t))>\textrm{E}(C(t))$.
 
 \section{Comparison of models for the accrual of counts}
 
-As we can see in Figures \ref{fig:2_10} -- \ref{fig:2_12}, we are taking into account more epistemic uncertainty of the recruitment rate $\Lambda$ in the Poisson-Gamma model than we do in the Poisson process where $\lambda$ is fixed. Hence, the color-coding, red for only aleatory and green, aleatory and epistemic. In reality we expect fluctuations of recruitment rates, therefore, the Poisson-Gamma model is more realistic.
+As we can see in Figures \ref{fig:2_10} -- \ref{fig:2_11a}, we are taking into account more epistemic uncertainty of the recruitment rate $\Lambda$ in the Poisson-Gamma model than we do in the Poisson process where $\lambda$ is fixed. Hence, the color-coding, red for only aleatory and green, aleatory and epistemic. In reality we expect fluctuations of recruitment rates, therefore, the Poisson-Gamma model is more realistic.
 
 Figures \ref{fig:2_10} and \ref{fig:2_11} assume that the recruitment rates do not vary much by assuming $\textrm{G}(\alpha = 324, \beta = 548)$ as prior, where the expectation is $\frac{\alpha}{\beta} = 0.591$ and the standard deviation $\frac{\sqrt{\alpha}}{\beta} = 0.033$. In contrast, Figures \ref{fig:2_10a} and \ref{fig:2_11a}, assume a less informative prior $\textrm{G}(\alpha = 32.4, \beta = 54.8)$ of the recruitment rates with expectation $0.591$ and standard deviation $\frac{\sqrt{\alpha}}{\beta} = 0.104$, showing a more pronounced discrepancy between the Poisson and the Poisson-Gamma process.
 
@@ -744,11 +744,11 @@ Let $T(c)$ denote the waiting time until $c$ objects are recruited. For a fixed 
 \textrm{Var}(T(c)) & = c/\lambda^2
 \end{align*}
 
-The Erlang model explains only the aleatory uncertainty of the waiting time until $c$ objects have been recruited. We can visualize the waiting time in Figure \ref{fig:2_14}.
+The Erlang model explains only the aleatory uncertainty of the waiting time until $c$ objects have been recruited. We can visualize the waiting time in Figures \ref{fig:2_13} and \ref{fig:2_14}.
 
 \section{Time: Derivation of Gamma-Gamma model}
 
-To take into account the epistemic uncertainty of recruitment rates and the aleatory uncertainty of waiting times, a Gamma-Gamma model is recommended \citep{bagiella2001predicting}, $T(c)|\Lambda \sim \textrm{G}(c, \Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$. This Gamma-Gamma model has parameters $c$, $\alpha$ and $\beta$. Thus, $T(c)\sim \textrm{GG}(c, \alpha, \beta)$.
+To take into account the epistemic uncertainty of recruitment rates and the aleatory uncertainty of waiting times, a Gamma-Gamma model is recommended \citep{bagiella2001predicting}, $T(c)|\Lambda \sim \textrm{G}(c, \Lambda)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$. This Gamma-Gamma model has parameters $c$, $\alpha$ and $\beta$. Thus, $T(c)\sim \textrm{GG}(c, \alpha, \beta)$. The prior predictive distribution for the waiting time can be computed as follows:
 
 
 \begin{align*}
@@ -757,7 +757,7 @@ p(t) &= \int_0^{\infty} p(t|\lambda) p(\lambda) d\lambda\\
 &=\frac{t^{c-1}\beta^{\alpha}}{\Gamma(c)\Gamma(\alpha)}\int_0^{\infty}\lambda^{c+\alpha-1}\exp(-\lambda(\beta+t))d\lambda\\
 &=\frac{\Gamma(\alpha+c)}{\Gamma(c)\Gamma(\alpha)}\frac{t^{c-1}\beta^{\alpha}}{(\beta+t)^{\alpha+c}}\underbrace{\int_0^{\infty}\frac{(\beta+t)^{\alpha+c}}{\Gamma(\alpha+c)}\lambda^{c+\alpha-1}\exp(-\lambda(\beta+t))d\lambda}_{=1}\\
 &=\frac{\Gamma(\alpha+c)}{\Gamma(c)\Gamma(\alpha)}\frac{t^{c-1}\beta^{\alpha}}{(\beta+t)^{\alpha+c}}\\
-&=\frac{\beta^{\alpha}}{\B(\alpha, c)}\frac{t^{c-1}}{(\beta+t)^{\alpha+c}}
+&=\frac{\beta^{\alpha}}{B(\alpha, c)}\frac{t^{c-1}}{(\beta+t)^{\alpha+c}}, \ where \ B(\alpha, c) = \frac{\Gamma(c)\Gamma(\alpha)}{\Gamma(\alpha+c)}
 \end{align*}
 
 Thus, $T(c)\sim \textrm{GG} (c, \alpha, \beta)$, see \cite{held2014applied}, where they use a slightly different notation.
