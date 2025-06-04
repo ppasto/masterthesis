@@ -1006,7 +1006,7 @@ barplot(hist_data$counts, horiz = TRUE, space = 0, col = "gray",
 \end{figure}
 
 \begin{figure}
-<<echo=FALSE>>=
+<<echo=FALSE, fig.width=7, fig.height=5>>=
 n <- 100
 t <- seq(1, 550, 1)
 lambda <- 0.591
@@ -1060,7 +1060,7 @@ legend("topleft",
 
 
 \begin{figure}
-<<echo=FALSE>>=
+<<echo=FALSE, fig.width=7, fig.height=5>>=
 n <- 100
 t <- seq(1, 550, 1)
 lambda <- 0.591
@@ -1116,7 +1116,7 @@ legend("topleft",
 
 There are two ways with which we can generate the random $\Lambda$ in the $\textrm{PoG}(t, \alpha, \beta)$ model and we will investigate in this section whether they are both equivalent.
 
-\subsection{Version 1}
+\subsection{Version 1 (random-constant)}
 
 We generate a random vector of $\lambda$ values of length $M=10^5$ with $\textrm{G}(\alpha, \beta)$ and a vector of counts at each time point, of length $t$ with $\textrm{Po}(\lambda)$. For the final counts we sum cumulatively (cumsum) the counts at $t$ so that we get the accrual of patients at time $t$ of each study.
 
@@ -1145,7 +1145,7 @@ for (i in 1:M) {
 }
 @
 
-\subsection{Version 2}
+\subsection{Version 2 (random-random)}
 
 At each time point $i=1,\ldots, t$, we generate a $\lambda^{(i)}$ with $\textrm{G}(\alpha, \beta)$ and a count with $\textrm{Po}(\lambda^{(i)})$. For the final counts we sum cumulatively (cumsum) the counts at $t$ so that we get the accrual of patients at time $t$ of each study.
 
@@ -1213,11 +1213,11 @@ and using the variance iterated formula \citep{held2014applied},
 &=\frac{t\alpha(\beta+1)}{\beta^2}
 \end{align*}
 
-Hence, the spread in Version 2 is smaller than in Version 1. Version 1 for Counts and Time will be used in Chapter 5.
+Hence, the spread in Version 2 is smaller than in Version 1. Version 1 for Counts will be also used in Chapter 5 for Time.
 
 
 \begin{figure}
-<<echo=FALSE, cache = TRUE>>=
+<<echo=FALSE, cache = TRUE, fig.width=7, fig.height=5>>=
 set.seed(2025)
 
 n <- 10^4
