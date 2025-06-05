@@ -251,7 +251,7 @@ At time point $t$, the accrual follows $C\sim \textrm{Po} (\lambda t)$. Using th
 \textrm{Var}(C(t)) & = \lambda t
 \end{align*}
 
-For example, if we assume $\lambda = 0.591$ per day and $t=550$, we can show the accrual of 100 different studies in Figure \ref{fig:2_2} and the histogram at $t=550$ days. The exact distribution at $t=550$ is provided in Figure \ref{fig:2_3} and the Cummulative Distribution Function (CDF) in Figure \ref{fig:2_4}. The uncertainty bands based on the exact quantiles are displayed in Figure \ref{fig:2_5}.
+For example, if we assume $\lambda = 0.591$ per day and $t=550$, we can show the accrual of a hundred different studies in Figure \ref{fig:2_2} and the histogram at $t=550$ days. The exact distribution at $t=550$ is provided in Figure \ref{fig:2_3} and the Cummulative Distribution Function (CDF) in Figure \ref{fig:2_4}. The uncertainty bands based on the exact quantiles are displayed in Figure \ref{fig:2_5}.
 
 \begin{figure}
 <<echo=FALSE>>=
@@ -400,7 +400,12 @@ This model was used by \cite{carter2004application} and \cite{carter2005practica
 
 \section{Counts: Negative Binomial model derived from Poisson-Gamma model}
 
-The basic Poisson model does not account for variations in recruitment rates or uncertainties in rate estimates \citep{mountain2022recruitment}. To address this issue, \cite{anisimov2007modelling} propose a random effects model where recruitment follows a homogeneous Poisson process with rates drawn from a gamma distribution, a probabilistic model with Poisson-Gamma mixture distribution. In this approach, rates are treated as random variables with a prior gamma distribution, whose parameters are either elicited from historical data or estimated using current recruitment data. This allows for a posterior distribution of rates to be used for recruitment prediction in a Bayesian or an empirical Bayesian framework.  
+The basic Poisson model does not account for variations in recruitment rates or uncertainties in rate estimates \citep{mountain2022recruitment}. To address this issue, \cite{anisimov2007modelling} propose a random effects model where recruitment follows a homogeneous Poisson process with rates drawn from a gamma distribution, a probabilistic model with Poisson-Gamma mixture distribution. 
+
+For example, if we assume $\lambda=0.591$ per day and $t=550$, we can show the accrual of a hundred different studies in Figure \ref{fig:2_7} and the histogram at $t=550$ days. The uncertainty bands based on the exact quantiles are displayed in Figure \ref{fig:2_8}.
+
+In this approach, rates are treated as random variables with a prior gamma distribution, whose parameters are either elicited from historical data or estimated using current recruitment data. This allows for a posterior distribution of rates to be used for recruitment prediction in a Bayesian or an empirical Bayesian framework.  
+
 
 Building on this, a Poisson-Gamma model can be implemented by randomly generating recruitment rates using a Gamma distribution and plugging them into a Poisson process. This model can be used to make two types of projections: a point prediction estimating when the expected number of events will reach a specific sample size and a Bayesian interval prediction based on the generation of future accrual and event dates. This method enables flexible forecasting for any milestone at any calendar time \citep{bagiella2001predicting}, as we will see in Chapter 4.
 
