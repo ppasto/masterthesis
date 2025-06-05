@@ -864,7 +864,7 @@ Therefore, we clearly have overdispersion $\textrm{Var}(C(t))>\textrm{E}(C(t))$.
 
 As we can see in Figures \ref{fig:2_10} -- \ref{fig:2_11a}, we are taking into account more epistemic uncertainty of the recruitment rate $\Lambda$ in the Poisson-Gamma model than we do in the Poisson process where $\lambda$ is fixed. Hence, the color-coding, red for only aleatory and green, aleatory and epistemic. In reality we expect fluctuations of recruitment rates, therefore, the Poisson-Gamma model is more realistic.
 
-Figures \ref{fig:2_10} and \ref{fig:2_11} assume that the recruitment rates do not vary much by assuming $\textrm{G}(\alpha = 324, \beta = 548)$ as prior, where the expectation is $\frac{\alpha}{\beta} = 0.591$ and the standard deviation $\frac{\sqrt{\alpha}}{\beta} = 0.033$. In contrast, Figures \ref{fig:2_10a} and \ref{fig:2_11a}, assume a less informative prior $\textrm{G}(\alpha = 32.4, \beta = 54.8)$ of the recruitment rates with expectation $0.591$ and standard deviation $\frac{\sqrt{\alpha}}{\beta} = 0.104$, showing a more pronounced discrepancy between the Poisson and the Poisson-Gamma process.
+Figures \ref{fig:2_10} and \ref{fig:2_11} assume that the recruitment rates do not vary much by assuming $\textrm{G}(\alpha = 324, \beta = 548)$ as prior, where the expectation is $\frac{\alpha}{\beta} = 0.591$ and the standard deviation $\frac{\sqrt{\alpha}}{\beta} = 0.033$. In contrast, Figures \ref{fig:2_10a} and \ref{fig:2_11a}, assume a less informative prior $\textrm{G}(\alpha = 32.4, \beta = 54.8)$ of the recruitment rates with expectation $0.591$ and standard deviation $0.104$, showing a more pronounced discrepancy between the Poisson and the Poisson-Gamma process.
 
 \begin{figure}
 <<echo=FALSE>>=
