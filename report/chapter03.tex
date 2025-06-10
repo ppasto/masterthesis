@@ -71,7 +71,7 @@ final_counts <- cval_cum_matrix[, length(t)]
 \end{knitrout}
 
 
-\begin{figure}
+\begin{figure}[h]
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figure/ch03_figunnamed-chunk-1-1} 
@@ -81,8 +81,8 @@ final_counts <- cval_cum_matrix[, length(t)]
 \end{figure}
 
 
-
-\begin{figure}
+\newpage
+\begin{figure}[h]
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figure/ch03_figunnamed-chunk-2-1} 
@@ -90,7 +90,7 @@ final_counts <- cval_cum_matrix[, length(t)]
 \caption{Comparison of smoothed theoretical Probability Mass Function (PMF) of Poisson-Gamma model for counts with $\alpha = 32.4$ and $\beta = 54.8$ for accrual at time $Ttarget=548$, and Monte Carlo (MC) simulations with $M=10^4$.}
 \label{fig:3_2}
 \end{figure}
-
+\newpage
 \begin{table}[h!]
 \centering
 \begin{tabular}{cccc}
@@ -105,6 +105,7 @@ final_counts <- cval_cum_matrix[, length(t)]
 \end{table}
 
 In Table \ref{tab:mcsec} we illustrate how, indeed, by using the expected accrual without taking into consideration any uncertainty we have roughly a 50\% chance of accruing the desired sample size in the established time-frame \citep{carter2004application}.
+
 
 \section{Time: Comparison exact vs Monte Carlo simulations}
 
@@ -175,7 +176,7 @@ timegg <- simulate_time_to_threshold_GG(MM=M, CC=Ctarget, aa=alpha, bb=beta)
 \end{kframe}
 \end{knitrout}
 
-\begin{figure}
+\begin{figure}[h]
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figure/ch03_figunnamed-chunk-3-1} 
@@ -218,10 +219,8 @@ Small number of simulations (up to $M=10^3$) from \cite{carter2004application} g
 
 Moreover, if we wish to be more realistic in the uncertainty our model takes into consideration and choose the Gamma-Gamma distribution, 707 days would be required to have a 90\% chance of accruing the desired sample size, see Figure \ref{fig:3_5}. 
 
-In Table \ref{tab:mcset} we illustrate how, indeed, by using the expected accrual without taking into consideration any uncertainty we have roughly a 50\% chance of accruing the desired sample size in the established time-frame \citep{carter2004application}.
 
-
-\begin{figure}
+\begin{figure}[h]
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=\maxwidth]{figure/ch03_figunnamed-chunk-6-1} 
@@ -229,3 +228,6 @@ In Table \ref{tab:mcset} we illustrate how, indeed, by using the expected accrua
 \caption{Illustration showing that, under a theoretical Gamma-Gamma model with parameters $\alpha = 32.4$ and $\beta = 54.8$, it takes approximately 707 days to reach a 90\% probability of achieving the target sample size ($Ctarget = 324$).}
 \label{fig:3_5}
 \end{figure}
+
+In Table \ref{tab:mcset} we illustrate how, indeed, by using the expected accrual without taking into consideration any uncertainty we have roughly a 50\% chance of accruing the desired sample size in the established time-frame \citep{carter2004application}.
+
