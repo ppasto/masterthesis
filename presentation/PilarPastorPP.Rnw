@@ -54,7 +54,7 @@ fig.path='figures/fig', fig.show='hold',
 \begin{frame}{Why recruitment rates?}
 
 According to \cite{carter2004application}
-\begin{itemize}
+\begin{itemize}[label = \ding{219}]
 \item Timely recruitment vital to the success of a clinical trial
 \item Inadequate number of patients $\rightarrow$ lack of power
 \item Recruitment period too long $\rightarrow$ competing treatments
@@ -114,7 +114,7 @@ According to \cite{carter2004application}
 
 \begin{frame}{Definitions}
 
-\begin{itemize}
+\begin{itemize}[label = \ding{219}]
 \item \textbf{Recruitment rate}: Per time-unit \citep{piantadosi2024clinical}
 \begin{align*}
 \lambda = \frac{\Delta C}{\Delta T} = \frac{C_1 - C_0}{T_1 - T_0} = \frac{C_1}{T_1}
@@ -248,7 +248,7 @@ Poisson - Gamma & $C(t) \sim Po (\Lambda  t)$; $\Lambda \sim G(\alpha,\beta)$ & 
 \begin{frame}{Multicenter Trial on Palliation in Terminal Esophageal Cancer}
 
 Example from \cite{carter2004application}:
-\begin{itemize}
+\begin{itemize}[label = \ding{219}]
 \item Recruitment Rate $\lambda = 0.591$ per day
 \item Time $Ttaget = 550$ days
 \end{itemize}
@@ -259,15 +259,15 @@ Example from \cite{carter2004application}:
 \begin{frame}{Multicenter Trial on Palliation in Terminal Esophageal Cancer}
 
 Example from \cite{carter2004application}:
-\begin{itemize}
+\begin{itemize}[label = \ding{219}]
 \item Recruitment Rate $\lambda = 0.591$ per day
 \item Time $Ttarget = 550$ days
 \item Models for Counts at time point $t$:
-	\begin{itemize}
+	\begin{itemize}[label = \ding{112}]
 	\item \textbf{Expectation}: $EC(t) = \lambda t$
 	\item \textbf{Poisson}: $C(t) \sim Po(\lambda t)$
 	\item \textbf{Poisson - Gamma}: $C(t) \sim Po (\Lambda t)$; $\Lambda \sim G(\alpha,\beta)$
-	\begin{itemize}
+	\begin{itemize}[label = \ding{219}]
 	\item $\alpha = 32.4$ and $\beta = 54.8$
 	\item $E\Lambda = \frac{\alpha}{\beta} = 0.591$
 	\end{itemize}
@@ -280,7 +280,7 @@ Example from \cite{carter2004application}:
 
 
 \begin{frame}{Accrual at time point $t$}
-\begin{itemize}
+\begin{itemize}[label = \ding{219}]
 \item \textbf{Expectation}: $EC(t) = E\underbrace{(C +\ldots + C)}_{t \ \text{times}} = t E C = \lambda t$
 \item \textbf{Poisson}: $\underbrace{Po (\lambda) +\ldots +Po (\lambda)}_{t \ \text{times}} = Po (\lambda t)$
 % mention this is infinitely divisible property of poisson
@@ -691,7 +691,7 @@ legend("topleft",
 % \end{frame}
 
 \begin{frame}{Two versions of randomness of $\Lambda$}
-\begin{itemize}
+\begin{itemize}[label = \ding{219}]
 \item \textbf{Version 1 (random-constant):} Random recruitment rate realization $\lambda$ varies across studies and remains \textbf{fixed} within study \textbf{over time} \\ $\rightarrow$ PoG distribution
 \item \textbf{Version 2 (random-random):} Random recruitment rate realization $\lambda$ varies across studies and \textbf{varies} within study \textbf{over time} \\ $\rightarrow$ Distribution with surprising properties
 \end{itemize}
@@ -1264,7 +1264,7 @@ Gamma-Gamma & $T(c) \sim \textrm{G}(c, \Lambda)$; $\Lambda \sim \textrm{G}(\alph
 }
 \end{table}
 
-\begin{itemize}
+\begin{itemize}[label = \ding{219}]
 \item Two versions of randomness of $\Lambda$
 \item Version 1 $\rightarrow$ GG distribution 
 \item Similar derivations as shown for counts
@@ -1695,7 +1695,7 @@ $T(C)\sim\textrm{GG}(C, \alpha, \beta)$ & $\textrm{P}(T(C)\geq 548) = \Sexpr{rou
 
 \textbf{90\% chance} of accruing $Ctarget=324$ patients: 
 
-\begin{itemize}
+\begin{itemize}[label = \ding{219}]
 \item $M=10^3$ from Carter's $\rightarrow$ 580 days (innacurate)
 \item Erlang exact distribution $\rightarrow$ 588 days
 \item Gamma-Gamma exact distribution $\rightarrow$ 707 days
