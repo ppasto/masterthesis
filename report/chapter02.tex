@@ -373,7 +373,7 @@ where $x$ is the number of failures.
 
 With respect to the parameters, $r>0$ represents the number of successes until 
 the experiment is stopped. The success probability in each experiment is 
-represented by $p\in[0,1]$.  In R the functions \_\texttt{nbinom(..., size = $n$, prob = $p$)} relate to the random variable $X-r$, the number of failures (as opposed to the number of trials) until $r$ successes have been achieved \citep{held2014applied}. Regarding our prior interpretation, in our application, a success is a recruited patient whereas a failure is a non-recruited patient.
+represented by $p\in[0,1]$.  In R the functions \_\texttt{nbinom(..., size = $r$, prob = $p$)} relate to the number of failures (as opposed to the number of trials) until $r$ successes have been achieved \citep{held2014applied}. Regarding our prior interpretation, in our application, a success is a recruited patient whereas a failure is a non-recruited patient.
 
 \begin{align*}
 EX & = \frac{r(1-p)}{p}\\
@@ -466,7 +466,7 @@ How do we get to our formulation of the PMF:
 
 \subsection{Sensitivity Analysis}
 
-In Figures \ref{fig:2_6b} and \ref{fig:2_6}, the Poisson distribution captures aleatory uncertainty, while the Gamma prior represents epistemic uncertainty. The Poisson-Gamma distribution incorporates both types of uncertainty. The sensitivity analysis, also shown in Figures \ref{fig:2_6b} and \ref{fig:2_6}, highlights that while the expectation remains unchanged, smaller parameter values lead to greater overall uncertainty due to the increased variance introduced by the Gamma distribution. The smaller the $\beta$, the greater the variance.
+In Figures \ref{fig:2_6} and \ref{fig:2_6b}, the Poisson distribution captures aleatory uncertainty, while the Gamma prior represents epistemic uncertainty. The Poisson-Gamma distribution incorporates both types of uncertainty. The sensitivity analysis, also shown in Figures \ref{fig:2_6b} and \ref{fig:2_6}, highlights that while the expectation remains unchanged, smaller parameter values lead to greater overall uncertainty due to the increased variance introduced by the Gamma distribution. The smaller the $\beta$, the greater the variance.
 
 
 \begin{align*}
@@ -504,7 +504,7 @@ p(c)&=\int^\infty_0 p(c|\lambda t) p(\lambda) d\lambda\\
 \end{align*}
 Thus, $C(t)\sim \textrm{NBin} \Bigg(\alpha, \frac{\beta}{\beta+t}\Bigg)$
 
-We will be focusing on the count-based interpretation of the Negative Binomial distribution. We can relate this interpretation to the more popular failure-based interpretation by seeing $\alpha$ as $n$, the number of successes. In our case, the number of patients we wish to recruit. And, $p = \frac{\beta}{\beta+t}$ which is the probability of success, as the probability of recruiting.
+We will be focusing on the count-based interpretation of the Negative Binomial distribution. We can relate this interpretation to the more popular failure-based interpretation by seeing $\alpha$ as $r$, the number of successes. In our case, the number of patients we wish to recruit. And, $p = \frac{\beta}{\beta+t}$ which is the probability of success, as the probability of recruiting.
 
 
 Using the expressions of iterated expectation and variance \citep{held2014applied} and the expectation and variance from the respective random variables $C(t)|\Lambda \sim \textrm{Po}(\Lambda t)$ and $\Lambda \sim \textrm{G}(\alpha,\beta)$, we have that:
@@ -703,7 +703,7 @@ and using the variance iterated formula \citep{held2014applied},
 Hence, the spread in Version 2 is smaller than in Version 1. Version 1 for Counts will be also used in Chapter 5 for Time.
 
 
-\begin{figure}
+\begin{figure}[h]
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.98, 0.98, 0.98}\color{fgcolor}
 
