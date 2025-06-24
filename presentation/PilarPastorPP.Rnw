@@ -66,7 +66,7 @@ According to \cite{carter2004application}
 
 
 
-\begin{frame}{CONSORT}
+\begin{frame}{CONSORT -- \cite{whelan2018high}}
 \begin{center}
 \includegraphics[width=0.4\textwidth]{whelan_flow.png}
 \end{center}
@@ -115,6 +115,7 @@ According to \cite{carter2004application}
 \begin{frame}{Definitions}
 
 \begin{itemize}[label = \ding{219}]
+\item \textbf{Design Stage}: No data is available, preparation phase (sample size, study population, study design, etc.)
 \item \textbf{Recruitment rate}: Per time-unit \citep{piantadosi2024clinical}
 \begin{align*}
 \lambda = \frac{\Delta C}{\Delta T} = \frac{C_1 - C_0}{T_1 - T_0} = \frac{C_1}{T_1}
@@ -250,7 +251,9 @@ Poisson - Gamma & $C(t) \sim Po (\Lambda  t)$; $\Lambda \sim G(\alpha,\beta)$ & 
 Example from \cite{carter2004application}:
 \begin{itemize}[label = \ding{219}]
 \item Recruitment Rate $\lambda = 0.591$ per day
-\item Time $Ttaget = 550$ days
+\item Counts: Time $Ttarget = 550$ days
+\item Time: 90\% chance of accruing $Ctarget=324$ patients 
+
 \end{itemize}
 
 \end{frame}
@@ -261,7 +264,7 @@ Example from \cite{carter2004application}:
 Example from \cite{carter2004application}:
 \begin{itemize}[label = \ding{219}]
 \item Recruitment Rate $\lambda = 0.591$ per day
-\item Time $Ttarget = 550$ days
+\item Counts: Time $Ttarget = 550$ days
 \item Models for Counts at time point $t$:
 	\begin{itemize}[label = \ding{112}]
 	\item \textbf{Expectation}: $EC(t) = \lambda t$
@@ -1397,6 +1400,20 @@ legend("topleft",
 
 \end{frame}
 
+\begin{frame}{Exact Methods vs MC simulations}
+
+Comparison between:
+\begin{itemize}[label = \ding{219}]
+\item MC simulations with $M=10^3$ \citep{carter2004application}
+\item Exact methods
+\begin{itemize}[label = \ding{219}]
+\item \textbf{Counts:} Poisson-Gamma
+\item \textbf{Time:} Gamma-Gamma
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
 % 
 % \begin{frame}[shrink=20]{Exact Methods vs MC simulations}
 % <<echo=FALSE, cache = TRUE, warning=FALSE>>=
@@ -1768,7 +1785,7 @@ legend("topright", legend = c("Theoretical GG", "MC simulation", "90% chance (70
 % Extended Monte Carlo methods to capture both aleatory and epistemic uncertainty
 \item Flexible Recruitment
 % Framework supports both fixed and time-varying recruitment rates
-\item Practical Impact
+\item Practical Impact (\href{https://github.com/ppasto/masterthesis}{GitHub})
 % Exact methods aid trial design; open-source R code enables real-world use
 \end{itemize}
 \end{frame}
